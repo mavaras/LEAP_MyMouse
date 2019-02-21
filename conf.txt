@@ -1,0 +1,23 @@
+conf.txt
+E:/Documentos/Estudio/programming/Python/leap/PCRecognizer_LEAP
+Thu Jan 31 14:42:36 2019
+
+Basic Conf:
+default
+default
+default
+default
+default
+default
+default
+default
+
+Extra Conf:
+default
+default
+default
+default
+empty
+empty
+empty
+empty
