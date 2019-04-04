@@ -1,4 +1,6 @@
 W = 1920
 H = 1080
-LEAP_W = W/4.5
-LEAP_H = H/4.5
+"""LEAP_W = W/4.5
+LEAP_H = H/4.5"""
+LEAP_W = 320
+LEAP_H = 200

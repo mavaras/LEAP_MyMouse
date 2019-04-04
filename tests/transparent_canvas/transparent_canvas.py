@@ -1,4 +1,5 @@
 import sys
+import time
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from tcgui import *
@@ -30,7 +31,7 @@ class leap_listener(Leap.Listener):
 		for hand in frame.hands:
 			if hand.is_right:
 				# scrolling
-				pitch = hand.direction.pitch * Leap.RAD_TO_DEG
+				"""pitch = hand.direction.pitch * Leap.RAD_TO_DEG
 				if pitch < -2:
 					print("scroll down")
 					cx, cy = win32api.GetCursorPos()
@@ -41,26 +42,50 @@ class leap_listener(Leap.Listener):
 					print("scroll up")
 					cx, cy = win32api.GetCursorPos()
 					vel = int(30-((90-pitch)/3))
-					win32api.mouse_event(win32con.MOUSEEVENTF_WHEEL, cx, cy, vel, 0)
-					
-				for finger in hand.fingers:
-					f_pos = finger.tip_position
-					if not self.flag:
-						x = f_pos.x
-						y = LEAP_H - f_pos.y
-						z = f_pos.z
-						x = x + LEAP_W/2
-						x = (W * x) / LEAP_W
-						y = (H * y) / LEAP_H
+					win32api.mouse_event(win32con.MOUSEEVENTF_WHEEL, cx, cy, vel, 0)"""
+				f2 = hand.fingers[1]
+				f3 = hand.fingers[2]
 
-					z = 20
+				f_pos = f2.tip_position
+				if not self.flag:
+					x = f_pos.x
+					y = LEAP_H - f_pos.y
+					z = f_pos.z
+					x = x + LEAP_W/2
+					x = (W * x) / LEAP_W
+					y = (H * y) / LEAP_H
+
+				z = 20
+
+				if not self.flag and abs(f2.tip_velocity.z) < 200 and distance(self.fingers_pos[1][0], self.fingers_pos[1][1], x, y) > 1:
+					# perform mouse movement
+					canvas.add_to_path(x, y, z)
+					win32api.SetCursorPos((int(x), int(y)))
+					self.fingers_pos[1] = (x, y, f2.tip_position.z)
+				else:
+					canvas.add_to_path(self.fingers_pos[1][0], self.fingers_pos[1][1], z)
+
+				#print(f3.tip_velocity.y)
+				if abs(f3.tip_velocity.y) > 300 and f3.tip_velocity.y < 0 and abs(f2.tip_velocity.y) < 60:
+					if not self.flag:
+						print("click")
+						self.flag = True
+						cx, cy = win32api.GetCursorPos()
+						win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, cx, cy, 0, 0)
+						time.sleep(.2)
+						win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, cx, cy, 0, 0)
+				else:
+					if self.flag:
+						self.flag = False
+							
+				for finger in hand.fingers:
 
 					start_click_movement = 280
 					end_click_movement = 30
 					
-					print(abs(finger.tip_velocity.z))
+					#print(abs(finger.tip_velocity.z))
 					# if finger 1 and negative Z movement and icreased Z finger velocity and not inside this
-					if finger.type == 1 and hand.palm_velocity.z < 0 and abs(finger.tip_velocity.z) > start_click_movement and not self.flag:
+					"""if finger.type == 1 and hand.palm_velocity.z < 0 and abs(finger.tip_velocity.z) > start_click_movement and not self.flag:
 						# perform mouse click
 						print("click")
 						win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, int(x), int(y), 0, 0)
@@ -71,14 +96,8 @@ class leap_listener(Leap.Listener):
 					# when click movement is near to reach its end
 					elif abs(finger.tip_velocity.z) < end_click_movement:
 						self.flag = False
-						
-					if finger.type == 1 and not self.flag and abs(finger.tip_velocity.z) < 200 and distance(self.fingers_pos[finger.type][0], self.fingers_pos[finger.type][1], x, y) > 1:
-						# perform mouse movement
-						canvas.add_to_path(x, y, z)
-						win32api.SetCursorPos((int(x), int(y)))
-						self.fingers_pos[finger.type] = (x, y, finger.tip_position.z)
-					else:
-						canvas.add_to_path(self.fingers_pos[finger.type][0], self.fingers_pos[finger.type][1], z)
+					"""	
+					
 				
 				canvas.draw_path()
 

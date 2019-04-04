@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>960</width>
+    <width>1043</width>
     <height>582</height>
    </rect>
   </property>
@@ -19,7 +19,7 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>961</width>
+      <width>1051</width>
       <height>511</height>
      </rect>
     </property>
@@ -158,6 +158,35 @@
        <string>Record: </string>
       </property>
      </widget>
+     <widget class="QRadioButton" name="radioButton_NN">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>460</y>
+        <width>41</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>NN</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButton_pd">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>460</y>
+        <width>41</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>P$</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
@@ -194,7 +223,7 @@
        <rect>
         <x>490</x>
         <y>10</y>
-        <width>441</width>
+        <width>511</width>
         <height>411</height>
        </rect>
       </property>
@@ -210,13 +239,13 @@
          <rect>
           <x>200</x>
           <y>220</y>
-          <width>191</width>
+          <width>261</width>
           <height>22</height>
          </rect>
         </property>
         <item>
          <property name="text">
-          <string>gesture 1 (default)</string>
+          <string>90 degree hand + left/right Swipe</string>
          </property>
         </item>
         <item>
@@ -248,7 +277,7 @@
          <rect>
           <x>200</x>
           <y>140</y>
-          <width>191</width>
+          <width>261</width>
           <height>22</height>
          </rect>
         </property>
@@ -268,7 +297,7 @@
          <rect>
           <x>200</x>
           <y>20</y>
-          <width>191</width>
+          <width>261</width>
           <height>22</height>
          </rect>
         </property>
@@ -306,18 +335,33 @@
          <rect>
           <x>200</x>
           <y>60</y>
-          <width>191</width>
+          <width>261</width>
           <height>22</height>
          </rect>
         </property>
         <item>
          <property name="text">
-          <string>CLICK plane mode (finger 0 to finger 1)</string>
+          <string>CLICK plane mode (finger 1/thumb to finger 2/index) !!</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>CLICK deep mode (finger 1 at front)</string>
+          <string>CLICK deep mode (finger 1/index at front)</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>CLICK (finger 3/middle down) !!</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>CLICK (finger 2/index down)</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>CLICK (finger 1/thumb down)</string>
          </property>
         </item>
        </widget>
@@ -344,7 +388,7 @@
          <rect>
           <x>200</x>
           <y>180</y>
-          <width>191</width>
+          <width>261</width>
           <height>22</height>
          </rect>
         </property>
@@ -392,7 +436,7 @@
          </font>
         </property>
         <property name="text">
-         <string>Change Window</string>
+         <string>Switch Window</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_5">
@@ -436,18 +480,28 @@
          <rect>
           <x>200</x>
           <y>260</y>
-          <width>191</width>
+          <width>261</width>
           <height>22</height>
          </rect>
         </property>
         <item>
          <property name="text">
-          <string>SCROLL</string>
+          <string>5 fingers extended + up/down wrist</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>gesture 2</string>
+          <string>5 fingers extended + left/right wrist</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>4 fingers extended + up/down wrist</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>3 fingers extended + up/down wrist</string>
          </property>
         </item>
        </widget>
@@ -474,7 +528,7 @@
          <rect>
           <x>200</x>
           <y>300</y>
-          <width>191</width>
+          <width>261</width>
           <height>22</height>
          </rect>
         </property>
@@ -512,18 +566,23 @@
          <rect>
           <x>200</x>
           <y>100</y>
-          <width>191</width>
+          <width>261</width>
           <height>22</height>
          </rect>
         </property>
         <item>
          <property name="text">
-          <string>RCLICK plane mode (finger 2 down)</string>
+          <string>RCLICK plane mode (finger 3/middle down) !!</string>
          </property>
         </item>
         <item>
          <property name="text">
           <string>RCLICK deep mode (finger 1 and 2 to front)</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>RCLICK (finger 1/index down)</string>
          </property>
         </item>
        </widget>
@@ -550,13 +609,13 @@
          <rect>
           <x>200</x>
           <y>340</y>
-          <width>191</width>
+          <width>261</width>
           <height>22</height>
          </rect>
         </property>
         <item>
          <property name="text">
-          <string>GRABB plane mode</string>
+          <string>f2 and f3 together</string>
          </property>
         </item>
         <item>
@@ -568,7 +627,7 @@
        <widget class="QPushButton" name="button_help_click">
         <property name="geometry">
          <rect>
-          <x>403</x>
+          <x>470</x>
           <y>60</y>
           <width>21</width>
           <height>23</height>
@@ -581,7 +640,7 @@
        <widget class="QPushButton" name="button_help_rclick">
         <property name="geometry">
          <rect>
-          <x>403</x>
+          <x>470</x>
           <y>100</y>
           <width>21</width>
           <height>23</height>
@@ -594,7 +653,7 @@
        <widget class="QPushButton" name="button_help_grabb">
         <property name="geometry">
          <rect>
-          <x>403</x>
+          <x>470</x>
           <y>340</y>
           <width>21</width>
           <height>23</height>
@@ -607,7 +666,7 @@
        <widget class="QPushButton" name="button_help_vscroll">
         <property name="geometry">
          <rect>
-          <x>403</x>
+          <x>470</x>
           <y>260</y>
           <width>21</width>
           <height>23</height>
@@ -1186,7 +1245,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>960</width>
+     <width>1043</width>
      <height>21</height>
     </rect>
    </property>

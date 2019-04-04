@@ -19,10 +19,13 @@ import gvariables
 from controllers.aux_functions import *
 
 
-# ===============PCRecognizer things (functions + classes)===============
-# match two point_cloud by calculating distance between their points
-# between our points and the template
+# ===============PCRecognizer algorithm things (functions + classes)===============
+
 def greedy_cloud_match(points, pc):
+	""" match two point_cloud by calculating distance between their points
+	between our points and the template
+	"""
+	
 	e = 0.50
 	step = math.floor(math.pow(len(points), 1.0 - e))
 	minimum = INF
@@ -34,8 +37,9 @@ def greedy_cloud_match(points, pc):
 
 	return minimum
 
-# geometric distance between two point_clouds
 def cloud_distance(pc1, pc2, start):
+	""" this function returns the geometric distance between two provided point_clouds"""
+	
 	aux = [False] * len(pc1)    # empty auxiliar array
 	suma = 0
 	w = start
@@ -61,9 +65,11 @@ def cloud_distance(pc1, pc2, start):
 
 	return suma
 
-# resamples a point cloud in order to set homogenous lengths for compare them properly.
-# resample_length indicates the length which to resample the pc.
 def resample(points, resample_len):
+	"""resamples provided point_cloud in order to set homogenous lengths for properly comparaison
+	resample_length indicates the length which to resample the pc.
+	"""
+	
 	interval = path_length(points) / (resample_len - 1)
 	d = 0.0
 	new_points = []
@@ -74,8 +80,8 @@ def resample(points, resample_len):
 			if points[c].id == points[c - 1].id:                 # we are int he same stroke
 				dist = distance(points[c - 1], points[c])
 				if d + dist >= interval:
-					px = points[c - 1].x + ((interval - d) / dist) * (points[c].x - points[c - 1].x)
-					py = points[c - 1].y + ((interval - d) / dist) * (points[c].y - points[c - 1].y)
+					px = points[c-1].x + ((interval - d)/dist) * (points[c].x - points[c-1].x)
+					py = points[c-1].y + ((interval - d)/dist) * (points[c].y - points[c-1].y)
 					p = Point(px, py, points[c].id)
 					new_points.append(p)
 					points.insert(c, p)                          # insert p in c position, reasigning all elements
@@ -83,8 +89,8 @@ def resample(points, resample_len):
 
 				else:
 					d += dist
-
 			c += 1
+			
 		except:
 			break
 
@@ -95,8 +101,9 @@ def resample(points, resample_len):
 
 	return new_points
 
-# provides the same point_cloud in different scales in order to compare
 def scale(points):
+	""" this funciton returns the same point_cloud in different scales in order to comparaison"""
+	
 	min_x = INF
 	min_y = INF
 	max_x = -INF
@@ -116,9 +123,11 @@ def scale(points):
 
 	return new_points
 
-# translates a point_cloud to the provided centroid. It maps all pc to origin,
-# in order to recognize pc that are similar but in different coordinates
 def translate_to(points, where):
+	""" translates given points set (point_cloud) to provided centroid. It maps all pc to origin,
+	in order to recognize pc that are similar but in different coordinates
+	"""
+	
 	centroid = get_centroid(points)
 	new_points = []
 	for c in range(0, len(points)):
@@ -128,8 +137,11 @@ def translate_to(points, where):
 
 	return new_points
 
-# amplifies a collection of points keeping its distances between each other attending to mult argument
 def amplify(points, mult):
+	""" amplifies given collection of points keeping its distances between each other attending 
+	to mult argument
+	"""
+	
 	new_points = []
 	x = points[0].x
 	y = points[0].y
@@ -141,8 +153,9 @@ def amplify(points, mult):
 
 	return new_points
 
-# calculates the centroid of given cloud of points
 def get_centroid(points):
+	""" this function calculates given points_cloud's centroid"""
+	
 	x = 0.0
 	y = 0.0
 	for c in range(0, len(points)):
@@ -154,8 +167,9 @@ def get_centroid(points):
 
 	return Point(x, y, 0)
 
-# calculates the length of a single point in a point_cloud
 def path_length(points):
+	""" calculates the length of a single point into a point_cloud"""
+	
 	dist = 0.0
 	for c in range(1, len(points)):
 		if points[c].id == points[c - 1].id:
@@ -163,8 +177,9 @@ def path_length(points):
 
 	return dist
 
-# initialize templates array for PCRecognizer class
 def init_templates():
+	""" initialize templates array for PCRecognizer class"""
+	
 	templates = []  
 	# single stroke templates (all fingers doing the same if various fingers) (1 finger)
 	templates.append(Template("T", [
@@ -211,6 +226,12 @@ def init_templates():
 		Point_cloud("left2", [Point(30, 20, 1), Point(96, 37, 1)])
 		], None)
 	)
+	"""templates.append(Template("X", [
+		Point_cloud("X1", [Point(30, 7, 1), #Point(45, 20, 1),
+						   Point(60, 47, 1),
+						   Point(60, 7, 2), Point(30, 47, 2)])
+		], None)
+	)"""
 	templates.append(Template("X", [
 		Point_cloud("X1", [Point(30, 7, 1), Point(60, 47, 1),
 						   Point(60, 7, 2), Point(30, 47, 2)])
@@ -245,7 +266,7 @@ def init_templates():
 
 
 # CLASS DEFINITIONS
-# this class represents one single point
+# this CLASS represents one single point
 # convert_to method does the translation between Leap coordinates to canvas or something ones
 class Point:
 	def __init__(self, x, y, id):
@@ -268,7 +289,7 @@ class Point:
 		gvariables.main_window.widget_canvas.update()
 		
 
-# a point cloud is a collection of points defining a shape, it's like a points array
+# point cloud = collection of points defining a shape, it's like a points array
 class Point_cloud:
 	def __init__(self, name, points, where_to_translate=Point(W/4, H/4, -1)):
 		self.origin = where_to_translate
@@ -300,7 +321,7 @@ class Point_cloud:
 				
 			c += 1
 
-# this class represents a full Template, that's it a template representing a form (name)
+# this CLASS represents a full Template, that's it a template representing a form (name)
 # but with some different ways of representing it (point_cloud array)
 class Template:
 	def __init__(self, name, point_cloud, fingers_point_cloud):
@@ -308,7 +329,7 @@ class Template:
 		self.point_cloud = point_cloud
 		self.fingers_point_cloud = fingers_point_cloud           # this if template is a complex one
 
-# this class stores the final result of the algorithm, containing the match
+# this CLASS stores the final result of the algorithm, containing the match
 class Result:
 	def __init__(self, name, score, ms):
 		self.name = name
@@ -323,16 +344,19 @@ origin = Point(W/4, H/4, -1)                                     # canvas point 
 class PCRecognizer:
 	templates = init_templates()                                 # array storing all Template objects
 
-	# this sets up points array received for proper algorithm application
 	def normalize(self, points):
+		""" this sets up points array received for proper algorithm application"""
+		
 		points = resample(points, 32)
 		points = scale(points)
 		points = translate_to(points, origin)
 		return points
 
-	# arr_points is an array containing the points array of each finger
-	# if we are working with 1 finger, its points array is into arr_points[0]
 	def recognize(self, arr_points, print_all_matches = False):
+		"""	arr_points = array containing the points array of each finger
+		if we are working with f1, its points array is into arr_points[0]
+		"""
+		
 		t_ini = time.clock()
 
 		# normalizing stroke(s)  

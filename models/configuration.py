@@ -5,6 +5,7 @@
 
 
 import sys
+import linecache
 
 
 # CLASS CONTAINING CONFIGURATION DATA
@@ -25,15 +26,15 @@ class Conf():
 		self.file_date = conf.readline()
 
 		# basic conf
-		self.basic.mm = linecache.getline(str(conf.name), 6)
-		self.basic.lclick = linecache.getline(str(conf.name), 7)
-		self.basic.rclick = linecache.getline(str(conf.name), 8)
-		self.basic.vscroll = linecache.getline(str(conf.name), 9)
-		self.basic.hscroll = linecache.getline(str(conf.name), 10)
-		self.basic.grabb = linecache.getline(str(conf.name), 11)
-		self.basic.changew = linecache.getline(str(conf.name), 12)
-		self.basic.closew = linecache.getline(str(conf.name), 13)
-		self.basic.minimizew = linecache.getline(str(conf.name), 14)
+		self.basic.mm = linecache.getline(str(conf.name), 6).split(":")[1].replace("\n", "").replace("\r", "")
+		self.basic.lclick = linecache.getline(str(conf.name), 7).split(":")[1].replace("\n", "").replace("\r", "")
+		self.basic.rclick = linecache.getline(str(conf.name), 8).split(":")[1].replace("\n", "").replace("\r", "")
+		self.basic.vscroll = linecache.getline(str(conf.name), 9).split(":")[1].replace("\n", "").replace("\r", "")
+		self.basic.hscroll = linecache.getline(str(conf.name), 10).split(":")[1].replace("\n", "").replace("\r", "")
+		self.basic.grabb = linecache.getline(str(conf.name), 11).split(":")[1].replace("\n", "").replace("\r", "")
+		self.basic.changew = linecache.getline(str(conf.name), 12).split(":")[1].replace("\n", "").replace("\r", "")
+		self.basic.closew = linecache.getline(str(conf.name), 13).split(":")[1].replace("\n", "").replace("\r", "")
+		self.basic.minimizew = linecache.getline(str(conf.name), 14).split(":")[1].replace("\n", "").replace("\r", "")
 
 		# extra conf
 		"""self.basic.mm = linecache.getline(str(conf.name), 6)
@@ -42,32 +43,32 @@ class Conf():
 		
 		print("Content of configuration file "+str(conf.name)+":")
 		for line in conf:
-			print(line),
+			print("    "+str(line)),
 
 	# classes for both configuration types
 	class Basic():
 		def __init__(self):
 			self.mm = 1
-			self.lclick = "default"
-			self.rclick = "default"
+			self.lclick = "click_planem"
+			self.rclick = "rclick_f2down"
 			self.hscroll = "default"
 			self.vscroll = "default"
 			self.grabb = "default"
 			self.changew = "default"
 			self.closew = "default"
-			self.minimizew = "default"
+			self.minimizew = "T"
 
 		def get_conf(self):
 			aux = ("Basic Conf:\n"
-				  +str(self.mm)+"\n"
-				  +str(self.lclick)+"\n"
-				  +str(self.rclick)+"\n"
-				  +str(self.vscroll)+"\n"
-				  +str(self.hscroll)+"\n"
-				  +str(self.grabb)+"\n"
-				  +str(self.changew)+"\n"
-				  +str(self.closew)+"\n"
-				  +str(self.minimizew)+"\n"
+				  +"mm:"+str(self.mm)+"\n"
+				  +"lclick:"+str(self.lclick)+"\n"
+				  +"rclick:"+str(self.rclick)+"\n"
+				  +"vscroll:"+str(self.vscroll)+"\n"
+				  +"hscroll:"+str(self.hscroll)+"\n"
+				  +"grabb:"+str(self.grabb)+"\n"
+				  +"changew:"+str(self.changew)+"\n"
+				  +"closew:"+str(self.closew)+"\n"
+				  +"minimizew:"+str(self.minimizew)+"\n"
 			)
 			return aux			
 			
@@ -92,6 +93,6 @@ class Conf():
 				  +str(self.open_custom_1)+"\n"
 				  +str(self.open_custom_2)+"\n"
 				  +str(self.open_custom_3)+"\n"
-				  +str(self.open_custom_4)+"\n"
+				  +str(self.open_custom_4)+"\n\n"
 			)
 			return aux
