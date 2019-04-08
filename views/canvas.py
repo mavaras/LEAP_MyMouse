@@ -96,7 +96,7 @@ class Widget_canvas(QWidget):
         global stroke_id  # , points
         stroke_id += 1
         self.points.append(Point(x, y, stroke_id))
-        self.lp.x, self.lp.y = x, y  #
+        self.lp.x, self.lp.y = x, y
 
     def mouseMoveEvent(self, event):
         # self.path.lineTo(event.pos())
