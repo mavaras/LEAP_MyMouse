@@ -1226,7 +1226,7 @@
      <enum>Qt::Vertical</enum>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox">
+   <widget class="QCheckBox" name="checkBox_startup">
     <property name="geometry">
      <rect>
       <x>820</x>

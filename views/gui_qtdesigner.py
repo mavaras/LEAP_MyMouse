@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'views\untitled.ui'
+# Form implementation generated from reading ui file 'untitled.ui'
 #
 # Created by: PyQt4 UI code generator 4.11.4
 #
@@ -443,7 +443,7 @@ class Ui_MainWindow(object):
         self.tab_widget.setTabText(self.tab_widget.indexOf(self.tab_canvas), _translate("MainWindow", "Canvas", None))
         self.button_restore_def.setText(_translate("MainWindow", "Restore Defaults", None))
         self.button_save_conf.setText(_translate("MainWindow", "Save Configuration", None))
-        self.combo_box_changew.setItemText(0, _translate("MainWindow", "gesture 1 (default)", None))
+        self.combo_box_changew.setItemText(0, _translate("MainWindow", "90 degree hand + left/right Swipe", None))
         self.combo_box_changew.setItemText(1, _translate("MainWindow", "gesture 2", None))
         self.label_7.setText(_translate("MainWindow", "Close Window", None))
         self.combo_box_minimizew.setItemText(0, _translate("MainWindow", "V gesture (default)", None))

@@ -2,8 +2,8 @@
 
 # ===============MOUSE CLASS===============
 # == used in leap_controller
-# == pushing mouse buttons
-# == storing mouse info
+# == performing mouse actions
+# == stores mouse info
 
 
 import time
@@ -38,14 +38,19 @@ class Mouse:
 		self.switching = False		# if currently switching (switch mode + left or right swipe)
 
 	def lclick(self):
+		""" performs a left click on the mouse"""
 		win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, self.x, self.y, 0, 0)
 		time.sleep(.2)
 		win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, self.x, self.y, 0, 0)
 
 	def rclick(self):
+		""" performs a right click on the mouse"""
 		win32api.mouse_event(win32con.MOUSEEVENTF_RIGHTDOWN, self.x, self.y, 0, 0)
 		time.sleep(.2)
 		win32api.mouse_event(win32con.MOUSEEVENTF_RIGHTUP, self.x, self.y, 0, 0)
 
 	def vscroll(self, vel):
+		""" performs a vertical scroll on the mouse
+		:param vel: > 0 up, < 0 down
+		"""
 		win32api.mouse_event(win32con.MOUSEEVENTF_WHEEL, self.x, self.y, vel, 0)

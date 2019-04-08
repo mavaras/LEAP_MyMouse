@@ -3,14 +3,14 @@ E:/Documentos/Estudio/programming/Python/leap/LEAP_proyect
 Thu Mar 28 17:13:27 2019
 
 Basic Conf:
-mm:4
-lclick:lclick_deepm
+mm:1
+lclick:click_planem
 rclick:rclick_f2down
 vscroll:5_fingers_UD
 hscroll:default
-grabb:f1_f2
+grabb:default
 changew:90_and_swipe
-closew:X
+closew:V
 minimizew:T
 
 Extra Conf:
@@ -22,3 +22,4 @@ empty
 empty
 empty
 empty
+
