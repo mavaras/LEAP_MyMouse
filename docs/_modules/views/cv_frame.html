@@ -1,0 +1,156 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>views.cv_frame &#8212; LeapPCController 2019 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for views.cv_frame</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">gvariables</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">PyQt4.QtGui</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">PyQt4.QtCore</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">views.gui_qtdesigner</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+
+
+<span class="c1"># OpenCV FRAME CLASS (Configuration Tab)</span>
+<div class="viewcode-block" id="Cv_Frame"><a class="viewcode-back" href="../../views.html#views.cv_frame.Cv_Frame">[docs]</a><span class="k">class</span> <span class="nc">Cv_Frame</span><span class="p">:</span>
+	<span class="n">main_window</span> <span class="o">=</span> <span class="kc">None</span>
+	
+	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_window</span><span class="p">):</span>
+		<span class="c1">#global cv_frame_XY, cv_frame_XZ, main_window</span>
+		
+		<span class="bp">self</span><span class="o">.</span><span class="n">main_window</span> <span class="o">=</span> <span class="n">main_window</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">frame_XY</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">H</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">W</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>  <span class="c1"># XZ frame</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">frame_XZ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">H</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">W</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>  <span class="c1"># XZ frame</span>
+		
+		<span class="c1"># show_frame each second</span>
+		<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">timer</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">QTimer</span><span class="p">(</span><span class="n">main_window</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">timer</span><span class="o">.</span><span class="n">timeout</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">show_frame</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">timer</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+	<span class="c1"># load frame (image) into label</span>
+<div class="viewcode-block" id="Cv_Frame.show_frame"><a class="viewcode-back" href="../../views.html#views.cv_frame.Cv_Frame.show_frame">[docs]</a>	<span class="k">def</span> <span class="nf">show_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="c1">#self.frame_XY = gvariables.listener.cv_frame_XY</span>
+		<span class="c1">#self.frame_XZ = gvariables.listener.cv_frame_XZ</span>
+		<span class="n">aux_frame_XY</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frame_XY</span><span class="p">),</span> <span class="kc">None</span><span class="p">,</span>
+															<span class="n">fx</span><span class="o">=.</span><span class="mi">7</span><span class="p">,</span> <span class="n">fy</span><span class="o">=.</span><span class="mi">7</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">INTER_CUBIC</span><span class="p">)</span>
+		<span class="n">aux_frame_XZ</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frame_XZ</span><span class="p">),</span> <span class="kc">None</span><span class="p">,</span>
+															<span class="n">fx</span><span class="o">=.</span><span class="mi">7</span><span class="p">,</span> <span class="n">fy</span><span class="o">=.</span><span class="mi">7</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">INTER_CUBIC</span><span class="p">)</span>
+		
+		<span class="n">height1</span><span class="p">,</span> <span class="n">width1</span><span class="p">,</span> <span class="n">size1</span> <span class="o">=</span> <span class="n">aux_frame_XY</span><span class="o">.</span><span class="n">shape</span>
+		<span class="n">height2</span><span class="p">,</span> <span class="n">width2</span><span class="p">,</span> <span class="n">size2</span> <span class="o">=</span> <span class="n">aux_frame_XZ</span><span class="o">.</span><span class="n">shape</span>
+		<span class="n">step1</span> <span class="o">=</span> <span class="n">aux_frame_XY</span><span class="o">.</span><span class="n">size</span> <span class="o">/</span> <span class="n">height2</span>
+		<span class="n">step2</span> <span class="o">=</span> <span class="n">aux_frame_XZ</span><span class="o">.</span><span class="n">size</span> <span class="o">/</span> <span class="n">height2</span>
+		<span class="n">qformat1</span> <span class="o">=</span> <span class="n">QImage</span><span class="o">.</span><span class="n">Format_RGBA8888</span> <span class="k">if</span> <span class="n">size1</span> <span class="o">==</span> <span class="mi">4</span> <span class="k">else</span> <span class="n">QImage</span><span class="o">.</span><span class="n">Format_RGB888</span>
+		<span class="n">qformat2</span> <span class="o">=</span> <span class="n">QImage</span><span class="o">.</span><span class="n">Format_RGBA8888</span> <span class="k">if</span> <span class="n">size2</span> <span class="o">==</span> <span class="mi">4</span> <span class="k">else</span> <span class="n">QImage</span><span class="o">.</span><span class="n">Format_RGB888</span>
+		<span class="n">aux_frame_XY</span> <span class="o">=</span> <span class="n">QImage</span><span class="p">(</span><span class="n">aux_frame_XY</span><span class="p">,</span> <span class="n">width1</span><span class="p">,</span> <span class="n">height1</span><span class="p">,</span> <span class="n">step1</span><span class="p">,</span> <span class="n">qformat1</span><span class="p">)</span>
+		<span class="n">aux_frame_XZ</span> <span class="o">=</span> <span class="n">QImage</span><span class="p">(</span><span class="n">aux_frame_XZ</span><span class="p">,</span> <span class="n">width2</span><span class="p">,</span> <span class="n">height2</span><span class="p">,</span> <span class="n">step2</span><span class="p">,</span> <span class="n">qformat2</span><span class="p">)</span>
+		
+		<span class="bp">self</span><span class="o">.</span><span class="n">main_window</span><span class="o">.</span><span class="n">label_frame_XY</span><span class="o">.</span><span class="n">setPixmap</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QPixmap</span><span class="o">.</span><span class="n">fromImage</span><span class="p">(</span><span class="n">aux_frame_XY</span><span class="p">))</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">main_window</span><span class="o">.</span><span class="n">label_frame_XY</span><span class="o">.</span><span class="n">setContentsMargins</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">main_window</span><span class="o">.</span><span class="n">label_frame_XZ</span><span class="o">.</span><span class="n">setPixmap</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QPixmap</span><span class="o">.</span><span class="n">fromImage</span><span class="p">(</span><span class="n">aux_frame_XZ</span><span class="p">))</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">main_window</span><span class="o">.</span><span class="n">label_frame_XZ</span><span class="o">.</span><span class="n">setContentsMargins</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Cv_Frame.set_frame_XY"><a class="viewcode-back" href="../../views.html#views.cv_frame.Cv_Frame.set_frame_XY">[docs]</a>	<span class="nd">@pyqtSlot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+	<span class="k">def</span> <span class="nf">set_frame_XY</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frameXY</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">frame_XY</span> <span class="o">=</span> <span class="n">frameXY</span></div>
+<div class="viewcode-block" id="Cv_Frame.set_frame_XZ"><a class="viewcode-back" href="../../views.html#views.cv_frame.Cv_Frame.set_frame_XZ">[docs]</a>	<span class="nd">@pyqtSlot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+	<span class="k">def</span> <span class="nf">set_frame_XZ</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frameXZ</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">frame_XZ</span> <span class="o">=</span> <span class="n">frameXZ</span></div></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">LeapPCController</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Mario Varas.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

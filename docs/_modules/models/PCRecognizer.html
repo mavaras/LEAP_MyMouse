@@ -1,0 +1,185 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>models.PCRecognizer &#8212; LeapPCController 2019 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for models.PCRecognizer</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="c1"># ===============PCRecognizer ALGORITHM===============</span>
+<span class="c1"># == functions</span>
+<span class="c1"># == classes</span>
+
+
+<span class="c1"># basic modules imports</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="kn">from</span> <span class="nn">template</span> <span class="k">import</span> <span class="n">init_templates</span>
+<span class="kn">from</span> <span class="nn">PCRecognizer_functions</span> <span class="k">import</span> <span class="o">*</span>
+
+
+<span class="c1"># ===============PCRecognizer algorithm things (functions + classes)===============</span>
+
+<span class="c1"># this CLASS stores the final result of the algorithm, containing the match</span>
+<div class="viewcode-block" id="Result"><a class="viewcode-back" href="../../models.html#models.PCRecognizer.Result">[docs]</a><span class="k">class</span> <span class="nc">Result</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">score</span><span class="p">,</span> <span class="n">ms</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">score</span> <span class="o">=</span> <span class="n">score</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ms</span> <span class="o">=</span> <span class="n">ms</span></div>
+
+
+<span class="c1"># MAIN ALGORITHM CLASS</span>
+<span class="c1"># contains all the templates and starts all the process</span>
+<span class="n">num_points</span> <span class="o">=</span> <span class="mi">32</span>  <span class="c1"># points number to resample to</span>
+
+
+<div class="viewcode-block" id="PCRecognizer"><a class="viewcode-back" href="../../models.html#models.PCRecognizer.PCRecognizer">[docs]</a><span class="k">class</span> <span class="nc">PCRecognizer</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">origin</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="n">W</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="n">H</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># canvas point where to translate_to (canvas center)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">templates</span> <span class="o">=</span> <span class="n">init_templates</span><span class="p">()</span>  <span class="c1"># array storing all Template objects</span>
+
+<div class="viewcode-block" id="PCRecognizer.normalize"><a class="viewcode-back" href="../../models.html#models.PCRecognizer.PCRecognizer.normalize">[docs]</a>    <span class="k">def</span> <span class="nf">normalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; this sets up points array received for proper algorithm application&quot;&quot;&quot;</span>
+
+        <span class="n">points</span> <span class="o">=</span> <span class="n">resample</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="n">scale</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="n">translate_to</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">origin</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">points</span></div>
+
+<div class="viewcode-block" id="PCRecognizer.recognize"><a class="viewcode-back" href="../../models.html#models.PCRecognizer.PCRecognizer.recognize">[docs]</a>    <span class="k">def</span> <span class="nf">recognize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arr_points</span><span class="p">,</span> <span class="n">print_all_matches</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;	arr_points = array containing the points array of each finger</span>
+<span class="sd">        if we are working with f1, its points array is into arr_points[0]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">t_ini</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">clock</span><span class="p">()</span>
+
+        <span class="c1"># normalizing stroke(s)</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr_points</span><span class="p">)):</span>  <span class="c1"># (if 1 finger len(arr_points) = 1</span>
+            <span class="n">arr_points</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">arr_points</span><span class="p">[</span><span class="n">c</span><span class="p">])</span>
+
+        <span class="n">score</span> <span class="o">=</span> <span class="n">INF</span>
+        <span class="n">template_n</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">templates</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">templates</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">fingers_point_cloud</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="c1"># its a single stroke template (1 finger)</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">templates</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">point_cloud</span><span class="p">)):</span>
+                    <span class="c1"># normalizing template</span>
+                    <span class="n">dist</span> <span class="o">=</span> <span class="n">greedy_cloud_match</span><span class="p">(</span><span class="n">arr_points</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">templates</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">point_cloud</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+                    <span class="c1"># coincidence between points and all &quot;subtemplates&quot;</span>
+                    <span class="k">if</span> <span class="n">print_all_matches</span><span class="p">:</span>
+                        <span class="n">coinc</span> <span class="o">=</span> <span class="s2">&quot;    similar to </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">templates</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">point_cloud</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> about &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">max</span><span class="p">((</span><span class="n">dist</span> <span class="o">-</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">/</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)))</span>
+
+                    <span class="c1"># main_window.text_edit_2.append(coinc)</span>
+                    <span class="k">if</span> <span class="n">dist</span> <span class="o">&lt;</span> <span class="n">score</span><span class="p">:</span>
+                        <span class="n">score</span> <span class="o">=</span> <span class="n">dist</span>
+                        <span class="n">template_n</span> <span class="o">=</span> <span class="n">c</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># its a complex stroke template (ALL fingers)</span>
+                <span class="k">pass</span>
+
+        <span class="n">t_fin</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">clock</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">template_n</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Result</span><span class="p">(</span><span class="s2">&quot;no match&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">t_fin</span> <span class="o">-</span> <span class="n">t_ini</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># process is finished, we return the result</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;score: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">score</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">Result</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">templates</span><span class="p">[</span><span class="n">template_n</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>  <span class="c1"># template matched</span>
+                          <span class="nb">max</span><span class="p">((</span><span class="n">score</span> <span class="o">-</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">/</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>  <span class="c1"># score achieved</span>
+                          <span class="n">t_fin</span> <span class="o">-</span> <span class="n">t_ini</span><span class="p">)</span>  <span class="c1"># time in ms</span></div></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">LeapPCController</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Mario Varas.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
