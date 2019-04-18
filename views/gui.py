@@ -29,6 +29,7 @@ from gvariables import *
 import gvariables
 
 from controllers.win32_functions import *
+from controllers.key_handle import *
 from controllers.aux_functions import *
 from models.PCRecognizer import PCRecognizer
 from models.points import Point, Point_cloud
@@ -76,7 +77,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
         print("initUI")
 
-        # canvas setup
+        # TAB1 - CANVAS setup
         self.widget_canvas = Widget_canvas(self.tab_canvas)  # linking widget_canvas to tab1
         self.widget_canvas.move(20, 20)
         self.widget_canvas.resize(canvas_width, canvas_height)
@@ -87,34 +88,35 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         canvas_algorithm_group.addButton(self.radioButton_pd)
         canvas_algorithm_group.addButton(self.radioButton_NN)
 
-        # configuration tab
+        # TAB2 - CONFIGURATION TAB
         self.button_save_conf.clicked.connect(self.save_conf)
 
-        # text edits setup
+        # text edits setup (not used)
         self.button_load_text.clicked.connect(self.load_text_B)
         self.text_edit.setReadOnly(True)
         self.text_edit_2.setReadOnly(True)
         self.combo_box.currentIndexChanged["int"].connect(self.combo_box_nfingers_selection_changed)
 
-        # label_leap_status default value
+        # __label_leap_status default value
         self.change_leap_status(False)
         gvariables.listener.status.sgn_leap_connected.connect(self.change_leap_status)
 
-        # Tab2 cv_frame representation
-
+        # __cv_frame representation
         gvariables.listener.status.sgn_cv_frame_XY.connect(self.cvF.set_frame_XY)
         gvariables.listener.status.sgn_cv_frame_XZ.connect(self.cvF.set_frame_XZ)
 
-        # TAB2 - CONFIGURATION TAB
-        # action-gesture comboboxes
+        # __Action-gesture COMBOBOXES
+        # TODO: set all gestures the same as ComboBoxes and handle into leap_controller
         self.combo_box_mm.currentIndexChanged["int"].connect(
             lambda: self.combo_box_actiongesture_changed("combo_box_mm"))
 
         self.combo_box_click.currentIndexChanged["int"].connect(
             lambda: self.combo_box_actiongesture_changed("combo_box_click"))
-        self.cb_action_gesture[self.combo_box_click] = {0: "lclick_planem",
-                                                        1: "lclick_deepm",
-                                                        2: "lclick_f2down"}
+        self.cb_action_gesture[self.combo_box_click] = {0: "click_planem",
+                                                        1: "click_deepm",
+                                                        2: "click_f2down",
+                                                        3: "click_f1down",
+                                                        4: "click_f0down"}
 
         self.combo_box_rclick.currentIndexChanged["int"].connect(
             lambda: self.combo_box_actiongesture_changed("combo_box_rclick"))
@@ -151,22 +153,66 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             lambda: self.combo_box_actiongesture_changed("combo_box_grabb"))
         self.cb_action_gesture[self.combo_box_grabb] = {0: "f1_f2"}
 
-        # help buttons
+        self.combo_box_showdesktop.currentIndexChanged["int"].connect(
+            lambda: self.combo_box_actiongesture_changed("combo_box_showdesktop"))
+        self.cb_action_gesture[self.combo_box_showdesktop] = {0: "D",
+                                                              1: "T",
+                                                              2: "V"}
+
+        self.combo_box_openfexplorer.currentIndexChanged["int"].connect(
+            lambda: self.combo_box_actiongesture_changed("combo_box_openfexplorer"))
+        self.cb_action_gesture[self.combo_box_openfexplorer] = {0: "Z",
+                                                                1: "D",
+                                                                2: "X",
+                                                                3: "V"}
+
+        self.combo_box_copy.currentIndexChanged["int"].connect(
+            lambda: self.combo_box_actiongesture_changed("combo_box_copy"))
+        self.cb_action_gesture[self.combo_box_copy] = {0: "C",
+                                                       1: "D",
+                                                       2: "T",
+                                                       3: "V"}
+
+        self.combo_box_paste.currentIndexChanged["int"].connect(
+            lambda: self.combo_box_actiongesture_changed("combo_box_paste"))
+        self.cb_action_gesture[self.combo_box_paste] = {0: "V",
+                                                        1: "T",
+                                                        2: "C",
+                                                        3: "D"}
+
+        self.combo_box_cut.currentIndexChanged["int"].connect(
+            lambda: self.combo_box_actiongesture_changed("combo_box_cut"))
+        self.cb_action_gesture[self.combo_box_cut] = {0: "X",
+                                                      1: "D",
+                                                      2: "C",
+                                                      3: "V"}
+
+        # __help buttons
         self.set_gesture_gif("res/gifs/no_gesture.gif")
         self.label_gesture_gif.setLayout(QtGui.QHBoxLayout())
 
         help_img = "res/eye.png"
-        # we pass view_gesture() method the help button associated combo box
+        # we pass view_gesture() method help button associated combo box
         self.button_help_click.clicked.connect(lambda: self.view_gesture(self.combo_box_click))
         self.button_help_click.setIcon(QIcon(help_img))
-        self.button_help_click.setIconSize(QSize(24, 24))
+        self.button_help_click.setIconSize(QSize(20, 20))
         self.button_help_click.setMask(QtGui.QRegion(self.button_help_click.rect(),
                                                      QtGui.QRegion.Ellipse))
         self.button_help_rclick.clicked.connect(lambda: self.view_gesture(self.combo_box_rclick))
         self.button_help_rclick.setIcon(QIcon(help_img))
-        self.button_help_rclick.setIconSize(QSize(24, 24))
+        self.button_help_rclick.setIconSize(QSize(20, 20))
         self.button_help_rclick.setMask(QtGui.QRegion(self.button_help_rclick.rect(),
                                                       QtGui.QRegion.Ellipse))
+        self.button_help_grabb.clicked.connect(lambda: self.view_gesture(self.combo_box_grabb))
+        self.button_help_grabb.setIcon(QIcon(help_img))
+        self.button_help_grabb.setIconSize(QSize(20, 20))
+        self.button_help_grabb.setMask(QtGui.QRegion(self.button_help_grabb.rect(),
+                                                     QtGui.QRegion.Ellipse))
+        self.button_help_vscroll.clicked.connect(lambda: self.view_gesture(self.combo_box_vscroll))
+        self.button_help_vscroll.setIcon(QIcon(help_img))
+        self.button_help_vscroll.setIconSize(QSize(20, 20))
+        self.button_help_vscroll.setMask(QtGui.QRegion(self.button_help_vscroll.rect(),
+                                                       QtGui.QRegion.Ellipse))
 
         # TAB3
         """self.combo_box_gestures.currentIndexChanged["int"].connect(self.combo_box_gestures_selection_changed)
@@ -234,6 +280,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             f.write("\n")
             f.write(configuration.extra.get_conf())
             f.close()
+        else:
+            print("error save_conf()")
 
     def load_conf_file(self):
         """ loads configuration file into Configuration object"""
@@ -249,37 +297,44 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
             f.close()
 
-        self.load_conf(gvariables.configuration)
+        self.label_conf_file.setText(str(fname))
+        self.load_conf()
 
-    def load_conf(self, conf):
+    def load_conf(self):
         """ loads given configuration object into SYSTEM
         updates comboboxes and GUI elements
         using cb_action_gesture array
-        :param conf: (Configuration object)
         """
 
         self.combo_box_mm.setCurrentIndex(int(gvariables.configuration.basic.mm))
 
         self.combo_box_click.setCurrentIndex(
-            get_dict_key(self.cb_action_gesture[self.combo_box_click], gvariables.configuration.basic.lclick))
+            get_dict_key(self.cb_action_gesture[self.combo_box_click], gvariables.configuration.basic.lclick)
+        )
 
         self.combo_box_rclick.setCurrentIndex(
-            get_dict_key(self.cb_action_gesture[self.combo_box_rclick], gvariables.configuration.basic.rclick))
+            get_dict_key(self.cb_action_gesture[self.combo_box_rclick], gvariables.configuration.basic.rclick)
+        )
 
         self.combo_box_minimizew.setCurrentIndex(
-            get_dict_key(self.cb_action_gesture[self.combo_box_minimizew], gvariables.configuration.basic.minimizew))
+            get_dict_key(self.cb_action_gesture[self.combo_box_minimizew], gvariables.configuration.basic.minimizew)
+        )
 
         self.combo_box_closew.setCurrentIndex(
-            get_dict_key(self.cb_action_gesture[self.combo_box_closew], gvariables.configuration.basic.closew))
+            get_dict_key(self.cb_action_gesture[self.combo_box_closew], gvariables.configuration.basic.closew)
+        )
 
         self.combo_box_changew.setCurrentIndex(
-            get_dict_key(self.cb_action_gesture[self.combo_box_changew], gvariables.configuration.basic.changew))
+            get_dict_key(self.cb_action_gesture[self.combo_box_changew], gvariables.configuration.basic.changew)
+        )
 
         self.combo_box_vscroll.setCurrentIndex(
-            get_dict_key(self.cb_action_gesture[self.combo_box_vscroll], gvariables.configuration.basic.vscroll))
+            get_dict_key(self.cb_action_gesture[self.combo_box_vscroll], gvariables.configuration.basic.vscroll)
+        )
 
         self.combo_box_hscroll.setCurrentIndex(
-            get_dict_key(self.cb_action_gesture[self.combo_box_hscroll], gvariables.configuration.basic.hscroll))
+            get_dict_key(self.cb_action_gesture[self.combo_box_hscroll], gvariables.configuration.basic.hscroll)
+        )
 
     # Leap status label
     @pyqtSlot(bool)
@@ -304,9 +359,11 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.exit_app()
 
         elif event.key() == QtCore.Qt.Key_W:  # app interaction example/test
-            handle = win32gui.FindWindow(None, r"Reproductor multimedia VLC")
+            """handle = win32gui.FindWindow(None, r"Reproductor multimedia VLC")
             # win32gui.PostMessage(handle, win32con.WM_CLOSE, 0, 0)
-            win32gui.CloseWindow(handle)
+            win32gui.CloseWindow(handle)"""
+
+            print("w")
 
         elif event.key() == QtCore.Qt.Key_S:
             gvariables.listener.mouse.active = True if not gvariables.listener.mouse.active else False
@@ -321,7 +378,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
         elif event.key() == QtCore.Qt.Key_F:  # start stroke recognition
             if self.n_of_fingers == 1:
-                pc = Point_cloud("f3", self.widget_canvas.points, Point(W / 4, H / 4 + 50, -1))
+                pc = Point_cloud("f1", self.widget_canvas.points, Point(W/4, H/4 + 50, -1))
                 # pc.draw_on_canvas()    normalized pc
 
                 result = recognize_stroke(self.widget_canvas.points)
@@ -401,9 +458,20 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                         pc = Point_cloud("f1", leap_gesture_points).draw_on_canvas()
                         # img = self.matrix_to_img(gvariables.listener.gesture[1])
 
+                        result = recognize_stroke(leap_gesture_points)
+                        gesture_match(result.name)
+
+                        str_accum = "Last/Current gesture points array\n\n"
+                        for c in range(0, len(points)):
+                            str_accum += "(" + str(points[c].x) + "," + str(points[c].y) + ")"
+                            if c != len(points) - 1:
+                                str_accum += "\n"
+
+                        print_score(result)
+                        self.text_edit.setText(str_accum)
+
                         # getting finger_1 points
                         points = gvariables.listener.gesture[1]  # this allows "F" to work with mouse and hand stroke
-                        gvariables.listener.c = 0
 
                 else:  # 1st "G" press
                     print("recording")
@@ -539,6 +607,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         elif combo_box_name == "combo_box_closew":
             gvariables.configuration.basic.closew = self.cb_action_gesture[self.combo_box_closew] \
                 .get(self.combo_box_closew.currentIndex())
+
         elif combo_box_name == "combo_box_changew":
             gvariables.configuration.basic.changew = self.cb_action_gesture[self.combo_box_changew] \
                 .get(self.combo_box_changew.currentIndex())
@@ -546,6 +615,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         elif combo_box_name == "combo_box_vscroll":
             gvariables.configuration.basic.vscroll = self.cb_action_gesture[self.combo_box_vscroll] \
                 .get(self.combo_box_vscroll.currentIndex())
+
         elif combo_box_name == "combo_box_hscroll":
             gvariables.configuration.basic.hscroll = self.cb_action_gesture[self.combo_box_hscroll] \
                 .get(self.combo_box_hscroll.currentIndex())
@@ -586,7 +656,19 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         """
 
         print("notification area Start/Stop Control")
-        gvariables.listener.mouse.active = True if not gvariables.listener.mouse.active else False
+
+        if not gvariables.listener.status.leap_connected:
+            self.show_popup("Problem Detected",
+                            "Leap Motion error",
+                            "Leap Motion device is not connected")
+        else:
+            if gvariables.configuration.check():
+                gvariables.listener.mouse.active = True if not gvariables.listener.mouse.active else False
+
+            else:
+                self.show_popup("Problem Detected",
+                                "Configuration error",
+                                "You have same gesture assigned to multiple actions in your configuration")
 
     """def set_label_leap_status(self, img):
         Leap status label CONNECTED or DISCONNECTED
@@ -618,6 +700,17 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         label.setText(str(t))
         QtCore.QTimer.singleShot(1000, lambda: self.updateLabel(label))
 
+    def show_popup(self, title, text, inftext):
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Information)
+
+        msg.setText(text)
+        msg.setInformativeText(inftext)
+        msg.setWindowTitle(title)
+        #msg.setDetailedText("The details are as follows:")
+        msg.setStandardButtons(QMessageBox.Ok)
+        msg.exec_()
+
     def exit_app(self):
         """ ends app execution and closes all windows"""
 
@@ -625,50 +718,3 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.close()
         sys.exit()
         self.opened = False
-
-
-# various functions (temporarily here)
-
-def recognize_stroke(points):
-    """ this function recognize one SINGLE stroke (if ALL fingers, one by one)
-    :params points: points array containing a stroke
-    """
-
-    print("recognizing stroke")
-    aux = [points]
-    result = PCRecognizer().recognize(aux)
-
-    return result
-
-
-def print_score(result):
-    """ this shows final score of current stroke (red label on canvas)
-    :param result: Result object containing recognition result
-    """
-
-    score = "Result: matched with " + result.name + " about " + str(round(result.score, 2))
-    gvariables.main_window.label_score.setStyleSheet("color: red")
-    gvariables.main_window.label_score.setText(str(score))
-    gvariables.main_window.text_edit_2.append("\n" + str(score))
-
-
-# not updated (not here -> GRecognizer.py)
-def gesture_match(gesture_name):
-    """ matches gesture_name with its associated action
-    :param gesture_name: letter
-    """
-
-    if gesture_name == "T":
-        print("T gesture")
-        if sys.argv[1] == "-thread":
-            # handle = win32gui.FindWindow(None, r"Reproductor multimedia VLC")
-            hwnd = get_current_window_hwnd()
-            minimize_window(hwnd)
-
-    elif gesture_name == "V":
-        print("V gesture")
-    elif gesture_name == "LEFT":
-        print("LEFT gesture")
-    elif gesture_name == "RIGHT":
-        print("RIGHT gesture")
-    print("")

@@ -34,16 +34,15 @@ def cloud_distance(pc1, pc2, start):
     :return: distance
     """
 
-    aux = [False] * len(pc1)  # empty auxiliary array
+    aux = [False] * len(pc1)  # auxiliary array
     suma = 0
     w = start
-    while True:  # something like a do while?
+    while True:
         index = -1
         minimum = INF
         for j in range(0, len(aux)):
             if not aux[j]:
                 dist = distance(pc1[w], pc2[j])
-                # print("d: "+str(minimum))
                 if dist < minimum:
                     minimum = dist
                     index = j
@@ -82,7 +81,7 @@ def resample(points, resample_len):
                     py = points[c - 1].y + ((interval - d) / dist) * (points[c].y - points[c - 1].y)
                     p = ps.Point(px, py, points[c].id)
                     new_points.append(p)
-                    points.insert(c, p)  # insert p in c position, reasigning all elements
+                    points.insert(c, p)  # insert p in c position, reassigning all elements
                     d = 0.0
 
                 else:
@@ -94,8 +93,8 @@ def resample(points, resample_len):
 
     if len(new_points) == resample_len - 1:
         new_points.append(ps.Point(points[len(points) - 1].x,
-                                points[len(points) - 1].y,
-                                points[len(points) - 1].id))
+                                   points[len(points) - 1].y,
+                                   points[len(points) - 1].id))
 
     return new_points
 

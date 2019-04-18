@@ -61,6 +61,21 @@ def init_templates():
                               ps.Point(33, 25, 2), ps.Point(38, 16, 2)])
         ], None)
     )
+    templates.append(Template("D", [
+        ps.Point_cloud("D1", [ps.Point(30, 7, 1), ps.Point(30, 67, 1),
+                              ps.Point(30, 67, 2), ps.Point(50, 53, 2),
+                              ps.Point(50, 53, 3), ps.Point(55, 37, 3),
+                              ps.Point(55, 37, 4), ps.Point(50, 21, 4),
+                              ps.Point(50, 21, 5), ps.Point(30, 7, 5)])
+        ,
+        ps.Point_cloud("D1", [ps.Point(30, 7, 1), ps.Point(30, 67, 1),
+                              ps.Point(30, 67, 2), ps.Point(60, 53, 2),
+                              ps.Point(60, 53, 3), ps.Point(65, 37, 3),
+                              ps.Point(65, 37, 4), ps.Point(60, 21, 4),
+                              ps.Point(60, 21, 5), ps.Point(30, 7, 5)])
+        ,
+    ], None)
+                     )
     templates.append(Template("RIGHT", [
         ps.Point_cloud("right1", [ps.Point(30, 47, 1), ps.Point(96, 7, 1)])
         ,
@@ -99,6 +114,11 @@ def init_templates():
                               ps.Point(40, 37, 2), ps.Point(50, 7, 2),
                               ps.Point(50, 7, 1), ps.Point(60, 37, 1),
                               ps.Point(60, 37, 2), ps.Point(70, 7, 2)])
+        ,
+        ps.Point_cloud("W2", [ps.Point(30, 7, 1), ps.Point(50, 37, 1),
+                              ps.Point(50, 37, 2), ps.Point(70, 7, 2),
+                              ps.Point(70, 7, 1), ps.Point(90, 37, 1),
+                              ps.Point(90, 37, 2), ps.Point(110, 7, 2)])
         ], None)
     )
 

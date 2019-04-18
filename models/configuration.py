@@ -4,8 +4,8 @@
 # == class and subclasses
 
 
-import sys
 import linecache
+import inspect
 
 
 # CLASS CONTAINING CONFIGURATION DATA
@@ -42,10 +42,17 @@ class Conf:
         """self.basic.mm = linecache.getline(str(conf.name), 6)
         self.basic.lclick = linecache.getline(str(conf.name), 7)
         self.basic.rclick = linecache.getline(str(conf.name), 8)"""
-
+        print("->"+str(self.basic.closew))
         print("Content of configuration file " + str(conf.name) + ":")
         for line in conf:
             print("    " + str(line)),
+
+    def check(self):
+        """ checks if configurations is right, that is,
+        if same gesture isn't assigned to multiple actions
+        :return: true if all is ok, false if not
+        """
+        return len(self.basic.__dict__.values()) == len(set(self.basic.__dict__.values()))
 
     # classes for both configuration types
     class Basic:
@@ -58,8 +65,8 @@ class Conf:
             self.vscroll = "5_fingers_UD"
             self.grabb = "default"
             self.changew = "90_and_swipe"
-            self.closew = "X"
-            self.minimizew = "T"
+            self.closew = "T"
+            self.minimizew = "V"
 
         def get_conf(self):
             """ prints configuration attributes"""
@@ -80,10 +87,16 @@ class Conf:
         # TODO: include this features
 
         def __init__(self):
+            self.show_desktop = "D"
+            self.show_explorer = "X"
             self.open_calc = "default"
             self.open_texteditor = "default"
             self.open_console = "default"
             self.open_browser = "default"
+
+            self.copy = "C"
+            self.cut = ""
+            self.paste = ""
 
             self.open_custom_1 = "empty"
             self.open_custom_2 = "empty"

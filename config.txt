@@ -11,7 +11,7 @@ hscroll:default
 grabb:default
 changew:90_and_swipe
 closew:V
-minimizew:T
+minimizew:V
 
 Extra Conf:
 default

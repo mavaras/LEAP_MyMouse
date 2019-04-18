@@ -33,6 +33,7 @@ class Mouse:
 		self.left_clicked = False
 		self.right_clicked = False
 		self.left_pressed = False
+		self.grabbing = False
 		
 		self.switch_mode = False  # if into switch mode (just hand position)
 		self.switching = False		# if currently switching (switch mode + left or right swipe)

@@ -3,8 +3,6 @@
 # == keyboard functions
 
 
-import sys
-import time
 import ctypes
 import win32con, win32gui
 

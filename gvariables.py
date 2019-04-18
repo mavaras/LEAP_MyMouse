@@ -28,6 +28,4 @@ main_window = None
 
 # aux for canvas
 stroke_id = 0
-points = []  
-
-algo = "joder"
+points = []

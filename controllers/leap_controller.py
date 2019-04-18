@@ -43,11 +43,11 @@ class Point:
         :param where_W: width
         :param where_H: height
         """
-        # self.y = where_H - abs(self.y)   # Y invertion
+        self.y = where_H - abs(self.y)   # Y invertion
         # no se por que hice todoo esto ?¿
 
-        """self.x = (W * self.x) / where_W
-        self.y = (H * self.y) / where_H"""
+        self.x = (W * self.x) / where_W
+        self.y = (H * self.y) / where_H
 
 
 # CLASS LEAP API
@@ -92,6 +92,7 @@ class leap_listener(Leap.Listener):
         self.status = self.LeapStatus()
         self.mouse = Mouse(0, 0, 1, 1, 1, 5, False)
         self.capture_frame = False
+        self.recording = False
 
         self.vscrolling = True
         self.hscrolling = False
@@ -157,16 +158,12 @@ class leap_listener(Leap.Listener):
         :param leap_x: Leap Motion X coordinate
         :param leap_y: Leap Motion Y coordinate
         """
-        # leap_y -= 40
-        # avoiding to invert X when nearing windows borders
-        x = -LEAP_W / 2 if int(leap_x) < -LEAP_W / 2 else leap_x
-        # y = 0 if int(leap_y) > LEAP_H else leap_y + 1300
+
+        x = -LEAP_W/2 if int(leap_x) < -LEAP_W/2 else leap_x
 
         # y invertion
-        # y = leap_y - canvas_height
         y = LEAP_H - leap_y
         y += 80
-        # y = y - abs(y)
 
         x += LEAP_W / 2
         x = abs((W * x) / (LEAP_W))
@@ -188,22 +185,26 @@ class leap_listener(Leap.Listener):
         frame = self.frame
 
         # opencv canvas
-        cv_frame_loc_XY = np.zeros((H / 2, W / 3, 3), np.uint8)  # XY frame
-        cv_frame_loc_XZ = np.zeros((H / 2, W / 3, 3), np.uint8)  # XZ frame
+        cv_frame_loc_XY = np.zeros((H/2, W/3, 3), np.uint8)  # XY frame
+        cv_frame_loc_XZ = np.zeros((H/2, W/3, 3), np.uint8)  # XZ frame
 
-        if len(frame.hands) == 2:
+        if len(frame.hands) == 2 or len(frame.hands) == 1 and len(frame.fingers.extended()) == 0:
             # two hands if frame
             cv2.putText(cv_frame_loc_XY, "Two hands in frame",
-                        (190, H / 2 - 50), cv2.FONT_HERSHEY_SIMPLEX,
+                        (190, H/2 - 50), cv2.FONT_HERSHEY_SIMPLEX,
                         0.8, (255, 255, 255), 1, cv2.LINE_AA)
-            cv2.circle(cv_frame_loc_XY, (H / 4 + 50, W / 6 - 50), 100, [255, 0, 0], 1)
+            cv2.circle(cv_frame_loc_XY, (H/4 + 50, W/6 - 50), 100, [255, 0, 0], 1)
             cv2.putText(cv_frame_loc_XZ, "Two hands in frame",
-                        (190, H / 2 - 50), cv2.FONT_HERSHEY_SIMPLEX,
+                        (190, H/2 - 50), cv2.FONT_HERSHEY_SIMPLEX,
                         0.8, (255, 255, 255), 1, cv2.LINE_AA)
-            cv2.circle(cv_frame_loc_XZ, (H / 4 + 50, W / 6 - 50), 100, [255, 0, 0], 1)
+            cv2.circle(cv_frame_loc_XZ, (H/4 + 50, W/6 - 50), 100, [255, 0, 0], 1)
 
         for hand in frame.hands:
             if hand.is_right:
+                self.hand_vel = max(abs(hand.palm_velocity[0]),
+                                    abs(hand.palm_velocity[1]),
+                                    abs(hand.palm_velocity[2]))
+
                 cv2.putText(cv_frame_loc_XY, "X to Y representation (vertical plane)",
                             (50, H / 2 - 50), cv2.FONT_HERSHEY_SIMPLEX,
                             0.8, (255, 255, 255), 1, cv2.LINE_AA)
@@ -211,13 +212,30 @@ class leap_listener(Leap.Listener):
                             (50, H / 2 - 50), cv2.FONT_HERSHEY_SIMPLEX,
                             0.8, (255, 255, 255), 1, cv2.LINE_AA)
 
-                # elif len(frame.hands) == 1:
-                self.hand_vel = max(abs(hand.palm_velocity[0]),
-                                    abs(hand.palm_velocity[1]),
-                                    abs(hand.palm_velocity[2]))
-
                 # one hand into frame
-                if self.mouse.active:
+                if self.mouse.active and not self.recording:
+
+                    """ CURSOR MOVEMENT SECTION"""
+                    # TODO:
+                    #   -> perform coords translation
+                    #   -> add movement velocity ?
+                    if not self.mouse.switch_mode:
+                        mm_finger = gvariables.configuration.basic.mm
+                        fx, fy = hand.fingers[mm_finger].tip_position.x, \
+                                 hand.fingers[mm_finger].tip_position.y
+                        sx, sy = self.leap_to_screen(fx, fy)
+
+                        self.mouse.xdir = 1 if sx > W/2 else -1
+                        self.mouse.ydir = 1 if abs(sy) < H/2 else -1
+
+                        win32api.SetCursorPos((
+                            int(abs(self.fingers_pos[mm_finger][0])),   # x
+                            int(abs(self.fingers_pos[mm_finger][1]))    # y
+                        ))
+
+                        # updating mouse object position
+                        self.mouse.x = int(abs(self.fingers_pos[mm_finger][0]))
+                        self.mouse.y = int(abs(self.fingers_pos[mm_finger][1]))
 
                     # INTERACTION modes
                     if self.deep_mode:
@@ -240,17 +258,19 @@ class leap_listener(Leap.Listener):
                         f2 = hand.fingers[2]
                         dist_0_1 = distance(Point(f1.tip_position.x, f1.tip_position.z, -1),
                                             Point(f0.tip_position.x, f0.tip_position.z,
-                                                  -1))  # this works better on XZ plane
+                                            -1))  # this works better on XZ plane
                         dist_1_2 = distance_3d(f1.tip_position.x, f1.tip_position.y, f1.tip_position.z,
                                                f2.tip_position.x, f2.tip_position.y, f2.tip_position.z)
+
+                        roll = abs(hand.palm_normal.roll * Leap.RAD_TO_DEG)
+                        yaw = hand.direction.yaw * Leap.RAD_TO_DEG
+                        pitch = hand.direction.pitch * Leap.RAD_TO_DEG
 
                         """ SWITCH WINDOWS SECTION"""
                         # TODO:
                         #   -> utf-8 / latin-2
                         #   -> improve swipe
                         # angle between X and Y (Z rotations)
-                        roll = abs(hand.palm_normal.roll * Leap.RAD_TO_DEG)
-                        yaw = hand.direction.yaw * Leap.RAD_TO_DEG
                         if roll > 50:
                             # we are into switch mode
 
@@ -261,12 +281,10 @@ class leap_listener(Leap.Listener):
 
                                 self.mouse.switch_mode = True
 
-                            direction = int(yaw / abs(yaw))
+                            direction = int(yaw/abs(yaw))
                             if hand.palm_velocity.x > 150 and not self.mouse.switching:
-                                # utf-8 esta jodiendo por ejemplo en (u)Torrent
-
                                 self.mouse.switching = True
-                                aux = get_current_window_name()
+                                #aux = get_current_window_name()
                                 if direction == 1:
                                     print("right SWIPE")
                                     press("right_arrow")
@@ -282,7 +300,7 @@ class leap_listener(Leap.Listener):
                                     name = opened_windows_names[curr_window_index-1]"""
 
                                 # bring_window_to_top(win32gui.FindWindow(None, name))
-                                time.sleep(.5)
+                                time.sleep(.4)
                             else:
                                 self.mouse.switching = False
 
@@ -310,23 +328,26 @@ class leap_listener(Leap.Listener):
                                     if f1.tip_velocity.x < 30:
                                         self.mouse.switching = False
 
-                            if self.vscrolling and len(frame.fingers.extended()) == 5:
+                            if self.vscrolling:
                                 """ VSCROLL SECTION"""
                                 # TODO:
                                 #   -> choose speed
                                 #   -> speed increasing with angle
-                                # angle between Z and Y (X rotations)
-                                pitch = hand.direction.pitch * Leap.RAD_TO_DEG
-                                if pitch < -17:
-                                    print("vscroll down")
-                                    vel = -int(40 - ((90 - abs(pitch)) / 3) + 10)
-                                    self.mouse.vscroll(vel)
+                                if "UD" in gvariables.configuration.basic.vscroll:
+                                    n_fingers = [int(c) for c in gvariables.configuration.basic.vscroll
+                                                 if c.isdigit()][0]
+                                    if len(frame.fingers.extended()) == n_fingers:
+                                        # angle between Z and Y (X rotations)
+                                        pitch = hand.direction.pitch * Leap.RAD_TO_DEG
+                                        if pitch < -13:
+                                            print("vscroll down")
+                                            vel = -int(40 - ((90 - abs(pitch))/3))
+                                            self.mouse.vscroll(vel)
 
-                                elif pitch > 42:
-                                    print("vscroll up")
-                                    cx, cy = win32api.GetCursorPos()
-                                    vel = int(30 - ((90 - pitch) / 3))
-                                    self.mouse.vscroll(vel)
+                                        elif pitch > 47:
+                                            print("vscroll up")
+                                            vel = int(30 - ((90 - pitch)/3))
+                                            self.mouse.vscroll(vel)
 
                                 # horizontal scroll ??
                                 # angle between Z and X (Y rotations)
@@ -343,6 +364,31 @@ class leap_listener(Leap.Listener):
                                     vel = int(30-((90-pitch)/3))
                                     win32api.mouse_event(win32con.EVENTF_WHEEL, cx, cy, vel, 0)"""
 
+                            """ GRAB SECTION"""
+                            # TODO:
+                            #   -> add
+                            #       -> f2 down
+                            #       -> f2 and f3 down
+                            #       -> 45 degrees yaw
+                            #   -> same as planem click?
+                            if dist_1_2 < 5.8:
+                                if not self.mouse.left_clicked and not self.mouse.left_pressed:
+                                    print("grabbed")
+                                    self.mouse.grabbing = True
+                                    cx, cy = win32api.GetCursorPos()
+                                    win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,
+                                                         cx, cy, 0, 0)
+                                    self.mouse.left_pressed = True
+                            else:
+                                if self.mouse.left_pressed:
+                                    print("ungrabbed")
+                                    self.mouse.grabbing = False
+                                    cx, cy = win32api.GetCursorPos()
+                                    # time.sleep(.2)
+                                    win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,
+                                                         cx, cy, 0, 0)
+                                    self.mouse.left_pressed = False
+
                             """ LEFT CLICK SECTION"""
                             # TODO:
                             #   -> add
@@ -350,13 +396,14 @@ class leap_listener(Leap.Listener):
                                 # lclick plane_mode
                                 # for keep performance when hand pitch (X rotations) >>
                                 if gvariables.configuration.basic.lclick == "click_planem":
-                                    pitch = hand.direction.pitch * Leap.RAD_TO_DEG
+
                                     # print(str(dist_0_1)+" "+str(80 - 15*abs(pitch)//35))
-                                    if dist_0_1 < 80 - 15 * abs(pitch) // 35:
-                                        if not self.mouse.left_clicked and not self.mouse.left_pressed:
+                                    if dist_0_1 < 80 - 15*abs(pitch)//35:
+                                        if not self.mouse.left_clicked and \
+                                           not self.mouse.left_pressed and \
+                                           not self.mouse.grabbing:
                                             print("click")
                                             self.mouse.left_clicked = True
-                                            cx, cy = win32api.GetCursorPos()
                                             self.mouse.lclick()
                                     else:
                                         self.d01 = dist_0_1
@@ -401,32 +448,14 @@ class leap_listener(Leap.Listener):
                                         if self.mouse.left_clicked:
                                             self.mouse.left_clicked = False
 
-                                """ GRAB SECTION"""
-                                # TODO:
-                                #   -> add
-                                #   -> same as planem click?
-                                if dist_1_2 < 5.8:
-                                    if not self.mouse.left_clicked and not self.mouse.left_pressed:
-                                        print("grabbed")
-                                        cx, cy = win32api.GetCursorPos()
-                                        win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,
-                                                             cx, cy, 0, 0)
-                                        self.mouse.left_pressed = True
-                                else:
-                                    if self.mouse.left_pressed:
-                                        print("ungrabbed")
-                                        cx, cy = win32api.GetCursorPos()
-                                        # time.sleep(.2)
-                                        win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,
-                                                             cx, cy, 0, 0)
-                                        self.mouse.left_pressed = False
-
                                 """ RIGHT CLICK SECTION"""
                                 # TODO:
                                 #   -> add
                                 if gvariables.configuration.basic.rclick == "rclick_f2down":
-                                    if f2.tip_velocity.y < -90 and abs(
-                                            f1.tip_velocity.y) < 30 and not self.mouse.right_clicked and not self.mouse.left_clicked:
+                                    if f2.tip_velocity.y < -90 and \
+                                       abs(f1.tip_velocity.y) < 30 and \
+                                       not self.mouse.right_clicked and \
+                                       not self.mouse.left_clicked:
                                         print("rclick")
                                         self.mouse.right_clicked = True
                                         self.mouse.rclick()
@@ -435,8 +464,10 @@ class leap_listener(Leap.Listener):
                                             self.mouse.right_clicked = False
 
                                 elif gvariables.configuration.basic.rclick == "rclick_f1down":
-                                    if f1.tip_velocity.y < -90 and abs(
-                                            f2.tip_velocity.y) < 30 and not self.mouse.right_clicked and not self.mouse.left_clicked:
+                                    if f1.tip_velocity.y < -90 and \
+                                       abs(f2.tip_velocity.y) < 30 and \
+                                       not self.mouse.right_clicked and \
+                                       not self.mouse.left_clicked:
                                         print("rclick")
                                         self.mouse.right_clicked = True
                                         self.mouse.rclick()
@@ -444,12 +475,12 @@ class leap_listener(Leap.Listener):
                                         if self.mouse.right_clicked:
                                             self.mouse.right_clicked = False
 
-                extended_fingers = 0
                 for finger in hand.fingers:
                     self.fingers_vel[finger.type] = max(abs(finger.tip_velocity.x), abs(finger.tip_velocity.y),
                                                         abs(finger.tip_velocity.z))
                     fx, fy, fz = finger.tip_position.x, finger.tip_position.y, finger.tip_position.z
                     sx, sy = self.leap_to_screen(fx, fy)
+
                     if distance(Point(sx, sy, -1), Point(self.fingers_pos[finger.type][0],
                                                          self.fingers_pos[finger.type][1], -1)) > 3:
                         self.fingers_pos[finger.type] = (sx, sy, fz)
@@ -471,10 +502,13 @@ class leap_listener(Leap.Listener):
                                  (255, 255, 255), 1)
 
                     self.tail_points[finger.type].append(
-                        (int(fx) + 250, int(H / 2 - abs(fy)), 220 + sign(fz) * int(abs(fz))))
+                        (int(fx) + 250, int(H/2 - abs(fy)),
+                         220 + sign(fz) * int(abs(fz)))
+                    )
+
                     for point in self.tail_points[finger.type]:
-                        cv2.circle(cv_frame_loc_XY, (point[0], point[1]), 6, [205, 205, 205], 1)
-                        cv2.circle(cv_frame_loc_XZ, (point[0], point[2]), 6, [205, 205, 205], 1)
+                        cv2.circle(cv_frame_loc_XY, (int(point[0]), int(point[1])), 6, [205, 205, 205], 1)
+                        cv2.circle(cv_frame_loc_XZ, (int(point[0]), int(point[2])), 6, [205, 205, 205], 1)
 
                     if len(self.tail_points) == 10:
                         self.tail_points[finger.type].popleft()
@@ -484,28 +518,11 @@ class leap_listener(Leap.Listener):
                         # print(str(finger.type)+" "+str(finger.tip_position))
                         # print(str(fx)+" "+str(fy))
                         self.gesture[finger.type].append(Point(fx, fy, -1))
-                        self.gesture[finger.type][len(self.gesture[finger.type]) - 1].convert_to(W / 2, H / 2)
+                        self.gesture[finger.type][len(self.gesture[finger.type]) - 1].convert_to(W/2, H/2)
                     # self.c += 1
 
-                    """ CURSOR MOVEMENT SECTION"""
-                    # TODO:
-                    #   -> perform coords translation
-                    #   -> add movement velocity ?
-
-                    if len(
-                            frame.hands) == 1 and finger.type == gvariables.configuration.basic.mm and self.mouse.active and not self.mouse.switch_mode:
-                        # cursor movement
-                        self.mouse.xdir = 1 if sx > W / 2 else -1
-                        self.mouse.ydir = 1 if abs(sy) < H / 2 else -1
-
-                        win32api.SetCursorPos((
-                            int(abs(self.fingers_pos[gvariables.configuration.basic.mm][0])),  # x
-                            int(abs(self.fingers_pos[gvariables.configuration.basic.mm][1]))  # y
-                        ))
-
-                        # updating mouse object position
-                        self.mouse.x = int(abs(self.fingers_pos[gvariables.configuration.basic.mm][0]))
-                        self.mouse.y = int(abs(self.fingers_pos[gvariables.configuration.basic.mm][1]))
+                    if len(frame.hands) == 1 and finger.type == gvariables.configuration.basic.mm and self.mouse.active and not self.mouse.switch_mode:
+                        pass
 
                     self.on_frame_c += 1
 
