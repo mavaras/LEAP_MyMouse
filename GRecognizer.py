@@ -21,10 +21,12 @@ from PIL import Image
 import matplotlib.pyplot as plt
 from sklearn import datasets
 from sklearn import svm
+from sklearn import datasets
+from sklearn import svm
+from sklearn.externals import joblib
 
 # own package imports
-import gvariables
-
+from _print import _print
 from models.configuration import *
 from models.PCRecognizer import PCRecognizer
 from models.points import Point_cloud
@@ -37,8 +39,8 @@ from controllers.win32_functions import *
 from controllers.aux_functions import *
 
 # TODO: features to implement:
+#       -> gvariables as object ?? (this is good)
 #       -> launch on startup
-#       -> extra conf
 #       -> add gifs
 #       -> help
 #       -> logs tab ?
@@ -51,29 +53,23 @@ exit = False
 
 def matrix_to_img(matrix):
     img = Image.fromarray(matrix, "RGB")
-    # img.thumbnail((28, 28), Image.ANTIALIAS)  # resizing to 28x28
+    img.thumbnail((28, 28), Image.ANTIALIAS)  # resizing to 28x28
     img.save("image_28x28.png")
-    # img.show()
 
     # dilate image
-    img = cv2.imread("image_28x28.png", cv2.IMREAD_GRAYSCALE)
-    img = cv2.dilate(img, np.ones((3, 3), np.uint8), iterations=2)
-    # img = cv2.erode(img, np.ones((3, 3), np.uint8), iterations=1)
-
+    img = cv2.dilate(cv2.imread("image_28x28.png", cv2.IMREAD_GRAYSCALE),
+                     np.ones((3, 3), np.uint8), iterations=1)
     return img
 
 
 def neural_network(img):
     # setting + normalizing image
-    # cv2.imshow("image", cv2.resize(img, (200, 200)))
-    img = np.delete(img, np.where(~img.any(axis=1))[0], axis=0)
-    img = np.delete(img, np.where(~img.any(axis=0))[0], axis=1)
-    img = cv2.resize(img, (8, 8))
+    cv2.imshow("image", cv2.resize(img, (200, 200)))
+    # img = cv2.resize(img, (8, 8))
     minValueInImage = np.min(img)
     maxValueInImage = np.max(img)
-    img = np.floor(
-        np.divide((img - minValueInImage).astype(np.float), (maxValueInImage - minValueInImage).astype(np.float)) * 16)
-    print(img)
+    img = np.floor(np.divide((img - minValueInImage).astype(np.float),
+                             (maxValueInImage-minValueInImage).astype(np.float))*16)
 
     # loading digit database
     digits = datasets.load_digits()
@@ -81,19 +77,22 @@ def neural_network(img):
     data = digits.images.reshape((n_samples, -1))
 
     # setting classifier
-    clf = svm.SVC(gamma=0.0001, C=100)
-    clf.fit(data[:n_samples], digits.target[:n_samples])
+    """clf = svm.SVC(gamma=0.0001, C=100)
+    clf.fit(data[:n_samples], digits.target[:n_samples])"""
 
     # predict
+    print('Loading model from file.')
+    clf = joblib.load('mlp_model.pkl').best_estimator_
     predicted = clf.predict(img.reshape((1, img.shape[0] * img.shape[1])))
 
     # display results
-    print("prediction: " + str(predicted))
+    print("prediction: "+str(predicted))
     plt.imshow(img, cmap=plt.cm.gray_r, interpolation='nearest')
-    plt.title("result: " + str(predicted))
-    # plt.show()
+    plt.title("result: "+str(predicted))
+    plt.show()
 
     return str(predicted)
+
 
 '''
 # various functions (this shouldn't be here)
@@ -226,6 +225,7 @@ def gesture_match(gesture_name):
             press("x")
             release("ctrl")
 
+
 def exit_app():
     """ exits applications, closes all windows"""
 
@@ -356,14 +356,29 @@ def console_args(args):
             gvariables.listener.plane_mode = True
 
 
-# MAIN BLOCK	
+class ListStream:
+    def __init__(self):
+        self.data = []
+
+    def write(self, s):
+        self.data.append(s)
+
+    def __enter__(self):
+        sys.stdout = self
+        return self
+
+    def __exit__(self, ext_type, exc_value, traceback):
+        sys.stdout = sys.__stdout__
+
+
+# MAIN BLOCK
 if __name__ == "__main__":
-    print(sys.platform)
+    #sys.stdout = gvariables.stdout = ListStream()
     # canvas variables
     points = gvariables.points  # where to store drawn points
     stroke_id = gvariables.stroke_id
     result = -1  # result object
-    pcr = PCRecognizer()  # algorithm class initialization
+    gvariables.pcr = PCRecognizer()  # algorithm class initialization
 
     # Leap setting up
     listener = leap_listener()
@@ -394,6 +409,9 @@ if __name__ == "__main__":
 
     console_args(sys.argv)
 
+    _print("SYSTEM started")
+    _print("sys platform: "+str(sys.platform))
+
     # win32 stuff
     opened_windows_names = []
     opened_windows_names = get_opened_windows_list()
@@ -404,6 +422,6 @@ if __name__ == "__main__":
     print(get_current_window_name())
 
     # drawing tests
-    pcr.templates[-1].point_cloud[1].draw_on_canvas(False)
+    gvariables.pcr.templates[-2].point_cloud[-1].draw_on_canvas(False)
 
     app.exec_()

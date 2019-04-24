@@ -20,6 +20,7 @@ from PyQt4.QtCore import QObject, pyqtSignal
 import lib.Leap as Leap
 
 # own package imports
+from _print import _print
 from aux_functions import *
 from win32_functions import *
 from key_handle import *
@@ -27,8 +28,8 @@ from mouse import Mouse
 from gvariables import *
 import gvariables
 
-cv_frame_XY = np.zeros((H / 2, W / 3, 3), np.uint8)
-cv_frame_XZ = np.zeros((H / 2, W / 3, 3), np.uint8)
+cv_frame_XY = np.zeros((H/2, W/3, 3), np.uint8)
+cv_frame_XZ = np.zeros((H/2, W/3, 3), np.uint8)
 
 
 # CLASS defining a single Point
@@ -43,11 +44,10 @@ class Point:
         :param where_W: width
         :param where_H: height
         """
-        self.y = where_H - abs(self.y)   # Y invertion
-        # no se por que hice todoo esto ?¿
+        self.y = where_H - abs(self.y)   # Y invertion (conflict with NN)
 
-        self.x = (W * self.x) / where_W
-        self.y = (H * self.y) / where_H
+        self.x = (W * self.x)/where_W
+        self.y = (H * self.y)/where_H
 
 
 # CLASS LEAP API
@@ -116,7 +116,7 @@ class leap_listener(Leap.Listener):
             aux = deque([], 18)
             self.tail_points.append(aux)
 
-        print("initialized")
+        _print("initialized")
 
     @property
     def leap_status(self):
@@ -124,7 +124,7 @@ class leap_listener(Leap.Listener):
 
     def on_connect(self, controller):
         """ (Leap API) Leap device is connected"""
-        print("connected")
+        _print("connected")
 
         controller.enable_gesture(Leap.Gesture.TYPE_SCREEN_TAP)
         controller.enable_gesture(Leap.Gesture.TYPE_SWIPE)
@@ -138,12 +138,12 @@ class leap_listener(Leap.Listener):
 
     def on_focus_lost(self, controller):
         """ we are using Leap Motion from outside MainWindow"""
-        print("Unfocused")
+        _print("Unfocused")
         controller.add_listener(gvariables.listener)
 
     def on_disconnect(self, controller):
         """ (Leap API) Leap device is disconnected"""
-        print("disconnected")
+        _print("disconnected")
         self.status.leap_connected = False
         self.status.emit_leap_connected(False)
 
@@ -151,7 +151,7 @@ class leap_listener(Leap.Listener):
 
     def on_exit(self, controller):
         """ (Leap API) leap_listener is destroyed"""
-        print("exited")
+        _print("exited")
 
     def leap_to_screen(self, leap_x, leap_y):
         """ translates given Leap coordinates to screen ones
@@ -169,8 +169,8 @@ class leap_listener(Leap.Listener):
         x = abs((W * x) / (LEAP_W))
         y = abs((H * y) / (LEAP_H))
 
-        # print("L"+str((leap_x,leap_y)))
-        # print((x,y))
+        # _print("L"+str((leap_x,leap_y)))
+        # _print((x,y))
         return abs(x), abs(y)
 
     def on_frame(self, controller):
@@ -180,7 +180,7 @@ class leap_listener(Leap.Listener):
         -> complex gestures
         -> simple gestures + actions
         """
-
+        _print("!!")
         self.frame = controller.frame()
         frame = self.frame
 
@@ -241,7 +241,7 @@ class leap_listener(Leap.Listener):
                     if self.deep_mode:
                         finger1 = hand.fingers[1]
                         f1_pos = finger1.tip_position
-                        """print(f1_pos.z)
+                        """_print(f1_pos.z)
                         
                         x, y = self.leap_to_screen(f1_pos.x, f1_pos.y)
                         
@@ -275,7 +275,7 @@ class leap_listener(Leap.Listener):
                             # we are into switch mode
 
                             if not self.mouse.switch_mode:
-                                print("into of SwitchMode")
+                                _print("into of SwitchMode")
                                 hold("alt")
                                 press("tab")
 
@@ -286,14 +286,14 @@ class leap_listener(Leap.Listener):
                                 self.mouse.switching = True
                                 #aux = get_current_window_name()
                                 if direction == 1:
-                                    print("right SWIPE")
+                                    _print("right SWIPE")
                                     press("right_arrow")
                                     # pressHoldRelease2(["alt", "tab", "right_arrow"], 1)
                                     """if curr_window_index == len(opened_windows_names) - 1:
                                     curr_window_index = 0
                                     name = opened_windows_names[curr_window_index+1]"""
                                 else:
-                                    print("left SWIPE")
+                                    _print("left SWIPE")
                                     press("left_arrow")
                                     """if curr_window_index == 1:  # always Start it's the first one in list(0) (Windows only?)
                                     curr_window_index = len(opened_windows_names)-1
@@ -306,7 +306,7 @@ class leap_listener(Leap.Listener):
 
                         else:
                             if self.mouse.switch_mode:
-                                print("out of SwitchMode")
+                                _print("out of SwitchMode")
                                 release("alt")
                                 self.mouse.switch_mode = False
                                 self.mouse.switching = False
@@ -318,10 +318,10 @@ class leap_listener(Leap.Listener):
                                 if f1.tip_velocity.x > 200 and not self.mouse.switching:
                                     self.mouse.switching = True
                                     if direction == 1:
-                                        print("RIGHT swipe")
+                                        _print("RIGHT swipe")
                                         press("right_arrow")
                                     else:
-                                        print("LEFT swipe")
+                                        _print("LEFT swipe")
                                         press("left_arrow")
 
                                 else:
@@ -340,12 +340,12 @@ class leap_listener(Leap.Listener):
                                         # angle between Z and Y (X rotations)
                                         pitch = hand.direction.pitch * Leap.RAD_TO_DEG
                                         if pitch < -13:
-                                            print("vscroll down")
+                                            _print("vscroll down")
                                             vel = -int(40 - ((90 - abs(pitch))/3))
                                             self.mouse.vscroll(vel)
 
                                         elif pitch > 47:
-                                            print("vscroll up")
+                                            _print("vscroll up")
                                             vel = int(30 - ((90 - pitch)/3))
                                             self.mouse.vscroll(vel)
 
@@ -354,12 +354,12 @@ class leap_listener(Leap.Listener):
                                 roll = hand.direction.roll * Leap.RAD_TO_DEG
                                 keyboard = Controller()
                                 if roll < -50:
-                                    """print("hscroll down")
+                                    """_print("hscroll down")
                                     keyboard.press(Key.ctrl)
                                     keyboard.press("s")"""
 
                                 elif roll > 50:
-                                    """print("hscroll up")
+                                    """_print("hscroll up")
                                     cx, cy = win32api.GetCursorPos()
                                     vel = int(30-((90-pitch)/3))
                                     win32api.mouse_event(win32con.EVENTF_WHEEL, cx, cy, vel, 0)"""
@@ -373,7 +373,7 @@ class leap_listener(Leap.Listener):
                             #   -> same as planem click?
                             if dist_1_2 < 5.8:
                                 if not self.mouse.left_clicked and not self.mouse.left_pressed:
-                                    print("grabbed")
+                                    _print("grabbed")
                                     self.mouse.grabbing = True
                                     cx, cy = win32api.GetCursorPos()
                                     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,
@@ -381,7 +381,7 @@ class leap_listener(Leap.Listener):
                                     self.mouse.left_pressed = True
                             else:
                                 if self.mouse.left_pressed:
-                                    print("ungrabbed")
+                                    _print("ungrabbed")
                                     self.mouse.grabbing = False
                                     cx, cy = win32api.GetCursorPos()
                                     # time.sleep(.2)
@@ -397,12 +397,12 @@ class leap_listener(Leap.Listener):
                                 # for keep performance when hand pitch (X rotations) >>
                                 if gvariables.configuration.basic.lclick == "click_planem":
 
-                                    # print(str(dist_0_1)+" "+str(80 - 15*abs(pitch)//35))
+                                    # _print(str(dist_0_1)+" "+str(80 - 15*abs(pitch)//35))
                                     if dist_0_1 < 80 - 15*abs(pitch)//35:
                                         if not self.mouse.left_clicked and \
                                            not self.mouse.left_pressed and \
                                            not self.mouse.grabbing:
-                                            print("click")
+                                            _print("click")
                                             self.mouse.left_clicked = True
                                             self.mouse.lclick()
                                     else:
@@ -416,7 +416,7 @@ class leap_listener(Leap.Listener):
                                             f2.tip_velocity.y < 0 and \
                                             abs(f1.tip_velocity.y) < 60:
                                         if not self.mouse.left_clicked:
-                                            print("click")
+                                            _print("click")
                                             self.mouse.left_clicked = True
                                             self.mouse.lclick()
                                     else:
@@ -429,7 +429,7 @@ class leap_listener(Leap.Listener):
                                             f2.tip_velocity.y < 0 and \
                                             abs(f0.tip_velocity.y) < 60:
                                         if not self.mouse.left_clicked:
-                                            print("click")
+                                            _print("click")
                                             self.mouse.left_clicked = True
                                             self.mouse.lclick()
                                     else:
@@ -441,7 +441,7 @@ class leap_listener(Leap.Listener):
                                             f1.tip_velocity.y < 0 and \
                                             abs(f0.tip_velocity.y) < 60:
                                         if not self.mouse.left_clicked:
-                                            print("click")
+                                            _print("click")
                                             self.mouse.left_clicked = True
                                             self.mouse.lclick()
                                     else:
@@ -456,7 +456,7 @@ class leap_listener(Leap.Listener):
                                        abs(f1.tip_velocity.y) < 30 and \
                                        not self.mouse.right_clicked and \
                                        not self.mouse.left_clicked:
-                                        print("rclick")
+                                        _print("rclick")
                                         self.mouse.right_clicked = True
                                         self.mouse.rclick()
                                     else:
@@ -468,7 +468,7 @@ class leap_listener(Leap.Listener):
                                        abs(f2.tip_velocity.y) < 30 and \
                                        not self.mouse.right_clicked and \
                                        not self.mouse.left_clicked:
-                                        print("rclick")
+                                        _print("rclick")
                                         self.mouse.right_clicked = True
                                         self.mouse.rclick()
                                     else:
@@ -515,10 +515,10 @@ class leap_listener(Leap.Listener):
 
                     """ GESTURE RECORDING SECTION"""
                     if self.capture_frame:
-                        # print(str(finger.type)+" "+str(finger.tip_position))
-                        # print(str(fx)+" "+str(fy))
+                        # _print(str(finger.type)+" "+str(finger.tip_position))
+                        if finger.type == 1: _print(str(fx)+" "+str(fy))
                         self.gesture[finger.type].append(Point(fx, fy, -1))
-                        self.gesture[finger.type][len(self.gesture[finger.type]) - 1].convert_to(W/2, H/2)
+                        self.gesture[finger.type][len(self.gesture[finger.type])-1].convert_to(W/2, H/2)
                     # self.c += 1
 
                     if len(frame.hands) == 1 and finger.type == gvariables.configuration.basic.mm and self.mouse.active and not self.mouse.switch_mode:

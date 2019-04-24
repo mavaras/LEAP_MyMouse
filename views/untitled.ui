@@ -27,7 +27,7 @@
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tab_canvas">
      <attribute name="title">
@@ -50,7 +50,7 @@
        </font>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Left click to recognize. q for quit. c for clear.&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Templates: T, V, right, left&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Left click to recognize. q for quit. c for clear.&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Templates: T, V, W, D, Z, X&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_count">
@@ -1110,7 +1110,7 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>507</width>
+          <width>501</width>
           <height>377</height>
          </rect>
         </property>
@@ -1546,9 +1546,15 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>488</width>
+           <width>482</width>
            <height>375</height>
           </rect>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>482</width>
+           <height>0</height>
+          </size>
          </property>
          <layout class="QGridLayout" name="gridLayout_3">
           <property name="topMargin">
@@ -1566,7 +1572,7 @@
           <property name="verticalSpacing">
            <number>13</number>
           </property>
-          <item row="4" column="0">
+          <item row="5" column="0">
            <widget class="QLabel" name="label_27">
             <property name="font">
              <font>
@@ -1578,7 +1584,7 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="0">
+          <item row="4" column="0">
            <widget class="QLabel" name="label_26">
             <property name="font">
              <font>
@@ -1590,27 +1596,7 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="2">
-           <widget class="QPushButton" name="button_help_click_2">
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="2">
-           <widget class="QPushButton" name="button_help_rclick_2">
-            <property name="text">
-             <string/>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>10</width>
-              <height>10</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="0">
+          <item row="6" column="0" colspan="3">
            <widget class="QLabel" name="label_16">
             <property name="font">
              <font>
@@ -1622,14 +1608,7 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="2">
-           <widget class="QPushButton" name="button_help_grabb_13">
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
+          <item row="3" column="0">
            <widget class="QLabel" name="label_11">
             <property name="font">
              <font>
@@ -1638,61 +1617,6 @@
             </property>
             <property name="text">
              <string>Copy</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
-           <widget class="QComboBox" name="combo_box_cut">
-            <item>
-             <property name="text">
-              <string>X</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>D</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>C</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>V</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="QComboBox" name="combo_box_paste">
-            <item>
-             <property name="text">
-              <string>V</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>T</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>C</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>D</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="3" column="2">
-           <widget class="QPushButton" name="button_help_grabb_15">
-            <property name="text">
-             <string/>
             </property>
            </widget>
           </item>
@@ -1708,7 +1632,77 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="1">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_10">
+            <property name="font">
+             <font>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Show Desktop              </string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" colspan="2">
+           <widget class="QComboBox" name="combo_box_showdesktop">
+            <item>
+             <property name="text">
+              <string>D</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>T</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>V</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Z</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>W</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="1" column="1" colspan="2">
+           <widget class="QComboBox" name="combo_box_openfexplorer">
+            <item>
+             <property name="text">
+              <string>X</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Z</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>D</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>V</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>W</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="3" column="1" colspan="2">
            <widget class="QComboBox" name="combo_box_copy">
             <item>
              <property name="text">
@@ -1730,37 +1724,47 @@
               <string>V</string>
              </property>
             </item>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_10">
-            <property name="font">
-             <font>
-              <pointsize>11</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>Show Desktop              </string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="2">
-           <widget class="QPushButton" name="button_help_grabb_16">
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QComboBox" name="combo_box_openfexplorer">
             <item>
              <property name="text">
-              <string>Z</string>
+              <string>W</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="4" column="1" colspan="2">
+           <widget class="QComboBox" name="combo_box_paste">
+            <item>
+             <property name="text">
+              <string>V</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>T</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>C</string>
              </property>
             </item>
             <item>
              <property name="text">
               <string>D</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>W</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="5" column="1" colspan="2">
+           <widget class="QComboBox" name="combo_box_cut">
+            <item>
+             <property name="text">
+              <string>W</string>
              </property>
             </item>
             <item>
@@ -1770,21 +1774,12 @@
             </item>
             <item>
              <property name="text">
-              <string>V</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QComboBox" name="combo_box_showdesktop">
-            <item>
-             <property name="text">
               <string>D</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>T</string>
+              <string>C</string>
              </property>
             </item>
             <item>
@@ -1988,32 +1983,51 @@
     </widget>
     <widget class="QWidget" name="tab_gestures">
      <attribute name="title">
-      <string>Gestures</string>
+      <string>Log</string>
      </attribute>
-     <widget class="QComboBox" name="combo_box_gestures">
+     <widget class="QScrollArea" name="scrollArea_2">
       <property name="geometry">
        <rect>
-        <x>150</x>
-        <y>430</y>
-        <width>161</width>
-        <height>22</height>
+        <x>60</x>
+        <y>20</y>
+        <width>921</width>
+        <height>448</height>
        </rect>
       </property>
-      <item>
-       <property name="text">
-        <string>CLICK plane mode</string>
+      <property name="font">
+       <font>
+        <pointsize>2</pointsize>
+       </font>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>919</width>
+         <height>446</height>
+        </rect>
        </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>GRABB plane mode</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>SCROLL</string>
-       </property>
-      </item>
+       <widget class="QPlainTextEdit" name="textArea_logs">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>921</width>
+          <height>451</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Consolas</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+       </widget>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_data">

@@ -5,6 +5,7 @@
 
 import ctypes
 import win32con, win32gui
+from _print import _print
 
 
 # needed variables

@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
+import math
 import points as ps
 from gvariables import *
-from controllers.aux_functions import *
+from controllers.aux_functions import distance
 
 
 num_points = 32

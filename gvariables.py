@@ -26,6 +26,11 @@ configuration = None
 # gui
 main_window = None
 
-# aux for canvas
+# PCRecognizer
+pcr = None
+
+stdout = "__> programm output\n"
+
+# aux for canvas (used ?)
 stroke_id = 0
 points = []

@@ -18,20 +18,19 @@ from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 import cv2
 from PIL import Image
-# import matplotlib.pyplot as plt  # conflict with sphinx
+import matplotlib.pyplot as plt  # conflict with sphinx
 
 from scipy.misc import imresize
 from sklearn import datasets
+from sklearn import datasets
 from sklearn import svm
+from sklearn.externals import joblib
 
 # self package imports
 from gvariables import *
 import gvariables
-
-from controllers.win32_functions import *
-from controllers.key_handle import *
+from _print import _print
 from controllers.aux_functions import *
-from models.PCRecognizer import PCRecognizer
 from models.points import Point, Point_cloud
 from views.gui_qtdesigner import *
 from views.canvas import Widget_canvas
@@ -62,7 +61,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         # self.setWindowFlags(Qt.FramelessWindowHint)
         # self.setWindowOpacity(0)
         self.opened = True
-        self.systray = QSystemTrayIcon(QIcon("res/icon.ico"), self)
+        self.systray = QSystemTrayIcon(QIcon("res/icons/icon.ico"), self)
         self.set_notification_area()
 
         self.cvF = Cv_Frame(self)
@@ -75,7 +74,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         fills cb_action_gesture array
         """
 
-        print("initUI")
+        _print("initUI")
 
         # TAB1 - CANVAS setup
         self.widget_canvas = Widget_canvas(self.tab_canvas)  # linking widget_canvas to tab1
@@ -127,7 +126,10 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.combo_box_minimizew.currentIndexChanged["int"].connect(
             lambda: self.combo_box_actiongesture_changed("combo_box_minimizew"))
         self.cb_action_gesture[self.combo_box_minimizew] = {0: "V",
-                                                            1: "T"}
+                                                            1: "T",
+                                                            2: "W",
+                                                            3: "D",
+                                                            4: "M"}
 
         self.combo_box_closew.currentIndexChanged["int"].connect(
             lambda: self.combo_box_actiongesture_changed("combo_box_closew"))
@@ -157,41 +159,47 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             lambda: self.combo_box_actiongesture_changed("combo_box_showdesktop"))
         self.cb_action_gesture[self.combo_box_showdesktop] = {0: "D",
                                                               1: "T",
-                                                              2: "V"}
+                                                              2: "V",
+                                                              3: "Z",
+                                                              4: "W"}
 
         self.combo_box_openfexplorer.currentIndexChanged["int"].connect(
             lambda: self.combo_box_actiongesture_changed("combo_box_openfexplorer"))
-        self.cb_action_gesture[self.combo_box_openfexplorer] = {0: "Z",
-                                                                1: "D",
-                                                                2: "X",
-                                                                3: "V"}
+        self.cb_action_gesture[self.combo_box_openfexplorer] = {0: "X",
+                                                                1: "Z",
+                                                                2: "D",
+                                                                3: "V",
+                                                                4: "W"}
 
         self.combo_box_copy.currentIndexChanged["int"].connect(
             lambda: self.combo_box_actiongesture_changed("combo_box_copy"))
         self.cb_action_gesture[self.combo_box_copy] = {0: "C",
                                                        1: "D",
                                                        2: "T",
-                                                       3: "V"}
+                                                       3: "V",
+                                                       4: "W"}
 
         self.combo_box_paste.currentIndexChanged["int"].connect(
             lambda: self.combo_box_actiongesture_changed("combo_box_paste"))
         self.cb_action_gesture[self.combo_box_paste] = {0: "V",
                                                         1: "T",
                                                         2: "C",
-                                                        3: "D"}
+                                                        3: "D",
+                                                        4: "W"}
 
         self.combo_box_cut.currentIndexChanged["int"].connect(
             lambda: self.combo_box_actiongesture_changed("combo_box_cut"))
-        self.cb_action_gesture[self.combo_box_cut] = {0: "X",
-                                                      1: "D",
-                                                      2: "C",
-                                                      3: "V"}
+        self.cb_action_gesture[self.combo_box_cut] = {0: "W",
+                                                      1: "X",
+                                                      2: "D",
+                                                      3: "C",
+                                                      4: "V"}
 
         # __help buttons
         self.set_gesture_gif("res/gifs/no_gesture.gif")
         self.label_gesture_gif.setLayout(QtGui.QHBoxLayout())
 
-        help_img = "res/eye.png"
+        help_img = "res/icons/eye.png"
         # we pass view_gesture() method help button associated combo box
         self.button_help_click.clicked.connect(lambda: self.view_gesture(self.combo_box_click))
         self.button_help_click.setIcon(QIcon(help_img))
@@ -356,6 +364,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
         global points
         if event.key() == QtCore.Qt.Key_Q:
+            print(gvariables.stdout)
             self.exit_app()
 
         elif event.key() == QtCore.Qt.Key_W:  # app interaction example/test
@@ -382,7 +391,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                 # pc.draw_on_canvas()    normalized pc
 
                 result = recognize_stroke(self.widget_canvas.points)
-                gesture_match(result.name)
+                gesture_match(result.name, "-thread" in sys.argv)
 
                 str_accum = "Last/Current gesture points array\n\n"
                 for c in range(0, len(points)):
@@ -397,7 +406,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                 results = []
                 for c in range(0, 5):
                     results.append(recognize_stroke(gvariables.listener.gesture[c]))
-                    gesture_match(results[len(results) - 1].name)
+                    gesture_match(results[len(results) - 1].name, "-thread" in sys.argv)
 
                 results_names = [res.name for res in results]
                 print(results_names)
@@ -418,32 +427,40 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
         elif event.key() == QtCore.Qt.Key_G and sys.argv[1] != "-thread":
             # global points
-            if self.n_of_fingers == 1:  # recordin only 1 finger(indice)
+            if self.n_of_fingers == 1:  # recording only 1 finger (index)
                 print("1 finger recording mode")
                 if gvariables.listener.capture_frame:  # 2nd "G" press
                     print("record captured")
                     gvariables.listener.capture_frame = False
 
                     if self.canvas_algorithm == "NN":
-                        # neural network things
+                        # Neural Network recognition selected
                         img_dim = 28
                         matrix = np.zeros((img_dim, img_dim, 3), dtype=np.uint8)
                         white = [255, 255, 255]
-                        # leap_gesture_points = gvariables.listener.gesture[1]
-                        max_leap_y = max(g.y for g in gvariables.listener.gesture[1])
-                        max_leap_x = max((g.x + 200) for g in gvariables.listener.gesture[1])
 
-                        """img_dim = int(max_leap_y/11)
-                        matrix = np.zeros((img_dim, img_dim, 3), dtype=np.uint8)"""
-                        for c in range(len(gvariables.listener.gesture[1])):
-                            leap_x = gvariables.listener.gesture[1][c].x + 140
-                            leap_y = max_leap_y + 40 - gvariables.listener.gesture[1][c].y
+                        leap_gesture_points = gvariables.listener.gesture[1]
+                        # undoing convert_to from leap_controller to get min and max
+                        for c in range(len(leap_gesture_points)):
+                            leap_gesture_points[c].x *= (W/2)
+                            leap_gesture_points[c].x /= W
+                            leap_gesture_points[c].y = H - abs(leap_gesture_points[c].y)
+                            leap_gesture_points[c].y *= (H/2)
+                            leap_gesture_points[c].y /= H
+
+                        max_leap_y = max(g.y for g in leap_gesture_points)
+                        max_leap_x = max((g.x + 200) for g in leap_gesture_points)
+                        for c in range(len(leap_gesture_points)):
+                            print(leap_gesture_points[c].y),
+                            print(leap_gesture_points[c].x)
+                            leap_x = leap_gesture_points[c].x + 140
+                            leap_y = max_leap_y + 40 - leap_gesture_points[c].y
                             print(str(leap_x) + ", " + str(leap_y))
-                            print(str(leap_x * img_dim / max_leap_x) + "; " + str(leap_y * img_dim / max_leap_y))
+                            print(str(leap_x * img_dim/max_leap_x) + "; " + str(leap_y * img_dim / max_leap_y))
                             print("")
-                            matrix_x = int(leap_x * img_dim / max_leap_x)
+                            matrix_x = int(leap_x * img_dim/max_leap_x)
                             matrix_x = 27 if matrix_x == 28 else matrix_x
-                            matrix_y = int(leap_y * img_dim / max_leap_y)
+                            matrix_y = int(leap_y * img_dim/max_leap_y)
                             matrix_y = 27 if matrix_y == 28 else matrix_y
                             matrix[matrix_y][matrix_x] = white
 
@@ -459,7 +476,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                         # img = self.matrix_to_img(gvariables.listener.gesture[1])
 
                         result = recognize_stroke(leap_gesture_points)
-                        gesture_match(result.name)
+                        gesture_match(result.name, "-thread" in sys.argv)
 
                         str_accum = "Last/Current gesture points array\n\n"
                         for c in range(0, len(points)):
@@ -508,36 +525,23 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.show()
 
     def matrix_to_img(self, matrix):
-        """ this function is related to neural network
-        convert provided np matrix to .png image
-        :param matrix: converts given matrix to an 28x28 image (NN)
-        """
-
         img = Image.fromarray(matrix, "RGB")
-        # img.thumbnail((28, 28), Image.ANTIALIAS)  # resizing to 28x28
+        img.thumbnail((28, 28), Image.ANTIALIAS)  # resizing to 28x28
         img.save("image_28x28.png")
-        img.show()
 
         # dilate image
-        img = cv2.imread("image_28x28.png", cv2.IMREAD_GRAYSCALE)
-        img = cv2.dilate(img, np.ones((3, 3), np.uint8), iterations=2)
-        # img = cv2.erode(img, np.ones((3, 3), np.uint8), iterations=1)
-
+        img = cv2.dilate(cv2.imread("image_28x28.png", cv2.IMREAD_GRAYSCALE),
+                         np.ones((3, 3), np.uint8), iterations=1)
         return img
 
     def neural_network(self, img):
-        """ passes provided image through neural network"""
-
         # setting + normalizing image
         cv2.imshow("image", cv2.resize(img, (200, 200)))
-        img = np.delete(img, np.where(~img.any(axis=1))[0], axis=0)
-        img = np.delete(img, np.where(~img.any(axis=0))[0], axis=1)
-        img = cv2.resize(img, (8, 8))
+        # img = cv2.resize(img, (8, 8))
         minValueInImage = np.min(img)
         maxValueInImage = np.max(img)
         img = np.floor(np.divide((img - minValueInImage).astype(np.float),
                                  (maxValueInImage - minValueInImage).astype(np.float)) * 16)
-        print(img)
 
         # loading digit database
         digits = datasets.load_digits()
@@ -545,29 +549,29 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         data = digits.images.reshape((n_samples, -1))
 
         # setting classifier
-        clf = svm.SVC(gamma=0.0001, C=100)
-        clf.fit(data[:n_samples], digits.target[:n_samples])
+        """clf = svm.SVC(gamma=0.0001, C=100)
+        clf.fit(data[:n_samples], digits.target[:n_samples])"""
 
         # predict
+        print("Loading MLP model from file")
+        clf = joblib.load("res/mlp_model.pkl").best_estimator_
         predicted = clf.predict(img.reshape((1, img.shape[0] * img.shape[1])))
 
         # display results
-        """for c in range(8):
-            for j in range(8):
-                if img[c][j] > 0:
-                    img[c][j] = 16"""
         print("prediction: " + str(predicted))
-        plt.imshow(img, cmap=plt.cm.gray_r, interpolation="nearest")
+        plt.imshow(img, cmap=plt.cm.gray_r, interpolation='nearest')
         plt.title("result: " + str(predicted))
         plt.show()
 
-    def recognition_algorithm_ch(self, what):
+        #return str(predicted)
+
+    def recognition_algorithm_ch(self, which):
         """
         handles check box selecting recognition algorithm
         :param what: 'pd' or 'NN'
         """
-        print("canvas algorithm changed to " + str(what))
-        if what == "pd":
+        print("canvas algorithm changed to " + str(which))
+        if which == "pd":
             self.canvas_algorithm = "pd"
         else:
             self.canvas_algorithm = "NN"
@@ -592,7 +596,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
         elif combo_box_name == "combo_box_rclick":
             print("rclick changed")
-            print(self.cb_action_gesture[self.combo_box_rclick] \
+            print(self.cb_action_gesture[self.combo_box_rclick]
                   .get(self.combo_box_rclick.currentIndex()))
             gvariables.configuration.basic.rclick = self.cb_action_gesture[self.combo_box_rclick] \
                 .get(self.combo_box_rclick.currentIndex())
@@ -624,6 +628,26 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             gvariables.configuration.basic.grabb = self.cb_action_gesture[self.combo_box_grabb] \
                 .get(self.combo_box_grabb.currentIndex())
 
+        elif combo_box_name == "combo_box_showdesktop":
+            gvariables.configuration.extra.show_desktop = self.cb_action_gesture[self.combo_box_showdesktop] \
+                .get(self.combo_box_showdesktop.currentIndex())
+
+        elif combo_box_name == "combo_box_openfexplorer":
+            gvariables.configuration.extra.show_explorer = self.cb_action_gesture[self.combo_box_openfexplorer] \
+                .get(self.combo_box_openfexplorer.currentIndex())
+
+        elif combo_box_name == "combo_box_copy":
+            gvariables.configuration.extra.copy = self.cb_action_gesture[self.combo_box_copy] \
+                .get(self.combo_box_copy.currentIndex())
+
+        elif combo_box_name == "combo_box_paste":
+            gvariables.configuration.extra.paste = self.cb_action_gesture[self.combo_box_paste] \
+                .get(self.combo_box_paste.currentIndex())
+
+        elif combo_box_name == "combo_box_cut":
+            gvariables.configuration.extra.cut = self.cb_action_gesture[self.combo_box_cut] \
+                .get(self.combo_box_cut.currentIndex())
+
         self.setFocus()
 
     # (not used)
@@ -647,7 +671,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         print(self.cb_action_gesture.get(combo_box).get(combo_box.currentIndex()))
 
         self.set_gesture_gif(
-            "res/gifs/" + str(self.cb_action_gesture.get(combo_box).get(combo_box.currentIndex())) + ".gif")
+            "res/gifs/" + str(self.cb_action_gesture.get(combo_box).get(combo_box.currentIndex())) + ".gif"
+        )
         self.label_gesture_gif.setLayout(QtGui.QHBoxLayout())
 
     def start_stop_control(self):

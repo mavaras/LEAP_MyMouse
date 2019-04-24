@@ -76,7 +76,7 @@ def init_templates():
         ,
     ], None)
                      )
-    templates.append(Template("RIGHT", [
+    """templates.append(Template("RIGHT", [
         ps.Point_cloud("right1", [ps.Point(30, 47, 1), ps.Point(96, 7, 1)])
         ,
         ps.Point_cloud("right2", [ps.Point(30, 37, 1), ps.Point(96, 20, 1)])
@@ -87,7 +87,7 @@ def init_templates():
         ,
         ps.Point_cloud("left2", [ps.Point(30, 20, 1), ps.Point(96, 37, 1)])
         ], None)
-    )
+    )"""
 
     templates.append(Template("X", [
         ps.Point_cloud("X1", [ps.Point(30, 7, 1), ps.Point(60, 47, 1),
@@ -109,17 +109,64 @@ def init_templates():
                               ps.Point(30, 7, 3), ps.Point(30, 47, 3)])
         ], None)
     )
+
     templates.append(Template("W", [
         ps.Point_cloud("W1", [ps.Point(30, 7, 1), ps.Point(40, 37, 1),
                               ps.Point(40, 37, 2), ps.Point(50, 7, 2),
-                              ps.Point(50, 7, 1), ps.Point(60, 37, 1),
-                              ps.Point(60, 37, 2), ps.Point(70, 7, 2)])
+                              ps.Point(50, 7, 3), ps.Point(60, 37, 3),
+                              ps.Point(60, 37, 4), ps.Point(70, 7, 4)])
         ,
         ps.Point_cloud("W2", [ps.Point(30, 7, 1), ps.Point(50, 37, 1),
                               ps.Point(50, 37, 2), ps.Point(70, 7, 2),
-                              ps.Point(70, 7, 1), ps.Point(90, 37, 1),
-                              ps.Point(90, 37, 2), ps.Point(110, 7, 2)])
+                              ps.Point(70, 7, 3), ps.Point(90, 37, 3),
+                              ps.Point(90, 37, 4), ps.Point(110, 7, 4)])
         ], None)
     )
+
+    templates.append(Template("M", [
+        ps.Point_cloud("M1", [ps.Point(30, 37, 1), ps.Point(40, 7, 1),
+                              ps.Point(40, 7, 2), ps.Point(50, 27, 2),
+                              ps.Point(50, 27, 3), ps.Point(60, 7, 3),
+                              ps.Point(60, 7, 4), ps.Point(70, 37, 4)])
+        ,
+        ps.Point_cloud("M2", [ps.Point(30, 37, 1), ps.Point(50, 7, 1),
+                              ps.Point(50, 7, 2), ps.Point(70, 27, 2),
+                              ps.Point(70, 27, 3), ps.Point(90, 7, 3),
+                              ps.Point(90, 7, 4), ps.Point(110, 37, 4)])
+        ,
+        ps.Point_cloud("M3", [ps.Point(30, 57, 1), ps.Point(40, 7, 1),
+                              ps.Point(40, 7, 2), ps.Point(47, 31, 2),
+                              ps.Point(47, 31, 3), ps.Point(54, 7, 3),
+                              ps.Point(54, 7, 4), ps.Point(64, 57, 4)])
+
+        ], None)
+    )
+
+    templates.append(Template("Z", [
+        ps.Point_cloud("Z1", [ps.Point(30, 7, 1), ps.Point(60, 7, 1),
+                              ps.Point(60, 7, 2), ps.Point(30, 27, 2),
+                              ps.Point(30, 27, 3), ps.Point(60, 27, 3)])
+        ,
+        ps.Point_cloud("Z2", [ps.Point(30, 7, 1), ps.Point(50, 12, 1),
+                              ps.Point(50, 12, 2), ps.Point(30, 35, 2),
+                              ps.Point(30, 35, 3), ps.Point(55, 30, 3)])
+        ,
+        ps.Point_cloud("Z3", [ps.Point(30, 7, 1), ps.Point(50, 12, 1),
+                              ps.Point(50, 12, 2), ps.Point(20, 37, 2),
+                              ps.Point(20, 37, 3), ps.Point(52, 33, 3)])
+        ,
+        ps.Point_cloud("Z4", [ps.Point(30, 21, 1), ps.Point(50, 8, 1),
+                              ps.Point(50, 8, 2), ps.Point(23, 30, 2),
+                              ps.Point(23, 30, 3), ps.Point(54, 27, 3)])
+        ,
+        ps.Point_cloud("Z5", [ps.Point(40, 7, 1), ps.Point(60, 7, 1),
+                              ps.Point(60, 7, 2), ps.Point(30, 25, 2),
+                              ps.Point(30, 25, 3), ps.Point(70, 27, 3)])
+        ,
+        ps.Point_cloud("Z6", [ps.Point(20, 7, 1), ps.Point(70, 7, 1),
+                              ps.Point(70, 7, 2), ps.Point(30, 28, 2),
+                              ps.Point(30, 28, 3), ps.Point(57, 27, 3)])
+    ], None)
+                     )
 
     return templates
