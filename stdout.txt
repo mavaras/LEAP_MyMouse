@@ -1,0 +1,10 @@
+SYSTEM started
+sys platform: win32
+initialized
+connected
+connected
+initUI
+currently opened windows
+[u'Start', u'CANVAS', u'  - python  GRecognizer.py sdlfjs ', u'LEAP_proyect [E:\\Documentos\\Estudio\\programming\\Python\\leap\\LEAP_proyect] - ...\\views\\gui.py [LEAP_proyect] - PyCharm', u'stream - Can I redirect the stdout in python into some sort of string buffer? - Stack Overflow - Google Chrome', u'LEAP_proyect', u'NotificationsForm', u'Program Manager']
+CANVAS
+exited

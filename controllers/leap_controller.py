@@ -166,8 +166,8 @@ class leap_listener(Leap.Listener):
         y += 80
 
         x += LEAP_W / 2
-        x = abs((W * x) / (LEAP_W))
-        y = abs((H * y) / (LEAP_H))
+        x = abs((W * x)/ (LEAP_W))
+        y = abs((H * y)/(LEAP_H))
 
         # _print("L"+str((leap_x,leap_y)))
         # _print((x,y))
