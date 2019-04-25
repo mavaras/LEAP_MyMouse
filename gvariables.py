@@ -16,7 +16,6 @@ window_height = H/2
 canvas_width = 900
 canvas_height = 400
 
-
 # leap object
 listener = None
 
