@@ -1,3 +1,3 @@
-python GRecognizer.py [-thread -scroll -planem -deepm asdflsd]
+README currently on construction
 
 
