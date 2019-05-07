@@ -1,0 +1,764 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>GRecognizer &#8212; LeapPCController 2019 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css"/>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css"/>
+    <script type="text/javascript" id="documentation_options" data-url_root="../"
+            src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html"/>
+    <link rel="search" title="Search" href="../search.html"/>
+
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css"/>
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9"/>
+
+</head>
+<body>
+
+
+<div class="document">
+    <div class="documentwrapper">
+        <div class="bodywrapper">
+
+
+            <div class="body" role="main">
+
+                <h1>Source code for GRecognizer</h1>
+                <div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="c1"># ===============MAIN FILE===============</span>
+<span class="c1"># == initializations</span>
+<span class="c1"># ==== view</span>
+<span class="c1"># ==== leap_controller</span>
+<span class="c1"># ==== configuration</span>
+<span class="c1"># ==== win32</span>
+<span class="c1"># == threads</span>
+
+
+<span class="c1"># basic modules imports</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+
+<span class="c1"># aux modules imports</span>
+<span class="kn">from</span> <span class="nn">PyQt4.QtGui</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">PyQt4.QtCore</span> <span class="k">import</span> <span class="o">*</span>
+
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="k">import</span> <span class="n">Image</span>
+<span class="c1"># import matplotlib.pyplot as plt</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="k">import</span> <span
+                        class="n">datasets</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="k">import</span> <span class="n">svm</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="k">import</span> <span
+                        class="n">datasets</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="k">import</span> <span class="n">svm</span>
+<span class="kn">from</span> <span class="nn">sklearn.externals</span> <span class="k">import</span> <span class="n">joblib</span>
+<span class="kn">from</span> <span class="nn">win32api</span> <span class="k">import</span> <span class="n">GetSystemMetrics</span>
+
+<span class="c1"># own package imports</span>
+<span class="kn">from</span> <span class="nn">_print</span> <span class="k">import</span> <span class="n">_print</span>
+<span class="kn">from</span> <span class="nn">models.configuration</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">models.PCRecognizer</span> <span class="k">import</span> <span class="n">PCRecognizer</span>
+<span class="kn">from</span> <span class="nn">models.points</span> <span class="k">import</span> <span class="n">Point_cloud</span>
+
+<span class="kn">from</span> <span class="nn">views.gui_qtdesigner</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">views.gui</span> <span class="k">as</span> <span class="nn">gui</span>
+
+<span class="kn">from</span> <span class="nn">controllers.leap_controller</span> <span class="k">import</span> <span
+                        class="o">*</span>
+<span class="kn">from</span> <span class="nn">controllers.win32_functions</span> <span class="k">import</span> <span
+                        class="o">*</span>
+<span class="kn">from</span> <span class="nn">controllers.aux_functions</span> <span class="k">import</span> <span
+                        class="o">*</span>
+
+<span class="c1"># TODO: features to implement:</span>
+<span class="c1">#       -&gt; gvariables as object ?? (this is good)</span>
+<span class="c1">#       -&gt; launch on startup</span>
+<span class="c1">#       -&gt; add gifs</span>
+<span class="c1">#       -&gt; help</span>
+<span class="c1">#       -&gt; logs tab ?</span>
+<span class="c1">#       -&gt; installer with InnoSetup (when exe ready)</span>
+
+<span class="c1"># GLOBALS ?</span>
+<span class="c1"># main_window = None</span>
+<span class="n">exit</span> <span class="o">=</span> <span class="kc">False</span>
+
+
+<span class="k">def</span> <span class="nf">matrix_to_img</span><span class="p">(</span><span
+                        class="n">matrix</span><span class="p">):</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span
+                        class="n">fromarray</span><span class="p">(</span><span class="n">matrix</span><span
+                        class="p">,</span> <span class="s2">&quot;RGB&quot;</span><span class="p">)</span>
+    <span class="n">img</span><span class="o">.</span><span class="n">thumbnail</span><span class="p">((</span><span
+                        class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span> <span
+                        class="n">Image</span><span class="o">.</span><span class="n">ANTIALIAS</span><span
+                        class="p">)</span>  <span class="c1"># resizing to 28x28</span>
+    <span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span
+                        class="s2">&quot;image_28x28.png&quot;</span><span class="p">)</span>
+
+    <span class="c1"># dilate image</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span
+                        class="n">dilate</span><span class="p">(</span><span class="n">cv2</span><span
+                        class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;image_28x28.png&quot;</span><span
+                        class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">IMREAD_GRAYSCALE</span><span
+                        class="p">),</span>
+                     <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span
+                        class="p">((</span><span class="mi">3</span><span class="p">,</span> <span
+                        class="mi">3</span><span class="p">),</span> <span class="n">np</span><span
+                        class="o">.</span><span class="n">uint8</span><span class="p">),</span> <span class="n">iterations</span><span
+                        class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">img</span>
+
+
+<span class="k">def</span> <span class="nf">neural_network</span><span class="p">(</span><span class="n">img</span><span
+                        class="p">):</span>
+    <span class="c1"># setting + normalizing image</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span
+                        class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="n">cv2</span><span
+                        class="o">.</span><span class="n">resize</span><span class="p">(</span><span
+                        class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="mi">200</span><span
+                        class="p">,</span> <span class="mi">200</span><span class="p">)))</span>
+    <span class="c1"># img = cv2.resize(img, (8, 8))</span>
+    <span class="n">minValueInImage</span> <span class="o">=</span> <span class="n">np</span><span
+                        class="o">.</span><span class="n">min</span><span class="p">(</span><span
+                        class="n">img</span><span class="p">)</span>
+    <span class="n">maxValueInImage</span> <span class="o">=</span> <span class="n">np</span><span
+                        class="o">.</span><span class="n">max</span><span class="p">(</span><span
+                        class="n">img</span><span class="p">)</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span
+                        class="n">floor</span><span class="p">(</span><span class="n">np</span><span
+                        class="o">.</span><span class="n">divide</span><span class="p">((</span><span
+                        class="n">img</span> <span class="o">-</span> <span class="n">minValueInImage</span><span
+                        class="p">)</span><span class="o">.</span><span class="n">astype</span><span
+                        class="p">(</span><span class="n">np</span><span class="o">.</span><span
+                        class="n">float</span><span class="p">),</span>
+                             <span class="p">(</span><span class="n">maxValueInImage</span><span class="o">-</span><span
+                        class="n">minValueInImage</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span
+                        class="p">(</span><span class="n">np</span><span class="o">.</span><span
+                        class="n">float</span><span class="p">))</span><span class="o">*</span><span
+                        class="mi">16</span><span class="p">)</span>
+
+    <span class="c1"># loading digit database</span>
+    <span class="n">digits</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span
+                        class="n">load_digits</span><span class="p">()</span>
+    <span class="n">n_samples</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span
+                        class="n">digits</span><span class="o">.</span><span class="n">images</span><span
+                        class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span
+                        class="n">images</span><span class="o">.</span><span class="n">reshape</span><span
+                        class="p">((</span><span class="n">n_samples</span><span class="p">,</span> <span
+                        class="o">-</span><span class="mi">1</span><span class="p">))</span>
+
+    <span class="c1"># setting classifier</span>
+    <span class="sd">&quot;&quot;&quot;clf = svm.SVC(gamma=0.0001, C=100)</span>
+<span class="sd">    clf.fit(data[:n_samples], digits.target[:n_samples])&quot;&quot;&quot;</span>
+
+    <span class="c1"># predict</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Loading model from file.&#39;</span><span
+                        class="p">)</span>
+    <span class="n">clf</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span
+                        class="n">load</span><span class="p">(</span><span
+                        class="s1">&#39;mlp_model.pkl&#39;</span><span class="p">)</span><span class="o">.</span><span
+                        class="n">best_estimator_</span>
+    <span class="n">predicted</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span
+                        class="n">predict</span><span class="p">(</span><span class="n">img</span><span
+                        class="o">.</span><span class="n">reshape</span><span class="p">((</span><span
+                        class="mi">1</span><span class="p">,</span> <span class="n">img</span><span
+                        class="o">.</span><span class="n">shape</span><span class="p">[</span><span
+                        class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span
+                        class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span
+                        class="mi">1</span><span class="p">])))</span>
+
+    <span class="c1"># display results</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;prediction: &quot;</span><span
+                        class="o">+</span><span class="nb">str</span><span class="p">(</span><span
+                        class="n">predicted</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span
+                        class="n">img</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span
+                        class="n">plt</span><span class="o">.</span><span class="n">cm</span><span
+                        class="o">.</span><span class="n">gray_r</span><span class="p">,</span> <span class="n">interpolation</span><span
+                        class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span
+                        class="s2">&quot;result: &quot;</span><span class="o">+</span><span class="nb">str</span><span
+                        class="p">(</span><span class="n">predicted</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span
+                        class="n">predicted</span><span class="p">)</span>
+
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd"># various functions (this shouldn&#39;t be here)</span>
+<span class="sd">def recognize_stroke(points):</span>
+<span class="sd">    &quot;&quot;&quot; this function recognize one SINGLE stroke (if ALL fingers, one by one)&quot;&quot;&quot;</span>
+
+<span class="sd">    print(&quot;recognizing stroke&quot;)</span>
+<span class="sd">    aux = [points]</span>
+<span class="sd">    result = pcr.recognize(aux)</span>
+
+<span class="sd">    return result</span>
+
+
+<span class="sd">def print_score(result):</span>
+<span class="sd">    &quot;&quot;&quot; this shows final score of current stroke (red label on canvas)&quot;&quot;&quot;</span>
+
+<span class="sd">    score = &quot;Result: matched with &quot; + result.name + &quot; about &quot; + str(round(result.score, 2))</span>
+<span class="sd">    main_window.label_score.setStyleSheet(&quot;color: red&quot;)</span>
+<span class="sd">    main_window.label_score.setText(str(score))</span>
+<span class="sd">    main_window.text_edit_2.append(&quot;\n&quot; + str(score))</span>
+
+
+<span class="sd">def gesture_match(gesture_name):</span>
+<span class="sd">    &quot;&quot;&quot; handling gesture stroke match actions&quot;&quot;&quot;</span>
+
+<span class="sd">    if gesture_name == &quot;T&quot;:</span>
+<span class="sd">        print(&quot;T gesture&quot;)</span>
+<span class="sd">        if &quot;-thread&quot; in sys.argv:</span>
+<span class="sd">            # handle = win32gui.FindWindow(None, r&quot;Reproductor multimedia VLC&quot;)</span>
+<span class="sd">            hwnd = get_current_window_hwnd()</span>
+<span class="sd">            if gvariables.configuration.basic.closew == &quot;T&quot;:</span>
+<span class="sd">                close_window(hwnd)</span>
+<span class="sd">            elif gvariables.configuration.basic.minimizew == &quot;T&quot;:</span>
+<span class="sd">                minimize_window(hwnd)</span>
+
+<span class="sd">    elif gesture_name == &quot;V&quot;:</span>
+<span class="sd">        print(&quot;V gesture&quot;)</span>
+<span class="sd">        if &quot;-thread&quot; in sys.argv:</span>
+<span class="sd">            hwnd = get_current_window_hwnd()</span>
+<span class="sd">            if gvariables.configuration.basic.closew == &quot;V&quot;:</span>
+<span class="sd">                close_window(hwnd)</span>
+<span class="sd">            elif gvariables.configuration.basic.minimizew == &quot;V&quot;:</span>
+<span class="sd">                minimize_window(hwnd)</span>
+
+<span class="sd">    elif gesture_name == &quot;Z&quot;:</span>
+<span class="sd">        print(&quot;Z gesture&quot;)</span>
+<span class="sd">        if &quot;-thread&quot; in sys.argv:</span>
+<span class="sd">            hwnd = get_current_window_hwnd()</span>
+<span class="sd">            if gvariables.configuration.basic.closew == &quot;Z&quot;:</span>
+<span class="sd">                close_window(hwnd)</span>
+<span class="sd">            elif gvariables.configuration.basic.minimizew == &quot;Z&quot;:</span>
+<span class="sd">                minimize_window(hwnd)</span>
+
+<span class="sd">    elif gesture_name == &quot;W&quot;:</span>
+<span class="sd">        pass</span>
+
+<span class="sd">    elif gesture_name == &quot;N&quot;:</span>
+<span class="sd">        pass</span>
+
+<span class="sd">    elif gesture_name == &quot;LEFT&quot;:</span>
+<span class="sd">        print(&quot;LEFT gesture&quot;)</span>
+<span class="sd">    elif gesture_name == &quot;RIGHT&quot;:</span>
+<span class="sd">        print(&quot;RIGHT gesture&quot;)</span>
+<span class="sd">    print(&quot;&quot;)</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+
+<span class="c1"># various functions (temporarily here)</span>
+<div class="viewcode-block" id="recognize_stroke"><a class="viewcode-back"
+                                                     href="../index.html#GRecognizer.recognize_stroke">[docs]</a><span
+        class="k">def</span> <span class="nf">recognize_stroke</span><span class="p">(</span><span
+        class="n">points</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; this function recognize one SINGLE stroke (if ALL fingers, one by one)</span>
+
+<span class="sd">    :params points: points array containing a stroke</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;recognizing stroke&quot;</span><span
+            class="p">)</span>
+    <span class="n">aux</span> <span class="o">=</span> <span class="p">[</span><span class="n">points</span><span
+            class="p">]</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">PCRecognizer</span><span
+            class="p">()</span><span class="o">.</span><span class="n">recognize</span><span class="p">(</span><span
+            class="n">aux</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="print_score"><a class="viewcode-back" href="../index.html#GRecognizer.print_score">[docs]</a><span
+        class="k">def</span> <span class="nf">print_score</span><span class="p">(</span><span
+        class="n">result</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; this shows final score of current stroke (red label on canvas)</span>
+<span class="sd">    :param result: Result object containing recognition result</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">score</span> <span class="o">=</span> <span class="s2">&quot;Result: matched with &quot;</span><span
+            class="o">+</span><span class="n">result</span><span class="o">.</span><span class="n">name</span><span
+            class="o">+</span><span class="s2">&quot; about &quot;</span><span class="o">+</span><span
+            class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span
+            class="n">result</span><span class="o">.</span><span class="n">score</span><span class="p">,</span> <span
+            class="mi">2</span><span class="p">))</span>
+    <span class="n">gvariables</span><span class="o">.</span><span class="n">main_window</span><span
+            class="o">.</span><span class="n">label_score</span><span class="o">.</span><span
+            class="n">setStyleSheet</span><span class="p">(</span><span class="s2">&quot;color: red&quot;</span><span
+            class="p">)</span>
+    <span class="n">gvariables</span><span class="o">.</span><span class="n">main_window</span><span
+            class="o">.</span><span class="n">label_score</span><span class="o">.</span><span
+            class="n">setText</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span
+            class="n">score</span><span class="p">))</span>
+    <span class="n">gvariables</span><span class="o">.</span><span class="n">main_window</span><span
+            class="o">.</span><span class="n">text_edit_2</span><span class="o">.</span><span
+            class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span
+            class="s2">&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span
+            class="n">score</span><span class="p">))</span></div>
+
+
+<span class="c1"># not updated (not here -&gt; GRecognizer.py)</span>
+<div class="viewcode-block" id="gesture_match"><a class="viewcode-back" href="../index.html#GRecognizer.gesture_match">[docs]</a><span
+        class="k">def</span> <span class="nf">gesture_match</span><span class="p">(</span><span
+        class="n">gesture_name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; matches gesture_name with its associated action</span>
+<span class="sd">    :param gesture_name: letter</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span
+            class="n">gesture_name</span><span class="p">)</span><span class="o">+</span><span
+            class="s2">&quot; gesture</span><span class="se">\n</span><span class="s2">&quot;</span><span
+            class="p">)</span>
+
+    <span class="k">if</span> <span class="s2">&quot;-thread&quot;</span> <span class="ow">in</span> <span
+            class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">gesture_name</span> <span class="o">==</span> <span class="n">gvariables</span><span
+            class="o">.</span><span class="n">configuration</span><span class="o">.</span><span
+            class="n">basic</span><span class="o">.</span><span class="n">closew</span><span class="p">:</span>
+            <span class="n">hwnd</span> <span class="o">=</span> <span class="n">get_current_window_hwnd</span><span
+            class="p">()</span>
+            <span class="n">close_window</span><span class="p">(</span><span class="n">hwnd</span><span
+            class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">gesture_name</span> <span class="o">==</span> <span class="n">gvariables</span><span
+            class="o">.</span><span class="n">configuration</span><span class="o">.</span><span
+            class="n">basic</span><span class="o">.</span><span class="n">minimizew</span><span class="p">:</span>
+            <span class="n">hwnd</span> <span class="o">=</span> <span class="n">get_current_window_hwnd</span><span
+            class="p">()</span>
+            <span class="n">minimize_window</span><span class="p">(</span><span class="n">hwnd</span><span
+            class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">gesture_name</span> <span class="o">==</span> <span class="n">gvariables</span><span
+            class="o">.</span><span class="n">configuration</span><span class="o">.</span><span
+            class="n">extra</span><span class="o">.</span><span class="n">show_desktop</span><span class="p">:</span>
+            <span class="n">hold</span><span class="p">(</span><span class="s2">&quot;windows&quot;</span><span
+            class="p">)</span>
+            <span class="n">press</span><span class="p">(</span><span class="s2">&quot;d&quot;</span><span
+            class="p">)</span>
+            <span class="n">release</span><span class="p">(</span><span class="s2">&quot;windows&quot;</span><span
+            class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">gesture_name</span> <span class="o">==</span> <span class="n">gvariables</span><span
+            class="o">.</span><span class="n">configuration</span><span class="o">.</span><span
+            class="n">extra</span><span class="o">.</span><span class="n">show_explorer</span><span class="p">:</span>
+            <span class="n">hold</span><span class="p">(</span><span class="s2">&quot;windows&quot;</span><span
+            class="p">)</span>
+            <span class="n">press</span><span class="p">(</span><span class="s2">&quot;e&quot;</span><span
+            class="p">)</span>
+            <span class="n">release</span><span class="p">(</span><span class="s2">&quot;windows&quot;</span><span
+            class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">gesture_name</span> <span class="o">==</span> <span class="n">gvariables</span><span
+            class="o">.</span><span class="n">configuration</span><span class="o">.</span><span
+            class="n">extra</span><span class="o">.</span><span class="n">copy</span><span class="p">:</span>
+            <span class="n">hold</span><span class="p">(</span><span class="s2">&quot;ctrl&quot;</span><span
+            class="p">)</span>
+            <span class="n">press</span><span class="p">(</span><span class="s2">&quot;c&quot;</span><span
+            class="p">)</span>
+            <span class="n">release</span><span class="p">(</span><span class="s2">&quot;ctrl&quot;</span><span
+            class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">gesture_name</span> <span class="o">==</span> <span class="n">gvariables</span><span
+            class="o">.</span><span class="n">configuration</span><span class="o">.</span><span
+            class="n">extra</span><span class="o">.</span><span class="n">paste</span><span class="p">:</span>
+            <span class="n">hold</span><span class="p">(</span><span class="s2">&quot;ctrl&quot;</span><span
+            class="p">)</span>
+            <span class="n">press</span><span class="p">(</span><span class="s2">&quot;v&quot;</span><span
+            class="p">)</span>
+            <span class="n">release</span><span class="p">(</span><span class="s2">&quot;ctrl&quot;</span><span
+            class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">gesture_name</span> <span class="o">==</span> <span class="n">gvariables</span><span
+            class="o">.</span><span class="n">configuration</span><span class="o">.</span><span
+            class="n">extra</span><span class="o">.</span><span class="n">cut</span><span class="p">:</span>
+            <span class="n">hold</span><span class="p">(</span><span class="s2">&quot;ctrl&quot;</span><span
+            class="p">)</span>
+            <span class="n">press</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span
+            class="p">)</span>
+            <span class="n">release</span><span class="p">(</span><span class="s2">&quot;ctrl&quot;</span><span
+            class="p">)</span></div>
+
+
+<div class="viewcode-block" id="exit_app"><a class="viewcode-back"
+                                             href="../index.html#GRecognizer.exit_app">[docs]</a><span
+        class="k">def</span> <span class="nf">exit_app</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; exits applications, closes all windows&quot;&quot;&quot;</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;exiting...&quot;</span><span
+            class="p">)</span>
+    <span class="k">global</span> <span class="n">exit</span>
+    <span class="n">exit</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">main_window</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+    <span class="n">controller</span><span class="o">.</span><span class="n">remove_listener</span><span
+            class="p">(</span><span class="n">listener</span><span class="p">)</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span></div>
+
+
+<span class="k">def</span> <span class="nf">load_image</span><span class="p">(</span><span class="n">path</span><span
+                        class="p">):</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span
+                        class="n">imread</span><span class="p">(</span><span class="n">path</span><span
+                        class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span
+                        class="n">array</span><span class="p">(</span><span class="nb">bytearray</span><span
+                        class="p">(</span><span class="nb">open</span><span class="p">(</span><span
+                        class="n">path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span
+                        class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()))</span>
+    <span class="c1"># img = cv2.imdecode(data, cv2.IMREAD_UNCHANGED)</span>
+    <span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span
+                        class="n">size</span> <span class="o">=</span> <span class="n">img</span><span
+                        class="o">.</span><span class="n">shape</span>
+    <span class="n">step</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span
+                        class="n">size</span> <span class="o">/</span> <span class="n">height</span>
+    <span class="n">qformat</span> <span class="o">=</span> <span class="n">QImage</span><span class="o">.</span><span
+                        class="n">Format_Indexed8</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">img</span><span
+                        class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span
+                        class="mi">3</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">size</span> <span class="o">==</span> <span class="mi">4</span><span
+                        class="p">:</span>
+            <span class="n">qformat</span> <span class="o">=</span> <span class="n">QImage</span><span
+                        class="o">.</span><span class="n">Format_RGBA8888</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">qformat</span> <span class="o">=</span> <span class="n">QImage</span><span
+                        class="o">.</span><span class="n">Format_RGB888</span>
+
+    <span class="n">img</span> <span class="o">=</span> <span class="n">QImage</span><span class="p">(</span><span
+                        class="n">img</span><span class="p">,</span> <span class="n">width</span><span
+                        class="p">,</span> <span class="n">height</span><span class="p">,</span> <span
+                        class="n">step</span><span class="p">,</span> <span class="n">qformat</span><span
+                        class="p">)</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span
+                        class="n">rgbSwapped</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">img</span><span class="p">,</span> <span class="n">height</span><span
+                        class="p">,</span> <span class="n">width</span>
+
+
+<div class="viewcode-block" id="thread_handler"><a class="viewcode-back"
+                                                   href="../index.html#GRecognizer.thread_handler">[docs]</a><span
+        class="k">def</span> <span class="nf">thread_handler</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; this function handles the thread which allows to make &quot;G&quot; + &quot;G&quot; by putting two hands</span>
+<span class="sd">    on frame (python .py -thread)</span>
+<span class="sd">    Enables stroke gesture recognition (two hands on frame)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;thread_handler_init&quot;</span><span
+            class="p">)</span>
+    <span class="k">global</span> <span class="n">exit</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">exit</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">gvariables</span><span class="o">.</span><span
+            class="n">listener</span><span class="o">.</span><span class="n">can_record</span> <span
+            class="ow">and</span> \
+           <span class="ow">not</span> <span class="n">gvariables</span><span class="o">.</span><span
+            class="n">listener</span><span class="o">.</span><span class="n">capture_frame</span><span
+            class="p">:</span>
+            <span class="c1"># here listener.frame_capture is False (we starting a new recording)</span>
+            <span class="n">gvariables</span><span class="o">.</span><span class="n">listener</span><span
+            class="o">.</span><span class="n">recording</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span
+            class="o">.</span><span class="mi">4</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;recording&quot;</span><span
+            class="p">)</span>
+            <span class="k">while</span> <span class="n">gvariables</span><span class="o">.</span><span class="n">listener</span><span
+            class="o">.</span><span class="n">hand_vel</span> <span class="o">&lt;</span> <span
+            class="mi">250</span><span class="p">:</span>
+                <span class="k">pass</span>
+
+            <span class="n">gvariables</span><span class="o">.</span><span class="n">listener</span><span
+            class="o">.</span><span class="n">capture_frame</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span
+            class="p">(</span><span class="n">gvariables</span><span class="o">.</span><span
+            class="n">listener</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span
+            class="n">fingers</span><span class="o">.</span><span class="n">extended</span><span class="p">()))</span>
+
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">gvariables</span><span
+            class="o">.</span><span class="n">listener</span><span class="o">.</span><span
+            class="n">can_record</span> <span class="ow">and</span> \
+             <span class="n">gvariables</span><span class="o">.</span><span class="n">listener</span><span
+            class="o">.</span><span class="n">capture_frame</span><span class="p">:</span>
+
+            <span class="sd">&quot;&quot;&quot; NEURAL NETWORK CODE</span>
+<span class="sd">            img_dim = 28</span>
+<span class="sd">            matrix = np.zeros((img_dim, img_dim, 3), dtype=np.uint8)</span>
+<span class="sd">            white = [255, 255, 255]</span>
+<span class="sd">            #leap_gesture_points = gvariables.listener.gesture[1]</span>
+<span class="sd">            max_leap_y = max(g.y for g in gvariables.listener.gesture[1])</span>
+<span class="sd">            max_leap_x = max((g.x+200) for g in gvariables.listener.gesture[1])</span>
+<span class="sd">            </span>
+<span class="sd">            for c in range(len(gvariables.listener.gesture[1])):</span>
+<span class="sd">                leap_x = gvariables.listener.gesture[1][c].x + 140</span>
+<span class="sd">                leap_y = max_leap_y + 40 - gvariables.listener.gesture[1][c].y</span>
+<span class="sd">                print(str(leap_x)+&quot;, &quot;+str(leap_y))</span>
+<span class="sd">                print(str(leap_x*img_dim/max_leap_x)+&quot;; &quot;+str(leap_y*img_dim/max_leap_y))</span>
+<span class="sd">                print(&quot;&quot;)</span>
+<span class="sd">                matrix_x = int(leap_x*img_dim/max_leap_x)</span>
+<span class="sd">                matrix_x = 27 if matrix_x == 28 else matrix_x</span>
+<span class="sd">                matrix_y = int(leap_y*img_dim/max_leap_y)</span>
+<span class="sd">                matrix_y = 27 if matrix_y == 28 else matrix_y</span>
+<span class="sd">                matrix[matrix_y][matrix_x] = white</span>
+<span class="sd">            </span>
+<span class="sd">            print(&quot;max X: &quot;+str(max_leap_x))</span>
+<span class="sd">            print(&quot;max Y: &quot;+str(max_leap_y))</span>
+<span class="sd">            img = matrix_to_img(matrix)</span>
+<span class="sd">            pred = neural_network(img).replace(&quot;[&quot;, &quot;&quot;).replace(&quot;]&quot;, &quot;&quot;)</span>
+<span class="sd">            print(&quot;pred: &quot;+str(pred))</span>
+<span class="sd">            if &quot;Chrome&quot; in get_current_window_name():</span>
+<span class="sd">                pressHoldRelease(&quot;left_control&quot;, str(pred))</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;recording and recognizing captured&quot;</span><span
+            class="p">)</span>
+            <span class="n">gvariables</span><span class="o">.</span><span class="n">listener</span><span
+            class="o">.</span><span class="n">capture_frame</span> <span class="o">=</span> <span
+            class="kc">False</span>  <span class="c1"># end of Leap capture</span>
+            <span class="n">points</span> <span class="o">=</span> <span class="n">gvariables</span><span
+            class="o">.</span><span class="n">listener</span><span class="o">.</span><span class="n">gesture</span><span
+            class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># this allows &quot;F&quot; to work with mouse and hand stroke</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;len_p &quot;</span> <span
+            class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span
+            class="p">(</span><span class="n">points</span><span class="p">)))</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span
+            class="n">points</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">40</span><span
+            class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">pc</span> <span class="o">=</span> <span class="n">Point_cloud</span><span
+            class="p">(</span><span class="s2">&quot;f1&quot;</span><span class="p">,</span> <span
+            class="n">gvariables</span><span class="o">.</span><span class="n">listener</span><span
+            class="o">.</span><span class="n">gesture</span><span class="p">[</span><span class="mi">1</span><span
+            class="p">])</span>  <span class="c1"># pc containing our new gesture</span>
+                    <span class="n">pc</span><span class="o">.</span><span class="n">draw_on_canvas</span><span
+            class="p">()</span>  <span class="c1"># drawing pc on canvas to see the shape</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;some point_cloud error...&quot;</span><span
+            class="p">)</span>
+
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">result</span> <span class="o">=</span> <span class="n">recognize_stroke</span><span
+            class="p">(</span><span class="n">points</span><span class="p">)</span>
+                    <span class="n">gesture_match</span><span class="p">(</span><span class="n">result</span><span
+            class="o">.</span><span class="n">name</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span
+            class="s2">&quot;score: &quot;</span><span class="o">+</span><span class="nb">str</span><span
+            class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">score</span><span
+            class="p">))</span>
+                    <span class="c1">#print_score(result)</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;u have to redo the gesture&quot;</span><span
+            class="p">)</span>
+
+            <span class="n">stroke_id</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># reseting values</span>
+            <span class="n">points</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">gvariables</span><span class="o">.</span><span class="n">listener</span><span
+            class="o">.</span><span class="n">clear_variables</span><span class="p">()</span>
+            <span class="n">gvariables</span><span class="o">.</span><span class="n">listener</span><span
+            class="o">.</span><span class="n">recording</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;thread_handler_end&quot;</span><span
+            class="p">)</span></div>
+
+
+<span class="k">def</span> <span class="nf">console_args</span><span class="p">(</span><span class="n">args</span><span
+                        class="p">):</span>
+    <span class="c1"># shell arguments</span>
+    <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">args</span><span
+                        class="p">:</span>
+        <span class="k">if</span> <span class="n">arg</span> <span class="o">==</span> <span class="s2">&quot;-thread&quot;</span><span
+                        class="p">:</span>  <span class="c1"># no keys gesture recognition enabled</span>
+            <span class="n">thread</span> <span class="o">=</span> <span class="n">threading</span><span
+                        class="o">.</span><span class="n">Thread</span><span class="p">(</span><span
+                        class="n">target</span><span class="o">=</span><span class="n">thread_handler</span><span
+                        class="p">)</span>
+            <span class="n">thread</span><span class="o">.</span><span class="n">setDaemon</span><span
+                        class="p">(</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+        <span class="k">elif</span> <span class="n">arg</span> <span class="o">==</span> <span class="s2">&quot;-allf&quot;</span><span
+                        class="p">:</span>  <span class="c1"># ALL fingers capture mode by default</span>
+            <span class="n">main_window</span><span class="o">.</span><span class="n">combo_box</span><span
+                        class="o">.</span><span class="n">setCurrentIndex</span><span class="p">(</span><span
+                        class="mi">1</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">arg</span> <span class="o">==</span> <span class="s2">&quot;-scroll&quot;</span><span
+                        class="p">:</span>  <span class="c1"># scroll enabled</span>
+            <span class="n">gvariables</span><span class="o">.</span><span class="n">listener</span><span
+                        class="o">.</span><span class="n">vscrolling</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">gvariables</span><span class="o">.</span><span class="n">listener</span><span
+                        class="o">.</span><span class="n">hscrolling</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">elif</span> <span class="n">arg</span> <span class="o">==</span> <span class="s2">&quot;-deepm&quot;</span><span
+                        class="p">:</span>  <span class="c1"># INTERACTION MODE: deep mode by default</span>
+            <span class="n">gvariables</span><span class="o">.</span><span class="n">listener</span><span
+                        class="o">.</span><span class="n">deep_mode</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">elif</span> <span class="n">arg</span> <span class="o">==</span> <span class="s2">&quot;-planem&quot;</span><span
+                        class="p">:</span>  <span class="c1"># INTERACTION MODE: plane mode by default</span>
+            <span class="n">gvariables</span><span class="o">.</span><span class="n">listener</span><span
+                        class="o">.</span><span class="n">plane_mode</span> <span class="o">=</span> <span class="kc">True</span>
+
+
+<span class="c1"># MAIN BLOCK</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span
+                        class="p">:</span>
+    <span class="c1">#sys.stdout = gvariables.stdout = ListStream()</span>
+    <span class="c1"># canvas variables</span>
+    <span class="n">points</span> <span class="o">=</span> <span class="n">gvariables</span><span
+                        class="o">.</span><span class="n">points</span>  <span
+                        class="c1"># where to store drawn points</span>
+    <span class="n">stroke_id</span> <span class="o">=</span> <span class="n">gvariables</span><span
+                        class="o">.</span><span class="n">stroke_id</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>  <span
+                        class="c1"># result object</span>
+    <span class="n">gvariables</span><span class="o">.</span><span class="n">pcr</span> <span class="o">=</span> <span
+                        class="n">PCRecognizer</span><span class="p">()</span>  <span class="c1"># algorithm class initialization</span>
+
+    <span class="c1"># Leap setting up</span>
+    <span class="n">listener</span> <span class="o">=</span> <span class="n">leap_listener</span><span
+                        class="p">()</span>
+    <span class="n">controller</span> <span class="o">=</span> <span class="n">Leap</span><span class="o">.</span><span
+                        class="n">Controller</span><span class="p">()</span>
+
+    <span class="c1"># listener initializer</span>
+    <span class="n">controller</span><span class="o">.</span><span class="n">add_listener</span><span class="p">(</span><span
+                        class="n">listener</span><span class="p">)</span>
+
+    <span class="c1"># keeping Leap Motion working from background</span>
+    <span class="n">controller</span><span class="o">.</span><span class="n">set_policy</span><span
+                        class="p">(</span><span class="n">Leap</span><span class="o">.</span><span
+                        class="n">Controller</span><span class="o">.</span><span
+                        class="n">POLICY_BACKGROUND_FRAMES</span><span class="p">)</span>
+
+    <span class="n">gvariables</span><span class="o">.</span><span class="n">listener</span> <span
+                        class="o">=</span> <span class="n">listener</span>
+
+    <span class="c1"># Configuration</span>
+    <span class="n">gvariables</span><span class="o">.</span><span class="n">configuration</span> <span
+                        class="o">=</span> <span class="n">Conf</span><span class="p">()</span>
+    <span class="n">gvariables</span><span class="o">.</span><span class="n">configuration</span><span
+                        class="o">.</span><span class="n">check</span><span class="p">()</span>
+
+    <span class="c1"># GUI setting up</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span
+                        class="n">QApplication</span><span class="p">([])</span>
+    <span class="sd">&quot;&quot;&quot;for key in QtGui.QStyleFactory.keys():</span>
+<span class="sd">        st = QtGui.QStyleFactory.create(key)</span>
+<span class="sd">        print(key, st.metaObject().className(), type(app.style()))&quot;&quot;&quot;</span>
+
+    <span class="c1">#app.setStyle(&quot;Plastique&quot;)</span>
+    <span class="n">gvariables</span><span class="o">.</span><span class="n">main_window</span> <span class="o">=</span> <span
+                        class="n">gui</span><span class="o">.</span><span class="n">MainWindow</span><span
+                        class="p">()</span>
+    <span class="n">gvariables</span><span class="o">.</span><span class="n">main_window</span><span
+                        class="o">.</span><span class="n">initUI</span><span class="p">()</span>
+    <span class="n">gvariables</span><span class="o">.</span><span class="n">main_window</span><span
+                        class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="n">console_args</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span
+                        class="n">argv</span><span class="p">)</span>
+
+    <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;SYSTEM started&quot;</span><span
+                        class="p">)</span>
+    <span class="n">_print</span><span class="p">(</span><span class="s2">&quot;sys platform: &quot;</span><span
+                        class="o">+</span><span class="nb">str</span><span class="p">(</span><span
+                        class="n">sys</span><span class="o">.</span><span class="n">platform</span><span
+                        class="p">))</span>
+    <span class="n">_print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span
+                        class="n">GetSystemMetrics</span><span class="p">(</span><span class="mi">0</span><span
+                        class="p">))</span><span class="o">+</span><span class="s2">&quot;, &quot;</span><span
+                        class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">GetSystemMetrics</span><span
+                        class="p">(</span><span class="mi">1</span><span class="p">)))</span>
+
+    <span class="c1"># win32 stuff</span>
+    <span class="n">opened_windows_names</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">opened_windows_names</span> <span class="o">=</span> <span
+                        class="n">get_opened_windows_list</span><span class="p">()</span>
+
+    <span class="nb">print</span><span class="p">(</span><span
+                        class="s2">&quot;currently opened windows&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">opened_windows_names</span><span
+                        class="p">)</span>  <span class="c1"># .encode(&quot;utf-8&quot;)</span>
+    <span class="c1"># print(&quot;-&gt; &quot;+opened_windows_names[8])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">get_current_window_name</span><span class="p">())</span>
+
+    <span class="c1"># drawing tests</span>
+    <span class="n">gvariables</span><span class="o">.</span><span class="n">pcr</span><span class="o">.</span><span
+                        class="n">templates</span><span class="p">[</span><span class="mi">5</span><span
+                        class="p">]</span><span class="o">.</span><span class="n">point_cloud</span><span
+                        class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span
+                        class="n">draw_on_canvas</span><span class="p">(</span><span class="kc">False</span><span
+                        class="p">)</span>
+
+    <span class="n">app</span><span class="o">.</span><span class="n">exec_</span><span class="p">()</span>
+</pre>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <h1 class="logo"><a href="../index.html">LeapPCController</a></h1>
+
+
+            <h3>Navigation</h3>
+
+            <div class="relations">
+                <h3>Related Topics</h3>
+                <ul>
+                    <li><a href="../index.html">Documentation overview</a>
+                        <ul>
+                            <li><a href="index.html">Module code</a>
+                                <ul>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div id="searchbox" style="display: none" role="search">
+                <h3>Quick search</h3>
+                <div class="searchformwrapper">
+                    <form class="search" action="../search.html" method="get">
+                        <input type="text" name="q"/>
+                        <input type="submit" value="Go"/>
+                        <input type="hidden" name="check_keywords" value="yes"/>
+                        <input type="hidden" name="area" value="default"/>
+                    </form>
+                </div>
+            </div>
+            <script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+        </div>
+    </div>
+    <div class="clearer"></div>
+</div>
+<div class="footer">
+    &copy;2019, Mario Varas.
+
+    |
+    Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+    &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+
+</div>
+
+
+</body>
+</html>
