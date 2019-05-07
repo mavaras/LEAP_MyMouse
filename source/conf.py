@@ -12,10 +12,11 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
-# import sys
-# sys.path.insert(0, os.path.abspath('.'))
+import os
+import sys
 
+sys.path.insert(0, os.path.abspath('../..'))
+sys.setrecursionlimit(1500)
 
 # -- Project information -----------------------------------------------------
 
@@ -27,7 +28,6 @@ author = u'Mario Varas'
 version = u''
 # The full version, including alpha/beta/rc tags
 release = u'2019'
-
 
 # -- General configuration ---------------------------------------------------
 
@@ -72,7 +72,6 @@ exclude_patterns = []
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = None
 
-
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
@@ -107,25 +106,24 @@ html_static_path = ['.static']
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'LeapPCControllerdoc'
 
-
 # -- Options for LaTeX output ------------------------------------------------
 
 latex_elements = {
     # The paper size ('letterpaper' or 'a4paper').
     #
-    # 'papersize': 'letterpaper',
+    'papersize': 'letterpaper',
 
     # The font size ('10pt', '11pt' or '12pt').
     #
-    # 'pointsize': '10pt',
+    'pointsize': '10pt',
 
     # Additional stuff for the LaTeX preamble.
     #
-    # 'preamble': '',
+    'preamble': '',
 
     # Latex figure (float) alignment
     #
-    # 'figure_align': 'htbp',
+    'figure_align': 'htbp'
 }
 
 # Grouping the document tree into LaTeX files. List of tuples
@@ -136,7 +134,6 @@ latex_documents = [
      u'Mario Varas', 'manual'),
 ]
 
-
 # -- Options for manual page output ------------------------------------------
 
 # One entry per manual page. List of tuples
@@ -145,7 +142,6 @@ man_pages = [
     (master_doc, 'leappccontroller', u'LeapPCController Documentation',
      [author], 1)
 ]
-
 
 # -- Options for Texinfo output ----------------------------------------------
 
@@ -157,7 +153,6 @@ texinfo_documents = [
      author, 'LeapPCController', 'One line description of project.',
      'Miscellaneous'),
 ]
-
 
 # -- Options for Epub output -------------------------------------------------
 
@@ -175,6 +170,5 @@ epub_title = project
 
 # A list of files that should not be packed into the epub file.
 epub_exclude_files = ['search.html']
-
 
 # -- Extension configuration -------------------------------------------------

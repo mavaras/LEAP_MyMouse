@@ -1,7 +1,6 @@
 import time
 import win32api, win32con
 
-
 VK_CODE = {'backspace': 0x08,
            'tab': 0x09,
            'clear': 0x0C,
@@ -154,8 +153,8 @@ VK_CODE = {'backspace': 0x08,
 def press(*args):
     """ one press, one release.
     accepts as many arguments as you want.
-    :param args: key/s
 
+    :param args: key/s
     :Example:
 
     >>> press("left_arrow", "a","b").
@@ -167,14 +166,17 @@ def press(*args):
 
 
 def hold(*args):
-    """ holds key/s (necessary to call release() after that)
-    :param args: key/s"""
+    """ holds key/s (necessary to call release() after that) object
+
+    :param args: key/s
+    """
     for c in args:
         win32api.keybd_event(VK_CODE[c], 0, 0, 0)
 
 
 def release(*args):
     """ releases given key/s
+
     :param args: key/s"""
     for i in args:
         time.sleep(.05)
@@ -186,6 +188,7 @@ def pressHoldRelease(*args):
     accepts as many arguments as you want.
     this is useful for issuing shortcut command or shift commands.
 
+    :param args: array of arguments
     :Example:
 
     >>> pressHoldRelease('ctrl', 'alt', 'del'), pressHoldRelease('shift','a')

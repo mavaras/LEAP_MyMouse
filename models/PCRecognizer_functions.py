@@ -5,13 +5,13 @@ import points as ps
 from gvariables import *
 from controllers.aux_functions import distance
 
-
 num_points = 32
 
 
 def greedy_cloud_match(points, pc):
     """ match two point_cloud by calculating distance between their points
     between our points and the template
+
     :param points: points array (frequently user stroke)
     :param pc: point cloud which to match to (template)
     """
@@ -29,6 +29,7 @@ def greedy_cloud_match(points, pc):
 
 def cloud_distance(pc1, pc2, start):
     """ this function returns the geometric distance between two provided point_clouds
+
     :param pc1: point cloud 1
     :param pc2: point cloud 2
     :param start: start point
@@ -64,6 +65,7 @@ def cloud_distance(pc1, pc2, start):
 def resample(points, resample_len):
     """resamples provided point_cloud in order to set homogeneous lengths for properly comparison
     resample_length indicates the length which to resample the pc.
+
     :param points: points point_cloud
     :param resample_len: usually 32
     :return: points
@@ -102,6 +104,7 @@ def resample(points, resample_len):
 
 def scale(points):
     """ this function returns the same point_cloud in different scales in order to comparison
+
     :param points: points
     :return: points"""
 
@@ -129,6 +132,7 @@ def scale(points):
 def translate_to(points, where):
     """ translates given points set (point_cloud) to provided centroid. It maps all pc to origin,
     in order to recognize pc that are similar but in different coordinates
+
     :param points: points
     :param where: Point where to translate points
     :return: translated points
@@ -147,6 +151,7 @@ def translate_to(points, where):
 def amplify(points, mult):
     """ amplifies given collection of points keeping its distances between each other attending
     to mult argument
+
     :param points: points
     :param mult: amplifying size
     :return: points
@@ -166,6 +171,7 @@ def amplify(points, mult):
 
 def get_centroid(points):
     """ this function calculates given points_cloud's centroid
+
     :param points: points
     :return: Point
     """
@@ -185,6 +191,7 @@ def get_centroid(points):
 def path_length(points):
     """ calculates the length of a stroke defined by points
     sum of each stroke_id length
+
     :param points: points
     :return: length
     """
@@ -195,4 +202,3 @@ def path_length(points):
             dist += distance(points[c - 1], points[c])
 
     return dist
-

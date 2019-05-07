@@ -7,6 +7,7 @@ from sklearn.externals import joblib
 import os.path
 from scipy.io import loadmat
 from sklearn.datasets.base import get_data_home
+
 print (get_data_home())
 
 PATH = 'mlp_model.pkl'
@@ -36,7 +37,7 @@ if __name__ == '__main__':
         clf = clf.best_estimator_
 
     print('Test accuracy:', clf.score(X_test, y_test))
-    
+
 '''
 Output:
 Fetching and loading MNIST data

@@ -1,471 +1,858 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>views package &#8212; LeapPCController 2019 documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css"/>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css"/>
+    <script type="text/javascript" id="documentation_options" data-url_root="./"
+            src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/language_data.js"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-   
-  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+    <link rel="index" title="Index" href="genindex.html"/>
+    <link rel="search" title="Search" href="search.html"/>
 
-  </head><body>
-  
+    <link rel="stylesheet" href="_static/custom.css" type="text/css"/>
 
-    <div class="document">
-      <div class="documentwrapper">
+
+    <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9"/>
+
+</head>
+<body>
+
+
+<div class="document">
+    <div class="documentwrapper">
         <div class="bodywrapper">
-          
-
-          <div class="body" role="main">
-            
-  <div class="section" id="views-package">
-<h1>views package<a class="headerlink" href="#views-package" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-views.canvas">
-<span id="views-canvas-module"></span><h2>views.canvas module<a class="headerlink" href="#module-views.canvas" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="views.canvas.Widget_canvas">
-<em class="property">class </em><code class="descclassname">views.canvas.</code><code class="descname">Widget_canvas</code><span class="sig-paren">(</span><em>parent</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/views/canvas.html#Widget_canvas"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.canvas.Widget_canvas" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PyQt4.QtGui.QWidget</span></code></p>
-<dl class="attribute">
-<dt id="views.canvas.Widget_canvas.canvas">
-<code class="descname">canvas</code><em class="property"> = None</em><a class="headerlink" href="#views.canvas.Widget_canvas.canvas" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="views.canvas.Widget_canvas.clear">
-<code class="descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/views/canvas.html#Widget_canvas.clear"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.canvas.Widget_canvas.clear" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="views.canvas.Widget_canvas.lp">
-<code class="descname">lp</code><em class="property"> = &lt;models.points.Point instance&gt;</em><a class="headerlink" href="#views.canvas.Widget_canvas.lp" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="views.canvas.Widget_canvas.mouseMoveEvent">
-<code class="descname">mouseMoveEvent</code><span class="sig-paren">(</span><em>self</em>, <em>QMouseEvent</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/views/canvas.html#Widget_canvas.mouseMoveEvent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.canvas.Widget_canvas.mouseMoveEvent" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="views.canvas.Widget_canvas.mousePressEvent">
-<code class="descname">mousePressEvent</code><span class="sig-paren">(</span><em>self</em>, <em>QMouseEvent</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/views/canvas.html#Widget_canvas.mousePressEvent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.canvas.Widget_canvas.mousePressEvent" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="views.canvas.Widget_canvas.mouseReleaseEvent">
-<code class="descname">mouseReleaseEvent</code><span class="sig-paren">(</span><em>self</em>, <em>QMouseEvent</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/views/canvas.html#Widget_canvas.mouseReleaseEvent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.canvas.Widget_canvas.mouseReleaseEvent" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="views.canvas.Widget_canvas.np">
-<code class="descname">np</code><em class="property"> = &lt;models.points.Point instance&gt;</em><a class="headerlink" href="#views.canvas.Widget_canvas.np" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="views.canvas.Widget_canvas.paintEvent">
-<code class="descname">paintEvent</code><span class="sig-paren">(</span><em>self</em>, <em>QPaintEvent</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/views/canvas.html#Widget_canvas.paintEvent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.canvas.Widget_canvas.paintEvent" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="views.canvas.Widget_canvas.path_points_0">
-<code class="descname">path_points_0</code><em class="property"> = &lt;PyQt4.QtGui.QPainterPath object&gt;</em><a class="headerlink" href="#views.canvas.Widget_canvas.path_points_0" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="views.canvas.Widget_canvas.path_points_1">
-<code class="descname">path_points_1</code><em class="property"> = &lt;PyQt4.QtGui.QPainterPath object&gt;</em><a class="headerlink" href="#views.canvas.Widget_canvas.path_points_1" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="views.canvas.Widget_canvas.path_points_2">
-<code class="descname">path_points_2</code><em class="property"> = &lt;PyQt4.QtGui.QPainterPath object&gt;</em><a class="headerlink" href="#views.canvas.Widget_canvas.path_points_2" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="views.canvas.Widget_canvas.path_points_3">
-<code class="descname">path_points_3</code><em class="property"> = &lt;PyQt4.QtGui.QPainterPath object&gt;</em><a class="headerlink" href="#views.canvas.Widget_canvas.path_points_3" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="views.canvas.Widget_canvas.path_points_4">
-<code class="descname">path_points_4</code><em class="property"> = &lt;PyQt4.QtGui.QPainterPath object&gt;</em><a class="headerlink" href="#views.canvas.Widget_canvas.path_points_4" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="views.canvas.Widget_canvas.pen_color">
-<code class="descname">pen_color</code><em class="property"> = 2</em><a class="headerlink" href="#views.canvas.Widget_canvas.pen_color" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="views.canvas.Widget_canvas.points">
-<code class="descname">points</code><em class="property"> = []</em><a class="headerlink" href="#views.canvas.Widget_canvas.points" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="function">
-<dt id="views.canvas.bin">
-<code class="descclassname">views.canvas.</code><code class="descname">bin</code><span class="sig-paren">(</span><em>QTextStream</em><span class="sig-paren">)</span> &#x2192; QTextStream<a class="headerlink" href="#views.canvas.bin" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="views.canvas.hex">
-<code class="descclassname">views.canvas.</code><code class="descname">hex</code><span class="sig-paren">(</span><em>QTextStream</em><span class="sig-paren">)</span> &#x2192; QTextStream<a class="headerlink" href="#views.canvas.hex" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="views.canvas.oct">
-<code class="descclassname">views.canvas.</code><code class="descname">oct</code><span class="sig-paren">(</span><em>QTextStream</em><span class="sig-paren">)</span> &#x2192; QTextStream<a class="headerlink" href="#views.canvas.oct" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</div>
-<div class="section" id="module-views.cv_frame">
-<span id="views-cv-frame-module"></span><h2>views.cv_frame module<a class="headerlink" href="#module-views.cv_frame" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="views.cv_frame.Cv_Frame">
-<em class="property">class </em><code class="descclassname">views.cv_frame.</code><code class="descname">Cv_Frame</code><span class="sig-paren">(</span><em>main_window</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/views/cv_frame.html#Cv_Frame"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.cv_frame.Cv_Frame" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
-<dt id="views.cv_frame.Cv_Frame.main_window">
-<code class="descname">main_window</code><em class="property"> = None</em><a class="headerlink" href="#views.cv_frame.Cv_Frame.main_window" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="views.cv_frame.Cv_Frame.set_frame_XY">
-<code class="descname">set_frame_XY</code><span class="sig-paren">(</span><em>frameXY</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/views/cv_frame.html#Cv_Frame.set_frame_XY"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.cv_frame.Cv_Frame.set_frame_XY" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="views.cv_frame.Cv_Frame.set_frame_XZ">
-<code class="descname">set_frame_XZ</code><span class="sig-paren">(</span><em>frameXZ</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/views/cv_frame.html#Cv_Frame.set_frame_XZ"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.cv_frame.Cv_Frame.set_frame_XZ" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="views.cv_frame.Cv_Frame.show_frame">
-<code class="descname">show_frame</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/views/cv_frame.html#Cv_Frame.show_frame"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.cv_frame.Cv_Frame.show_frame" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="function">
-<dt id="views.cv_frame.bin">
-<code class="descclassname">views.cv_frame.</code><code class="descname">bin</code><span class="sig-paren">(</span><em>QTextStream</em><span class="sig-paren">)</span> &#x2192; QTextStream<a class="headerlink" href="#views.cv_frame.bin" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="views.cv_frame.hex">
-<code class="descclassname">views.cv_frame.</code><code class="descname">hex</code><span class="sig-paren">(</span><em>QTextStream</em><span class="sig-paren">)</span> &#x2192; QTextStream<a class="headerlink" href="#views.cv_frame.hex" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="views.cv_frame.oct">
-<code class="descclassname">views.cv_frame.</code><code class="descname">oct</code><span class="sig-paren">(</span><em>QTextStream</em><span class="sig-paren">)</span> &#x2192; QTextStream<a class="headerlink" href="#views.cv_frame.oct" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</div>
-<div class="section" id="module-views.gui">
-<span id="views-gui-module"></span><h2>views.gui module<a class="headerlink" href="#module-views.gui" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="views.gui.MainWindow">
-<em class="property">class </em><code class="descclassname">views.gui.</code><code class="descname">MainWindow</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/views/gui.html#MainWindow"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.gui.MainWindow" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PyQt4.QtGui.QMainWindow</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">views.gui_qtdesigner.Ui_MainWindow</span></code></p>
-<dl class="attribute">
-<dt id="views.gui.MainWindow.canvas_algorithm">
-<code class="descname">canvas_algorithm</code><em class="property"> = 'pd'</em><a class="headerlink" href="#views.gui.MainWindow.canvas_algorithm" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="views.gui.MainWindow.cb_action_gesture">
-<code class="descname">cb_action_gesture</code><em class="property"> = {}</em><a class="headerlink" href="#views.gui.MainWindow.cb_action_gesture" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="views.gui.MainWindow.change_leap_status">
-<code class="descname">change_leap_status</code><span class="sig-paren">(</span><em>conn</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/views/gui.html#MainWindow.change_leap_status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.gui.MainWindow.change_leap_status" title="Permalink to this definition">¶</a></dt>
-<dd><p>handles Leap label status on the down bar
-:param conn: true if connected, false if not</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="views.gui.MainWindow.combo_box_actiongesture_changed">
-<code class="descname">combo_box_actiongesture_changed</code><span class="sig-paren">(</span><em>combo_box_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/views/gui.html#MainWindow.combo_box_actiongesture_changed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.gui.MainWindow.combo_box_actiongesture_changed" title="Permalink to this definition">¶</a></dt>
-<dd><p>collection of key events binded to GUI (configuration tab comboboxes)
-:param combo_box_name: changed combobox variable name</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="views.gui.MainWindow.combo_box_gestures_selection_changed">
-<code class="descname">combo_box_gestures_selection_changed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/views/gui.html#MainWindow.combo_box_gestures_selection_changed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.gui.MainWindow.combo_box_gestures_selection_changed" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="views.gui.MainWindow.combo_box_nfingers_selection_changed">
-<code class="descname">combo_box_nfingers_selection_changed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/views/gui.html#MainWindow.combo_box_nfingers_selection_changed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.gui.MainWindow.combo_box_nfingers_selection_changed" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="views.gui.MainWindow.exit_app">
-<code class="descname">exit_app</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/views/gui.html#MainWindow.exit_app"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.gui.MainWindow.exit_app" title="Permalink to this definition">¶</a></dt>
-<dd><p>ends app execution and closes all windows</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="views.gui.MainWindow.gvariables">
-<code class="descname">gvariables</code><em class="property"> = None</em><a class="headerlink" href="#views.gui.MainWindow.gvariables" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="views.gui.MainWindow.initUI">
-<code class="descname">initUI</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/views/gui.html#MainWindow.initUI"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.gui.MainWindow.initUI" title="Permalink to this definition">¶</a></dt>
-<dd><p>widget initialization, positioning, linking etc.
-fills cb_action_gesture array</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="views.gui.MainWindow.keyPressEvent">
-<code class="descname">keyPressEvent</code><span class="sig-paren">(</span><em>event</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/views/gui.html#MainWindow.keyPressEvent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.gui.MainWindow.keyPressEvent" title="Permalink to this definition">¶</a></dt>
-<dd><p>this is a collection of key events binded to GUI
-:param event: pressed key</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="views.gui.MainWindow.load_conf">
-<code class="descname">load_conf</code><span class="sig-paren">(</span><em>conf</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/views/gui.html#MainWindow.load_conf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.gui.MainWindow.load_conf" title="Permalink to this definition">¶</a></dt>
-<dd><p>loads given configuration object into SYSTEM
-updates comboboxes and GUI elements
-using cb_action_gesture array
-:param conf: (Configuration object)</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="views.gui.MainWindow.load_conf_file">
-<code class="descname">load_conf_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/views/gui.html#MainWindow.load_conf_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.gui.MainWindow.load_conf_file" title="Permalink to this definition">¶</a></dt>
-<dd><p>loads configuration file into Configuration object</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="views.gui.MainWindow.load_text_B">
-<code class="descname">load_text_B</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/views/gui.html#MainWindow.load_text_B"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.gui.MainWindow.load_text_B" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="views.gui.MainWindow.lp">
-<code class="descname">lp</code><em class="property"> = &lt;models.points.Point instance&gt;</em><a class="headerlink" href="#views.gui.MainWindow.lp" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="views.gui.MainWindow.matrix_to_img">
-<code class="descname">matrix_to_img</code><span class="sig-paren">(</span><em>matrix</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/views/gui.html#MainWindow.matrix_to_img"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.gui.MainWindow.matrix_to_img" title="Permalink to this definition">¶</a></dt>
-<dd><p>this function is related to neural network
-convert provided np matrix to .png image
-:param matrix: converts given matrix to an 28x28 image (NN)</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="views.gui.MainWindow.n_of_fingers">
-<code class="descname">n_of_fingers</code><em class="property"> = 1</em><a class="headerlink" href="#views.gui.MainWindow.n_of_fingers" title="Permalink to this definition">¶</a></dt>
-<dd><p>this array stores all combo_boxes with its options with its associated gesture | gifs
-this in an array of dictionaries, each one containing each combo box index + gest. name
-dict key -&gt; combobox index ; dict value -&gt; conf. file string</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="views.gui.MainWindow.neural_network">
-<code class="descname">neural_network</code><span class="sig-paren">(</span><em>img</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/views/gui.html#MainWindow.neural_network"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.gui.MainWindow.neural_network" title="Permalink to this definition">¶</a></dt>
-<dd><p>passes provided image through neural network</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="views.gui.MainWindow.np">
-<code class="descname">np</code><em class="property"> = &lt;models.points.Point instance&gt;</em><a class="headerlink" href="#views.gui.MainWindow.np" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="views.gui.MainWindow.opened">
-<code class="descname">opened</code><em class="property"> = False</em><a class="headerlink" href="#views.gui.MainWindow.opened" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="views.gui.MainWindow.recognition_algorithm_ch">
-<code class="descname">recognition_algorithm_ch</code><span class="sig-paren">(</span><em>what</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/views/gui.html#MainWindow.recognition_algorithm_ch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.gui.MainWindow.recognition_algorithm_ch" title="Permalink to this definition">¶</a></dt>
-<dd><p>handles check box selecting recognition algorithm
-:param what: ‘pd’ or ‘NN’</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="views.gui.MainWindow.save_conf">
-<code class="descname">save_conf</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/views/gui.html#MainWindow.save_conf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.gui.MainWindow.save_conf" title="Permalink to this definition">¶</a></dt>
-<dd><p>save Configuration object content to file</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="views.gui.MainWindow.set_gesture_gif">
-<code class="descname">set_gesture_gif</code><span class="sig-paren">(</span><em>gif</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/views/gui.html#MainWindow.set_gesture_gif"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.gui.MainWindow.set_gesture_gif" title="Permalink to this definition">¶</a></dt>
-<dd><p>loads given gif into gif label
-:param gif: .gif file</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="views.gui.MainWindow.set_notification_area">
-<code class="descname">set_notification_area</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/views/gui.html#MainWindow.set_notification_area"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.gui.MainWindow.set_notification_area" title="Permalink to this definition">¶</a></dt>
-<dd><p>this function sets notification area menu</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="views.gui.MainWindow.show_gui">
-<code class="descname">show_gui</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/views/gui.html#MainWindow.show_gui"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.gui.MainWindow.show_gui" title="Permalink to this definition">¶</a></dt>
-<dd><p>this handles notification area option ‘Open/Close’
-hide or shows MainWindow</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="views.gui.MainWindow.start_stop_control">
-<code class="descname">start_stop_control</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/views/gui.html#MainWindow.start_stop_control"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.gui.MainWindow.start_stop_control" title="Permalink to this definition">¶</a></dt>
-<dd><p>this handles the click event to “Start Control” or “Stop Control” into notification
-area icon</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="views.gui.MainWindow.to_point">
-<code class="descname">to_point</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/views/gui.html#MainWindow.to_point"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.gui.MainWindow.to_point" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="views.gui.MainWindow.updateLabel">
-<code class="descname">updateLabel</code><span class="sig-paren">(</span><em>label</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/views/gui.html#MainWindow.updateLabel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.gui.MainWindow.updateLabel" title="Permalink to this definition">¶</a></dt>
-<dd><p>this function handles countdown label</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="views.gui.MainWindow.view_gesture">
-<code class="descname">view_gesture</code><span class="sig-paren">(</span><em>combo_box</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/views/gui.html#MainWindow.view_gesture"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.gui.MainWindow.view_gesture" title="Permalink to this definition">¶</a></dt>
-<dd><p>loads gesture associated gif
-:params combo_box: gif button associated combobox variable name</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="function">
-<dt id="views.gui.bin">
-<code class="descclassname">views.gui.</code><code class="descname">bin</code><span class="sig-paren">(</span><em>QTextStream</em><span class="sig-paren">)</span> &#x2192; QTextStream<a class="headerlink" href="#views.gui.bin" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="views.gui.gesture_match">
-<code class="descclassname">views.gui.</code><code class="descname">gesture_match</code><span class="sig-paren">(</span><em>gesture_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/views/gui.html#gesture_match"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.gui.gesture_match" title="Permalink to this definition">¶</a></dt>
-<dd><p>matches gesture_name with its associated action
-:param gesture_name: letter</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="views.gui.hex">
-<code class="descclassname">views.gui.</code><code class="descname">hex</code><span class="sig-paren">(</span><em>QTextStream</em><span class="sig-paren">)</span> &#x2192; QTextStream<a class="headerlink" href="#views.gui.hex" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="views.gui.oct">
-<code class="descclassname">views.gui.</code><code class="descname">oct</code><span class="sig-paren">(</span><em>QTextStream</em><span class="sig-paren">)</span> &#x2192; QTextStream<a class="headerlink" href="#views.gui.oct" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="views.gui.print_score">
-<code class="descclassname">views.gui.</code><code class="descname">print_score</code><span class="sig-paren">(</span><em>result</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/views/gui.html#print_score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.gui.print_score" title="Permalink to this definition">¶</a></dt>
-<dd><p>this shows final score of current stroke (red label on canvas)
-:param result: Result object containing recognition result</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="views.gui.recognize_stroke">
-<code class="descclassname">views.gui.</code><code class="descname">recognize_stroke</code><span class="sig-paren">(</span><em>points</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/views/gui.html#recognize_stroke"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#views.gui.recognize_stroke" title="Permalink to this definition">¶</a></dt>
-<dd><p>this function recognize one SINGLE stroke (if ALL fingers, one by one)
-:params points: points array containing a stroke</p>
-</dd></dl>
-
-</div>
-<div class="section" id="module-views">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-views" title="Permalink to this headline">¶</a></h2>
-</div>
-</div>
-
-
-          </div>
-          
+
+
+            <div class="body" role="main">
+
+                <div class="section" id="views-package">
+                    <h1>views package<a class="headerlink" href="#views-package"
+                                        title="Permalink to this headline">¶</a></h1>
+                    <div class="section" id="submodules">
+                        <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a>
+                        </h2>
+                    </div>
+                    <div class="section" id="module-views.canvas">
+                        <span id="views-canvas-module"></span>
+                        <h2>views.canvas module<a class="headerlink" href="#module-views.canvas"
+                                                  title="Permalink to this headline">¶</a></h2>
+                        <dl class="class">
+                            <dt id="views.canvas.Widget_canvas">
+                                <em class="property">class </em><code class="descclassname">views.canvas.</code><code
+                                    class="descname">Widget_canvas</code><span class="sig-paren">(</span><em>parent</em><span
+                                    class="sig-paren">)</span><a class="reference internal"
+                                                                 href="_modules/views/canvas.html#Widget_canvas"><span
+                                    class="viewcode-link">[source]</span></a><a class="headerlink"
+                                                                                href="#views.canvas.Widget_canvas"
+                                                                                title="Permalink to this definition">¶</a>
+                            </dt>
+                            <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PyQt4.QtGui.QWidget</span></code>
+                            </p>
+                                <dl class="attribute">
+                                    <dt id="views.canvas.Widget_canvas.canvas">
+                                        <code class="descname">canvas</code><em class="property"> = None</em><a
+                                            class="headerlink" href="#views.canvas.Widget_canvas.canvas"
+                                            title="Permalink to this definition">¶</a></dt>
+                                    <dd></dd>
+                                </dl>
+
+                                <dl class="method">
+                                    <dt id="views.canvas.Widget_canvas.clear">
+                                        <code class="descname">clear</code><span class="sig-paren">(</span><span
+                                            class="sig-paren">)</span><a class="reference internal"
+                                                                         href="_modules/views/canvas.html#Widget_canvas.clear"><span
+                                            class="viewcode-link">[source]</span></a><a class="headerlink"
+                                                                                        href="#views.canvas.Widget_canvas.clear"
+                                                                                        title="Permalink to this definition">¶</a>
+                                    </dt>
+                                    <dd></dd>
+                                </dl>
+
+                                <dl class="attribute">
+                                    <dt id="views.canvas.Widget_canvas.lp">
+                                        <code class="descname">lp</code><em class="property"> = &lt;models.points.Point
+                                        instance&gt;</em><a class="headerlink" href="#views.canvas.Widget_canvas.lp"
+                                                            title="Permalink to this definition">¶</a></dt>
+                                    <dd></dd>
+                                </dl>
+
+                                <dl class="method">
+                                    <dt id="views.canvas.Widget_canvas.mouseMoveEvent">
+                                        <code class="descname">mouseMoveEvent</code><span class="sig-paren">(</span><em>self</em>,
+                                        <em>QMouseEvent</em><span class="sig-paren">)</span><a
+                                            class="reference internal"
+                                            href="_modules/views/canvas.html#Widget_canvas.mouseMoveEvent"><span
+                                            class="viewcode-link">[source]</span></a><a class="headerlink"
+                                                                                        href="#views.canvas.Widget_canvas.mouseMoveEvent"
+                                                                                        title="Permalink to this definition">¶</a>
+                                    </dt>
+                                    <dd></dd>
+                                </dl>
+
+                                <dl class="method">
+                                    <dt id="views.canvas.Widget_canvas.mousePressEvent">
+                                        <code class="descname">mousePressEvent</code><span
+                                            class="sig-paren">(</span><em>self</em>, <em>QMouseEvent</em><span
+                                            class="sig-paren">)</span><a class="reference internal"
+                                                                         href="_modules/views/canvas.html#Widget_canvas.mousePressEvent"><span
+                                            class="viewcode-link">[source]</span></a><a class="headerlink"
+                                                                                        href="#views.canvas.Widget_canvas.mousePressEvent"
+                                                                                        title="Permalink to this definition">¶</a>
+                                    </dt>
+                                    <dd></dd>
+                                </dl>
+
+                                <dl class="method">
+                                    <dt id="views.canvas.Widget_canvas.mouseReleaseEvent">
+                                        <code class="descname">mouseReleaseEvent</code><span
+                                            class="sig-paren">(</span><em>self</em>, <em>QMouseEvent</em><span
+                                            class="sig-paren">)</span><a class="reference internal"
+                                                                         href="_modules/views/canvas.html#Widget_canvas.mouseReleaseEvent"><span
+                                            class="viewcode-link">[source]</span></a><a class="headerlink"
+                                                                                        href="#views.canvas.Widget_canvas.mouseReleaseEvent"
+                                                                                        title="Permalink to this definition">¶</a>
+                                    </dt>
+                                    <dd></dd>
+                                </dl>
+
+                                <dl class="attribute">
+                                    <dt id="views.canvas.Widget_canvas.np">
+                                        <code class="descname">np</code><em class="property"> = &lt;models.points.Point
+                                        instance&gt;</em><a class="headerlink" href="#views.canvas.Widget_canvas.np"
+                                                            title="Permalink to this definition">¶</a></dt>
+                                    <dd></dd>
+                                </dl>
+
+                                <dl class="method">
+                                    <dt id="views.canvas.Widget_canvas.paintEvent">
+                                        <code class="descname">paintEvent</code><span
+                                            class="sig-paren">(</span><em>self</em>, <em>QPaintEvent</em><span
+                                            class="sig-paren">)</span><a class="reference internal"
+                                                                         href="_modules/views/canvas.html#Widget_canvas.paintEvent"><span
+                                            class="viewcode-link">[source]</span></a><a class="headerlink"
+                                                                                        href="#views.canvas.Widget_canvas.paintEvent"
+                                                                                        title="Permalink to this definition">¶</a>
+                                    </dt>
+                                    <dd></dd>
+                                </dl>
+
+                                <dl class="attribute">
+                                    <dt id="views.canvas.Widget_canvas.path_points_0">
+                                        <code class="descname">path_points_0</code><em class="property"> = &lt;PyQt4.QtGui.QPainterPath
+                                        object&gt;</em><a class="headerlink"
+                                                          href="#views.canvas.Widget_canvas.path_points_0"
+                                                          title="Permalink to this definition">¶</a></dt>
+                                    <dd></dd>
+                                </dl>
+
+                                <dl class="attribute">
+                                    <dt id="views.canvas.Widget_canvas.path_points_1">
+                                        <code class="descname">path_points_1</code><em class="property"> = &lt;PyQt4.QtGui.QPainterPath
+                                        object&gt;</em><a class="headerlink"
+                                                          href="#views.canvas.Widget_canvas.path_points_1"
+                                                          title="Permalink to this definition">¶</a></dt>
+                                    <dd></dd>
+                                </dl>
+
+                                <dl class="attribute">
+                                    <dt id="views.canvas.Widget_canvas.path_points_2">
+                                        <code class="descname">path_points_2</code><em class="property"> = &lt;PyQt4.QtGui.QPainterPath
+                                        object&gt;</em><a class="headerlink"
+                                                          href="#views.canvas.Widget_canvas.path_points_2"
+                                                          title="Permalink to this definition">¶</a></dt>
+                                    <dd></dd>
+                                </dl>
+
+                                <dl class="attribute">
+                                    <dt id="views.canvas.Widget_canvas.path_points_3">
+                                        <code class="descname">path_points_3</code><em class="property"> = &lt;PyQt4.QtGui.QPainterPath
+                                        object&gt;</em><a class="headerlink"
+                                                          href="#views.canvas.Widget_canvas.path_points_3"
+                                                          title="Permalink to this definition">¶</a></dt>
+                                    <dd></dd>
+                                </dl>
+
+                                <dl class="attribute">
+                                    <dt id="views.canvas.Widget_canvas.path_points_4">
+                                        <code class="descname">path_points_4</code><em class="property"> = &lt;PyQt4.QtGui.QPainterPath
+                                        object&gt;</em><a class="headerlink"
+                                                          href="#views.canvas.Widget_canvas.path_points_4"
+                                                          title="Permalink to this definition">¶</a></dt>
+                                    <dd></dd>
+                                </dl>
+
+                                <dl class="attribute">
+                                    <dt id="views.canvas.Widget_canvas.pen_color">
+                                        <code class="descname">pen_color</code><em class="property"> = 2</em><a
+                                            class="headerlink" href="#views.canvas.Widget_canvas.pen_color"
+                                            title="Permalink to this definition">¶</a></dt>
+                                    <dd></dd>
+                                </dl>
+
+                                <dl class="attribute">
+                                    <dt id="views.canvas.Widget_canvas.points">
+                                        <code class="descname">points</code><em class="property"> = []</em><a
+                                            class="headerlink" href="#views.canvas.Widget_canvas.points"
+                                            title="Permalink to this definition">¶</a></dt>
+                                    <dd></dd>
+                                </dl>
+
+                            </dd>
+                        </dl>
+
+                        <dl class="function">
+                            <dt id="views.canvas.bin">
+                                <code class="descclassname">views.canvas.</code><code class="descname">bin</code><span
+                                    class="sig-paren">(</span><em>QTextStream</em><span class="sig-paren">)</span>
+                                &#x2192; QTextStream<a class="headerlink" href="#views.canvas.bin"
+                                                       title="Permalink to this definition">¶</a></dt>
+                            <dd></dd>
+                        </dl>
+
+                        <dl class="function">
+                            <dt id="views.canvas.hex">
+                                <code class="descclassname">views.canvas.</code><code class="descname">hex</code><span
+                                    class="sig-paren">(</span><em>QTextStream</em><span class="sig-paren">)</span>
+                                &#x2192; QTextStream<a class="headerlink" href="#views.canvas.hex"
+                                                       title="Permalink to this definition">¶</a></dt>
+                            <dd></dd>
+                        </dl>
+
+                        <dl class="function">
+                            <dt id="views.canvas.oct">
+                                <code class="descclassname">views.canvas.</code><code class="descname">oct</code><span
+                                    class="sig-paren">(</span><em>QTextStream</em><span class="sig-paren">)</span>
+                                &#x2192; QTextStream<a class="headerlink" href="#views.canvas.oct"
+                                                       title="Permalink to this definition">¶</a></dt>
+                            <dd></dd>
+                        </dl>
+
+                    </div>
+                    <div class="section" id="module-views.cv_frame">
+                        <span id="views-cv-frame-module"></span>
+                        <h2>views.cv_frame module<a class="headerlink" href="#module-views.cv_frame"
+                                                    title="Permalink to this headline">¶</a></h2>
+                        <dl class="class">
+                            <dt id="views.cv_frame.Cv_Frame">
+                                <em class="property">class </em><code class="descclassname">views.cv_frame.</code><code
+                                    class="descname">Cv_Frame</code><span class="sig-paren">(</span><em>main_window</em><span
+                                    class="sig-paren">)</span><a class="reference internal"
+                                                                 href="_modules/views/cv_frame.html#Cv_Frame"><span
+                                    class="viewcode-link">[source]</span></a><a class="headerlink"
+                                                                                href="#views.cv_frame.Cv_Frame"
+                                                                                title="Permalink to this definition">¶</a>
+                            </dt>
+                            <dd>
+                                <dl class="attribute">
+                                    <dt id="views.cv_frame.Cv_Frame.main_window">
+                                        <code class="descname">main_window</code><em class="property"> = None</em><a
+                                            class="headerlink" href="#views.cv_frame.Cv_Frame.main_window"
+                                            title="Permalink to this definition">¶</a></dt>
+                                    <dd></dd>
+                                </dl>
+
+                                <dl class="method">
+                                    <dt id="views.cv_frame.Cv_Frame.set_frame_XY">
+                                        <code class="descname">set_frame_XY</code><span class="sig-paren">(</span><em>frameXY</em><span
+                                            class="sig-paren">)</span><a class="reference internal"
+                                                                         href="_modules/views/cv_frame.html#Cv_Frame.set_frame_XY"><span
+                                            class="viewcode-link">[source]</span></a><a class="headerlink"
+                                                                                        href="#views.cv_frame.Cv_Frame.set_frame_XY"
+                                                                                        title="Permalink to this definition">¶</a>
+                                    </dt>
+                                    <dd></dd>
+                                </dl>
+
+                                <dl class="method">
+                                    <dt id="views.cv_frame.Cv_Frame.set_frame_XZ">
+                                        <code class="descname">set_frame_XZ</code><span class="sig-paren">(</span><em>frameXZ</em><span
+                                            class="sig-paren">)</span><a class="reference internal"
+                                                                         href="_modules/views/cv_frame.html#Cv_Frame.set_frame_XZ"><span
+                                            class="viewcode-link">[source]</span></a><a class="headerlink"
+                                                                                        href="#views.cv_frame.Cv_Frame.set_frame_XZ"
+                                                                                        title="Permalink to this definition">¶</a>
+                                    </dt>
+                                    <dd></dd>
+                                </dl>
+
+                                <dl class="method">
+                                    <dt id="views.cv_frame.Cv_Frame.show_frame">
+                                        <code class="descname">show_frame</code><span class="sig-paren">(</span><span
+                                            class="sig-paren">)</span><a class="reference internal"
+                                                                         href="_modules/views/cv_frame.html#Cv_Frame.show_frame"><span
+                                            class="viewcode-link">[source]</span></a><a class="headerlink"
+                                                                                        href="#views.cv_frame.Cv_Frame.show_frame"
+                                                                                        title="Permalink to this definition">¶</a>
+                                    </dt>
+                                    <dd></dd>
+                                </dl>
+
+                            </dd>
+                        </dl>
+
+                        <dl class="function">
+                            <dt id="views.cv_frame.bin">
+                                <code class="descclassname">views.cv_frame.</code><code class="descname">bin</code><span
+                                    class="sig-paren">(</span><em>QTextStream</em><span class="sig-paren">)</span>
+                                &#x2192; QTextStream<a class="headerlink" href="#views.cv_frame.bin"
+                                                       title="Permalink to this definition">¶</a></dt>
+                            <dd></dd>
+                        </dl>
+
+                        <dl class="function">
+                            <dt id="views.cv_frame.hex">
+                                <code class="descclassname">views.cv_frame.</code><code class="descname">hex</code><span
+                                    class="sig-paren">(</span><em>QTextStream</em><span class="sig-paren">)</span>
+                                &#x2192; QTextStream<a class="headerlink" href="#views.cv_frame.hex"
+                                                       title="Permalink to this definition">¶</a></dt>
+                            <dd></dd>
+                        </dl>
+
+                        <dl class="function">
+                            <dt id="views.cv_frame.oct">
+                                <code class="descclassname">views.cv_frame.</code><code class="descname">oct</code><span
+                                    class="sig-paren">(</span><em>QTextStream</em><span class="sig-paren">)</span>
+                                &#x2192; QTextStream<a class="headerlink" href="#views.cv_frame.oct"
+                                                       title="Permalink to this definition">¶</a></dt>
+                            <dd></dd>
+                        </dl>
+
+                    </div>
+                    <div class="section" id="module-views.gui">
+                        <span id="views-gui-module"></span>
+                        <h2>views.gui module<a class="headerlink" href="#module-views.gui"
+                                               title="Permalink to this headline">¶</a></h2>
+                        <dl class="class">
+                            <dt id="views.gui.MainWindow">
+                                <em class="property">class </em><code class="descclassname">views.gui.</code><code
+                                    class="descname">MainWindow</code><span class="sig-paren">(</span><em>*args</em>,
+                                <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal"
+                                                                                    href="_modules/views/gui.html#MainWindow"><span
+                                    class="viewcode-link">[source]</span></a><a class="headerlink"
+                                                                                href="#views.gui.MainWindow"
+                                                                                title="Permalink to this definition">¶</a>
+                            </dt>
+                            <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PyQt4.QtGui.QMainWindow</span></code>,
+                                <code class="xref py py-class docutils literal notranslate"><span class="pre">views.gui_qtdesigner.Ui_MainWindow</span></code>
+                            </p>
+                                <dl class="attribute">
+                                    <dt id="views.gui.MainWindow.canvas_algorithm">
+                                        <code class="descname">canvas_algorithm</code><em class="property"> =
+                                        'pd'</em><a class="headerlink" href="#views.gui.MainWindow.canvas_algorithm"
+                                                    title="Permalink to this definition">¶</a></dt>
+                                    <dd></dd>
+                                </dl>
+
+                                <dl class="attribute">
+                                    <dt id="views.gui.MainWindow.cb_action_gesture">
+                                        <code class="descname">cb_action_gesture</code><em class="property"> = {}</em><a
+                                            class="headerlink" href="#views.gui.MainWindow.cb_action_gesture"
+                                            title="Permalink to this definition">¶</a></dt>
+                                    <dd></dd>
+                                </dl>
+
+                                <dl class="method">
+                                    <dt id="views.gui.MainWindow.change_leap_status">
+                                        <code class="descname">change_leap_status</code><span class="sig-paren">(</span><em>conn</em><span
+                                            class="sig-paren">)</span><a class="reference internal"
+                                                                         href="_modules/views/gui.html#MainWindow.change_leap_status"><span
+                                            class="viewcode-link">[source]</span></a><a class="headerlink"
+                                                                                        href="#views.gui.MainWindow.change_leap_status"
+                                                                                        title="Permalink to this definition">¶</a>
+                                    </dt>
+                                    <dd><p>handles Leap label status on the down bar</p>
+                                        <table class="docutils field-list" frame="void" rules="none">
+                                            <col class="field-name"/>
+                                            <col class="field-body"/>
+                                            <tbody valign="top">
+                                            <tr class="field-odd field">
+                                                <th class="field-name">Parameters:</th>
+                                                <td class="field-body"><strong>conn</strong> – true if connected, false
+                                                    if not
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </dd>
+                                </dl>
+
+                                <dl class="method">
+                                    <dt id="views.gui.MainWindow.combo_box_actiongesture_changed">
+                                        <code class="descname">combo_box_actiongesture_changed</code><span
+                                            class="sig-paren">(</span><em>combo_box_name</em><span
+                                            class="sig-paren">)</span><a class="reference internal"
+                                                                         href="_modules/views/gui.html#MainWindow.combo_box_actiongesture_changed"><span
+                                            class="viewcode-link">[source]</span></a><a class="headerlink"
+                                                                                        href="#views.gui.MainWindow.combo_box_actiongesture_changed"
+                                                                                        title="Permalink to this definition">¶</a>
+                                    </dt>
+                                    <dd><p>collection of key events binded to GUI (configuration tab comboboxes)</p>
+                                        <table class="docutils field-list" frame="void" rules="none">
+                                            <col class="field-name"/>
+                                            <col class="field-body"/>
+                                            <tbody valign="top">
+                                            <tr class="field-odd field">
+                                                <th class="field-name">Parameters:</th>
+                                                <td class="field-body"><strong>combo_box_name</strong> – changed
+                                                    combobox variable name
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </dd>
+                                </dl>
+
+                                <dl class="method">
+                                    <dt id="views.gui.MainWindow.combo_box_gestures_selection_changed">
+                                        <code class="descname">combo_box_gestures_selection_changed</code><span
+                                            class="sig-paren">(</span><span class="sig-paren">)</span><a
+                                            class="reference internal"
+                                            href="_modules/views/gui.html#MainWindow.combo_box_gestures_selection_changed"><span
+                                            class="viewcode-link">[source]</span></a><a class="headerlink"
+                                                                                        href="#views.gui.MainWindow.combo_box_gestures_selection_changed"
+                                                                                        title="Permalink to this definition">¶</a>
+                                    </dt>
+                                    <dd></dd>
+                                </dl>
+
+                                <dl class="method">
+                                    <dt id="views.gui.MainWindow.combo_box_nfingers_selection_changed">
+                                        <code class="descname">combo_box_nfingers_selection_changed</code><span
+                                            class="sig-paren">(</span><span class="sig-paren">)</span><a
+                                            class="reference internal"
+                                            href="_modules/views/gui.html#MainWindow.combo_box_nfingers_selection_changed"><span
+                                            class="viewcode-link">[source]</span></a><a class="headerlink"
+                                                                                        href="#views.gui.MainWindow.combo_box_nfingers_selection_changed"
+                                                                                        title="Permalink to this definition">¶</a>
+                                    </dt>
+                                    <dd></dd>
+                                </dl>
+
+                                <dl class="method">
+                                    <dt id="views.gui.MainWindow.exit_app">
+                                        <code class="descname">exit_app</code><span class="sig-paren">(</span><span
+                                            class="sig-paren">)</span><a class="reference internal"
+                                                                         href="_modules/views/gui.html#MainWindow.exit_app"><span
+                                            class="viewcode-link">[source]</span></a><a class="headerlink"
+                                                                                        href="#views.gui.MainWindow.exit_app"
+                                                                                        title="Permalink to this definition">¶</a>
+                                    </dt>
+                                    <dd><p>ends app execution and closes all windows</p>
+                                    </dd>
+                                </dl>
+
+                                <dl class="attribute">
+                                    <dt id="views.gui.MainWindow.gvariables">
+                                        <code class="descname">gvariables</code><em class="property"> = None</em><a
+                                            class="headerlink" href="#views.gui.MainWindow.gvariables"
+                                            title="Permalink to this definition">¶</a></dt>
+                                    <dd></dd>
+                                </dl>
+
+                                <dl class="method">
+                                    <dt id="views.gui.MainWindow.initUI">
+                                        <code class="descname">initUI</code><span class="sig-paren">(</span><span
+                                            class="sig-paren">)</span><a class="reference internal"
+                                                                         href="_modules/views/gui.html#MainWindow.initUI"><span
+                                            class="viewcode-link">[source]</span></a><a class="headerlink"
+                                                                                        href="#views.gui.MainWindow.initUI"
+                                                                                        title="Permalink to this definition">¶</a>
+                                    </dt>
+                                    <dd><p>widget initialization, positioning, linking etc.
+                                        fills cb_action_gesture array</p>
+                                    </dd>
+                                </dl>
+
+                                <dl class="method">
+                                    <dt id="views.gui.MainWindow.keyPressEvent">
+                                        <code class="descname">keyPressEvent</code><span class="sig-paren">(</span><em>event</em><span
+                                            class="sig-paren">)</span><a class="reference internal"
+                                                                         href="_modules/views/gui.html#MainWindow.keyPressEvent"><span
+                                            class="viewcode-link">[source]</span></a><a class="headerlink"
+                                                                                        href="#views.gui.MainWindow.keyPressEvent"
+                                                                                        title="Permalink to this definition">¶</a>
+                                    </dt>
+                                    <dd><p>this is a collection of key events binded to GUI</p>
+                                        <table class="docutils field-list" frame="void" rules="none">
+                                            <col class="field-name"/>
+                                            <col class="field-body"/>
+                                            <tbody valign="top">
+                                            <tr class="field-odd field">
+                                                <th class="field-name">Parameters:</th>
+                                                <td class="field-body"><strong>event</strong> – pressed key</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </dd>
+                                </dl>
+
+                                <dl class="method">
+                                    <dt id="views.gui.MainWindow.load_conf">
+                                        <code class="descname">load_conf</code><span class="sig-paren">(</span><span
+                                            class="sig-paren">)</span><a class="reference internal"
+                                                                         href="_modules/views/gui.html#MainWindow.load_conf"><span
+                                            class="viewcode-link">[source]</span></a><a class="headerlink"
+                                                                                        href="#views.gui.MainWindow.load_conf"
+                                                                                        title="Permalink to this definition">¶</a>
+                                    </dt>
+                                    <dd><p>loads given configuration object into SYSTEM
+                                        updates comboboxes and GUI elements
+                                        using cb_action_gesture array</p>
+                                    </dd>
+                                </dl>
+
+                                <dl class="method">
+                                    <dt id="views.gui.MainWindow.load_conf_file">
+                                        <code class="descname">load_conf_file</code><span
+                                            class="sig-paren">(</span><span class="sig-paren">)</span><a
+                                            class="reference internal"
+                                            href="_modules/views/gui.html#MainWindow.load_conf_file"><span
+                                            class="viewcode-link">[source]</span></a><a class="headerlink"
+                                                                                        href="#views.gui.MainWindow.load_conf_file"
+                                                                                        title="Permalink to this definition">¶</a>
+                                    </dt>
+                                    <dd><p>loads configuration file into Configuration object</p>
+                                    </dd>
+                                </dl>
+
+                                <dl class="method">
+                                    <dt id="views.gui.MainWindow.load_text_B">
+                                        <code class="descname">load_text_B</code><span class="sig-paren">(</span><span
+                                            class="sig-paren">)</span><a class="reference internal"
+                                                                         href="_modules/views/gui.html#MainWindow.load_text_B"><span
+                                            class="viewcode-link">[source]</span></a><a class="headerlink"
+                                                                                        href="#views.gui.MainWindow.load_text_B"
+                                                                                        title="Permalink to this definition">¶</a>
+                                    </dt>
+                                    <dd></dd>
+                                </dl>
+
+                                <dl class="attribute">
+                                    <dt id="views.gui.MainWindow.lp">
+                                        <code class="descname">lp</code><em class="property"> = &lt;models.points.Point
+                                        instance&gt;</em><a class="headerlink" href="#views.gui.MainWindow.lp"
+                                                            title="Permalink to this definition">¶</a></dt>
+                                    <dd></dd>
+                                </dl>
+
+                                <dl class="method">
+                                    <dt id="views.gui.MainWindow.matrix_to_img">
+                                        <code class="descname">matrix_to_img</code><span class="sig-paren">(</span><em>matrix</em><span
+                                            class="sig-paren">)</span><a class="reference internal"
+                                                                         href="_modules/views/gui.html#MainWindow.matrix_to_img"><span
+                                            class="viewcode-link">[source]</span></a><a class="headerlink"
+                                                                                        href="#views.gui.MainWindow.matrix_to_img"
+                                                                                        title="Permalink to this definition">¶</a>
+                                    </dt>
+                                    <dd></dd>
+                                </dl>
+
+                                <dl class="attribute">
+                                    <dt id="views.gui.MainWindow.n_of_fingers">
+                                        <code class="descname">n_of_fingers</code><em class="property"> = 1</em><a
+                                            class="headerlink" href="#views.gui.MainWindow.n_of_fingers"
+                                            title="Permalink to this definition">¶</a></dt>
+                                    <dd><p>this array stores all combo_boxes with its options with its associated
+                                        gesture | gifs
+                                        this in an array of dictionaries, each one containing each combo box index +
+                                        gest. name
+                                        dict key -&gt; combobox index ; dict value -&gt; conf. file string</p>
+                                    </dd>
+                                </dl>
+
+                                <dl class="method">
+                                    <dt id="views.gui.MainWindow.neural_network">
+                                        <code class="descname">neural_network</code><span class="sig-paren">(</span><em>img</em><span
+                                            class="sig-paren">)</span><a class="reference internal"
+                                                                         href="_modules/views/gui.html#MainWindow.neural_network"><span
+                                            class="viewcode-link">[source]</span></a><a class="headerlink"
+                                                                                        href="#views.gui.MainWindow.neural_network"
+                                                                                        title="Permalink to this definition">¶</a>
+                                    </dt>
+                                    <dd></dd>
+                                </dl>
+
+                                <dl class="attribute">
+                                    <dt id="views.gui.MainWindow.np">
+                                        <code class="descname">np</code><em class="property"> = &lt;models.points.Point
+                                        instance&gt;</em><a class="headerlink" href="#views.gui.MainWindow.np"
+                                                            title="Permalink to this definition">¶</a></dt>
+                                    <dd></dd>
+                                </dl>
+
+                                <dl class="attribute">
+                                    <dt id="views.gui.MainWindow.opened">
+                                        <code class="descname">opened</code><em class="property"> = False</em><a
+                                            class="headerlink" href="#views.gui.MainWindow.opened"
+                                            title="Permalink to this definition">¶</a></dt>
+                                    <dd></dd>
+                                </dl>
+
+                                <dl class="method">
+                                    <dt id="views.gui.MainWindow.recognition_algorithm_ch">
+                                        <code class="descname">recognition_algorithm_ch</code><span
+                                            class="sig-paren">(</span><em>which</em><span class="sig-paren">)</span><a
+                                            class="reference internal"
+                                            href="_modules/views/gui.html#MainWindow.recognition_algorithm_ch"><span
+                                            class="viewcode-link">[source]</span></a><a class="headerlink"
+                                                                                        href="#views.gui.MainWindow.recognition_algorithm_ch"
+                                                                                        title="Permalink to this definition">¶</a>
+                                    </dt>
+                                    <dd><p>handles check box selecting recognition algorithm</p>
+                                        <table class="docutils field-list" frame="void" rules="none">
+                                            <col class="field-name"/>
+                                            <col class="field-body"/>
+                                            <tbody valign="top">
+                                            <tr class="field-odd field">
+                                                <th class="field-name">Parameters:</th>
+                                                <td class="field-body"><strong>which</strong> – ‘pd’ or ‘NN’</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </dd>
+                                </dl>
+
+                                <dl class="method">
+                                    <dt id="views.gui.MainWindow.save_conf">
+                                        <code class="descname">save_conf</code><span class="sig-paren">(</span><span
+                                            class="sig-paren">)</span><a class="reference internal"
+                                                                         href="_modules/views/gui.html#MainWindow.save_conf"><span
+                                            class="viewcode-link">[source]</span></a><a class="headerlink"
+                                                                                        href="#views.gui.MainWindow.save_conf"
+                                                                                        title="Permalink to this definition">¶</a>
+                                    </dt>
+                                    <dd><p>save Configuration object content to file</p>
+                                    </dd>
+                                </dl>
+
+                                <dl class="method">
+                                    <dt id="views.gui.MainWindow.set_gesture_gif">
+                                        <code class="descname">set_gesture_gif</code><span
+                                            class="sig-paren">(</span><em>gif</em><span class="sig-paren">)</span><a
+                                            class="reference internal"
+                                            href="_modules/views/gui.html#MainWindow.set_gesture_gif"><span
+                                            class="viewcode-link">[source]</span></a><a class="headerlink"
+                                                                                        href="#views.gui.MainWindow.set_gesture_gif"
+                                                                                        title="Permalink to this definition">¶</a>
+                                    </dt>
+                                    <dd><p>loads given gif into gif label</p>
+                                        <table class="docutils field-list" frame="void" rules="none">
+                                            <col class="field-name"/>
+                                            <col class="field-body"/>
+                                            <tbody valign="top">
+                                            <tr class="field-odd field">
+                                                <th class="field-name">Parameters:</th>
+                                                <td class="field-body"><strong>gif</strong> – .gif file</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </dd>
+                                </dl>
+
+                                <dl class="method">
+                                    <dt id="views.gui.MainWindow.set_notification_area">
+                                        <code class="descname">set_notification_area</code><span
+                                            class="sig-paren">(</span><span class="sig-paren">)</span><a
+                                            class="reference internal"
+                                            href="_modules/views/gui.html#MainWindow.set_notification_area"><span
+                                            class="viewcode-link">[source]</span></a><a class="headerlink"
+                                                                                        href="#views.gui.MainWindow.set_notification_area"
+                                                                                        title="Permalink to this definition">¶</a>
+                                    </dt>
+                                    <dd><p>this function sets notification area menu</p>
+                                    </dd>
+                                </dl>
+
+                                <dl class="method">
+                                    <dt id="views.gui.MainWindow.show_gui">
+                                        <code class="descname">show_gui</code><span class="sig-paren">(</span><span
+                                            class="sig-paren">)</span><a class="reference internal"
+                                                                         href="_modules/views/gui.html#MainWindow.show_gui"><span
+                                            class="viewcode-link">[source]</span></a><a class="headerlink"
+                                                                                        href="#views.gui.MainWindow.show_gui"
+                                                                                        title="Permalink to this definition">¶</a>
+                                    </dt>
+                                    <dd><p>this handles notification area option ‘Open/Close’
+                                        hide or shows MainWindow</p>
+                                    </dd>
+                                </dl>
+
+                                <dl class="method">
+                                    <dt id="views.gui.MainWindow.show_popup">
+                                        <code class="descname">show_popup</code><span class="sig-paren">(</span><em>title</em>,
+                                        <em>text</em>, <em>inftext</em><span class="sig-paren">)</span><a
+                                            class="reference internal"
+                                            href="_modules/views/gui.html#MainWindow.show_popup"><span
+                                            class="viewcode-link">[source]</span></a><a class="headerlink"
+                                                                                        href="#views.gui.MainWindow.show_popup"
+                                                                                        title="Permalink to this definition">¶</a>
+                                    </dt>
+                                    <dd></dd>
+                                </dl>
+
+                                <dl class="method">
+                                    <dt id="views.gui.MainWindow.start_stop_control">
+                                        <code class="descname">start_stop_control</code><span class="sig-paren">(</span><span
+                                            class="sig-paren">)</span><a class="reference internal"
+                                                                         href="_modules/views/gui.html#MainWindow.start_stop_control"><span
+                                            class="viewcode-link">[source]</span></a><a class="headerlink"
+                                                                                        href="#views.gui.MainWindow.start_stop_control"
+                                                                                        title="Permalink to this definition">¶</a>
+                                    </dt>
+                                    <dd><p>this handles the click event to “Start Control” or “Stop Control” into
+                                        notification
+                                        area icon</p>
+                                    </dd>
+                                </dl>
+
+                                <dl class="method">
+                                    <dt id="views.gui.MainWindow.to_point">
+                                        <code class="descname">to_point</code><span
+                                            class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a
+                                            class="reference internal"
+                                            href="_modules/views/gui.html#MainWindow.to_point"><span
+                                            class="viewcode-link">[source]</span></a><a class="headerlink"
+                                                                                        href="#views.gui.MainWindow.to_point"
+                                                                                        title="Permalink to this definition">¶</a>
+                                    </dt>
+                                    <dd></dd>
+                                </dl>
+
+                                <dl class="method">
+                                    <dt id="views.gui.MainWindow.updateLabel">
+                                        <code class="descname">updateLabel</code><span class="sig-paren">(</span><em>label</em><span
+                                            class="sig-paren">)</span><a class="reference internal"
+                                                                         href="_modules/views/gui.html#MainWindow.updateLabel"><span
+                                            class="viewcode-link">[source]</span></a><a class="headerlink"
+                                                                                        href="#views.gui.MainWindow.updateLabel"
+                                                                                        title="Permalink to this definition">¶</a>
+                                    </dt>
+                                    <dd><p>this function handles countdown label</p>
+                                    </dd>
+                                </dl>
+
+                                <dl class="method">
+                                    <dt id="views.gui.MainWindow.view_gesture">
+                                        <code class="descname">view_gesture</code><span class="sig-paren">(</span><em>combo_box</em><span
+                                            class="sig-paren">)</span><a class="reference internal"
+                                                                         href="_modules/views/gui.html#MainWindow.view_gesture"><span
+                                            class="viewcode-link">[source]</span></a><a class="headerlink"
+                                                                                        href="#views.gui.MainWindow.view_gesture"
+                                                                                        title="Permalink to this definition">¶</a>
+                                    </dt>
+                                    <dd><p>loads gesture associated gif</p>
+                                        <table class="docutils field-list" frame="void" rules="none">
+                                            <col class="field-name"/>
+                                            <col class="field-body"/>
+                                            <tbody valign="top">
+                                            <tr class="field-odd field">
+                                                <th class="field-name">Parameters:</th>
+                                                <td class="field-body"><strong>combo_box</strong> – gif button
+                                                    associated combobox variable name
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </dd>
+                                </dl>
+
+                            </dd>
+                        </dl>
+
+                        <dl class="function">
+                            <dt id="views.gui.bin">
+                                <code class="descclassname">views.gui.</code><code class="descname">bin</code><span
+                                    class="sig-paren">(</span><em>QTextStream</em><span class="sig-paren">)</span>
+                                &#x2192; QTextStream<a class="headerlink" href="#views.gui.bin"
+                                                       title="Permalink to this definition">¶</a></dt>
+                            <dd></dd>
+                        </dl>
+
+                        <dl class="function">
+                            <dt id="views.gui.hex">
+                                <code class="descclassname">views.gui.</code><code class="descname">hex</code><span
+                                    class="sig-paren">(</span><em>QTextStream</em><span class="sig-paren">)</span>
+                                &#x2192; QTextStream<a class="headerlink" href="#views.gui.hex"
+                                                       title="Permalink to this definition">¶</a></dt>
+                            <dd></dd>
+                        </dl>
+
+                        <dl class="function">
+                            <dt id="views.gui.oct">
+                                <code class="descclassname">views.gui.</code><code class="descname">oct</code><span
+                                    class="sig-paren">(</span><em>QTextStream</em><span class="sig-paren">)</span>
+                                &#x2192; QTextStream<a class="headerlink" href="#views.gui.oct"
+                                                       title="Permalink to this definition">¶</a></dt>
+                            <dd></dd>
+                        </dl>
+
+                    </div>
+                    <div class="section" id="module-views">
+                        <span id="module-contents"></span>
+                        <h2>Module contents<a class="headerlink" href="#module-views"
+                                              title="Permalink to this headline">¶</a></h2>
+                    </div>
+                </div>
+
+
+            </div>
+
         </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+    </div>
+    <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">LeapPCController</a></h1>
+            <h1 class="logo"><a href="index.html">LeapPCController</a></h1>
 
 
+            <h3>Navigation</h3>
 
-
-
-
-
-
-<h3>Navigation</h3>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-  </ul></li>
-</ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-
-
-
-
-
-
+            <div class="relations">
+                <h3>Related Topics</h3>
+                <ul>
+                    <li><a href="index.html">Documentation overview</a>
+                        <ul>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div id="searchbox" style="display: none" role="search">
+                <h3>Quick search</h3>
+                <div class="searchformwrapper">
+                    <form class="search" action="search.html" method="get">
+                        <input type="text" name="q"/>
+                        <input type="submit" value="Go"/>
+                        <input type="hidden" name="check_keywords" value="yes"/>
+                        <input type="hidden" name="area" value="default"/>
+                    </form>
+                </div>
+            </div>
+            <script type="text/javascript">$('#searchbox').show(0);</script>
 
 
         </div>
-      </div>
-      <div class="clearer"></div>
     </div>
-    <div class="footer">
-      &copy;2019, Mario Varas.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
-      
-      |
-      <a href="_sources/views.rst.txt"
-          rel="nofollow">Page source</a>
-    </div>
+    <div class="clearer"></div>
+</div>
+<div class="footer">
+    &copy;2019, Mario Varas.
 
-    
+    |
+    Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+    &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
 
-    
-  </body>
+    |
+    <a href="_sources/views.rst.txt"
+       rel="nofollow">Page source</a>
+</div>
+
+
+</body>
 </html>

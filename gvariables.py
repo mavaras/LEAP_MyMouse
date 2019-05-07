@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-W = 1920
-H = 1080
-"""LEAP_W = W/4.5
-LEAP_H = H/4.5"""
-LEAP_W = 320
-LEAP_H = 200
+from win32api import GetSystemMetrics
+
+W = GetSystemMetrics(0)
+H = GetSystemMetrics(1)
+"""LEAP_W = 320
+LEAP_H = 200"""
 
 INF = 999999
-
 
 # scaled monitor dimensions for canvas
 window_width = W/2
@@ -26,10 +25,10 @@ configuration = None
 main_window = None
 
 # PCRecognizer
-pcr = None
+# pcr = None
 
-stdout = "__> programm output\n"
-
+stdout = "__> program output\n"
+"""
 # aux for canvas (used ?)
 stroke_id = 0
-points = []
+points = []"""

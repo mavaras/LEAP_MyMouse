@@ -24,10 +24,11 @@ from sklearn import svm
 from sklearn import datasets
 from sklearn import svm
 from sklearn.externals import joblib
+from win32api import GetSystemMetrics
 
 # own package imports
 from _print import _print
-from models.configuration import *
+from models.configuration_fromFile import ConfFromFile
 from models.PCRecognizer import PCRecognizer
 from models.points import Point_cloud
 
@@ -35,15 +36,13 @@ from views.gui_qtdesigner import *
 import views.gui as gui
 
 from controllers.leap_controller import *
-from controllers.win32_functions import *
 from controllers.aux_functions import *
 
 # TODO: features to implement:
+#       -> applications interactions (powerpoint, vlc ?)
 #       -> gvariables as object ?? (this is good)
-#       -> launch on startup
 #       -> add gifs
 #       -> help
-#       -> logs tab ?
 #       -> installer with InnoSetup (when exe ready)
 
 # GLOBALS ?
@@ -69,7 +68,7 @@ def neural_network(img):
     minValueInImage = np.min(img)
     maxValueInImage = np.max(img)
     img = np.floor(np.divide((img - minValueInImage).astype(np.float),
-                             (maxValueInImage-minValueInImage).astype(np.float))*16)
+                             (maxValueInImage - minValueInImage).astype(np.float)) * 16)
 
     # loading digit database
     digits = datasets.load_digits()
@@ -86,9 +85,9 @@ def neural_network(img):
     predicted = clf.predict(img.reshape((1, img.shape[0] * img.shape[1])))
 
     # display results
-    print("prediction: "+str(predicted))
+    print("prediction: " + str(predicted))
     plt.imshow(img, cmap=plt.cm.gray_r, interpolation='nearest')
-    plt.title("result: "+str(predicted))
+    plt.title("result: " + str(predicted))
     plt.show()
 
     return str(predicted)
@@ -163,33 +162,36 @@ def gesture_match(gesture_name):
 # various functions (temporarily here)
 def recognize_stroke(points):
     """ this function recognize one SINGLE stroke (if ALL fingers, one by one)
+
     :params points: points array containing a stroke
     """
 
     print("recognizing stroke")
     aux = [points]
-    result = PCRecognizer().recognize(aux)
+    result = PCRecognizer().recognize(aux, True)
 
     return result
 
 
 def print_score(result):
     """ this shows final score of current stroke (red label on canvas)
+
     :param result: Result object containing recognition result
     """
 
-    score = "Result: matched with "+result.name+" about "+str(round(result.score, 2))
+    score = "Result: matched with " + result.name + " about " + str(round(result.score, 2))
     gvariables.main_window.label_score.setStyleSheet("color: red")
     gvariables.main_window.label_score.setText(str(score))
-    gvariables.main_window.text_edit_2.append("\n"+str(score))
+    gvariables.main_window.text_edit_2.append("\n" + str(score))
 
 
 # not updated (not here -> GRecognizer.py)
 def gesture_match(gesture_name):
     """ matches gesture_name with its associated action
+
     :param gesture_name: letter
     """
-    print(str(gesture_name)+" gesture\n")
+    print(str(gesture_name) + " gesture\n")
 
     if "-thread" in sys.argv:
         if gesture_name == gvariables.configuration.basic.closew:
@@ -267,30 +269,20 @@ def thread_handler():
     print("thread_handler_init")
     global exit
     while not exit:
-        if len(gvariables.listener.frame.hands) == 2 or \
-           (len(gvariables.listener.frame.hands) == 1 and len(gvariables.listener.frame.fingers.extended()) == 0) and \
-           not gvariables.listener.capture_frame:
+        if gvariables.listener.can_record and \
+                not gvariables.listener.capture_frame:
             # here listener.frame_capture is False (we starting a new recording)
             gvariables.listener.recording = True
             time.sleep(.4)
             print("recording")
-            while gvariables.listener.hand_vel < 270:
+            while gvariables.listener.hand_vel < 250:
                 pass
 
             gvariables.listener.capture_frame = True
+            print(len(gvariables.listener.frame.fingers.extended()))
 
-        elif len(gvariables.listener.frame.hands) == 1 and \
-             len(gvariables.listener.frame.fingers.extended()) != 0 and \
-             gvariables.listener.capture_frame:
-            print("recording and recognizing captured")
-            gvariables.listener.capture_frame = False  # end of Leap capture
-            pc = Point_cloud("f1", gvariables.listener.gesture[1])  # pc containing our new gesture
-            pc.draw_on_canvas()  # drawing pc on canvas to see the shape
-
-            global points, stroke_id
-            points = gvariables.listener.gesture[1]  # this allows "F" to work with mouse and hand stroke
-            print("len_p "+str(len(points)))
-
+        elif not gvariables.listener.can_record and \
+                gvariables.listener.capture_frame:
 
             """ NEURAL NETWORK CODE
             img_dim = 28
@@ -320,11 +312,25 @@ def thread_handler():
             if "Chrome" in get_current_window_name():
                 pressHoldRelease("left_control", str(pred))
             """
+            print("recording and recognizing captured")
+            gvariables.listener.capture_frame = False  # end of Leap capture
+            points = gvariables.listener.gesture[1]  # this allows "F" to work with mouse and hand stroke
+            print("len_p " + str(len(points)))
 
-            if len(points) > 100:
-                result = recognize_stroke(points)
-                gesture_match(result.name)
-                print_score(result)
+            if len(points) > 40:
+                try:
+                    pc = Point_cloud("f1", gvariables.listener.gesture[1])  # pc containing our new gesture
+                    pc.draw_on_canvas()  # drawing pc on canvas to see the shape
+                except:
+                    print("some point_cloud error...")
+
+                try:
+                    result = recognize_stroke(points)
+                    gesture_match(result.name)
+                    print("score: " + str(result.score))
+                # print_score(result)
+                except:
+                    print("u have to redo the gesture")
 
             stroke_id = 0  # reseting values
             points = []
@@ -335,6 +341,11 @@ def thread_handler():
 
 
 def console_args(args):
+    """ handles console arguments input
+
+    :param args: array of arguments
+    """
+
     # shell arguments
     for arg in args:
         if arg == "-thread":  # no keys gesture recognition enabled
@@ -356,27 +367,10 @@ def console_args(args):
             gvariables.listener.plane_mode = True
 
 
-class ListStream:
-    def __init__(self):
-        self.data = []
-
-    def write(self, s):
-        self.data.append(s)
-
-    def __enter__(self):
-        sys.stdout = self
-        return self
-
-    def __exit__(self, ext_type, exc_value, traceback):
-        sys.stdout = sys.__stdout__
-
-
 # MAIN BLOCK
 if __name__ == "__main__":
-    #sys.stdout = gvariables.stdout = ListStream()
+    # sys.stdout = gvariables.stdout = ListStream()
     # canvas variables
-    points = gvariables.points  # where to store drawn points
-    stroke_id = gvariables.stroke_id
     result = -1  # result object
     gvariables.pcr = PCRecognizer()  # algorithm class initialization
 
@@ -393,7 +387,7 @@ if __name__ == "__main__":
     gvariables.listener = listener
 
     # Configuration
-    gvariables.configuration = Conf()
+    gvariables.configuration = ConfFromFile()
     gvariables.configuration.check()
 
     # GUI setting up
@@ -402,15 +396,18 @@ if __name__ == "__main__":
         st = QtGui.QStyleFactory.create(key)
         print(key, st.metaObject().className(), type(app.style()))"""
 
-    #app.setStyle("Plastique")
+    # app.setStyle("Plastique")
     gvariables.main_window = gui.MainWindow()
+    gvariables.main_window.setFixedSize(gvariables.main_window.size())
+    gvariables.main_window.statusBar().setVisible(False)
     gvariables.main_window.initUI()
     gvariables.main_window.show()
 
     console_args(sys.argv)
 
     _print("SYSTEM started")
-    _print("sys platform: "+str(sys.platform))
+    _print("sys platform: " + str(sys.platform))
+    _print(str(GetSystemMetrics(0)) + ", " + str(GetSystemMetrics(1)))
 
     # win32 stuff
     opened_windows_names = []
@@ -422,6 +419,6 @@ if __name__ == "__main__":
     print(get_current_window_name())
 
     # drawing tests
-    gvariables.pcr.templates[-2].point_cloud[-1].draw_on_canvas(False)
+    gvariables.pcr.templates[5].point_cloud[1].draw_on_canvas(False)
 
     app.exec_()

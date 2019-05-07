@@ -8,7 +8,6 @@
 
 
 # basic modules imports
-import time
 import sys
 import numpy as np
 import os
@@ -20,10 +19,7 @@ import cv2
 from PIL import Image
 import matplotlib.pyplot as plt  # conflict with sphinx
 
-from scipy.misc import imresize
 from sklearn import datasets
-from sklearn import datasets
-from sklearn import svm
 from sklearn.externals import joblib
 
 # self package imports
@@ -96,8 +92,11 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.text_edit_2.setReadOnly(True)
         self.combo_box.currentIndexChanged["int"].connect(self.combo_box_nfingers_selection_changed)
 
+        # launch on startup checkbox
+        self.checkBox_startup.stateChanged.connect(lambda: self.launch_on_startup())
+
         # __label_leap_status default value
-        self.change_leap_status(False)
+        self.change_leap_status(gvariables.listener.status.leap_connected)
         gvariables.listener.status.sgn_leap_connected.connect(self.change_leap_status)
 
         # __cv_frame representation
@@ -260,7 +259,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             x, y = self.to_point(arr[c])
             loaded_points.append(Point(x, y, -1))
 
-        pc = Point_cloud("loaded_points", loaded_points);
+        pc = Point_cloud("loaded_points", loaded_points)
         self.widget_canvas.path = QPainterPath()  # clear canvas
         self.update()
         pc.draw_on_canvas()  # drawing loaded stroke
@@ -344,10 +343,14 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             get_dict_key(self.cb_action_gesture[self.combo_box_hscroll], gvariables.configuration.basic.hscroll)
         )
 
+    def set_default_conf(self):
+        pass
+
     # Leap status label
     @pyqtSlot(bool)
     def change_leap_status(self, conn):
         """ handles Leap label status on the down bar
+
         :param conn: true if connected, false if not
         """
         if conn:
@@ -357,8 +360,19 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.label_leap_status.setText("DISCONNECTED")
             self.label_leap_status.setStyleSheet("QLabel {color: red;}")
 
+    def launch_on_startup(self):
+        """ creates shortcut in Startup folder into User's home or removes it
+        depending if checkBox is checked or not
+        """
+
+        if self.checkBox_startup.isChecked():
+            create_shortcut()
+        else:
+            remove_shortcut()
+
     def keyPressEvent(self, event):
         """ this is a collection of key events binded to GUI
+
         :param event: pressed key
         """
 
@@ -375,7 +389,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             print("w")
 
         elif event.key() == QtCore.Qt.Key_S:
-            gvariables.listener.mouse.active = True if not gvariables.listener.mouse.active else False
+            gvariables.listener.stop_control() if gvariables.listener.mouse.active \
+                else gvariables.listener.start_control()
 
         elif event.key() == QtCore.Qt.Key_Y:
             """print("Y pressed")
@@ -387,7 +402,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
         elif event.key() == QtCore.Qt.Key_F:  # start stroke recognition
             if self.n_of_fingers == 1:
-                pc = Point_cloud("f1", self.widget_canvas.points, Point(W/4, H/4 + 50, -1))
+                pc = Point_cloud("f1", self.widget_canvas.points, Point(W / 4, H / 4 + 50, -1))
                 # pc.draw_on_canvas()    normalized pc
 
                 result = recognize_stroke(self.widget_canvas.points)
@@ -442,10 +457,10 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                         leap_gesture_points = gvariables.listener.gesture[1]
                         # undoing convert_to from leap_controller to get min and max
                         for c in range(len(leap_gesture_points)):
-                            leap_gesture_points[c].x *= (W/2)
+                            leap_gesture_points[c].x *= (W / 2)
                             leap_gesture_points[c].x /= W
                             leap_gesture_points[c].y = H - abs(leap_gesture_points[c].y)
-                            leap_gesture_points[c].y *= (H/2)
+                            leap_gesture_points[c].y *= (H / 2)
                             leap_gesture_points[c].y /= H
 
                         max_leap_y = max(g.y for g in leap_gesture_points)
@@ -456,11 +471,11 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                             leap_x = leap_gesture_points[c].x + 140
                             leap_y = max_leap_y + 40 - leap_gesture_points[c].y
                             print(str(leap_x) + ", " + str(leap_y))
-                            print(str(leap_x * img_dim/max_leap_x) + "; " + str(leap_y * img_dim / max_leap_y))
+                            print(str(leap_x * img_dim / max_leap_x) + "; " + str(leap_y * img_dim / max_leap_y))
                             print("")
-                            matrix_x = int(leap_x * img_dim/max_leap_x)
+                            matrix_x = int(leap_x * img_dim / max_leap_x)
                             matrix_x = 27 if matrix_x == 28 else matrix_x
-                            matrix_y = int(leap_y * img_dim/max_leap_y)
+                            matrix_y = int(leap_y * img_dim / max_leap_y)
                             matrix_y = 27 if matrix_y == 28 else matrix_y
                             matrix[matrix_y][matrix_x] = white
 
@@ -552,7 +567,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         """clf = svm.SVC(gamma=0.0001, C=100)
         clf.fit(data[:n_samples], digits.target[:n_samples])"""
 
-        # predict
+        # predict EMNIST
         print("Loading MLP model from file")
         clf = joblib.load("res/mlp_model.pkl").best_estimator_
         predicted = clf.predict(img.reshape((1, img.shape[0] * img.shape[1])))
@@ -563,12 +578,12 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         plt.title("result: " + str(predicted))
         plt.show()
 
-        #return str(predicted)
+    # return str(predicted)
 
     def recognition_algorithm_ch(self, which):
-        """
-        handles check box selecting recognition algorithm
-        :param what: 'pd' or 'NN'
+        """ handles check box selecting recognition algorithm
+
+        :param which: 'pd' or 'NN'
         """
         print("canvas algorithm changed to " + str(which))
         if which == "pd":
@@ -587,7 +602,9 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
     def combo_box_actiongesture_changed(self, combo_box_name):
         """ collection of key events binded to GUI (configuration tab comboboxes)
-        :param combo_box_name: changed combobox variable name"""
+
+        :param combo_box_name: changed combobox variable name
+        """
 
         if combo_box_name == "combo_box_click":
             print("lclick changed" + str(self.combo_box_click.currentIndex()))
@@ -664,7 +681,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
     def view_gesture(self, combo_box):
         """ loads gesture associated gif
-        :params combo_box: gif button associated combobox variable name
+
+        :param combo_box: gif button associated combobox variable name
         """
 
         print("view gesture: " + str(combo_box.currentIndex()))
@@ -688,7 +706,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                             "Leap Motion device is not connected")
         else:
             if gvariables.configuration.check():
-                gvariables.listener.mouse.active = True if not gvariables.listener.mouse.active else False
+                gvariables.listener.stop_control() if gvariables.listener.mouse.active else gvariables.listener.start_control()
 
             else:
                 self.show_popup("Problem Detected",
@@ -703,6 +721,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
     def set_gesture_gif(self, gif):
         """ loads given gif into gif label
+
         :param gif: .gif file
         """
         giff = QtGui.QMovie(gif)
@@ -732,9 +751,12 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         msg.setText(text)
         msg.setInformativeText(inftext)
         msg.setWindowTitle(title)
-        #msg.setDetailedText("The details are as follows:")
+        # msg.setDetailedText("The details are as follows:")
         msg.setStandardButtons(QMessageBox.Ok)
         msg.exec_()
+
+    def show_help(self):
+        pass
 
     def exit_app(self):
         """ ends app execution and closes all windows"""

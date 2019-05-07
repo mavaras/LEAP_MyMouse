@@ -19,7 +19,7 @@ def sign(n):
     :param n: number
     :return: -1 or 1
     """
-    return n//abs(n)
+    return n // abs(n)
 
 
 def distance_3d(x, y, z, x2, y2, z2):
@@ -48,6 +48,7 @@ def distance(p1, p2):
 
 def get_dict_key(dic, value):
     """ returns given dictionary key corresponding to given value
+
     :param dic: dictionary
     :param value: value which key is returned
     :return: key which value into dic is value
@@ -59,7 +60,8 @@ def get_dict_key(dic, value):
 
 def recognize_stroke(points):
     """ this function recognize one SINGLE stroke (if ALL fingers, one by one)
-    :params points: points array containing a stroke
+
+    :param points: points array containing a stroke
     """
 
     print("recognizing stroke")
@@ -71,21 +73,23 @@ def recognize_stroke(points):
 
 def print_score(result):
     """ this shows final score of current stroke (red label on canvas)
+
     :param result: Result object containing recognition result
     """
 
-    score = "Result: matched with "+result.name+" about "+str(round(result.score, 2))
+    score = "Result: matched with " + result.name + " about " + str(round(result.score, 2))
     gvariables.main_window.label_score.setStyleSheet("color: red")
     gvariables.main_window.label_score.setText(str(score))
-    gvariables.main_window.text_edit_2.append("\n"+str(score))
+    gvariables.main_window.text_edit_2.append("\n" + str(score))
 
 
 # not updated (not here -> GRecognizer.py)
 def gesture_match(gesture_name, active=True):
     """ matches gesture_name with its associated action
+
     :param gesture_name: letter
     """
-    print(str(gesture_name)+" gesture\n")
+    print(str(gesture_name) + " gesture\n")
 
     if active:
         if gesture_name == gvariables.configuration.basic.closew:

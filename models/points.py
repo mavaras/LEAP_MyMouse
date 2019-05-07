@@ -12,6 +12,7 @@ class Point:
     :param id: id of the point (stroke id)
 
     """
+
     def __init__(self, x, y, id):
         self.x = x
         self.y = y

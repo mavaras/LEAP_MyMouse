@@ -6,7 +6,6 @@ from views.gui_qtdesigner import *
 from models.points import Point
 from controllers.aux_functions import distance
 
-
 stroke_id = -1
 
 
