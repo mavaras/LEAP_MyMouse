@@ -39,7 +39,7 @@ class Point:
         :param radius: radius of the circle
         :param path: widget_canvas's path (colour)
         """
-        eval("gvariables.main_window.widget_canvas." + path +
+        eval("gvariables.main_window.canvas.widget_canvas." + path +
              ".addEllipse(QtCore.QRectF(self.x, self.y, radius, radius))")
         gvariables.main_window.widget_canvas.update()
 

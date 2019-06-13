@@ -10,7 +10,6 @@
 # basic modules imports
 import sys
 import numpy as np
-import os
 
 # aux modules imports
 from PyQt4.QtGui import *
@@ -29,15 +28,68 @@ from _print import _print
 from controllers.aux_functions import *
 from models.points import Point, Point_cloud
 from views.gui_qtdesigner import *
-from views.canvas import Widget_canvas
+from views.canvas import Canvas
 from views.cv_frame import Cv_Frame
+
+
+class Form(QDialog):
+    """ Just a simple dialog with a couple of widgets
+    """
+
+    def __init__(self, parent=None):
+        QWidget.__init__(self, parent)
+        palette = QPalette(self.palette())
+        palette.setColor(palette.Background, Qt.transparent)
+        self.setPalette(palette)
+        self.exit = False
+
+    def paintEvent(self, event):
+        painter = QPainter()
+        painter.begin(self)
+        painter.setRenderHint(QPainter.Antialiasing)
+        #painter.fillRect(event.rect(), QBrush(QColor(255, 255, 255, 127)))
+        painter.setPen(QPen(Qt.NoPen))
+
+        for c in range(6):
+            if (self.counter/5) % 6 == c:
+                painter.setBrush(QBrush(QColor("#04B97F")))
+            else:
+                painter.setBrush(QBrush(QColor(127, 127, 127)))
+
+            painter.drawEllipse(
+                (self.width() - self.width() / 2) + 32*c - 90,
+                (self.height() - 42),
+                20, 20
+            )
+
+            """
+            painter.drawEllipse(
+                (self.width() - self.width()/5) + 30 * math.cos(2 * math.pi * i/6.0) - 10,
+                (self.height() - self.height()/1.2) + 30 * math.sin(2 * math.pi * i/6.0) - 10,
+                20, 20)
+            """
+        painter.end()
+
+    def showEvent(self, event):
+        self.timer = self.startTimer(50)
+        self.counter = 0
+
+    def timerEvent(self, event):
+        self.counter += 1
+        self.update()
+        if self.counter == 80:
+            self.killTimer(self.timer)
+            self.exit = True
+            '''self.hide()
+            self.parent().close()
+            self.close()'''
 
 
 class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     # last and new points for proper drawing (esto no se que mierda es)
     lp = Point(0, 0, -1)
     np = Point(0, 0, -1)
-    n_of_fingers = 1
+    # n_of_fingers = 1
 
     """ this array stores all combo_boxes with its options with its associated gesture | gifs
     this in an array of dictionaries, each one containing each combo box index + gest. name
@@ -57,11 +109,12 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         # self.setWindowFlags(Qt.FramelessWindowHint)
         # self.setWindowOpacity(0)
         self.opened = True
-        self.systray = QSystemTrayIcon(QIcon("res/icons/icon.ico"), self)
+        self.systray = QSystemTrayIcon(QIcon("res/icons/leapmymouse.PNG"), self)
         self.set_notification_area()
 
         self.cvF = Cv_Frame(self)
         self.widget_canvas = None
+        self.canvas = Canvas(self)
 
         self.setupUi(self)
 
@@ -70,13 +123,17 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         fills cb_action_gesture array
         """
 
+        '''widget = QWidget(self)
+
+        self.setCentralWidget(widget)
+        self.overlay = Overlay(self.centralWidget())
+        self.overlay.show()'''
+
         _print("initUI")
 
-        # TAB1 - CANVAS setup
-        self.widget_canvas = Widget_canvas(self.tab_canvas)  # linking widget_canvas to tab1
-        self.widget_canvas.move(20, 20)
-        self.widget_canvas.resize(canvas_width, canvas_height)
+        self.setWindowIcon(QtGui.QIcon("res/icons/leapmymouse.png"))
 
+        # TAB1 - CANVAS setup
         canvas_algorithm_group = QtGui.QButtonGroup(self)
         self.radioButton_pd.toggled.connect(lambda: self.recognition_algorithm_ch("pd"))
         self.radioButton_NN.toggled.connect(lambda: self.recognition_algorithm_ch("NN"))
@@ -84,7 +141,6 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         canvas_algorithm_group.addButton(self.radioButton_NN)
 
         # TAB2 - CONFIGURATION TAB
-        self.button_save_conf.clicked.connect(self.save_conf)
 
         # text edits setup (not used)
         self.button_load_text.clicked.connect(self.load_text_B)
@@ -201,25 +257,25 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         help_img = "res/icons/eye.png"
         # we pass view_gesture() method help button associated combo box
         self.button_help_click.clicked.connect(lambda: self.view_gesture(self.combo_box_click))
-        self.button_help_click.setIcon(QIcon(help_img))
-        self.button_help_click.setIconSize(QSize(20, 20))
-        self.button_help_click.setMask(QtGui.QRegion(self.button_help_click.rect(),
-                                                     QtGui.QRegion.Ellipse))
+        # self.button_help_click.setIcon(QIcon(help_img))
+        # self.button_help_click.setIconSize(QSize(20, 20))
+        # self.button_help_click.setMask(QtGui.QRegion(self.button_help_click.rect(),
+        #                                              QtGui.QRegion.Ellipse))
         self.button_help_rclick.clicked.connect(lambda: self.view_gesture(self.combo_box_rclick))
-        self.button_help_rclick.setIcon(QIcon(help_img))
-        self.button_help_rclick.setIconSize(QSize(20, 20))
-        self.button_help_rclick.setMask(QtGui.QRegion(self.button_help_rclick.rect(),
-                                                      QtGui.QRegion.Ellipse))
+        # self.button_help_rclick.setIcon(QIcon(help_img))
+        # self.button_help_rclick.setIconSize(QSize(20, 20))
+        # self.button_help_rclick.setMask(QtGui.QRegion(self.button_help_rclick.rect(),
+        #                                               QtGui.QRegion.Ellipse))
         self.button_help_grabb.clicked.connect(lambda: self.view_gesture(self.combo_box_grabb))
-        self.button_help_grabb.setIcon(QIcon(help_img))
-        self.button_help_grabb.setIconSize(QSize(20, 20))
-        self.button_help_grabb.setMask(QtGui.QRegion(self.button_help_grabb.rect(),
-                                                     QtGui.QRegion.Ellipse))
+        # self.button_help_grabb.setIcon(QIcon(help_img))
+        # self.button_help_grabb.setIconSize(QSize(20, 20))
+        # self.button_help_grabb.setMask(QtGui.QRegion(self.button_help_grabb.rect(),
+        #                                              QtGui.QRegion.Rectangle))
         self.button_help_vscroll.clicked.connect(lambda: self.view_gesture(self.combo_box_vscroll))
-        self.button_help_vscroll.setIcon(QIcon(help_img))
-        self.button_help_vscroll.setIconSize(QSize(20, 20))
-        self.button_help_vscroll.setMask(QtGui.QRegion(self.button_help_vscroll.rect(),
-                                                       QtGui.QRegion.Ellipse))
+        # self.button_help_vscroll.setIcon(QIcon(help_img))
+        # self.button_help_vscroll.setIconSize(QSize(20, 20))
+        # self.button_help_vscroll.setMask(QtGui.QRegion(self.button_help_vscroll.rect(),
+        #                                               QtGui.QRegion.Ellipse))
 
         # TAB3
         """self.combo_box_gestures.currentIndexChanged["int"].connect(self.combo_box_gestures_selection_changed)
@@ -229,6 +285,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         # MENUBAR
         self.menubar_file_loadconf.triggered.connect(self.load_conf_file)
         self.menubar_file_saveconf.triggered.connect(self.save_conf)
+        self.menubar_help_help.triggered.connect(self.help)
+        self.menubar_help_debug.triggered.connect(self.debug_mode)
 
     def set_notification_area(self):
         """ this function sets notification area menu"""
@@ -269,7 +327,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     def save_conf(self):
         """ save Configuration object content to file"""
 
-        print("save_conf()")
+        _print("save_conf()")
         fname = QFileDialog.getSaveFileName(self,
                                             "Save Configuration",
                                             "E:\\Documentos\\Estudio\\programming\\Python\\leap\\LEAP_proyect",
@@ -293,7 +351,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     def load_conf_file(self):
         """ loads configuration file into Configuration object"""
 
-        print("load_conf_file()")
+        _print("load_conf_file()")
         fname = QFileDialog.getOpenFileName(self,
                                             "Save Configuration",
                                             "E:\\Documentos\\Estudio\\programming\\Python\\leap\\LEAP_proyect",
@@ -312,6 +370,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         updates comboboxes and GUI elements
         using cb_action_gesture array
         """
+
+        _print("load_conf()")
 
         self.combo_box_mm.setCurrentIndex(int(gvariables.configuration.basic.mm))
 
@@ -343,6 +403,13 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             get_dict_key(self.cb_action_gesture[self.combo_box_hscroll], gvariables.configuration.basic.hscroll)
         )
 
+    def debug_mode(self):
+        _print("debug")
+        self.canvas.show()
+
+    def help(self):
+        pass
+
     def set_default_conf(self):
         pass
 
@@ -365,10 +432,18 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         depending if checkBox is checked or not
         """
 
+        _print("launch_on_startup")
+
         if self.checkBox_startup.isChecked():
             create_shortcut()
+            self.show_popup("Launch on startup",
+                            "LEAP MyMouse succesfully added to startup",
+                            "")
         else:
             remove_shortcut()
+            self.show_popup("Launch on startup",
+                            "LEAP MyMouse succesfully removed from startup",
+                            "")
 
     def keyPressEvent(self, event):
         """ this is a collection of key events binded to GUI
@@ -436,8 +511,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             gvariables.listener.clear_variables()
 
         elif event.key() == QtCore.Qt.Key_C:  # clear canvas
-            print("clear")
-            self.widget_canvas.clear()
+            _print("clear")
+            self.canvas.widget_canvas.clear()
             self.label_score.setText("")
 
         elif event.key() == QtCore.Qt.Key_G and sys.argv[1] != "-thread":
@@ -506,16 +581,16 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                         points = gvariables.listener.gesture[1]  # this allows "F" to work with mouse and hand stroke
 
                 else:  # 1st "G" press
-                    print("recording")
+                    _print("recording")
                     self.label_count.setText("4")  # countdown after getting gesture
                     # this is like a thread with no wait
                     QtCore.QTimer.singleShot(1000, lambda: self.updateLabel(self.label_count))
 
             elif self.n_of_fingers == -1:  # recording ALL fingers
-                print("all fingers recording mode")
+                _print("all fingers recording mode")
                 aux = -100
                 if gvariables.listener.capture_frame:
-                    print("record captured")
+                    _print("record captured")
                     gvariables.listener.capture_frame = False
                     for c in range(0, 5):
                         pc = Point_cloud("f" + str(c), gvariables.listener.gesture[c], Point(W / 4 + aux, H / 4, -1))
@@ -525,7 +600,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                     points = gvariables.listener.gesture[1]  # just for testing
 
                 else:  # 1st "G" press
-                    print("recording")
+                    _print("recording")
                     self.label_count.setText("4")  # countdown after getting gesture
                     # this is like a thread with no wait
                     QtCore.QTimer.singleShot(1000, lambda: self.updateLabel(self.label_count))
@@ -534,6 +609,9 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         """ this handles notification area option 'Open/Close'
         hide or shows MainWindow
         """
+
+        _print("show_gui()")
+
         if self.isVisible():
             self.hide()
         else:
@@ -568,12 +646,12 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         clf.fit(data[:n_samples], digits.target[:n_samples])"""
 
         # predict EMNIST
-        print("Loading MLP model from file")
+        _print("Loading MLP model from file")
         clf = joblib.load("res/mlp_model.pkl").best_estimator_
         predicted = clf.predict(img.reshape((1, img.shape[0] * img.shape[1])))
 
         # display results
-        print("prediction: " + str(predicted))
+        _print("prediction: " + str(predicted))
         plt.imshow(img, cmap=plt.cm.gray_r, interpolation='nearest')
         plt.title("result: " + str(predicted))
         plt.show()
@@ -583,14 +661,17 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     def recognition_algorithm_ch(self, which):
         """ handles check box selecting recognition algorithm
 
-        :param which: 'pd' or 'NN'
+        :param which: 'pd' or 'NN', p$ algorithm or Neural Network
         """
-        print("canvas algorithm changed to " + str(which))
+
+        _print("canvas algorithm changed to " + str(which))
+
         if which == "pd":
             self.canvas_algorithm = "pd"
         else:
             self.canvas_algorithm = "NN"
 
+    # NOT USED
     def combo_box_nfingers_selection_changed(self):
         print("selection changed" + str(self.combo_box.currentIndex()))
         if self.combo_box.currentIndex() == 0:
@@ -685,7 +766,9 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         :param combo_box: gif button associated combobox variable name
         """
 
-        print("view gesture: " + str(combo_box.currentIndex()))
+        _print("view gesture: " + str(combo_box.currentIndex()))
+
+        self.tab_widget_frames.setCurrentIndex(2)
         print(self.cb_action_gesture.get(combo_box).get(combo_box.currentIndex()))
 
         self.set_gesture_gif(
@@ -698,7 +781,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         area icon
         """
 
-        print("notification area Start/Stop Control")
+        _print("notification area Start/Stop Control")
 
         if not gvariables.listener.status.leap_connected:
             self.show_popup("Problem Detected",
@@ -761,7 +844,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     def exit_app(self):
         """ ends app execution and closes all windows"""
 
-        print("exiting...")
+        _print("exiting...")
         self.close()
         sys.exit()
         self.opened = False

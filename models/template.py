@@ -2,13 +2,10 @@
 
 # ===============Template CLASS===============
 # == Template class
-# == load predefined templates
+# == loads predefined templates
 
 
 import points as ps
-
-
-# TODO: add more templates
 
 
 class Template:

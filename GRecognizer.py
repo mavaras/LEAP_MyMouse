@@ -33,12 +33,15 @@ from models.PCRecognizer import PCRecognizer
 from models.points import Point_cloud
 
 from views.gui_qtdesigner import *
+from views.loading_screen import LoadScreen
 import views.gui as gui
 
 from controllers.leap_controller import *
 from controllers.aux_functions import *
 
 # TODO: features to implement:
+#       -> debug mode
+#       -> browser with tutorial
 #       -> applications interactions (powerpoint, vlc ?)
 #       -> gvariables as object ?? (this is good)
 #       -> add gifs
@@ -49,7 +52,7 @@ from controllers.aux_functions import *
 # main_window = None
 exit = False
 
-
+"""
 def matrix_to_img(matrix):
     img = Image.fromarray(matrix, "RGB")
     img.thumbnail((28, 28), Image.ANTIALIAS)  # resizing to 28x28
@@ -75,10 +78,6 @@ def neural_network(img):
     n_samples = len(digits.images)
     data = digits.images.reshape((n_samples, -1))
 
-    # setting classifier
-    """clf = svm.SVC(gamma=0.0001, C=100)
-    clf.fit(data[:n_samples], digits.target[:n_samples])"""
-
     # predict
     print('Loading model from file.')
     clf = joblib.load('mlp_model.pkl').best_estimator_
@@ -91,7 +90,7 @@ def neural_network(img):
     plt.show()
 
     return str(predicted)
-
+"""
 
 '''
 # various functions (this shouldn't be here)
@@ -158,7 +157,7 @@ def gesture_match(gesture_name):
     print("")
 '''
 
-
+'''
 # various functions (temporarily here)
 def recognize_stroke(points):
     """ this function recognize one SINGLE stroke (if ALL fingers, one by one)
@@ -191,8 +190,8 @@ def gesture_match(gesture_name):
 
     :param gesture_name: letter
     """
-    print(str(gesture_name) + " gesture\n")
 
+    print(str(gesture_name) + " gesture\n")
     if "-thread" in sys.argv:
         if gesture_name == gvariables.configuration.basic.closew:
             hwnd = get_current_window_hwnd()
@@ -258,6 +257,7 @@ def load_image(path):
     img = img.rgbSwapped()
 
     return img, height, width
+'''
 
 
 def thread_handler():
@@ -279,7 +279,6 @@ def thread_handler():
                 pass
 
             gvariables.listener.capture_frame = True
-            print(len(gvariables.listener.frame.fingers.extended()))
 
         elif not gvariables.listener.can_record and \
                 gvariables.listener.capture_frame:
@@ -315,7 +314,6 @@ def thread_handler():
             print("recording and recognizing captured")
             gvariables.listener.capture_frame = False  # end of Leap capture
             points = gvariables.listener.gesture[1]  # this allows "F" to work with mouse and hand stroke
-            print("len_p " + str(len(points)))
 
             if len(points) > 40:
                 try:
@@ -367,6 +365,50 @@ def console_args(args):
             gvariables.listener.plane_mode = True
 
 
+def show_splash_screen():
+    splash_pix = QPixmap("res/logo.png")
+    splash = QSplashScreen(splash_pix, Qt.WindowStaysOnTopHint)
+    splash.setMask(splash_pix.mask())
+
+    progress_bar = QProgressBar(splash)
+    progress_bar.setMaximum(20)
+    progress_bar.setGeometry(130,
+                             splash_pix.height() - 50,
+                             splash_pix.width() - 240,
+                             20)
+    progress_bar.setStyleSheet("""
+        QProgressBar {
+            border: 1px solid #252323;
+            border-radius: 6px;
+            text-align: center;
+            position: center;
+            background-color: #252323;
+            font-size: 1px;
+        }
+
+        QProgressBar::chunk {
+            background-color: #04B97F;
+            border-radius: 9px;
+            margin-right: 23px;
+            width: 20px;
+        }""")
+
+    splash.show()
+
+    timer = QtCore.QElapsedTimer()
+    timer.start()
+
+    time.sleep(1)
+    for c in range(20):
+        progress_bar.setValue(c)
+        t = time.time()
+        while time.time() < t + 0.3:
+            app.processEvents()
+    time.sleep(1)
+
+    splash.close()
+
+
 # MAIN BLOCK
 if __name__ == "__main__":
     # sys.stdout = gvariables.stdout = ListStream()
@@ -392,12 +434,51 @@ if __name__ == "__main__":
 
     # GUI setting up
     app = QtGui.QApplication([])
+
+    """ls = LoadScreen()
+    ls.show()"""
+
+    # show_splash_screen()
+
+    """font = QtGui.QFont('Helvetica', 12, QtGui.QFont.Normal)
+    font.setPointSize(12)
+    app.setFont(font)"""
+
     """for key in QtGui.QStyleFactory.keys():
         st = QtGui.QStyleFactory.create(key)
         print(key, st.metaObject().className(), type(app.style()))"""
 
     # app.setStyle("Plastique")
+
+    id = QtGui.QFontDatabase.addApplicationFont("res/fonts/OpenSans-Regular.ttf")
+
+    stylesheet = open('res/MaterialDark.qss').read()
+    stylesheet = stylesheet.replace("color_hover", "#04B97F")
+    stylesheet = stylesheet.replace("color_main", "#252323")
+    stylesheet = stylesheet.replace("color_label", "#EDEBE1")  # "#949EA2")
+    '''
+    stylesheet = stylesheet.replace("@color1", "#84A462")  # back
+    stylesheet = stylesheet.replace("@color2", "#555639")  # scrollareas
+    stylesheet = stylesheet.replace("@color3", "#ECEA89")  # main
+    stylesheet = stylesheet.replace("@color4", "#25372B")  # rare
+    stylesheet = stylesheet.replace("@color5", "#B39963")  # tabs
+    stylesheet = stylesheet.replace("@label", "#ECEA89")
+    stylesheet = stylesheet.replace("@button_hover", "#84A462")
+    stylesheet = stylesheet.replace("@cb_hover", "#84A462")
+    
+    stylesheet = stylesheet.replace("@color1", "#F7F8F7")
+    stylesheet = stylesheet.replace("@color2", "#F7F8F7")
+    stylesheet = stylesheet.replace("@color3", "#A1A363")
+    stylesheet = stylesheet.replace("@color4", "#A3444A")
+    stylesheet = stylesheet.replace("@color5", "#EEDB6B")
+    stylesheet = stylesheet.replace("@label", "#000")
+    stylesheet = stylesheet.replace("@button_hover", "#A3444A")
+    stylesheet = stylesheet.replace("@cb_hover", "#A3444A")
+    '''
+    app.setStyleSheet(stylesheet)
+
     gvariables.main_window = gui.MainWindow()
+
     gvariables.main_window.setFixedSize(gvariables.main_window.size())
     gvariables.main_window.statusBar().setVisible(False)
     gvariables.main_window.initUI()
@@ -409,6 +490,7 @@ if __name__ == "__main__":
     _print("sys platform: " + str(sys.platform))
     _print(str(GetSystemMetrics(0)) + ", " + str(GetSystemMetrics(1)))
 
+    '''
     # win32 stuff
     opened_windows_names = []
     opened_windows_names = get_opened_windows_list()
@@ -420,5 +502,6 @@ if __name__ == "__main__":
 
     # drawing tests
     gvariables.pcr.templates[5].point_cloud[1].draw_on_canvas(False)
+    '''
 
     app.exec_()

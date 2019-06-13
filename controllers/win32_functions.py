@@ -1,6 +1,6 @@
 # ===============WIN32 CONTROL FUNCTIONS===============
 # == actions
-# == keyboard functions
+# == keyboard actions
 
 
 import ctypes
@@ -83,27 +83,25 @@ def get_current_window_name():
 
     :return: window name
     """
+
     hwnd = get_current_window_hwnd()
     length = GetWindowTextLength(hwnd)
     buff = ctypes.create_unicode_buffer(length + 1)
     GetWindowText(hwnd, buff, length + 1)
-    # print("buff.value: "+buff.value.encode('latin1'))
-    return buff.value
 
-# return unicode(win32gui.GetWindowText(win32gui.GetForegroundWindow()), errors="ignore")
+    return buff.value
 
 
 def create_shortcut():
-    desktop = r"C:\Users\Mario\Desktop"
     startup = str(os.path.expanduser("~"))+"\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
     path = os.path.join(startup, "shortcut.lnk")
-    target = r"E:\PROGRAMAS\Wireshark\Wireshark.exe"
-    icon = r"../res/icons/icon.ico"
+    target = os.path.dirname(os.path.dirname(__file__))+str("\Wireshark.exe")
+    icon = os.path.dirname(os.path.dirname(__file__))+str("\\res\icons\leapmymouse.png")
 
     shell = win32com.client.Dispatch("WScript.Shell")
     shortcut = shell.CreateShortCut(path)
     shortcut.Targetpath = target
-    shortcut.IconLocation = target
+    shortcut.IconLocation = icon
     shortcut.WindowStyle = 7  # 7 - Minimized, 3 - Maximized, 1 - Normal
     shortcut.save()
 

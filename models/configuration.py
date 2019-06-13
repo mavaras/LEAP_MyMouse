@@ -5,8 +5,6 @@
 # == clase abstract patron command
 
 
-import linecache
-from _print import _print
 from abc import ABCMeta, abstractmethod
 
 
@@ -16,6 +14,7 @@ class Conf:
     -> basic configuration: basic actions on mouse and windows
     -> extra configuration: some not so useful, additional, features
     """
+
     __metaclass__ = ABCMeta
 
     file_name = ""

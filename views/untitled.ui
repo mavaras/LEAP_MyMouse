@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>1043</width>
-    <height>571</height>
+    <height>551</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -434,150 +434,20 @@
     </disabled>
    </palette>
   </property>
+  <property name="font">
+   <font>
+    <family>Noto Serif Armenian</family>
+   </font>
+  </property>
   <property name="windowTitle">
-   <string>CANVAS</string>
+   <string>LEAP MyMouse</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>C:/Users/Mario/.designer/res/icons/leapmymouse.PNG</normaloff>C:/Users/Mario/.designer/res/icons/leapmymouse.PNG</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">QStatusBar::item { border: 0px solid black }
-
-.QTabWidget, .QScrollArea {
-	border: 0;
-}
-
-#MainWindow {
-	background: #D6D4BD
-}
-
-.QComboBox {
-    display: inline-block;
-  background-color: #fff;
-  border-radius: 3px;
-  box-shadow: 0 0 4px rgb(204, 204, 204);
-  transition: all .5s ease;
-  position: relative;
-  font-size: 13px;
-  color: black;
-  text-align: left;
-/*	background: #D6D4BD; 
-	selection-background-color: #676163;*/
-}
-QComboBox::drop-down {
-    border: 0px; /* This seems to replace the whole arrow of the combo box */
-}
-QComboBox:hover {
-	background-color: #D6D4BD;
-}
-/* Define a new custom arrow icon for the combo box */
-QComboBox::down-arrow {
-    image: url(res/icons/arrow.png);
-margin-left: 8px;
-margin-right: 5px;
-    width: 14px;
-    height: 14px;
-}
-.QComboBox QAbstractItemView:hover {
-	selection-background-color: #D6D4BD;
-}
-
-#centralwidget, #tab_widget, #tab_2, #widget, #tab_basic, #tab_extra, #tab_application {
-	background: #D6D4BD
-}
-
-#cb_layout, #scrollArea, #tab_widget_frames, #tab_frame_XY, #tab_frame_YZ, #tab_frame_gesture {
-	background: #aaaaaa
-}
-
-
-QTabWidget::pane {
-    border: 1px solid black;
-    background: white;
-}
-
-QTabWidget::tab-bar:top {
-    top: 1px;
-}
-
-QTabWidget::tab-bar:bottom {
-    bottom: 1px;
-}
-
-QTabWidget::tab-bar:left {
-    right: 1px;
-}
-
-QTabWidget::tab-bar:right {
-    left: 1px;
-}
-
-QTabBar::tab {
-    border: 1px solid black;
-}
-
-QTabBar::tab:selected {
-    background: white;
-}
-
-QTabBar::tab:!selected {
-    background: silver;
-}
-
-QTabBar::tab:!selected:hover {
-    background: #999;
-}
-
-QTabBar::tab:top:!selected {
-    margin-top: 3px;
-}
-
-QTabBar::tab:bottom:!selected {
-    margin-bottom: 3px;
-}
-
-QTabBar::tab:top, QTabBar::tab:bottom {
-    min-width: 8ex;
-    margin-right: -1px;
-    padding: 5px 10px 5px 10px;
-}
-
-QTabBar::tab:top:selected {
-    border-bottom-color: none;
-}
-
-QTabBar::tab:bottom:selected {
-    border-top-color: none;
-}
-
-QTabBar::tab:top:last, QTabBar::tab:bottom:last,
-QTabBar::tab:top:only-one, QTabBar::tab:bottom:only-one {
-    margin-right: 0;
-}
-
-QTabBar::tab:left:!selected {
-    margin-right: 3px;
-}
-
-QTabBar::tab:right:!selected {
-    margin-left: 3px;
-}
-
-QTabBar::tab:left, QTabBar::tab:right {
-    min-height: 8ex;
-    margin-bottom: -1px;
-    padding: 10px 5px 10px 5px;
-}
-
-QTabBar::tab:left:selected {
-    border-left-color: none;
-}
-
-QTabBar::tab:right:selected {
-    border-right-color: none;
-}
-
-QTabBar::tab:left:last, QTabBar::tab:right:last,
-QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
-    margin-bottom: 0;
-}</string>
+   <string notr="true"/>
   </property>
   <property name="documentMode">
    <bool>true</bool>
@@ -737,13 +607,16 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
      </disabled>
     </palette>
    </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
    <widget class="QTabWidget" name="tab_widget">
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>0</y>
+      <y>14</y>
       <width>1051</width>
-      <height>511</height>
+      <height>481</height>
      </rect>
     </property>
     <property name="palette">
@@ -1161,6 +1034,11 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
       </disabled>
      </palette>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
     <property name="autoFillBackground">
      <bool>false</bool>
     </property>
@@ -1168,9 +1046,21 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>18</width>
+      <height>18</height>
+     </size>
+    </property>
+    <property name="tabsClosable">
+     <bool>false</bool>
     </property>
     <widget class="QWidget" name="tab_canvas">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <attribute name="title">
       <string>Canvas</string>
      </attribute>
@@ -1751,32 +1641,6 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
      <attribute name="title">
       <string>Configuration</string>
      </attribute>
-     <widget class="QPushButton" name="button_restore_def">
-      <property name="geometry">
-       <rect>
-        <x>817</x>
-        <y>440</y>
-        <width>111</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Restore Defaults</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="button_save_conf">
-      <property name="geometry">
-       <rect>
-        <x>670</x>
-        <y>440</y>
-        <width>111</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Save Configuration</string>
-      </property>
-     </widget>
      <widget class="QTabWidget" name="tab_widget_conf">
       <property name="geometry">
        <rect>
@@ -2201,11 +2065,22 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
         </disabled>
        </palette>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
       <property name="tabShape">
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
        <number>0</number>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>18</width>
+        <height>18</height>
+       </size>
       </property>
       <property name="usesScrollButtons">
        <bool>true</bool>
@@ -2217,10 +2092,10 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
        <widget class="QScrollArea" name="scrollArea">
         <property name="geometry">
          <rect>
-          <x>-1</x>
-          <y>0</y>
-          <width>511</width>
-          <height>379</height>
+          <x>26</x>
+          <y>10</y>
+          <width>471</width>
+          <height>351</height>
          </rect>
         </property>
         <property name="palette">
@@ -2642,7 +2517,7 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
          <bool>false</bool>
         </property>
         <property name="verticalScrollBarPolicy">
-         <enum>Qt::ScrollBarAlwaysOn</enum>
+         <enum>Qt::ScrollBarAlwaysOff</enum>
         </property>
         <property name="horizontalScrollBarPolicy">
          <enum>Qt::ScrollBarAsNeeded</enum>
@@ -2655,8 +2530,8 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>809</width>
-           <height>403</height>
+           <width>755</width>
+           <height>435</height>
           </rect>
          </property>
          <layout class="QGridLayout" name="gridLayout">
@@ -2973,6 +2848,9 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
             <property name="font">
              <font>
               <pointsize>11</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
              </font>
             </property>
             <property name="text">
@@ -3536,8 +3414,8 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>484</width>
-           <height>377</height>
+           <width>482</width>
+           <height>375</height>
           </rect>
          </property>
          <property name="minimumSize">
@@ -4327,6 +4205,11 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
         </disabled>
        </palette>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
       <property name="currentIndex">
        <number>0</number>
       </property>
@@ -4338,9 +4221,9 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>0</y>
+          <y>-10</y>
           <width>411</width>
-          <height>401</height>
+          <height>411</height>
          </rect>
         </property>
         <property name="text">
@@ -4356,9 +4239,9 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>0</y>
+          <y>-10</y>
           <width>411</width>
-          <height>401</height>
+          <height>411</height>
          </rect>
         </property>
         <property name="text">
@@ -4391,7 +4274,7 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
         <x>0</x>
         <y>0</y>
         <width>1041</width>
-        <height>485</height>
+        <height>481</height>
        </rect>
       </property>
       <property name="palette">
@@ -4814,12 +4697,10 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
       </property>
      </widget>
      <zorder>widget</zorder>
-     <zorder>button_restore_def</zorder>
-     <zorder>button_save_conf</zorder>
      <zorder>tab_widget_conf</zorder>
      <zorder>tab_widget_frames</zorder>
     </widget>
-    <widget class="QWidget" name="tab_gestures">
+    <widget class="QWidget" name="tab_logs">
      <attribute name="title">
       <string>Log</string>
      </attribute>
@@ -4829,7 +4710,7 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
         <x>60</x>
         <y>20</y>
         <width>921</width>
-        <height>448</height>
+        <height>411</height>
        </rect>
       </property>
       <property name="font">
@@ -4845,8 +4726,8 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>921</width>
-         <height>448</height>
+         <width>919</width>
+         <height>409</height>
         </rect>
        </property>
        <widget class="QPlainTextEdit" name="textArea_logs">
@@ -4854,14 +4735,14 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>921</width>
-          <height>451</height>
+          <width>931</width>
+          <height>411</height>
          </rect>
         </property>
         <property name="font">
          <font>
           <family>Consolas</family>
-          <pointsize>12</pointsize>
+          <pointsize>11</pointsize>
          </font>
         </property>
        </widget>
@@ -4926,11 +4807,16 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
    <widget class="QLabel" name="label_8">
     <property name="geometry">
      <rect>
-      <x>46</x>
-      <y>517</y>
+      <x>40</x>
+      <y>500</y>
       <width>71</width>
       <height>21</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>LEAP Status</string>
@@ -4939,11 +4825,16 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
    <widget class="QLabel" name="label_leap_status">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>517</y>
+      <x>125</x>
+      <y>500</y>
       <width>111</width>
       <height>21</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
     </property>
     <property name="text">
      <string/>
@@ -4952,8 +4843,8 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
    <widget class="Line" name="line">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>510</y>
+      <x>250</x>
+      <y>480</y>
       <width>3</width>
       <height>61</height>
      </rect>
@@ -4962,40 +4853,11 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
      <enum>Qt::Vertical</enum>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton">
-    <property name="geometry">
-     <rect>
-      <x>240</x>
-      <y>517</y>
-      <width>82</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Plane Mode</string>
-    </property>
-    <property name="checked">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="radioButton_2">
-    <property name="geometry">
-     <rect>
-      <x>340</x>
-      <y>517</y>
-      <width>82</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Deep Mode</string>
-    </property>
-   </widget>
    <widget class="Line" name="line_2">
     <property name="geometry">
      <rect>
-      <x>433</x>
-      <y>510</y>
+      <x>437</x>
+      <y>483</y>
       <width>3</width>
       <height>61</height>
      </rect>
@@ -5007,11 +4869,16 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
    <widget class="QCheckBox" name="checkBox_startup">
     <property name="geometry">
      <rect>
-      <x>890</x>
-      <y>520</y>
-      <width>111</width>
+      <x>894</x>
+      <y>503</y>
+      <width>141</width>
       <height>17</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Launch on startup</string>
@@ -5020,11 +4887,16 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
    <widget class="QLabel" name="label_12">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>520</y>
-      <width>91</width>
+      <x>454</x>
+      <y>503</y>
+      <width>111</width>
       <height>16</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Configuration file:</string>
@@ -5033,11 +4905,16 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
    <widget class="QLabel" name="label_conf_file">
     <property name="geometry">
      <rect>
-      <x>550</x>
-      <y>520</y>
+      <x>570</x>
+      <y>503</y>
       <width>301</width>
       <height>16</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>none</string>
@@ -5046,8 +4923,8 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
    <widget class="Line" name="line_3">
     <property name="geometry">
      <rect>
-      <x>870</x>
-      <y>510</y>
+      <x>874</x>
+      <y>483</y>
       <width>3</width>
       <height>61</height>
      </rect>
@@ -5059,8 +4936,6 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
    <zorder>label_8</zorder>
    <zorder>label_leap_status</zorder>
    <zorder>line</zorder>
-   <zorder>radioButton</zorder>
-   <zorder>radioButton_2</zorder>
    <zorder>line_2</zorder>
    <zorder>checkBox_startup</zorder>
    <zorder>label_12</zorder>
@@ -5088,8 +4963,8 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
     <property name="title">
      <string>Help</string>
     </property>
-    <addaction name="actionTutorial"/>
-    <addaction name="actionHelp"/>
+    <addaction name="menubar_help_debug"/>
+    <addaction name="menubar_help_help"/>
    </widget>
    <addaction name="menubar_file"/>
    <addaction name="menuHelp"/>
@@ -5110,12 +4985,12 @@ QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {
     <string>Save Configuration</string>
    </property>
   </action>
-  <action name="actionTutorial">
+  <action name="menubar_help_debug">
    <property name="text">
-    <string>Tutorial</string>
+    <string>Canvas Test</string>
    </property>
   </action>
-  <action name="actionHelp">
+  <action name="menubar_help_help">
    <property name="text">
     <string>Help</string>
    </property>

@@ -7,8 +7,9 @@ class ConfFromFile(Conf):
     def load_conf(self, conf):
         """ loads given configuration file into this object
 
-            :param conf: file
-            """
+        :param conf: file
+        """
+
         # conf info
         self.file_name = conf.readline()
         self.file_path = conf.readline()

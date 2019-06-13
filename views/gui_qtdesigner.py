@@ -26,7 +26,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
         MainWindow.setEnabled(True)
-        MainWindow.resize(1043, 571)
+        MainWindow.resize(1043, 553)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -169,146 +169,13 @@ class Ui_MainWindow(object):
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ToolTipText, brush)
         MainWindow.setPalette(palette)
-        MainWindow.setStyleSheet(_fromUtf8("QStatusBar::item { border: 0px solid black }\n"
-"\n"
-".QTabWidget, .QScrollArea {\n"
-"    border: 0;\n"
-"}\n"
-"\n"
-"#MainWindow {\n"
-"    background: #D6D4BD\n"
-"}\n"
-"\n"
-".QComboBox {\n"
-"    display: inline-block;\n"
-"  background-color: #fff;\n"
-"  border-radius: 3px;\n"
-"  box-shadow: 0 0 4px rgb(204, 204, 204);\n"
-"  transition: all .5s ease;\n"
-"  position: relative;\n"
-"  font-size: 13px;\n"
-"  color: black;\n"
-"  text-align: left;\n"
-"/*    background: #D6D4BD; \n"
-"    selection-background-color: #676163;*/\n"
-"}\n"
-"QComboBox::drop-down {\n"
-"    border: 0px; /* This seems to replace the whole arrow of the combo box */\n"
-"}\n"
-"QComboBox:hover {\n"
-"    border-bottom: 2px solid #565457;\n"
-"}\n"
-"/* Define a new custom arrow icon for the combo box */\n"
-"QComboBox::down-arrow {\n"
-"    image: url(res/icons/arrow.png);\n"
-"margin-left: 8px;\n"
-"margin-right: 5px;\n"
-"    width: 14px;\n"
-"    height: 14px;\n"
-"}\n"
-".QComboBox QAbstractItemView:hover {\n"
-"    selection-background-color: #D6D4BD;\n"
-"}\n"
-"\n"
-"#centralwidget, #tab_widget, #tab_2, #widget, #tab_basic, #tab_extra, #tab_application {\n"
-"    background: #D6D4BD\n"
-"}\n"
-"\n"
-"#cb_layout, #scrollArea, #tab_widget_frames, #tab_frame_XY, #tab_frame_YZ, #tab_frame_gesture {\n"
-"    background: #aaaaaa\n"
-"}\n"
-"\n"
-"\n"
-"QTabWidget::pane {\n"
-"    border: 1px solid black;\n"
-"    background: white;\n"
-"}\n"
-"\n"
-"QTabWidget::tab-bar:top {\n"
-"    top: 1px;\n"
-"}\n"
-"\n"
-"QTabWidget::tab-bar:bottom {\n"
-"    bottom: 1px;\n"
-"}\n"
-"\n"
-"QTabWidget::tab-bar:left {\n"
-"    right: 1px;\n"
-"}\n"
-"\n"
-"QTabWidget::tab-bar:right {\n"
-"    left: 1px;\n"
-"}\n"
-"\n"
-"QTabBar::tab {\n"
-"    border: 1px solid black;\n"
-"}\n"
-"\n"
-"QTabBar::tab:selected {\n"
-"    background: white;\n"
-"}\n"
-"\n"
-"QTabBar::tab:!selected {\n"
-"    background: silver;\n"
-"}\n"
-"\n"
-"QTabBar::tab:!selected:hover {\n"
-"    background: #999;\n"
-"}\n"
-"\n"
-"QTabBar::tab:top:!selected {\n"
-"    margin-top: 3px;\n"
-"}\n"
-"\n"
-"QTabBar::tab:bottom:!selected {\n"
-"    margin-bottom: 3px;\n"
-"}\n"
-"\n"
-"QTabBar::tab:top, QTabBar::tab:bottom {\n"
-"    min-width: 8ex;\n"
-"    margin-right: -1px;\n"
-"    padding: 5px 10px 5px 10px;\n"
-"}\n"
-"\n"
-"QTabBar::tab:top:selected {\n"
-"    border-bottom-color: none;\n"
-"}\n"
-"\n"
-"QTabBar::tab:bottom:selected {\n"
-"    border-top-color: none;\n"
-"}\n"
-"\n"
-"QTabBar::tab:top:last, QTabBar::tab:bottom:last,\n"
-"QTabBar::tab:top:only-one, QTabBar::tab:bottom:only-one {\n"
-"    margin-right: 0;\n"
-"}\n"
-"\n"
-"QTabBar::tab:left:!selected {\n"
-"    margin-right: 3px;\n"
-"}\n"
-"\n"
-"QTabBar::tab:right:!selected {\n"
-"    margin-left: 3px;\n"
-"}\n"
-"\n"
-"QTabBar::tab:left, QTabBar::tab:right {\n"
-"    min-height: 8ex;\n"
-"    margin-bottom: -1px;\n"
-"    padding: 10px 5px 10px 5px;\n"
-"}\n"
-"\n"
-"QTabBar::tab:left:selected {\n"
-"    border-left-color: none;\n"
-"}\n"
-"\n"
-"QTabBar::tab:right:selected {\n"
-"    border-right-color: none;\n"
-"}\n"
-"\n"
-"QTabBar::tab:left:last, QTabBar::tab:right:last,\n"
-"QTabBar::tab:left:only-one, QTabBar::tab:right:only-one {\n"
-"    margin-bottom: 0;\n"
-"}"))
+        font = QtGui.QFont()
+        font.setFamily(_fromUtf8("Noto Serif Armenian"))
+        MainWindow.setFont(font)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(_fromUtf8("C:/Users/Mario/.designer/res/icons/leapmymouse.PNG")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        MainWindow.setWindowIcon(icon)
+        MainWindow.setStyleSheet(_fromUtf8(""))
         MainWindow.setDocumentMode(True)
         MainWindow.setTabShape(QtGui.QTabWidget.Triangular)
         MainWindow.setDockNestingEnabled(False)
@@ -361,9 +228,10 @@ class Ui_MainWindow(object):
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Window, brush)
         self.centralwidget.setPalette(palette)
+        self.centralwidget.setStyleSheet(_fromUtf8(""))
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.tab_widget = QtGui.QTabWidget(self.centralwidget)
-        self.tab_widget.setGeometry(QtCore.QRect(0, 0, 1051, 511))
+        self.tab_widget.setGeometry(QtCore.QRect(0, 14, 1051, 481))
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -501,10 +369,16 @@ class Ui_MainWindow(object):
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ToolTipText, brush)
         self.tab_widget.setPalette(palette)
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.tab_widget.setFont(font)
         self.tab_widget.setAutoFillBackground(False)
         self.tab_widget.setTabShape(QtGui.QTabWidget.Rounded)
+        self.tab_widget.setIconSize(QtCore.QSize(18, 18))
+        self.tab_widget.setTabsClosable(False)
         self.tab_widget.setObjectName(_fromUtf8("tab_widget"))
         self.tab_canvas = QtGui.QWidget()
+        self.tab_canvas.setEnabled(True)
         self.tab_canvas.setObjectName(_fromUtf8("tab_canvas"))
         self.label_2 = QtGui.QLabel(self.tab_canvas)
         self.label_2.setGeometry(QtCore.QRect(260, 420, 461, 61))
@@ -696,12 +570,6 @@ class Ui_MainWindow(object):
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ToolTipText, brush)
         self.tab_2.setPalette(palette)
         self.tab_2.setObjectName(_fromUtf8("tab_2"))
-        self.button_restore_def = QtGui.QPushButton(self.tab_2)
-        self.button_restore_def.setGeometry(QtCore.QRect(817, 440, 111, 23))
-        self.button_restore_def.setObjectName(_fromUtf8("button_restore_def"))
-        self.button_save_conf = QtGui.QPushButton(self.tab_2)
-        self.button_save_conf.setGeometry(QtCore.QRect(670, 440, 111, 23))
-        self.button_save_conf.setObjectName(_fromUtf8("button_save_conf"))
         self.tab_widget_conf = QtGui.QTabWidget(self.tab_2)
         self.tab_widget_conf.setGeometry(QtCore.QRect(490, 20, 511, 401))
         palette = QtGui.QPalette()
@@ -841,13 +709,17 @@ class Ui_MainWindow(object):
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ToolTipText, brush)
         self.tab_widget_conf.setPalette(palette)
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.tab_widget_conf.setFont(font)
         self.tab_widget_conf.setTabShape(QtGui.QTabWidget.Rounded)
+        self.tab_widget_conf.setIconSize(QtCore.QSize(18, 18))
         self.tab_widget_conf.setUsesScrollButtons(True)
         self.tab_widget_conf.setObjectName(_fromUtf8("tab_widget_conf"))
         self.tab_basic = QtGui.QWidget()
         self.tab_basic.setObjectName(_fromUtf8("tab_basic"))
         self.scrollArea = QtGui.QScrollArea(self.tab_basic)
-        self.scrollArea.setGeometry(QtCore.QRect(-1, 0, 511, 379))
+        self.scrollArea.setGeometry(QtCore.QRect(26, 10, 471, 351))
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -986,12 +858,12 @@ class Ui_MainWindow(object):
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ToolTipText, brush)
         self.scrollArea.setPalette(palette)
         self.scrollArea.setAutoFillBackground(False)
-        self.scrollArea.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
+        self.scrollArea.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.scrollArea.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName(_fromUtf8("scrollArea"))
         self.cb_layout = QtGui.QWidget()
-        self.cb_layout.setGeometry(QtCore.QRect(0, 0, 809, 403))
+        self.cb_layout.setGeometry(QtCore.QRect(0, 0, 755, 435))
         self.cb_layout.setObjectName(_fromUtf8("cb_layout"))
         self.gridLayout = QtGui.QGridLayout(self.cb_layout)
         self.gridLayout.setContentsMargins(-1, 10, 13, 15)
@@ -1116,6 +988,9 @@ class Ui_MainWindow(object):
         self.label_5 = QtGui.QLabel(self.cb_layout)
         font = QtGui.QFont()
         font.setPointSize(11)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(50)
         self.label_5.setFont(font)
         self.label_5.setObjectName(_fromUtf8("label_5"))
         self.gridLayout.addWidget(self.label_5, 0, 0, 1, 1)
@@ -1321,7 +1196,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.scrollArea_3.setObjectName(_fromUtf8("scrollArea_3"))
         self.cb_layout_3 = QtGui.QWidget()
-        self.cb_layout_3.setGeometry(QtCore.QRect(0, 0, 484, 377))
+        self.cb_layout_3.setGeometry(QtCore.QRect(0, 0, 482, 375))
         self.cb_layout_3.setMinimumSize(QtCore.QSize(482, 0))
         self.cb_layout_3.setObjectName(_fromUtf8("cb_layout_3"))
         self.gridLayout_3 = QtGui.QGridLayout(self.cb_layout_3)
@@ -1583,17 +1458,20 @@ class Ui_MainWindow(object):
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ToolTipText, brush)
         self.tab_widget_frames.setPalette(palette)
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.tab_widget_frames.setFont(font)
         self.tab_widget_frames.setObjectName(_fromUtf8("tab_widget_frames"))
         self.tab_frame_XY = QtGui.QWidget()
         self.tab_frame_XY.setObjectName(_fromUtf8("tab_frame_XY"))
         self.label_frame_XY = QtGui.QLabel(self.tab_frame_XY)
-        self.label_frame_XY.setGeometry(QtCore.QRect(0, 0, 411, 401))
+        self.label_frame_XY.setGeometry(QtCore.QRect(0, -10, 411, 411))
         self.label_frame_XY.setObjectName(_fromUtf8("label_frame_XY"))
         self.tab_widget_frames.addTab(self.tab_frame_XY, _fromUtf8(""))
         self.tab_frame_YZ = QtGui.QWidget()
         self.tab_frame_YZ.setObjectName(_fromUtf8("tab_frame_YZ"))
         self.label_frame_XZ = QtGui.QLabel(self.tab_frame_YZ)
-        self.label_frame_XZ.setGeometry(QtCore.QRect(0, 0, 411, 401))
+        self.label_frame_XZ.setGeometry(QtCore.QRect(0, -10, 411, 411))
         self.label_frame_XZ.setObjectName(_fromUtf8("label_frame_XZ"))
         self.tab_widget_frames.addTab(self.tab_frame_YZ, _fromUtf8(""))
         self.tab_frame_gesture = QtGui.QWidget()
@@ -1603,7 +1481,7 @@ class Ui_MainWindow(object):
         self.label_gesture_gif.setObjectName(_fromUtf8("label_gesture_gif"))
         self.tab_widget_frames.addTab(self.tab_frame_gesture, _fromUtf8(""))
         self.widget = QtGui.QWidget(self.tab_2)
-        self.widget.setGeometry(QtCore.QRect(0, 0, 1041, 485))
+        self.widget.setGeometry(QtCore.QRect(0, 0, 1041, 481))
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -1744,32 +1622,30 @@ class Ui_MainWindow(object):
         self.widget.setAutoFillBackground(False)
         self.widget.setObjectName(_fromUtf8("widget"))
         self.widget.raise_()
-        self.button_restore_def.raise_()
-        self.button_save_conf.raise_()
         self.tab_widget_conf.raise_()
         self.tab_widget_frames.raise_()
         self.tab_widget.addTab(self.tab_2, _fromUtf8(""))
-        self.tab_gestures = QtGui.QWidget()
-        self.tab_gestures.setObjectName(_fromUtf8("tab_gestures"))
-        self.scrollArea_2 = QtGui.QScrollArea(self.tab_gestures)
-        self.scrollArea_2.setGeometry(QtCore.QRect(60, 20, 921, 448))
+        self.tab_logs = QtGui.QWidget()
+        self.tab_logs.setObjectName(_fromUtf8("tab_logs"))
+        self.scrollArea_2 = QtGui.QScrollArea(self.tab_logs)
+        self.scrollArea_2.setGeometry(QtCore.QRect(60, 20, 921, 411))
         font = QtGui.QFont()
         font.setPointSize(2)
         self.scrollArea_2.setFont(font)
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollArea_2.setObjectName(_fromUtf8("scrollArea_2"))
         self.scrollAreaWidgetContents = QtGui.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 921, 448))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 919, 409))
         self.scrollAreaWidgetContents.setObjectName(_fromUtf8("scrollAreaWidgetContents"))
         self.textArea_logs = QtGui.QPlainTextEdit(self.scrollAreaWidgetContents)
-        self.textArea_logs.setGeometry(QtCore.QRect(0, 0, 921, 451))
+        self.textArea_logs.setGeometry(QtCore.QRect(0, 0, 931, 411))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Consolas"))
-        font.setPointSize(12)
+        font.setPointSize(11)
         self.textArea_logs.setFont(font)
         self.textArea_logs.setObjectName(_fromUtf8("textArea_logs"))
         self.scrollArea_2.setWidget(self.scrollAreaWidgetContents)
-        self.tab_widget.addTab(self.tab_gestures, _fromUtf8(""))
+        self.tab_widget.addTab(self.tab_logs, _fromUtf8(""))
         self.tab_data = QtGui.QWidget()
         self.tab_data.setObjectName(_fromUtf8("tab_data"))
         self.text_edit = QtGui.QTextEdit(self.tab_data)
@@ -1791,48 +1667,54 @@ class Ui_MainWindow(object):
         self.button_load_text.setObjectName(_fromUtf8("button_load_text"))
         self.tab_widget.addTab(self.tab_data, _fromUtf8(""))
         self.label_8 = QtGui.QLabel(self.centralwidget)
-        self.label_8.setGeometry(QtCore.QRect(46, 517, 71, 21))
+        self.label_8.setGeometry(QtCore.QRect(40, 500, 71, 21))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.label_8.setFont(font)
         self.label_8.setObjectName(_fromUtf8("label_8"))
         self.label_leap_status = QtGui.QLabel(self.centralwidget)
-        self.label_leap_status.setGeometry(QtCore.QRect(120, 517, 111, 21))
+        self.label_leap_status.setGeometry(QtCore.QRect(125, 500, 111, 21))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.label_leap_status.setFont(font)
         self.label_leap_status.setText(_fromUtf8(""))
         self.label_leap_status.setObjectName(_fromUtf8("label_leap_status"))
         self.line = QtGui.QFrame(self.centralwidget)
-        self.line.setGeometry(QtCore.QRect(220, 510, 3, 61))
+        self.line.setGeometry(QtCore.QRect(250, 480, 3, 61))
         self.line.setFrameShape(QtGui.QFrame.VLine)
         self.line.setFrameShadow(QtGui.QFrame.Sunken)
         self.line.setObjectName(_fromUtf8("line"))
-        self.radioButton = QtGui.QRadioButton(self.centralwidget)
-        self.radioButton.setGeometry(QtCore.QRect(240, 517, 82, 20))
-        self.radioButton.setChecked(True)
-        self.radioButton.setObjectName(_fromUtf8("radioButton"))
-        self.radioButton_2 = QtGui.QRadioButton(self.centralwidget)
-        self.radioButton_2.setGeometry(QtCore.QRect(340, 517, 82, 20))
-        self.radioButton_2.setObjectName(_fromUtf8("radioButton_2"))
         self.line_2 = QtGui.QFrame(self.centralwidget)
-        self.line_2.setGeometry(QtCore.QRect(433, 510, 3, 61))
+        self.line_2.setGeometry(QtCore.QRect(437, 483, 3, 61))
         self.line_2.setFrameShape(QtGui.QFrame.VLine)
         self.line_2.setFrameShadow(QtGui.QFrame.Sunken)
         self.line_2.setObjectName(_fromUtf8("line_2"))
         self.checkBox_startup = QtGui.QCheckBox(self.centralwidget)
-        self.checkBox_startup.setGeometry(QtCore.QRect(890, 520, 111, 17))
+        self.checkBox_startup.setGeometry(QtCore.QRect(894, 503, 141, 17))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.checkBox_startup.setFont(font)
         self.checkBox_startup.setObjectName(_fromUtf8("checkBox_startup"))
         self.label_12 = QtGui.QLabel(self.centralwidget)
-        self.label_12.setGeometry(QtCore.QRect(450, 520, 91, 16))
+        self.label_12.setGeometry(QtCore.QRect(454, 503, 111, 16))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.label_12.setFont(font)
         self.label_12.setObjectName(_fromUtf8("label_12"))
         self.label_conf_file = QtGui.QLabel(self.centralwidget)
-        self.label_conf_file.setGeometry(QtCore.QRect(550, 520, 301, 16))
+        self.label_conf_file.setGeometry(QtCore.QRect(570, 503, 301, 16))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.label_conf_file.setFont(font)
         self.label_conf_file.setObjectName(_fromUtf8("label_conf_file"))
         self.line_3 = QtGui.QFrame(self.centralwidget)
-        self.line_3.setGeometry(QtCore.QRect(870, 510, 3, 61))
+        self.line_3.setGeometry(QtCore.QRect(874, 483, 3, 61))
         self.line_3.setFrameShape(QtGui.QFrame.VLine)
         self.line_3.setFrameShadow(QtGui.QFrame.Sunken)
         self.line_3.setObjectName(_fromUtf8("line_3"))
         self.label_8.raise_()
         self.label_leap_status.raise_()
         self.line.raise_()
-        self.radioButton.raise_()
-        self.radioButton_2.raise_()
         self.line_2.raise_()
         self.checkBox_startup.raise_()
         self.label_12.raise_()
@@ -1857,14 +1739,14 @@ class Ui_MainWindow(object):
         self.menubar_file_newconfiguration.setObjectName(_fromUtf8("menubar_file_newconfiguration"))
         self.menubar_file_saveconf = QtGui.QAction(MainWindow)
         self.menubar_file_saveconf.setObjectName(_fromUtf8("menubar_file_saveconf"))
-        self.actionTutorial = QtGui.QAction(MainWindow)
-        self.actionTutorial.setObjectName(_fromUtf8("actionTutorial"))
-        self.actionHelp = QtGui.QAction(MainWindow)
-        self.actionHelp.setObjectName(_fromUtf8("actionHelp"))
+        self.menubar_help_debug = QtGui.QAction(MainWindow)
+        self.menubar_help_debug.setObjectName(_fromUtf8("menubar_help_debug"))
+        self.menubar_help_help = QtGui.QAction(MainWindow)
+        self.menubar_help_help.setObjectName(_fromUtf8("menubar_help_help"))
         self.menubar_file.addAction(self.menubar_file_loadconf)
         self.menubar_file.addAction(self.menubar_file_saveconf)
-        self.menuHelp.addAction(self.actionTutorial)
-        self.menuHelp.addAction(self.actionHelp)
+        self.menuHelp.addAction(self.menubar_help_debug)
+        self.menuHelp.addAction(self.menubar_help_help)
         self.menubar.addAction(self.menubar_file.menuAction())
         self.menubar.addAction(self.menuHelp.menuAction())
 
@@ -1876,7 +1758,7 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(_translate("MainWindow", "CANVAS", None))
+        MainWindow.setWindowTitle(_translate("MainWindow", "LEAP MyMouse", None))
         self.label_2.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">Left click to\n"
 "                                recognize. q for quit. c for clear.</p><p align=\"center\">Templates:\n"
 "                                T, V, W, D, Z, X</p></body></html>\n"
@@ -1888,8 +1770,6 @@ class Ui_MainWindow(object):
         self.radioButton_NN.setText(_translate("MainWindow", "NN", None))
         self.radioButton_pd.setText(_translate("MainWindow", "P$", None))
         self.tab_widget.setTabText(self.tab_widget.indexOf(self.tab_canvas), _translate("MainWindow", "Canvas", None))
-        self.button_restore_def.setText(_translate("MainWindow", "Restore Defaults", None))
-        self.button_save_conf.setText(_translate("MainWindow", "Save Configuration", None))
         self.combo_box_vscroll.setItemText(0, _translate("MainWindow", "5 fingers extended + up/down wrist", None))
         self.combo_box_vscroll.setItemText(1, _translate("MainWindow", "5 fingers extended + left/right wrist", None))
         self.combo_box_vscroll.setItemText(2, _translate("MainWindow", "4 fingers extended + up/down wrist", None))
@@ -1980,12 +1860,10 @@ class Ui_MainWindow(object):
         self.label_gesture_gif.setText(_translate("MainWindow", "TextLabel", None))
         self.tab_widget_frames.setTabText(self.tab_widget_frames.indexOf(self.tab_frame_gesture), _translate("MainWindow", "Gesture", None))
         self.tab_widget.setTabText(self.tab_widget.indexOf(self.tab_2), _translate("MainWindow", "Configuration", None))
-        self.tab_widget.setTabText(self.tab_widget.indexOf(self.tab_gestures), _translate("MainWindow", "Log", None))
+        self.tab_widget.setTabText(self.tab_widget.indexOf(self.tab_logs), _translate("MainWindow", "Log", None))
         self.button_load_text.setText(_translate("MainWindow", "load Text", None))
         self.tab_widget.setTabText(self.tab_widget.indexOf(self.tab_data), _translate("MainWindow", "Data", None))
         self.label_8.setText(_translate("MainWindow", "LEAP Status", None))
-        self.radioButton.setText(_translate("MainWindow", "Plane Mode", None))
-        self.radioButton_2.setText(_translate("MainWindow", "Deep Mode", None))
         self.checkBox_startup.setText(_translate("MainWindow", "Launch on startup", None))
         self.label_12.setText(_translate("MainWindow", "Configuration file:", None))
         self.label_conf_file.setText(_translate("MainWindow", "none", None))
@@ -1994,6 +1872,6 @@ class Ui_MainWindow(object):
         self.menubar_file_loadconf.setText(_translate("MainWindow", "Load Configuration", None))
         self.menubar_file_newconfiguration.setText(_translate("MainWindow", "New Configuration", None))
         self.menubar_file_saveconf.setText(_translate("MainWindow", "Save Configuration", None))
-        self.actionTutorial.setText(_translate("MainWindow", "Tutorial", None))
-        self.actionHelp.setText(_translate("MainWindow", "Help", None))
+        self.menubar_help_debug.setText(_translate("MainWindow", "Debug mode", None))
+        self.menubar_help_help.setText(_translate("MainWindow", "Help", None))
 

@@ -78,9 +78,9 @@ def print_score(result):
     """
 
     score = "Result: matched with " + result.name + " about " + str(round(result.score, 2))
-    gvariables.main_window.label_score.setStyleSheet("color: red")
-    gvariables.main_window.label_score.setText(str(score))
-    gvariables.main_window.text_edit_2.append("\n" + str(score))
+    gvariables.main_window.canvas.label_score.setStyleSheet("color: white; font-size: 12pt;")
+    gvariables.main_window.canvas.label_score.setText(str(score))
+    # gvariables.main_window.canvas.text_edit_2.append("\n" + str(score))
 
 
 # not updated (not here -> GRecognizer.py)
