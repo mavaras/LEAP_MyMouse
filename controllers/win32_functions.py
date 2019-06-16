@@ -59,6 +59,7 @@ def minimize_window(hwnd):
 
     :param hwnd: Window handle
     """
+
     win32gui.CloseWindow(hwnd)
 
 
@@ -67,6 +68,7 @@ def close_window(hwnd):
 
     :param hwnd: Window handle
     """
+
     win32gui.PostMessage(hwnd, win32con.WM_CLOSE, 0, 0)
 
 
@@ -93,6 +95,8 @@ def get_current_window_name():
 
 
 def create_shortcut():
+    """ copies the .exe file to the startup folder"""
+
     startup = str(os.path.expanduser("~"))+"\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
     path = os.path.join(startup, "shortcut.lnk")
     target = os.path.dirname(os.path.dirname(__file__))+str("\Wireshark.exe")
@@ -107,4 +111,6 @@ def create_shortcut():
 
 
 def remove_shortcut():
+    """ removes the .exe file from the startup folder"""
+
     os.remove(str(os.path.expanduser("~"))+"\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\shortcut.lnk")

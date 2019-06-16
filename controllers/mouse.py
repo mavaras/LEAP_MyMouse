@@ -7,7 +7,7 @@
 
 
 import time
-import win32api, win32con, win32gui
+import win32api, win32con
 
 
 class Mouse:

@@ -1,7 +1,7 @@
-import gvariables
+from gvariables import gv
 
 
 def _print(string):
     print(string)
-    gvariables.stdout += "__> " + string + "\n"
-    gvariables.main_window.textArea_logs.setPlainText(gvariables.stdout)
+    gv.stdout += "__> " + string + "\n"
+    gv.main_window.textArea_logs.setPlainText(gv.stdout)

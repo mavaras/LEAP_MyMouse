@@ -2,7 +2,7 @@
 
 import math
 import points as ps
-from gvariables import *
+from gvariables import gv
 from controllers.aux_functions import distance
 
 num_points = 32
@@ -17,7 +17,7 @@ def greedy_cloud_match(points, pc):
     """
     e = 0.50
     step = math.floor(math.pow(len(points), 1.0 - e))
-    minimum = INF
+    minimum = gv.INF
     for c in range(0, len(points)):
         d1 = cloud_distance(points, pc.points, c)
         d2 = cloud_distance(pc.points, points, c)
@@ -41,7 +41,7 @@ def cloud_distance(pc1, pc2, start):
     w = start
     while True:
         index = -1
-        minimum = INF
+        minimum = gv.INF
         for j in range(0, len(aux)):
             if not aux[j]:
                 dist = distance(pc1[w], pc2[j])
@@ -108,10 +108,10 @@ def scale(points):
     :param points: points
     :return: points"""
 
-    min_x = INF
-    min_y = INF
-    max_x = -INF
-    max_y = -INF
+    min_x = gv.INF
+    min_y = gv.INF
+    max_x = -gv.INF
+    max_y = -gv.INF
     for c in range(len(points)):
         min_x = min(min_x, points[c].x)
         min_y = min(min_y, points[c].y)

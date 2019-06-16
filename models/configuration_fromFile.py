@@ -1,6 +1,5 @@
 from configuration import Conf
 import linecache
-from _print import _print
 
 
 class ConfFromFile(Conf):

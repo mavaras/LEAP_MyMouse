@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>1043</width>
-    <height>551</height>
+    <height>559</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -614,7 +614,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>14</y>
+      <y>20</y>
       <width>1051</width>
       <height>481</height>
      </rect>
@@ -1046,7 +1046,7 @@
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <property name="iconSize">
      <size>
@@ -2976,10 +2976,10 @@
        <widget class="QScrollArea" name="scrollArea_3">
         <property name="geometry">
          <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>501</width>
-          <height>377</height>
+          <x>30</x>
+          <y>8</y>
+          <width>471</width>
+          <height>361</height>
          </rect>
         </property>
         <property name="palette">
@@ -3401,10 +3401,10 @@
          <bool>false</bool>
         </property>
         <property name="verticalScrollBarPolicy">
-         <enum>Qt::ScrollBarAlwaysOn</enum>
+         <enum>Qt::ScrollBarAlwaysOff</enum>
         </property>
         <property name="horizontalScrollBarPolicy">
-         <enum>Qt::ScrollBarAsNeeded</enum>
+         <enum>Qt::ScrollBarAlwaysOff</enum>
         </property>
         <property name="widgetResizable">
          <bool>true</bool>
@@ -3415,7 +3415,7 @@
            <x>0</x>
            <y>0</y>
            <width>482</width>
-           <height>375</height>
+           <height>359</height>
           </rect>
          </property>
          <property name="minimumSize">
@@ -4753,62 +4753,13 @@
      <attribute name="title">
       <string>Data</string>
      </attribute>
-     <widget class="QTextEdit" name="text_edit">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>50</y>
-        <width>371</width>
-        <height>341</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>14</pointsize>
-       </font>
-      </property>
-     </widget>
-     <widget class="QTextEdit" name="text_edit_2">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>540</x>
-        <y>50</y>
-        <width>371</width>
-        <height>341</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>14</pointsize>
-       </font>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="button_load_text">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>410</y>
-        <width>121</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>load Text</string>
-      </property>
-     </widget>
     </widget>
    </widget>
    <widget class="QLabel" name="label_8">
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>500</y>
+      <y>509</y>
       <width>71</width>
       <height>21</height>
      </rect>
@@ -4826,7 +4777,7 @@
     <property name="geometry">
      <rect>
       <x>125</x>
-      <y>500</y>
+      <y>509</y>
       <width>111</width>
       <height>21</height>
      </rect>
@@ -4870,7 +4821,7 @@
     <property name="geometry">
      <rect>
       <x>894</x>
-      <y>503</y>
+      <y>510</y>
       <width>141</width>
       <height>17</height>
      </rect>
@@ -4888,7 +4839,7 @@
     <property name="geometry">
      <rect>
       <x>454</x>
-      <y>503</y>
+      <y>510</y>
       <width>111</width>
       <height>16</height>
      </rect>
@@ -4906,7 +4857,7 @@
     <property name="geometry">
      <rect>
       <x>570</x>
-      <y>503</y>
+      <y>510</y>
       <width>301</width>
       <height>16</height>
      </rect>
@@ -4965,6 +4916,7 @@
     </property>
     <addaction name="menubar_help_debug"/>
     <addaction name="menubar_help_help"/>
+    <addaction name="menubar_help_settings"/>
    </widget>
    <addaction name="menubar_file"/>
    <addaction name="menuHelp"/>
@@ -4993,6 +4945,11 @@
   <action name="menubar_help_help">
    <property name="text">
     <string>Help</string>
+   </property>
+  </action>
+  <action name="menubar_help_settings">
+   <property name="text">
+    <string>Settings</string>
    </property>
   </action>
  </widget>

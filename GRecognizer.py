@@ -33,8 +33,8 @@ from models.PCRecognizer import PCRecognizer
 from models.points import Point_cloud
 
 from views.gui_qtdesigner import *
-from views.loading_screen import LoadScreen
 import views.gui as gui
+
 
 from controllers.leap_controller import *
 from controllers.aux_functions import *
@@ -43,7 +43,7 @@ from controllers.aux_functions import *
 #       -> debug mode
 #       -> browser with tutorial
 #       -> applications interactions (powerpoint, vlc ?)
-#       -> gvariables as object ?? (this is good)
+#       -> gvs as object ?? (this is good)
 #       -> add gifs
 #       -> help
 #       -> installer with InnoSetup (when exe ready)
@@ -121,27 +121,27 @@ def gesture_match(gesture_name):
         if "-thread" in sys.argv:
             # handle = win32gui.FindWindow(None, r"Reproductor multimedia VLC")
             hwnd = get_current_window_hwnd()
-            if gvariables.configuration.basic.closew == "T":
+            if gv.configuration.basic.closew == "T":
                 close_window(hwnd)
-            elif gvariables.configuration.basic.minimizew == "T":
+            elif gv.configuration.basic.minimizew == "T":
                 minimize_window(hwnd)
 
     elif gesture_name == "V":
         print("V gesture")
         if "-thread" in sys.argv:
             hwnd = get_current_window_hwnd()
-            if gvariables.configuration.basic.closew == "V":
+            if gv.configuration.basic.closew == "V":
                 close_window(hwnd)
-            elif gvariables.configuration.basic.minimizew == "V":
+            elif gv.configuration.basic.minimizew == "V":
                 minimize_window(hwnd)
 
     elif gesture_name == "Z":
         print("Z gesture")
         if "-thread" in sys.argv:
             hwnd = get_current_window_hwnd()
-            if gvariables.configuration.basic.closew == "Z":
+            if gv.configuration.basic.closew == "Z":
                 close_window(hwnd)
-            elif gvariables.configuration.basic.minimizew == "Z":
+            elif gv.configuration.basic.minimizew == "Z":
                 minimize_window(hwnd)
 
     elif gesture_name == "W":
@@ -179,9 +179,9 @@ def print_score(result):
     """
 
     score = "Result: matched with " + result.name + " about " + str(round(result.score, 2))
-    gvariables.main_window.label_score.setStyleSheet("color: red")
-    gvariables.main_window.label_score.setText(str(score))
-    gvariables.main_window.text_edit_2.append("\n" + str(score))
+    gv.main_window.label_score.setStyleSheet("color: red")
+    gv.main_window.label_score.setText(str(score))
+    gv.main_window.text_edit_2.append("\n" + str(score))
 
 
 # not updated (not here -> GRecognizer.py)
@@ -193,35 +193,35 @@ def gesture_match(gesture_name):
 
     print(str(gesture_name) + " gesture\n")
     if "-thread" in sys.argv:
-        if gesture_name == gvariables.configuration.basic.closew:
+        if gesture_name == gv.configuration.basic.closew:
             hwnd = get_current_window_hwnd()
             close_window(hwnd)
 
-        elif gesture_name == gvariables.configuration.basic.minimizew:
+        elif gesture_name == gv.configuration.basic.minimizew:
             hwnd = get_current_window_hwnd()
             minimize_window(hwnd)
 
-        elif gesture_name == gvariables.configuration.extra.show_desktop:
+        elif gesture_name == gv.configuration.extra.show_desktop:
             hold("windows")
             press("d")
             release("windows")
 
-        elif gesture_name == gvariables.configuration.extra.show_explorer:
+        elif gesture_name == gv.configuration.extra.show_explorer:
             hold("windows")
             press("e")
             release("windows")
 
-        elif gesture_name == gvariables.configuration.extra.copy:
+        elif gesture_name == gv.configuration.extra.copy:
             hold("ctrl")
             press("c")
             release("ctrl")
 
-        elif gesture_name == gvariables.configuration.extra.paste:
+        elif gesture_name == gv.configuration.extra.paste:
             hold("ctrl")
             press("v")
             release("ctrl")
 
-        elif gesture_name == gvariables.configuration.extra.cut:
+        elif gesture_name == gv.configuration.extra.cut:
             hold("ctrl")
             press("x")
             release("ctrl")
@@ -269,31 +269,31 @@ def thread_handler():
     print("thread_handler_init")
     global exit
     while not exit:
-        if gvariables.listener.can_record and \
-                not gvariables.listener.capture_frame:
+        if gv.listener.can_record and \
+                not gv.listener.capture_frame:
             # here listener.frame_capture is False (we starting a new recording)
-            gvariables.listener.recording = True
+            gv.listener.recording = True
             time.sleep(.4)
             print("recording")
-            while gvariables.listener.hand_vel < 250:
+            while gv.listener.hand_vel < 250:
                 pass
 
-            gvariables.listener.capture_frame = True
+            gv.listener.capture_frame = True
 
-        elif not gvariables.listener.can_record and \
-                gvariables.listener.capture_frame:
+        elif not gv.listener.can_record and \
+                gv.listener.capture_frame:
 
             """ NEURAL NETWORK CODE
             img_dim = 28
             matrix = np.zeros((img_dim, img_dim, 3), dtype=np.uint8)
             white = [255, 255, 255]
-            #leap_gesture_points = gvariables.listener.gesture[1]
-            max_leap_y = max(g.y for g in gvariables.listener.gesture[1])
-            max_leap_x = max((g.x+200) for g in gvariables.listener.gesture[1])
+            #leap_gesture_points = gv.listener.gesture[1]
+            max_leap_y = max(g.y for g in gv.listener.gesture[1])
+            max_leap_x = max((g.x+200) for g in gv.listener.gesture[1])
             
-            for c in range(len(gvariables.listener.gesture[1])):
-                leap_x = gvariables.listener.gesture[1][c].x + 140
-                leap_y = max_leap_y + 40 - gvariables.listener.gesture[1][c].y
+            for c in range(len(gv.listener.gesture[1])):
+                leap_x = gv.listener.gesture[1][c].x + 140
+                leap_y = max_leap_y + 40 - gv.listener.gesture[1][c].y
                 print(str(leap_x)+", "+str(leap_y))
                 print(str(leap_x*img_dim/max_leap_x)+"; "+str(leap_y*img_dim/max_leap_y))
                 print("")
@@ -312,12 +312,12 @@ def thread_handler():
                 pressHoldRelease("left_control", str(pred))
             """
             print("recording and recognizing captured")
-            gvariables.listener.capture_frame = False  # end of Leap capture
-            points = gvariables.listener.gesture[1]  # this allows "F" to work with mouse and hand stroke
-
-            if len(points) > 40:
+            gv.listener.capture_frame = False  # end of Leap capture
+            points = gv.listener.gesture[1]  # this allows "F" to work with mouse and hand stroke
+            print("_>"+str(len(points)))
+            if len(points) > 20:
                 try:
-                    pc = Point_cloud("f1", gvariables.listener.gesture[1])  # pc containing our new gesture
+                    pc = Point_cloud("f1", gv.listener.gesture[1])  # pc containing our new gesture
                     pc.draw_on_canvas()  # drawing pc on canvas to see the shape
                 except:
                     print("some point_cloud error...")
@@ -332,8 +332,8 @@ def thread_handler():
 
             stroke_id = 0  # reseting values
             points = []
-            gvariables.listener.clear_variables()
-            gvariables.listener.recording = False
+            gv.listener.clear_variables()
+            gv.listener.recording = False
 
     print("thread_handler_end")
 
@@ -352,17 +352,17 @@ def console_args(args):
             thread.start()
 
         elif arg == "-allf":  # ALL fingers capture mode by default
-            main_window.combo_box.setCurrentIndex(1)
+            gv.main_window.combo_box.setCurrentIndex(1)
 
         elif arg == "-scroll":  # scroll enabled
-            gvariables.listener.vscrolling = True
-            gvariables.listener.hscrolling = True
+            gv.listener.vscrolling = True
+            gv.listener.hscrolling = True
 
         elif arg == "-deepm":  # INTERACTION MODE: deep mode by default
-            gvariables.listener.deep_mode = True
+            gv.listener.deep_mode = True
 
         elif arg == "-planem":  # INTERACTION MODE: plane mode by default
-            gvariables.listener.plane_mode = True
+            gv.listener.plane_mode = True
 
 
 def show_splash_screen():
@@ -411,10 +411,12 @@ def show_splash_screen():
 
 # MAIN BLOCK
 if __name__ == "__main__":
-    # sys.stdout = gvariables.stdout = ListStream()
+    # sys.stdout = gv.stdout = ListStream()
     # canvas variables
     result = -1  # result object
-    gvariables.pcr = PCRecognizer()  # algorithm class initialization
+    from gvariables import gv
+
+    gv.pcr = PCRecognizer()  # algorithm class initialization
 
     # Leap setting up
     listener = leap_listener()
@@ -426,11 +428,11 @@ if __name__ == "__main__":
     # keeping Leap Motion working from background
     controller.set_policy(Leap.Controller.POLICY_BACKGROUND_FRAMES)
 
-    gvariables.listener = listener
+    gv.listener = listener
 
     # Configuration
-    gvariables.configuration = ConfFromFile()
-    gvariables.configuration.check()
+    gv.configuration = ConfFromFile()
+    gv.configuration.check()
 
     # GUI setting up
     app = QtGui.QApplication([])
@@ -438,7 +440,7 @@ if __name__ == "__main__":
     """ls = LoadScreen()
     ls.show()"""
 
-    # show_splash_screen()
+    show_splash_screen()
 
     """font = QtGui.QFont('Helvetica', 12, QtGui.QFont.Normal)
     font.setPointSize(12)
@@ -477,12 +479,14 @@ if __name__ == "__main__":
     '''
     app.setStyleSheet(stylesheet)
 
-    gvariables.main_window = gui.MainWindow()
+    main_window = gui.MainWindow()
 
-    gvariables.main_window.setFixedSize(gvariables.main_window.size())
-    gvariables.main_window.statusBar().setVisible(False)
-    gvariables.main_window.initUI()
-    gvariables.main_window.show()
+    main_window.setFixedSize(main_window.size())
+    main_window.statusBar().setVisible(False)
+    main_window.initUI()
+    main_window.show()
+
+    gv.main_window = main_window
 
     console_args(sys.argv)
 
@@ -501,7 +505,7 @@ if __name__ == "__main__":
     print(get_current_window_name())
 
     # drawing tests
-    gvariables.pcr.templates[5].point_cloud[1].draw_on_canvas(False)
+    gv.pcr.templates[5].point_cloud[1].draw_on_canvas(False)
     '''
 
     app.exec_()

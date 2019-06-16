@@ -9,7 +9,7 @@
 
 import math
 from win32_functions import *
-import gvariables
+from gvariables import gv
 from key_handle import *
 
 
@@ -19,7 +19,7 @@ def sign(n):
     :param n: number
     :return: -1 or 1
     """
-    return n // abs(n)
+    return int(n//abs(n))
 
 
 def distance_3d(x, y, z, x2, y2, z2):
@@ -66,7 +66,7 @@ def recognize_stroke(points):
 
     print("recognizing stroke")
     aux = [points]
-    result = gvariables.pcr.recognize(aux, True)
+    result = gv.pcr.recognize(aux, True)
 
     return result
 
@@ -78,9 +78,9 @@ def print_score(result):
     """
 
     score = "Result: matched with " + result.name + " about " + str(round(result.score, 2))
-    gvariables.main_window.canvas.label_score.setStyleSheet("color: white; font-size: 12pt;")
-    gvariables.main_window.canvas.label_score.setText(str(score))
-    # gvariables.main_window.canvas.text_edit_2.append("\n" + str(score))
+    gv.main_window.canvas.label_score.setStyleSheet("color: white; font-size: 12pt;")
+    gv.main_window.canvas.label_score.setText(str(score))
+    # gv.main_window.canvas.text_edit_2.append("\n" + str(score))
 
 
 # not updated (not here -> GRecognizer.py)
@@ -92,35 +92,35 @@ def gesture_match(gesture_name, active=True):
     print(str(gesture_name) + " gesture\n")
 
     if active:
-        if gesture_name == gvariables.configuration.basic.closew:
+        if gesture_name == gv.configuration.basic.closew:
             hwnd = get_current_window_hwnd()
             close_window(hwnd)
 
-        elif gesture_name == gvariables.configuration.basic.minimizew:
+        elif gesture_name == gv.configuration.basic.minimizew:
             hwnd = get_current_window_hwnd()
             minimize_window(hwnd)
 
-        elif gesture_name == gvariables.configuration.extra.show_desktop:
+        elif gesture_name == gv.configuration.extra.show_desktop:
             hold("windows")
             press("d")
             release("windows")
 
-        elif gesture_name == gvariables.configuration.extra.show_explorer:
+        elif gesture_name == gv.configuration.extra.show_explorer:
             hold("windows")
             press("e")
             release("windows")
 
-        elif gesture_name == gvariables.configuration.extra.copy:
+        elif gesture_name == gv.configuration.extra.copy:
             hold("ctrl")
             press("c")
             release("ctrl")
 
-        elif gesture_name == gvariables.configuration.extra.paste:
+        elif gesture_name == gv.configuration.extra.paste:
             hold("ctrl")
             press("v")
             release("ctrl")
 
-        elif gesture_name == gvariables.configuration.extra.cut:
+        elif gesture_name == gv.configuration.extra.cut:
             hold("ctrl")
             press("x")
             release("ctrl")

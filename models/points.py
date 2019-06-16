@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import gvariables
+from gvariables import gv
 from PCRecognizer_functions import *
 from PyQt4 import QtCore
 
@@ -26,8 +26,8 @@ class Point:
         :param where_H: height of new place
         """
         self.y = where_H - abs(self.y)  # Y inversion
-        self.x = (W * self.x) / where_W
-        self.y = (H * self.y) / where_H
+        self.x = (gv.W * self.x) / where_W
+        self.y = (gv.H * self.y) / where_H
 
     """def draw_on_canvasTK(self, radius):
         canvas.create_oval(self.x - radius, self.y - radius,
@@ -39,9 +39,9 @@ class Point:
         :param radius: radius of the circle
         :param path: widget_canvas's path (colour)
         """
-        eval("gvariables.main_window.canvas.widget_canvas." + path +
+        eval("gv.main_window.canvas.widget_canvas." + path +
              ".addEllipse(QtCore.QRectF(self.x, self.y, radius, radius))")
-        gvariables.main_window.widget_canvas.update()
+        gv.main_window.widget_canvas.update()
 
 
 class Point_cloud:
@@ -53,7 +53,7 @@ class Point_cloud:
     :param where_to_translate: special cases (has a default value)
     """
 
-    def __init__(self, name, points, where_to_translate=Point(W/4, H/4, -1)):
+    def __init__(self, name, points, where_to_translate=Point(gv.W/4, gv.H/4, -1)):
         self.origin = where_to_translate
         self.name = name
         self.points = resample(points, 32)  # point cloud resizing

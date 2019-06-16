@@ -2,19 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9d7c6978-d1a6-4729-8db0-b363c85a081d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/views/loading_screen.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GRecognizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/GRecognizer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_print.py" beforeDir="false" afterPath="$PROJECT_DIR$/_print.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/aux_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/aux_functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/leap_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/leap_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/mouse.py" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/mouse.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/win32_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/win32_functions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gvariables.py" beforeDir="false" afterPath="$PROJECT_DIR$/gvariables.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_28x28.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_28x28.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/PCRecognizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/PCRecognizer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/PCRecognizer_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/PCRecognizer_functions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/configuration.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/configuration_fromFile.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/configuration_fromFile.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/points.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/points.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/template.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/template.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/icons/arrow.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/icons/arrow.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/NN/image_28x28.png" beforeDir="false" afterPath="$PROJECT_DIR$/tests/NN/image_28x28.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/canvas.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/canvas.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/gui.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/gui_qtdesigner.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/gui_qtdesigner.py" afterDir="false" />
@@ -34,32 +36,35 @@
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.19" value="1" />
+          <entry key="project.open.time.22" value="1" />
           <entry key="project.open.time.26" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.30" value="2" />
-          <entry key="project.open.time.34" value="1" />
+          <entry key="project.open.time.34" value="2" />
           <entry key="project.open.time.35" value="1" />
+          <entry key="project.open.time.46" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.60" value="1" />
-          <entry key="project.opened" value="11" />
+          <entry key="project.opened" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="5638" />
+          <entry key="py" value="10300" />
           <entry key="qss" value="1130" />
+          <entry key="txt" value="33" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="1130" />
-          <entry key="Python" value="5638" />
+          <entry key="PLAIN_TEXT" value="1163" />
+          <entry key="Python" value="10300" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="png" value="1" />
-          <entry key="py" value="12" />
+          <entry key="py" value="27" />
           <entry key="qss" value="4" />
         </counts>
       </usages-collector>
@@ -67,7 +72,7 @@
         <counts>
           <entry key="Image" value="1" />
           <entry key="PLAIN_TEXT" value="4" />
-          <entry key="Python" value="12" />
+          <entry key="Python" value="27" />
         </counts>
       </usages-collector>
     </session>
@@ -76,14 +81,14 @@
     <favorites_list name="LEAP_proyect" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.505295">
+    <splitter split-orientation="horizontal" split-proportion="0.4888393">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/GRecognizer.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="507">
-                  <caret line="451" lean-forward="true" selection-start-line="451" selection-end-line="451" />
+                <state relative-caret-position="185">
+                  <caret line="442" column="24" lean-forward="true" selection-start-line="442" selection-start-column="24" selection-end-line="442" selection-end-column="24" />
                   <folding>
                     <element signature="e#196#206#0" expanded="true" />
                   </folding>
@@ -94,8 +99,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/_print.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="17">
-                  <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+                <state relative-caret-position="119">
+                  <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
                 </state>
               </provider>
             </entry>
@@ -103,7 +108,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/res/MaterialDark.qss">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="290">
+                <state relative-caret-position="561">
                   <caret line="36" selection-start-line="36" selection-end-line="36" />
                 </state>
               </provider>
@@ -121,13 +126,10 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/views/gui.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="85">
-                  <caret line="5" column="11" lean-forward="true" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+                <state relative-caret-position="381">
+                  <caret line="435" column="48" lean-forward="true" selection-start-line="435" selection-start-column="48" selection-end-line="435" selection-end-column="48" />
                   <folding>
                     <element signature="e#204#214#0" expanded="true" />
-                    <marker date="1560418190048" expanded="true" signature="2383:2384" ph="..." />
-                    <marker date="1560418190048" expanded="true" signature="17754:17773" ph="..." />
-                    <marker date="1560418190048" expanded="true" signature="34508:34517" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -136,8 +138,132 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/controllers/win32_functions.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="334">
-                  <caret line="98" selection-start-line="98" selection-end-line="98" />
+                <state relative-caret-position="17">
+                  <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/models/points.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="68">
+                  <caret line="6" selection-start-line="6" selection-end-line="6" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/controllers/aux_functions.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="62">
+                  <caret line="8" selection-start-line="8" selection-end-line="8" />
+                  <folding>
+                    <element signature="e#181#192#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/models/PCRecognizer.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="119">
+                  <caret line="15" selection-start-line="15" selection-end-line="15" />
+                  <folding>
+                    <element signature="e#134#145#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/models/PCRecognizer_functions.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="340">
+                  <caret line="23" column="42" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
+                  <folding>
+                    <element signature="e#25#36#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/controllers/key_handle.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="538">
+                  <caret line="156" column="22" selection-start-line="156" selection-start-column="22" selection-end-line="156" selection-end-column="22" />
+                  <folding>
+                    <element signature="e#0#11#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/controllers/leap_controller.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="153">
+                  <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+                  <folding>
+                    <element signature="e#191#202#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/models/configuration_fromFile.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="473">
+                  <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+                  <folding>
+                    <element signature="e#0#30#0" expanded="true" />
+                    <marker date="1560716235059" expanded="true" signature="75:80" ph="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/models/configuration.py">
+              <provider selected="true" editor-type-id="text-editor" />
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/views/canvas.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="85">
+                  <caret line="32" selection-start-line="32" selection-end-line="32" />
+                  <folding>
+                    <element signature="e#160#170#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/views/settings.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="17">
+                  <caret line="14" selection-start-line="14" selection-end-line="14" />
+                  <folding>
+                    <element signature="e#66#75#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/gvariables.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="459">
+                  <caret line="27" column="44" lean-forward="true" selection-start-line="27" selection-start-column="44" selection-end-line="27" selection-end-column="44" />
                 </state>
               </provider>
             </entry>
@@ -151,128 +277,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/gvariables.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="425">
-                  <caret line="27" column="44" lean-forward="true" selection-start-line="27" selection-start-column="44" selection-end-line="27" selection-end-column="44" />
-                  <folding>
-                    <marker date="1560418340865" expanded="true" signature="82:569" ph="..." />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/models/points.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="348">
-                  <caret line="41" column="65" selection-start-line="41" selection-start-column="65" selection-end-line="41" selection-end-column="65" />
-                  <folding>
-                    <element signature="e#25#42#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/controllers/aux_functions.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="51">
-                  <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
-                  <folding>
-                    <element signature="e#181#192#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/controllers/key_handle.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <folding>
-                    <element signature="e#0#11#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/models/configuration.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="119">
-                  <caret line="7" selection-start-line="7" selection-end-line="7" />
-                  <folding>
-                    <marker date="1560418159079" expanded="true" signature="662:681" ph="..." />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/models/configuration_fromFile.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="187">
-                  <caret line="11" selection-start-line="11" selection-end-line="11" />
-                  <folding>
-                    <element signature="e#0#30#0" expanded="true" />
-                    <marker date="1559998977738" expanded="true" signature="101:106" ph="..." />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/views/canvas.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="85">
-                  <caret line="5" column="18" lean-forward="true" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
-                  <folding>
-                    <element signature="e#2#12#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/tests/NN/n_network.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="232">
-                  <caret line="26" column="61" selection-start-line="26" selection-start-column="61" selection-end-line="26" selection-end-column="61" />
-                  <folding>
-                    <element signature="e#13#31#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/image_28x28.png">
-              <provider selected="true" editor-type-id="images" />
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/tests/transparent_canvas/transparent_canvas.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="459">
-                  <caret line="36" column="16" selection-start-line="36" selection-start-column="16" selection-end-line="36" selection-end-column="16" />
-                  <folding>
-                    <element signature="e#0#10#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/controllers/mouse.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="918">
-                  <caret line="55" column="11" selection-start-line="55" selection-start-column="11" selection-end-line="55" selection-end-column="11" />
+                <state relative-caret-position="136">
+                  <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
                   <folding>
                     <element signature="e#153#164#0" expanded="true" />
                   </folding>
@@ -280,11 +289,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/tests/NN/mlp.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="119">
-                  <caret line="15" column="44" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="44" />
+                <state relative-caret-position="51">
+                  <caret line="11" selection-start-line="11" selection-end-line="11" />
                 </state>
               </provider>
             </entry>
@@ -296,42 +305,43 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Setup Script" />
         <option value="Python Script" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>combo_box_nfingers_selection_changed</find>
-      <find>pd</find>
-      <find>canvas_w</find>
-      <find>canvas_widthcanvas</find>
-      <find>n_of_fingers</find>
-      <find>thread</find>
-      <find>neural_ne</find>
-      <find>mymouse</find>
-      <find>create_shortcut</find>
-      <find>menu</find>
-      <find>show()</find>
-      <find>alert</find>
-      <find>notifi</find>
-      <find>startup</find>
-      <find>show_po</find>
-      <find>mouse</find>
-      <find>exit</find>
-      <find>neural</find>
-      <find>gesture_mat</find>
-      <find>draw</find>
-      <find>aux_f</find>
-      <find>exit_app</find>
-      <find>load_imag</find>
-      <find>eye</find>
-      <find>show_popu</find>
-      <find>disconnected</find>
-      <find>launch</find>
-      <find>widget_c</find>
-      <find>Canvas</find>
-      <find>print</find>
+      <find>gvariables</find>
+      <find>scroll</find>
+      <find>vscroll</find>
+      <find>power</find>
+      <find>powe</find>
+      <find>fingers</find>
+      <find>frame.fingers</find>
+      <find>dist_1_2</find>
+      <find>f1</find>
+      <find>dist_0_1</find>
+      <find>swipe</find>
+      <find>swipeº</find>
+      <find>sign</find>
+      <find>add_lis</find>
+      <find>green</find>
+      <find>add_liste</find>
+      <find>change_leap</find>
+      <find>debug_mode</find>
+      <find>canvas</find>
+      <find>menubar</find>
+      <find>settings</find>
+      <find>add_listener</find>
+      <find>combo_box</find>
+      <find>radio</find>
+      <find>setwindowi</find>
+      <find>configuration</find>
+      <find>load_conf</find>
+      <find>setf</find>
+      <find>red</find>
+      <find>icon</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -340,6 +350,9 @@
       <replace>color_hover</replace>
       <replace>color_main</replace>
       <replace>color_label</replace>
+      <replace>gvariabless</replace>
+      <replace>gv</replace>
+      <replace>gv.W</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -350,28 +363,29 @@
       <list>
         <option value="$PROJECT_DIR$/../../../../TFG/OneDrive para la Empresa/TFG/NN/mlp.py" />
         <option value="$PROJECT_DIR$/../../../../TFG/OneDrive para la Empresa/TFG/NN/n_network.py" />
-        <option value="$PROJECT_DIR$/controllers/mouse.py" />
         <option value="$PROJECT_DIR$/controllers/key_handle.py" />
         <option value="$PROJECT_DIR$/tests/NN/n_network.py" />
-        <option value="$PROJECT_DIR$/models/PCRecognizer_functions.py" />
-        <option value="$PROJECT_DIR$/models/PCRecognizer.py" />
         <option value="$PROJECT_DIR$/print.py" />
-        <option value="$PROJECT_DIR$/_print.py" />
-        <option value="$PROJECT_DIR$/controllers/leap_controller.py" />
         <option value="$PROJECT_DIR$/res/stylesheet.qss" />
         <option value="$PROJECT_DIR$/res/stylesheet2.qss" />
         <option value="$PROJECT_DIR$/views/loading_screen.py" />
-        <option value="$PROJECT_DIR$/models/points.py" />
-        <option value="$PROJECT_DIR$/controllers/aux_functions.py" />
         <option value="$PROJECT_DIR$/res/MaterialDark.qss" />
-        <option value="$PROJECT_DIR$/models/configuration_fromFile.py" />
         <option value="$PROJECT_DIR$/models/template.py" />
-        <option value="$PROJECT_DIR$/controllers/win32_functions.py" />
-        <option value="$PROJECT_DIR$/GRecognizer.py" />
+        <option value="$PROJECT_DIR$/gvariables.py" />
+        <option value="$PROJECT_DIR$/_print.py" />
+        <option value="$PROJECT_DIR$/models/points.py" />
+        <option value="$PROJECT_DIR$/models/PCRecognizer_functions.py" />
+        <option value="$PROJECT_DIR$/controllers/mouse.py" />
+        <option value="$PROJECT_DIR$/controllers/aux_functions.py" />
         <option value="$PROJECT_DIR$/views/canvas.py" />
         <option value="$PROJECT_DIR$/models/configuration.py" />
+        <option value="$PROJECT_DIR$/controllers/leap_controller.py" />
+        <option value="$PROJECT_DIR$/GRecognizer.py" />
         <option value="$PROJECT_DIR$/views/gui.py" />
-        <option value="$PROJECT_DIR$/gvariables.py" />
+        <option value="$PROJECT_DIR$/views/settings.py" />
+        <option value="$PROJECT_DIR$/models/configuration_fromFile.py" />
+        <option value="$PROJECT_DIR$/models/PCRecognizer.py" />
+        <option value="$PROJECT_DIR$/controllers/win32_functions.py" />
       </list>
     </option>
   </component>
@@ -400,7 +414,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -427,6 +440,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -690,7 +704,14 @@
       <option name="project" value="LOCAL" />
       <updated>1557214833820</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="more work + debug + refactoring">
+      <created>1560418428427</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1560418428427</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TodoView">
@@ -735,7 +756,8 @@
     <MESSAGE value="new features: NN + logs + others" />
     <MESSAGE value="gifs" />
     <MESSAGE value="startup + refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="startup + refactoring" />
+    <MESSAGE value="more work + debug + refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="more work + debug + refactoring" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/views/untitled.ui">
@@ -748,13 +770,6 @@
     <entry file="file://$PROJECT_DIR$/../../../../TFG/OneDrive para la Empresa/TFG/NN/mlp.py" />
     <entry file="file://$PROJECT_DIR$/res/gifs/5_fingers_UD.gif">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/PCRecognizer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="20" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="20" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/variables.qss">
       <provider selected="true" editor-type-id="text-editor">
@@ -770,13 +785,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/leap_controller.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7021">
-          <caret line="432" selection-start-line="432" selection-end-line="432" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/transparent_canvas/constants.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -788,13 +796,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="254">
           <caret line="18" column="25" lean-forward="true" selection-start-line="18" selection-start-column="19" selection-end-line="18" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/PCRecognizer_functions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="10" column="33" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -819,19 +820,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
           <caret line="36" column="16" selection-start-line="36" selection-start-column="16" selection-end-line="36" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/mouse.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="55" column="11" selection-start-line="55" selection-start-column="11" selection-end-line="55" selection-end-column="11" />
-          <folding>
-            <element signature="e#153#164#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -839,29 +827,44 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="538">
           <caret line="56" column="17" selection-start-line="56" selection-start-column="17" selection-end-line="56" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/NN/n_network.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="26" column="61" selection-start-line="26" selection-start-column="61" selection-end-line="26" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="20" lean-forward="true" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/leap_motion.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/mouse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
           <folding>
-            <element signature="e#0#16#0" expanded="true" />
+            <element signature="e#153#164#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/aux_functions.py">
+    <entry file="file://$PROJECT_DIR$/tests/NN/mlp.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
-          <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
-          <folding>
-            <element signature="e#181#192#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/points.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="41" column="65" selection-start-line="41" selection-start-column="65" selection-end-line="41" selection-end-column="65" />
-          <folding>
-            <element signature="e#25#42#0" expanded="true" />
-          </folding>
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
         </state>
       </provider>
     </entry>
@@ -872,19 +875,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/win32_functions.py">
+    <entry file="file://$PROJECT_DIR$/controllers/key_handle.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="98" selection-start-line="98" selection-end-line="98" />
+        <state relative-caret-position="538">
+          <caret line="156" column="22" selection-start-line="156" selection-start-column="22" selection-end-line="156" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/NN/n_network.py">
+    <entry file="file://$PROJECT_DIR$/gvariables.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="26" column="61" selection-start-line="26" selection-start-column="61" selection-end-line="26" selection-end-column="61" />
+        <state relative-caret-position="459">
+          <caret line="27" column="44" lean-forward="true" selection-start-line="27" selection-start-column="44" selection-end-line="27" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
           <folding>
-            <element signature="e#13#31#0" expanded="true" />
+            <element signature="e#66#75#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -892,59 +905,87 @@
     <entry file="file://$PROJECT_DIR$/views/canvas.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
-          <caret line="5" column="18" lean-forward="true" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
           <folding>
-            <element signature="e#2#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/configuration_fromFile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-            <marker date="1559998977738" expanded="true" signature="101:106" ph="..." />
+            <element signature="e#160#170#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/configuration.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/configuration_fromFile.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        <state relative-caret-position="473">
+          <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
           <folding>
-            <marker date="1560418159079" expanded="true" signature="662:681" ph="..." />
+            <element signature="e#0#30#0" expanded="true" />
+            <marker date="1560716235059" expanded="true" signature="75:80" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/key_handle.py">
+    <entry file="file://$PROJECT_DIR$/controllers/leap_controller.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="153">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
           <folding>
-            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#191#202#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/NN/mlp.py">
+    <entry file="file://$PROJECT_DIR$/models/PCRecognizer_functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="23" column="42" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
+          <folding>
+            <element signature="e#25#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/PCRecognizer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
-          <caret line="15" column="44" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="44" />
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+          <folding>
+            <element signature="e#134#145#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/aux_functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="62">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="e#181#192#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/points.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/win32_functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/gui.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="11" lean-forward="true" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+        <state relative-caret-position="381">
+          <caret line="435" column="48" lean-forward="true" selection-start-line="435" selection-start-column="48" selection-end-line="435" selection-end-column="48" />
           <folding>
             <element signature="e#204#214#0" expanded="true" />
-            <marker date="1560418190048" expanded="true" signature="2383:2384" ph="..." />
-            <marker date="1560418190048" expanded="true" signature="17754:17773" ph="..." />
-            <marker date="1560418190048" expanded="true" signature="34508:34517" ph="..." />
           </folding>
         </state>
       </provider>
@@ -958,34 +999,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/res/MaterialDark.qss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
+        <state relative-caret-position="561">
           <caret line="36" selection-start-line="36" selection-end-line="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/_print.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        <state relative-caret-position="119">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GRecognizer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="507">
-          <caret line="451" lean-forward="true" selection-start-line="451" selection-end-line="451" />
+        <state relative-caret-position="185">
+          <caret line="442" column="24" lean-forward="true" selection-start-line="442" selection-start-column="24" selection-end-line="442" selection-end-column="24" />
           <folding>
             <element signature="e#196#206#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gvariables.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="27" column="44" lean-forward="true" selection-start-line="27" selection-start-column="44" selection-end-line="27" selection-end-column="44" />
-          <folding>
-            <marker date="1560418340865" expanded="true" signature="82:569" ph="..." />
           </folding>
         </state>
       </provider>

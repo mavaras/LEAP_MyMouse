@@ -35,12 +35,16 @@ class Conf:
 
         :return: true if all is ok, false if not
         """
+
         return (len(self.basic.__dict__.values()) == len(set(self.basic.__dict__.values())) and \
                 len(self.extra.__dict__.values()) == len(set(self.extra.__dict__.values())))
 
     # classes for both configuration types
     class Basic:
         def __init__(self):
+            self.invert_mouse = False
+            self.vscroll_angles = "-13/47"
+
             # default comboboxes values (GUI)
             self.mm = 1
             self.lclick = "click_planem"
@@ -54,6 +58,7 @@ class Conf:
 
         def get_conf(self):
             """ prints configuration attributes"""
+
             aux = ("Basic Conf->\n"
                    + "mm:" + str(self.mm) + "\n"
                    + "lclick:" + str(self.lclick) + "\n"
@@ -67,7 +72,7 @@ class Conf:
                    )
             return aux
 
-    class Extra():
+    class Extra:
         # TODO: include this features
 
         def __init__(self):

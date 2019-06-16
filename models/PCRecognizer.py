@@ -10,9 +10,9 @@ import time
 
 from template import init_templates
 from PCRecognizer_functions import *
+from gvariables import gv
 
 
-# this CLASS stores the final result of the algorithm, containing the match
 class Result:
     def __init__(self, name, score, ms):
         self.name = name
@@ -20,15 +20,12 @@ class Result:
         self.ms = ms
 
 
-# MAIN ALGORITHM CLASS
-# contains all the templates and starts all the process
 num_points = 32  # points number to resample to
-
 
 class PCRecognizer:
 
     def __init__(self):
-        self.origin = ps.Point(W / 4, H / 4, -1)  # canvas point where to translate_to (canvas center)
+        self.origin = ps.Point(gv.W / 4, gv.H / 4, -1)  # canvas point where to translate_to (canvas center)
         self.templates = init_templates()  # array storing all Template objects
 
     def normalize(self, points):
@@ -52,7 +49,7 @@ class PCRecognizer:
         for c in range(len(arr_points)):  # if 1 finger len(arr_points) = 1
             arr_points[c] = self.normalize(arr_points[c])
 
-        score = INF
+        score = gv.INF
         template_n = -1
         found = False
         for c in range(len(self.templates)):
@@ -77,7 +74,6 @@ class PCRecognizer:
                             self.templates[c].point_cloud[j].name + "\" about " + str(max((dist - 2.0) / -2.0, 0.0)))
                         print(coinc)
 
-                    # main_window.text_edit_2.append(coinc)
                     if dist < score:
                         score = dist
                         template_n = c
@@ -94,7 +90,6 @@ class PCRecognizer:
             return Result("no match", 0.0, t_fin - t_ini)
 
         else:
-            # print("score: " + str(score))
             return Result(self.templates[template_n].name,  # template matched
                           max((score - 2.0) / -2.0, 0.0),  # score achieved
                           t_fin - t_ini)  # time in ms

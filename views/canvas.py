@@ -19,6 +19,7 @@ import matplotlib.pyplot as plt  # conflict with sphinx
 from sklearn import datasets
 from sklearn.externals import joblib
 
+from gvariables import gv
 # from models.PCRecognizer import *
 from models.points import Point
 from controllers.aux_functions import *
@@ -29,7 +30,9 @@ stroke_id = -1
 class Canvas(QDialog):
     def __init__(self, parent):
         super(Canvas, self).__init__(parent)
+
         self.setWindowTitle("Canvas")
+        self.setWindowIcon(QtGui.QIcon("res/icons/leapmymouse.png"))
 
         self.resize(400, 600)
         self.setFixedSize(self.size())
@@ -168,9 +171,9 @@ class Canvas(QDialog):
             self.neural_network(img)
 
         # resetting values, clearing arrays
-        gvariables.stroke_id = 0
+        gv.stroke_id = 0
         points = []
-        gvariables.listener.clear_variables()
+        gv.listener.clear_variables()
 
     def matrix_to_img(self, matrix):
         img = Image.fromarray(matrix, "RGB")
