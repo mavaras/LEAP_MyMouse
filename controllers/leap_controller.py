@@ -21,7 +21,6 @@ from PyQt4.QtCore import QObject, pyqtSignal
 import lib.Leap as Leap
 
 # own package imports
-from _print import _print
 from aux_functions import *
 from win32_functions import *
 from key_handle import *
@@ -45,6 +44,7 @@ class Point:
         :param where_W: width
         :param where_H: height
         """
+
         self.y = where_H - abs(self.y)  # Y invertion (conflict with NN)
 
         self.x = (gv.W * self.x) / where_W
@@ -77,7 +77,8 @@ class leap_listener(Leap.Listener):
 
     def clear_variables(self):
         """ resets to defaults all relevant leap_listener variables"""
-        self.gesture = [[] * 5 for c in range(600)]
+
+        self.gesture = [[] * 5 for c in range(self.lim_points)]
         self.c = 0
         self.tail_points = []
         for c in range(0, 5):
@@ -86,6 +87,7 @@ class leap_listener(Leap.Listener):
 
     def on_init(self, controller):
         """ (Leap API) like __init__ method"""
+        
         self.LEAP_W = 320
         self.LEAP_H = 200
 
@@ -100,11 +102,8 @@ class leap_listener(Leap.Listener):
 
         self.vscrolling = True
         self.hscrolling = False
-        self.plane_mode = False
-        self.deep_mode = False
+        self.plane_mode = True
 
-        # this all temporary variables, just for testing
-        p = []
         lim_points = 600
         self.gesture = [[] * 5 for c in range(lim_points)]
         self.c = 0  # contador gesture points
@@ -317,8 +316,7 @@ class leap_listener(Leap.Listener):
         f1 = hand.fingers[1]
         f2 = hand.fingers[2]
         dist_0_1 = distance(Point(f1.tip_position.x, f1.tip_position.z, -1),
-                            Point(f0.tip_position.x, f0.tip_position.z,
-                                  -1))  # ZX plane
+                            Point(f0.tip_position.x, f0.tip_position.z, -1))  # ZX plane
 
         # for keep performance when hand pitch (X rotations) >>
         if gv.configuration.basic.lclick == "click_planem":
@@ -539,28 +537,12 @@ class leap_listener(Leap.Listener):
                         """ CURSOR MOVEMENT SECTION"""
                         self.cursor_movement(hand)
 
-                        # INTERACTION modes
-                        if self.deep_mode:  # ??
-                            """finger1 = hand.fingers[1]
-                            f1_pos = finger1.tip_position
-                            print(f1_pos.z)
-                            
-                            x, y = self.leap_to_screen(f1_pos.x, f1_pos.y)
-                            
-                            # mouse movement:
-                            self.mouse.xdir = 1 if x > gv.W/2 else -1
-                            self.mouse.ydir = 1 if abs(y) < gv.H/2 else -1
-                            win32api.SetCursorPos((int(abs(x)+self.mouse.xdir),
-                                                   int(abs(y))+self.mouse.ydir))
-                            self.mouse.x, self.mouse.y = int(abs(x)), int(abs(y))"""
-
-                        elif self.plane_mode:
+                        if self.plane_mode:
                             f0 = hand.fingers[0]
                             f1 = hand.fingers[1]
                             f2 = hand.fingers[2]
                             dist_0_1 = distance(Point(f1.tip_position.x, f1.tip_position.z, -1),
-                                                Point(f0.tip_position.x, f0.tip_position.z,
-                                                      -1))  # this works better on XZ plane
+                                                Point(f0.tip_position.x, f0.tip_position.z, -1))  # this works better on XZ plane
                             dist_1_2 = distance_3d(f1.tip_position.x, f1.tip_position.y, f1.tip_position.z,
                                                    f2.tip_position.x, f2.tip_position.y, f2.tip_position.z)
 
@@ -635,18 +617,15 @@ class leap_listener(Leap.Listener):
 
                     """ GESTURE RECORDING SECTION"""
                     if self.capture_frame:
-                        # print(str(finger.type)+" "+str(finger.tip_position))
                         if finger.type == 1: print(str(fx) + " " + str(fy))
                         self.gesture[finger.type].append(Point(fx, fy, -1))
-                        self.gesture[finger.type][len(self.gesture[finger.type]) - 1].convert_to(gv.W / 2, gv.H / 2)
-                    # self.c += 1
+                        self.gesture[finger.type][len(self.gesture[finger.type])-1].convert_to(gv.W/2, gv.H/2)
 
                     if len(frame.hands) == 1 and finger.type == gv.configuration.basic.mm and self.mouse.active and not self.mouse.switch_mode:
                         pass
 
                     self.on_frame_c += 1
 
-        # global cv_frame_XY, cv_frame_XZ
         self.cv_frame_XY = cv_frame_loc_XY
         self.cv_frame_XZ = cv_frame_loc_XZ
         self.status.emit_cv_frame_XY(self.cv_frame_XY)

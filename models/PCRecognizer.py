@@ -22,6 +22,7 @@ class Result:
 
 num_points = 32  # points number to resample to
 
+
 class PCRecognizer:
 
     def __init__(self):
@@ -55,7 +56,6 @@ class PCRecognizer:
         for c in range(len(self.templates)):
             print(c)
             if found:
-                # print("found")
                 break
 
             if self.templates[c].fingers_point_cloud is None:
@@ -66,7 +66,6 @@ class PCRecognizer:
                     if max((dist - 2.0) / -2.0, 0.0) == 0.0:
                         n_nopes += 1
                         if n_nopes == 3:
-                            # print("nope")
                             break
 
                     if print_all_matches:
@@ -78,7 +77,6 @@ class PCRecognizer:
                         score = dist
                         template_n = c
                         if max((dist - 2.0) / -2.0, 0.0) > 0.2:
-                            # print("break")
                             found = True
                             break
             else:

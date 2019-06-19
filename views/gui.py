@@ -125,23 +125,9 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         fills cb_action_gesture array
         """
 
-        '''widget = QWidget(self)
-
-        self.setCentralWidget(widget)
-        self.overlay = Overlay(self.centralWidget())
-        self.overlay.show()'''
-        #from gv import gv
         self.setWindowIcon(QtGui.QIcon("res/icons/leapmymouse.png"))
 
-        # TAB1 - CANVAS setup
-        canvas_algorithm_group = QtGui.QButtonGroup(self)
-        self.radioButton_pd.toggled.connect(lambda: self.recognition_algorithm_ch("pd"))
-        self.radioButton_NN.toggled.connect(lambda: self.recognition_algorithm_ch("NN"))
-        canvas_algorithm_group.addButton(self.radioButton_pd)
-        canvas_algorithm_group.addButton(self.radioButton_NN)
-
         # TAB2 - CONFIGURATION TAB
-
         # launch on startup checkbox
         self.checkBox_startup.stateChanged.connect(lambda: self.launch_on_startup())
 
@@ -160,14 +146,12 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
         self.combo_box_click.currentIndexChanged["int"].connect(
             lambda: self.combo_box_actiongesture_changed("combo_box_click"))
+
         self.cb_action_gesture[self.combo_box_click] = {0: "click_planem",
                                                         1: "click_deepm",
                                                         2: "click_f2down",
                                                         3: "click_f1down",
                                                         4: "click_f0down"}
-
-        self.combo_box_rclick.currentIndexChanged["int"].connect(
-            lambda: self.combo_box_actiongesture_changed("combo_box_rclick"))
         self.cb_action_gesture[self.combo_box_rclick] = {0: "rclick_f2down",
                                                          1: "f1_f2_front",
                                                          2: "rclick_f1down"}
@@ -179,6 +163,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                                                             2: "W",
                                                             3: "D",
                                                             4: "M"}
+        self.combo_box_rclick.currentIndexChanged["int"].connect(
+            lambda: self.combo_box_actiongesture_changed("combo_box_rclick"))
 
         self.combo_box_closew.currentIndexChanged["int"].connect(
             lambda: self.combo_box_actiongesture_changed("combo_box_closew"))
@@ -271,18 +257,11 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         # self.button_help_vscroll.setMask(QtGui.QRegion(self.button_help_vscroll.rect(),
         #                                               QtGui.QRegion.Ellipse))
 
-        # TAB3
-        """self.combo_box_gestures.currentIndexChanged["int"].connect(self.combo_box_gestures_selection_changed)
-        self.set_gesture_gif("gifs/click_plane.gif")
-        self.label_gesture_gif.setLayout(QtGui.QHBoxLayout())"""
-
         # MENUBAR
         self.menubar_file_loadconf.triggered.connect(self.load_conf_file)
         self.menubar_file_saveconf.triggered.connect(self.save_conf)
         self.menubar_help_debug.triggered.connect(self.debug_mode)
         self.menubar_help_settings.triggered.connect(self.show_settings)
-
-        # _print("initUI")
 
     def set_notification_area(self):
         """ this function sets notification area menu"""
@@ -639,10 +618,6 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         n_samples = len(digits.images)
         data = digits.images.reshape((n_samples, -1))
 
-        # setting classifier
-        """clf = svm.SVC(gamma=0.0001, C=100)
-        clf.fit(data[:n_samples], digits.target[:n_samples])"""
-
         # predict EMNIST
         _print("Loading MLP model from file")
         clf = joblib.load("res/mlp_model.pkl").best_estimator_
@@ -650,7 +625,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
         # display results
         _print("prediction: " + str(predicted))
-        plt.imshow(img, cmap=plt.cm.gray_r, interpolation='nearest')
+        plt.imshow(img, cmap=plt.cm.gray_r, interpolation="nearest")
         plt.title("result: " + str(predicted))
         plt.show()
 
@@ -668,16 +643,6 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.canvas_algorithm = "pd"
         else:
             self.canvas_algorithm = "NN"
-
-    # NOT USED
-    def combo_box_nfingers_selection_changed(self):
-        print("selection changed" + str(self.combo_box.currentIndex()))
-        if self.combo_box.currentIndex() == 0:
-            self.n_of_fingers = 1
-        elif self.combo_box.currentIndex() == 1:
-            self.n_of_fingers = -1
-
-        self.setFocus()  # getting focus back on main_window
 
     def combo_box_actiongesture_changed(self, combo_box_name):
         """ collection of key events binded to GUI (configuration tab comboboxes)
@@ -746,18 +711,6 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
         self.setFocus()
 
-    # (not used)
-    def combo_box_gestures_selection_changed(self):  # not used
-        print("selection changed" + str(self.combo_box_gestures.currentIndex()))
-        if self.combo_box_gestures.currentIndex() == 0:
-            self.set_gesture_gif("res/gifs/click_plane.gif")
-        elif self.combo_box_gestures.currentIndex() == 1:
-            self.set_gesture_gif("res/gifs/grabb_plane.gif")
-        elif self.combo_box_gestures.currentIndex() == 2:
-            self.set_gesture_gif("res/gifs/scroll.gif")
-
-        self.setFocus()
-
     def view_gesture(self, combo_box):
         """ loads gesture associated gif
 
@@ -794,17 +747,12 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                                 "Configuration error",
                                 "You have same gesture assigned to multiple actions in your configuration")
 
-    """def set_label_leap_status(self, img):
-        Leap status label CONNECTED or DISCONNECTED
-
-        img, _, _ = load_image(img)
-        self.label_leap_status.setPixmap(QPixmap.fromImage(img))"""
-
     def set_gesture_gif(self, gif):
         """ loads given gif into gif label
 
         :param gif: .gif file
         """
+
         giff = QtGui.QMovie(gif)
         self.label_gesture_gif.setMovie(giff)
         giff.start()
@@ -812,11 +760,10 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     def updateLabel(self, label):
         """ this function handles countdown label"""
 
-        # change the following line to retrieve the new voltage from the device
         t = int(label.text()) - 1
         if t == 0:
             label.setText("")
-            while (gv.listener.hand_vel < 270 or gv.listener.fingers_vel[4] < 100):
+            while gv.listener.hand_vel < 270 or gv.listener.fingers_vel[4] < 100:
                 pass
 
             gv.listener.capture_frame = True
@@ -826,23 +773,26 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         QtCore.QTimer.singleShot(1000, lambda: self.updateLabel(label))
 
     def show_popup(self, title, text, inftext):
+        """ displays a pop-up with given information
+
+        :param title: title of the window
+        :param text: text into the window
+        :param inftext: informative text into the window
+        """
+
         msg = QMessageBox()
         msg.setIcon(QMessageBox.Information)
 
         msg.setText(text)
         msg.setInformativeText(inftext)
         msg.setWindowTitle(title)
-        # msg.setDetailedText("The details are as follows:")
         msg.setStandardButtons(QMessageBox.Ok)
         msg.exec_()
-
-    def show_help(self):
-        pass
 
     def exit_app(self):
         """ ends app execution and closes all windows"""
 
         _print("exiting...")
         self.close()
-        sys.exit()
         self.opened = False
+        sys.exit()

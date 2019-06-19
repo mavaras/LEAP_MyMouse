@@ -94,6 +94,7 @@ class Conf:
 
         def get_conf(self):
             """ prints configuration attributes"""
+
             aux = ("Extra Conf->\n"
                    + "show_desktop:" + str(self.show_desktop) + "\n"
                    + "show_explorer:" + str(self.show_explorer) + "\n"

@@ -1046,7 +1046,7 @@
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <property name="iconSize">
      <size>
@@ -1057,171 +1057,6 @@
     <property name="tabsClosable">
      <bool>false</bool>
     </property>
-    <widget class="QWidget" name="tab_canvas">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <attribute name="title">
-      <string>Canvas</string>
-     </attribute>
-     <widget class="QLabel" name="label_2">
-      <property name="geometry">
-       <rect>
-        <x>260</x>
-        <y>420</y>
-        <width>461</width>
-        <height>61</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>14</pointsize>
-        <weight>50</weight>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Left click to
-                                recognize. q for quit. c for clear.&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Templates:
-                                T, V, W, D, Z, X&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
-                            </string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_count">
-      <property name="geometry">
-       <rect>
-        <x>450</x>
-        <y>200</y>
-        <width>71</width>
-        <height>61</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>20</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_score">
-      <property name="geometry">
-       <rect>
-        <x>310</x>
-        <y>370</y>
-        <width>401</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>14</pointsize>
-        <weight>50</weight>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QWidget" name="widget_canvas" native="true">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>20</y>
-        <width>911</width>
-        <height>371</height>
-       </rect>
-      </property>
-      <property name="cursor">
-       <cursorShape>CrossCursor</cursorShape>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label">
-      <property name="geometry">
-       <rect>
-        <x>810</x>
-        <y>420</y>
-        <width>111</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>canvas size (900, 400)</string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="combo_box">
-      <property name="geometry">
-       <rect>
-        <x>150</x>
-        <y>420</y>
-        <width>99</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <item>
-       <property name="text">
-        <string>1 Finger</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>All Fingers</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QLabel" name="label_3">
-      <property name="geometry">
-       <rect>
-        <x>80</x>
-        <y>420</y>
-        <width>47</width>
-        <height>13</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>11</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Record:</string>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="radioButton_NN">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>460</y>
-        <width>41</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>NN</string>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="radioButton_pd">
-      <property name="geometry">
-       <rect>
-        <x>100</x>
-        <y>460</y>
-        <width>41</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>P$</string>
-      </property>
-      <property name="checked">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </widget>
     <widget class="QWidget" name="tab_2">
      <property name="palette">
       <palette>
@@ -4702,14 +4537,14 @@
     </widget>
     <widget class="QWidget" name="tab_logs">
      <attribute name="title">
-      <string>Log</string>
+      <string>Logs</string>
      </attribute>
      <widget class="QScrollArea" name="scrollArea_2">
       <property name="geometry">
        <rect>
-        <x>60</x>
+        <x>40</x>
         <y>20</y>
-        <width>921</width>
+        <width>961</width>
         <height>411</height>
        </rect>
       </property>
@@ -4726,7 +4561,7 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>919</width>
+         <width>959</width>
          <height>409</height>
         </rect>
        </property>
@@ -4735,7 +4570,7 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>931</width>
+          <width>961</width>
           <height>411</height>
          </rect>
         </property>
@@ -4748,11 +4583,6 @@
        </widget>
       </widget>
      </widget>
-    </widget>
-    <widget class="QWidget" name="tab_data">
-     <attribute name="title">
-      <string>Data</string>
-     </attribute>
     </widget>
    </widget>
    <widget class="QLabel" name="label_8">

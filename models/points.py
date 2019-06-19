@@ -7,10 +7,10 @@ from PyQt4 import QtCore
 
 class Point:
     """ this CLASS represents a single point into a place or stroke
+
     :param x: x coordinate
     :param y: y coordinate
     :param id: id of the point (stroke id)
-
     """
 
     def __init__(self, x, y, id):
@@ -25,6 +25,7 @@ class Point:
         :param where_W: width of new place
         :param where_H: height of new place
         """
+
         self.y = where_H - abs(self.y)  # Y inversion
         self.x = (gv.W * self.x) / where_W
         self.y = (gv.H * self.y) / where_H
@@ -39,6 +40,7 @@ class Point:
         :param radius: radius of the circle
         :param path: widget_canvas's path (colour)
         """
+
         eval("gv.main_window.canvas.widget_canvas." + path +
              ".addEllipse(QtCore.QRectF(self.x, self.y, radius, radius))")
         gv.main_window.widget_canvas.update()
@@ -65,6 +67,7 @@ class Point_cloud:
 
         :param flag: if is true we are drawing various fingers (different colours)
         """
+
         # aux_points = []  to not overwriting original self.points array
         aux_points = amplify(self.points, 200)  # kind of scale reversion
         aux_points = translate_to(aux_points,
@@ -72,12 +75,11 @@ class Point_cloud:
         dic = {"f0": "path_points_0", "f1": "path_points_1",
                "f2": "path_points_2", "f3": "path_points_3", "f4": "path_points_4"}
 
-        # aux_points = points
         c = 0
         if flag:
             path = dic.get(self.name)
-        else:  # black color by default
-            path = "path_points_1"
+        else:
+            path = "path_points_1"  # black color by default
 
         for p in aux_points:
             if c == num_points:

@@ -17,13 +17,6 @@ import threading
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 
-from PIL import Image
-import matplotlib.pyplot as plt
-from sklearn import datasets
-from sklearn import svm
-from sklearn import datasets
-from sklearn import svm
-from sklearn.externals import joblib
 from win32api import GetSystemMetrics
 
 # own package imports
@@ -40,224 +33,12 @@ from controllers.leap_controller import *
 from controllers.aux_functions import *
 
 # TODO: features to implement:
-#       -> debug mode
 #       -> browser with tutorial
-#       -> applications interactions (powerpoint, vlc ?)
-#       -> gvs as object ?? (this is good)
 #       -> add gifs
 #       -> help
 #       -> installer with InnoSetup (when exe ready)
 
-# GLOBALS ?
-# main_window = None
 exit = False
-
-"""
-def matrix_to_img(matrix):
-    img = Image.fromarray(matrix, "RGB")
-    img.thumbnail((28, 28), Image.ANTIALIAS)  # resizing to 28x28
-    img.save("image_28x28.png")
-
-    # dilate image
-    img = cv2.dilate(cv2.imread("image_28x28.png", cv2.IMREAD_GRAYSCALE),
-                     np.ones((3, 3), np.uint8), iterations=1)
-    return img
-
-
-def neural_network(img):
-    # setting + normalizing image
-    cv2.imshow("image", cv2.resize(img, (200, 200)))
-    # img = cv2.resize(img, (8, 8))
-    minValueInImage = np.min(img)
-    maxValueInImage = np.max(img)
-    img = np.floor(np.divide((img - minValueInImage).astype(np.float),
-                             (maxValueInImage - minValueInImage).astype(np.float)) * 16)
-
-    # loading digit database
-    digits = datasets.load_digits()
-    n_samples = len(digits.images)
-    data = digits.images.reshape((n_samples, -1))
-
-    # predict
-    print('Loading model from file.')
-    clf = joblib.load('mlp_model.pkl').best_estimator_
-    predicted = clf.predict(img.reshape((1, img.shape[0] * img.shape[1])))
-
-    # display results
-    print("prediction: " + str(predicted))
-    plt.imshow(img, cmap=plt.cm.gray_r, interpolation='nearest')
-    plt.title("result: " + str(predicted))
-    plt.show()
-
-    return str(predicted)
-"""
-
-'''
-# various functions (this shouldn't be here)
-def recognize_stroke(points):
-    """ this function recognize one SINGLE stroke (if ALL fingers, one by one)"""
-
-    print("recognizing stroke")
-    aux = [points]
-    result = pcr.recognize(aux)
-
-    return result
-
-
-def print_score(result):
-    """ this shows final score of current stroke (red label on canvas)"""
-
-    score = "Result: matched with " + result.name + " about " + str(round(result.score, 2))
-    main_window.label_score.setStyleSheet("color: red")
-    main_window.label_score.setText(str(score))
-    main_window.text_edit_2.append("\n" + str(score))
-
-
-def gesture_match(gesture_name):
-    """ handling gesture stroke match actions"""
-
-    if gesture_name == "T":
-        print("T gesture")
-        if "-thread" in sys.argv:
-            # handle = win32gui.FindWindow(None, r"Reproductor multimedia VLC")
-            hwnd = get_current_window_hwnd()
-            if gv.configuration.basic.closew == "T":
-                close_window(hwnd)
-            elif gv.configuration.basic.minimizew == "T":
-                minimize_window(hwnd)
-
-    elif gesture_name == "V":
-        print("V gesture")
-        if "-thread" in sys.argv:
-            hwnd = get_current_window_hwnd()
-            if gv.configuration.basic.closew == "V":
-                close_window(hwnd)
-            elif gv.configuration.basic.minimizew == "V":
-                minimize_window(hwnd)
-
-    elif gesture_name == "Z":
-        print("Z gesture")
-        if "-thread" in sys.argv:
-            hwnd = get_current_window_hwnd()
-            if gv.configuration.basic.closew == "Z":
-                close_window(hwnd)
-            elif gv.configuration.basic.minimizew == "Z":
-                minimize_window(hwnd)
-
-    elif gesture_name == "W":
-        pass
-
-    elif gesture_name == "N":
-        pass
-
-    elif gesture_name == "LEFT":
-        print("LEFT gesture")
-    elif gesture_name == "RIGHT":
-        print("RIGHT gesture")
-    print("")
-'''
-
-'''
-# various functions (temporarily here)
-def recognize_stroke(points):
-    """ this function recognize one SINGLE stroke (if ALL fingers, one by one)
-
-    :params points: points array containing a stroke
-    """
-
-    print("recognizing stroke")
-    aux = [points]
-    result = PCRecognizer().recognize(aux, True)
-
-    return result
-
-
-def print_score(result):
-    """ this shows final score of current stroke (red label on canvas)
-
-    :param result: Result object containing recognition result
-    """
-
-    score = "Result: matched with " + result.name + " about " + str(round(result.score, 2))
-    gv.main_window.label_score.setStyleSheet("color: red")
-    gv.main_window.label_score.setText(str(score))
-    gv.main_window.text_edit_2.append("\n" + str(score))
-
-
-# not updated (not here -> GRecognizer.py)
-def gesture_match(gesture_name):
-    """ matches gesture_name with its associated action
-
-    :param gesture_name: letter
-    """
-
-    print(str(gesture_name) + " gesture\n")
-    if "-thread" in sys.argv:
-        if gesture_name == gv.configuration.basic.closew:
-            hwnd = get_current_window_hwnd()
-            close_window(hwnd)
-
-        elif gesture_name == gv.configuration.basic.minimizew:
-            hwnd = get_current_window_hwnd()
-            minimize_window(hwnd)
-
-        elif gesture_name == gv.configuration.extra.show_desktop:
-            hold("windows")
-            press("d")
-            release("windows")
-
-        elif gesture_name == gv.configuration.extra.show_explorer:
-            hold("windows")
-            press("e")
-            release("windows")
-
-        elif gesture_name == gv.configuration.extra.copy:
-            hold("ctrl")
-            press("c")
-            release("ctrl")
-
-        elif gesture_name == gv.configuration.extra.paste:
-            hold("ctrl")
-            press("v")
-            release("ctrl")
-
-        elif gesture_name == gv.configuration.extra.cut:
-            hold("ctrl")
-            press("x")
-            release("ctrl")
-
-
-def exit_app():
-    """ exits applications, closes all windows"""
-
-    print("exiting...")
-    global exit
-    exit = True
-    main_window.close()
-    cv2.destroyAllWindows()
-    controller.remove_listener(listener)
-    sys.exit()
-
-
-def load_image(path):
-    img = cv2.imread(path)
-    data = np.array(bytearray(open(path, "rb").read()))
-    # img = cv2.imdecode(data, cv2.IMREAD_UNCHANGED)
-    height, width, size = img.shape
-    step = img.size / height
-    qformat = QImage.Format_Indexed8
-
-    if len(img.shape) == 3:
-        if size == 4:
-            qformat = QImage.Format_RGBA8888
-        else:
-            qformat = QImage.Format_RGB888
-
-    img = QImage(img, width, height, step, qformat)
-    img = img.rgbSwapped()
-
-    return img, height, width
-'''
 
 
 def thread_handler():
@@ -283,34 +64,6 @@ def thread_handler():
         elif not gv.listener.can_record and \
                 gv.listener.capture_frame:
 
-            """ NEURAL NETWORK CODE
-            img_dim = 28
-            matrix = np.zeros((img_dim, img_dim, 3), dtype=np.uint8)
-            white = [255, 255, 255]
-            #leap_gesture_points = gv.listener.gesture[1]
-            max_leap_y = max(g.y for g in gv.listener.gesture[1])
-            max_leap_x = max((g.x+200) for g in gv.listener.gesture[1])
-            
-            for c in range(len(gv.listener.gesture[1])):
-                leap_x = gv.listener.gesture[1][c].x + 140
-                leap_y = max_leap_y + 40 - gv.listener.gesture[1][c].y
-                print(str(leap_x)+", "+str(leap_y))
-                print(str(leap_x*img_dim/max_leap_x)+"; "+str(leap_y*img_dim/max_leap_y))
-                print("")
-                matrix_x = int(leap_x*img_dim/max_leap_x)
-                matrix_x = 27 if matrix_x == 28 else matrix_x
-                matrix_y = int(leap_y*img_dim/max_leap_y)
-                matrix_y = 27 if matrix_y == 28 else matrix_y
-                matrix[matrix_y][matrix_x] = white
-            
-            print("max X: "+str(max_leap_x))
-            print("max Y: "+str(max_leap_y))
-            img = matrix_to_img(matrix)
-            pred = neural_network(img).replace("[", "").replace("]", "")
-            print("pred: "+str(pred))
-            if "Chrome" in get_current_window_name():
-                pressHoldRelease("left_control", str(pred))
-            """
             print("recording and recognizing captured")
             gv.listener.capture_frame = False  # end of Leap capture
             points = gv.listener.gesture[1]  # this allows "F" to work with mouse and hand stroke
@@ -351,19 +104,6 @@ def console_args(args):
             thread.setDaemon(True)
             thread.start()
 
-        elif arg == "-allf":  # ALL fingers capture mode by default
-            gv.main_window.combo_box.setCurrentIndex(1)
-
-        elif arg == "-scroll":  # scroll enabled
-            gv.listener.vscrolling = True
-            gv.listener.hscrolling = True
-
-        elif arg == "-deepm":  # INTERACTION MODE: deep mode by default
-            gv.listener.deep_mode = True
-
-        elif arg == "-planem":  # INTERACTION MODE: plane mode by default
-            gv.listener.plane_mode = True
-
 
 def show_splash_screen():
     splash_pix = QPixmap("res/logo.png")
@@ -399,11 +139,12 @@ def show_splash_screen():
     timer.start()
 
     time.sleep(1)
-    for c in range(20):
+    for c in range(15):
         progress_bar.setValue(c)
         t = time.time()
         while time.time() < t + 0.3:
             app.processEvents()
+
     time.sleep(1)
 
     splash.close()
@@ -411,14 +152,11 @@ def show_splash_screen():
 
 # MAIN BLOCK
 if __name__ == "__main__":
-    # sys.stdout = gv.stdout = ListStream()
-    # canvas variables
-    result = -1  # result object
     from gvariables import gv
 
     gv.pcr = PCRecognizer()  # algorithm class initialization
 
-    # Leap setting up
+    # Leap set up
     listener = leap_listener()
     controller = Leap.Controller()
 

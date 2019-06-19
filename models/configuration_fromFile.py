@@ -26,9 +26,6 @@ class ConfFromFile(Conf):
         self.basic.minimizew = linecache.getline(str(conf.name), 14).split(":")[1].replace("\n", "").replace("\r", "")
 
         # extra conf
-        """self.basic.mm = linecache.getline(str(conf.name), 6)
-        self.basic.lclick = linecache.getline(str(conf.name), 7)
-        self.basic.rclick = linecache.getline(str(conf.name), 8)"""
         print("->" + str(self.basic.closew))
         print("Content of configuration file " + str(conf.name) + ":")
         for line in conf:

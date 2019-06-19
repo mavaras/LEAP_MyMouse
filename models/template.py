@@ -21,8 +21,10 @@ class Template:
 
 def init_templates():
     """  initialize templates array for PCRecognizer class
+
     :return: templates array
     """
+
     templates = []
 
     # single stroke templates (all fingers doing the same if various fingers) (1 finger)
@@ -39,8 +41,8 @@ def init_templates():
         ps.Point_cloud("T3", [ps.Point(30, 7, 1), ps.Point(123, 7, 1),
                               ps.Point(80, 17, 2), ps.Point(30, 7, 2),
                               ps.Point(80, 17, 3), ps.Point(80, 50, 3)])
-    ], None)
-                     )
+        ], None)
+    )
     templates.append(Template("V", [
         ps.Point_cloud("V1", [ps.Point(30, 7, 1), ps.Point(40, 37, 1),
                               ps.Point(40, 37, 2), ps.Point(50, 7, 2)])
@@ -56,8 +58,8 @@ def init_templates():
         ,
         ps.Point_cloud("V5", [ps.Point(30, 7, 1), ps.Point(33, 25, 1),
                               ps.Point(33, 25, 2), ps.Point(38, 16, 2)])
-    ], None)
-                     )
+        ], None)
+    )
     templates.append(Template("D", [
         ps.Point_cloud("D1", [ps.Point(30, 7, 1), ps.Point(30, 67, 1),
                               ps.Point(30, 67, 2), ps.Point(50, 53, 2),
@@ -73,18 +75,6 @@ def init_templates():
         ,
     ], None)
                      )
-    """templates.append(Template("RIGHT", [
-        ps.Point_cloud("right1", [ps.Point(30, 47, 1), ps.Point(96, 7, 1)])
-        ,
-        ps.Point_cloud("right2", [ps.Point(30, 37, 1), ps.Point(96, 20, 1)])
-        ], None)
-    )
-    templates.append(Template("LEFT", [
-        ps.Point_cloud("left1", [ps.Point(30, 7, 1), ps.Point(96, 47, 1)])
-        ,
-        ps.Point_cloud("left2", [ps.Point(30, 20, 1), ps.Point(96, 37, 1)])
-        ], None)
-    )"""
 
     templates.append(Template("X", [
         ps.Point_cloud("X1", [ps.Point(30, 7, 1), ps.Point(60, 47, 1),
@@ -109,8 +99,8 @@ def init_templates():
 
     templates.append(Template("W", [
         ps.Point_cloud("W1", [ps.Point(30, 7, 1), ps.Point(40, 37, 1),
-                              ps.Point(40, 37, 2), ps.Point(50, 7, 2),
-                              ps.Point(50, 7, 3), ps.Point(60, 37, 3),
+                              ps.Point(40, 37, 2), ps.Point(50, 20, 2),
+                              ps.Point(50, 20, 3), ps.Point(60, 37, 3),
                               ps.Point(60, 37, 4), ps.Point(70, 7, 4)])
         ,
         ps.Point_cloud("W2", [ps.Point(30, 7, 1), ps.Point(50, 37, 1),
@@ -126,26 +116,8 @@ def init_templates():
         ,
         ps.Point_cloud("L2", [ps.Point(30, 17, 1), ps.Point(30, 37, 1),
                               ps.Point(30, 37, 2), ps.Point(40, 37, 2)])
-    ], None)
-                     )
-    """templates.append(Template("M", [
-        ps.Point_cloud("M1", [ps.Point(33, 45, 1), ps.Point(37, 7, 1),
-                              ps.Point(37, 7, 2), ps.Point(50, 33, 2),
-                              ps.Point(50, 33, 3), ps.Point(60, 13, 3),
-                              ps.Point(60, 13, 4), ps.Point(67, 45, 4)])
-        ,
-        ps.Point_cloud("M2", [ps.Point(30, 45, 1), ps.Point(45, 7, 1),
-                              ps.Point(45, 7, 2), ps.Point(65, 33, 2),
-                              ps.Point(65, 33, 3), ps.Point(85, 7, 3),
-                              ps.Point(85, 7, 4), ps.Point(100, 45, 4)])
-        ,
-        ps.Point_cloud("M3", [ps.Point(30, 57, 1), ps.Point(40, 7, 1),
-                              ps.Point(40, 7, 2), ps.Point(47, 31, 2),
-                              ps.Point(47, 31, 3), ps.Point(54, 7, 3),
-                              ps.Point(54, 7, 4), ps.Point(64, 57, 4)])
-    
         ], None)
-    )"""
+    )
 
     templates.append(Template("Z", [
         ps.Point_cloud("Z1", [ps.Point(30, 7, 1), ps.Point(60, 7, 1),
@@ -171,7 +143,7 @@ def init_templates():
         ps.Point_cloud("Z6", [ps.Point(20, 7, 1), ps.Point(70, 7, 1),
                               ps.Point(70, 7, 2), ps.Point(30, 28, 2),
                               ps.Point(30, 28, 3), ps.Point(57, 27, 3)])
-    ], None)
-                     )
+        ], None)
+    )
 
     return templates

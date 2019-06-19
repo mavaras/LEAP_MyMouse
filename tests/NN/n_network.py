@@ -25,7 +25,8 @@ def matrix_to_img(matrix):
     # dilate image
     img = cv2.dilate(cv2.imread("image_28x28.png", cv2.IMREAD_GRAYSCALE),
                      np.ones((3, 3), np.uint8), iterations=1)
-    # cv2.imshow("img", cv2.resize(img, (200, 200)))
+    ret, img = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY_INV)
+    cv2.imshow("img", img)
     return img
 
 

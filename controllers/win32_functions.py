@@ -7,10 +7,9 @@ import ctypes
 import win32con, win32gui
 import win32com.client
 import os
-from _print import _print
 
 
-# needed variables
+# some needed variables
 EnumWindows = ctypes.windll.user32.EnumWindows
 EnumWindowsProc = ctypes.WINFUNCTYPE(ctypes.c_bool, ctypes.POINTER(ctypes.c_int), ctypes.POINTER(ctypes.c_int))
 GetWindowText = ctypes.windll.user32.GetWindowTextW
@@ -22,6 +21,7 @@ opened_windows_names = []
 
 def get_opened_windows_list():
     """ returns an array with all opened windows titles"""
+
     global opened_windows_names
     EnumWindows(EnumWindowsProc(foreach_window), 0)
     return opened_windows_names
@@ -50,6 +50,7 @@ def bring_window_to_top(hwnd):
 
     :param hwnd: Window handle
     """
+
     win32gui.ShowWindow(hwnd, win32con.SW_MINIMIZE)
     win32gui.ShowWindow(hwnd, win32con.SW_RESTORE)
 
@@ -77,6 +78,7 @@ def get_current_window_hwnd():
 
     :return: window handle
     """
+
     return win32gui.GetForegroundWindow()
 
 

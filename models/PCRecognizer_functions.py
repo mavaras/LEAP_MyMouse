@@ -15,6 +15,7 @@ def greedy_cloud_match(points, pc):
     :param points: points array (frequently user stroke)
     :param pc: point cloud which to match to (template)
     """
+
     e = 0.50
     step = math.floor(math.pow(len(points), 1.0 - e))
     minimum = gv.INF
@@ -106,7 +107,8 @@ def scale(points):
     """ this function returns the same point_cloud in different scales in order to comparison
 
     :param points: points
-    :return: points"""
+    :return: points
+    """
 
     min_x = gv.INF
     min_y = gv.INF

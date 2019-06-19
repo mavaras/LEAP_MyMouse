@@ -14,6 +14,7 @@ from gvariables import gv
 
 
 class Settings(QDialog):
+
     def __init__(self, parent):
         super(Settings, self).__init__(parent)
 
@@ -92,5 +93,3 @@ class Settings(QDialog):
             gv.configuration.basic.invert_mouse = True
         else:
             gv.configuration.basic.invert_mouse = False
-
-

@@ -28,6 +28,7 @@ stroke_id = -1
 
 
 class Canvas(QDialog):
+
     def __init__(self, parent):
         super(Canvas, self).__init__(parent)
 
@@ -43,20 +44,24 @@ class Canvas(QDialog):
         self.widget_canvas = Widget_canvas(self, 400, 400)
         self.widget_canvas.move(20, 20)
 
-        self.label_score = QLabel()
-        self.label_score.setText("V D T X W Z L")
+        self.label_opts = QLabel()
+        self.label_opts.setText("V D T X W Z L")
 
         layout = QVBoxLayout()
         layout.addWidget(self.widget_canvas, 85)
 
+        self.label_score = QLabel()
+        self.label_score.setText("")
+        layout.addWidget(self.label_score)
+
         vbox1 = QHBoxLayout()
         self.cb_algorithm = QComboBox()
-        self.cb_algorithm.addItem("p$ Recognizer")
+        self.cb_algorithm.addItem("p$ Recognizer      ")
         self.cb_algorithm.addItem("NN - Neural Network")
         self.cb_algorithm.currentIndexChanged["int"].connect(self.recognition_algorithm_ch)
         vbox1.addWidget(self.cb_algorithm, 30)
         vbox1.addStretch(13)
-        vbox1.addWidget(self.label_score, 30)
+        vbox1.addWidget(self.label_opts, 30)
         layout.addLayout(vbox1, 8)
         layout.addStretch(2)
 
@@ -83,42 +88,32 @@ class Canvas(QDialog):
         self.setLayout(layout)
 
     def recognition_algorithm_ch(self):
-        """ handles combobox recognition algorithm changes
-        """
+        """ handles combobox recognition algorithm changes"""
 
         print("canvas algorithm changed")
         if self.cb_algorithm.currentIndex() == 0:
             self.canvas_algorithm = "pd"
-            self.label_score.setText("V D T X W Z L")
+            self.label_opts.setText("V D T X W Z L")
 
         else:
             self.canvas_algorithm = "NN"
-            self.label_score.setText("1 2 3 4 5 6 7 8 9")
+            self.label_opts.setText("1 2 3 4 5 6 7 8 9")
 
     def clear(self):
-        """ removes all strokes from canvas
-        """
+        """ removes all strokes from canvas"""
 
         print("clear")
         self.widget_canvas.clear()
-        if self.canvas_algorithm == "pd":
-            self.label_score.setText("V D T X W Z L")
-        else:
-            self.label_score.setText("1 2 3 4 5 6 7 8 9")
+        self.label_score.setText("")
+        self.recognition_algorithm_ch()
 
     def recognize(self):
-        """ recognizes canvas's stroke
-        """
+        """ recognizes canvas's stroke"""
 
         if self.canvas_algorithm == "pd":
             # we are using p$ recognizer
-
-            # pc = Point_cloud("f1", self.widget_canvas.points, Point(W / 4, H / 4 + 50, -1))
-            # pc.draw_on_canvas()    normalized pc
-
             points = self.widget_canvas.points
             result = recognize_stroke(self.widget_canvas.points)
-            gesture_match(result.name, "-thread" in sys.argv)
 
             str_accum = "Last/Current gesture points array\n\n"
             for c in range(0, len(points)):
@@ -140,32 +135,10 @@ class Canvas(QDialog):
             min_y = min(g.y for g in leap_gesture_points)
             max_y = max(g.y for g in leap_gesture_points)
             max_x = max(g.x for g in leap_gesture_points)
-            for c in range(len(leap_gesture_points)): pass
-            # leap_gesture_points[c].x -= min_x
-            # leap_gesture_points[c].x *= (self.widget_canvas.canvas_width / 2)
-            # leap_gesture_points[c].x /= self.widget_canvas.canvas_width
-            # leap_gesture_points[c].y = self.widget_canvas.canvas_height - abs(leap_gesture_points[c].y)
-            # leap_gesture_points[c].y -= min_y*1.7
-            # leap_gesture_points[c].y *= (self.widget_canvas.canvas_height / 2)
-            # leap_gesture_points[c].y /= self.widget_canvas.canvas_height
 
-            """max_y = max(g.y for g in leap_gesture_points)
-            max_x = max(g.x for g in leap_gesture_points)"""
-            print("max X: " + str(max_x)),
-            print(min_x)
-            print("max Y: " + str(max_y)),
-            print(min_y)
             matrix = np.zeros((int(max_y - min_y) + 80, int(max_x - min_x) + 80, 3), dtype=np.uint8)
             for c in range(len(leap_gesture_points)):
                 matrix[int(leap_gesture_points[c].y)][int(leap_gesture_points[c].x)] = white
-                """leap_x = leap_gesture_points[c].x
-                leap_y = max_leap_y - leap_gesture_points[c].y
-
-                matrix_x = int(leap_x * img_dim / max_leap_x)
-                matrix_x = 27 if matrix_x >= 28 else matrix_x
-                matrix_y = int(leap_y * (img_dim-4) / max_leap_y)+1
-                matrix_y = 27 if matrix_y >= 28 else matrix_y
-                matrix[matrix_y][matrix_x] = white"""
 
             img = self.matrix_to_img(matrix)
             self.neural_network(img)
@@ -187,7 +160,7 @@ class Canvas(QDialog):
 
     def neural_network(self, img):
         # setting + normalizing image
-        cv2.imshow("image", cv2.resize(img, (200, 200)))
+        # cv2.imshow("image", cv2.resize(img, (200, 200)))
         minValueInImage = np.min(img)
         maxValueInImage = np.max(img)
         img = np.floor(np.divide((img - minValueInImage).astype(np.float),
@@ -197,10 +170,6 @@ class Canvas(QDialog):
         digits = datasets.load_digits()
         n_samples = len(digits.images)
         data = digits.images.reshape((n_samples, -1))
-
-        # setting classifier
-        """clf = svm.SVC(gamma=0.0001, C=100)
-        clf.fit(data[:n_samples], digits.target[:n_samples])"""
 
         # predict EMNIST
         print("Loading MLP model from file")
