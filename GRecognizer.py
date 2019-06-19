@@ -192,7 +192,7 @@ if __name__ == "__main__":
 
     id = QtGui.QFontDatabase.addApplicationFont("res/fonts/OpenSans-Regular.ttf")
 
-    stylesheet = open('res/MaterialDark.qss').read()
+    stylesheet = open("res/MaterialDark.qss").read()
     stylesheet = stylesheet.replace("color_hover", "#04B97F")
     stylesheet = stylesheet.replace("color_main", "#252323")
     stylesheet = stylesheet.replace("color_label", "#EDEBE1")  # "#949EA2")

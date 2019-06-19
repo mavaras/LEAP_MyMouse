@@ -2,26 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9d7c6978-d1a6-4729-8db0-b363c85a081d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/res/fonts/OpenSans-Bold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/fonts/OpenSans-Light.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/fonts/OpenSans-Regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/fonts/Ubuntu-Medium.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/icons/arrow_.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/icons/arrow_white.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/icons/leapmymouse.PNG" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GRecognizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/GRecognizer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/aux_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/aux_functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/leap_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/leap_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/win32_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/win32_functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_28x28.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_28x28.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/PCRecognizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/PCRecognizer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/PCRecognizer_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/PCRecognizer_functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/configuration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/configuration_fromFile.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/configuration_fromFile.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/points.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/points.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/template.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/template.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stdout.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/NN/image_28x28.png" beforeDir="false" afterPath="$PROJECT_DIR$/tests/NN/image_28x28.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/NN/n_network.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/NN/n_network.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/canvas.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/canvas.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/gui.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/gui_qtdesigner.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/gui_qtdesigner.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/untitled.ui" beforeDir="false" afterPath="$PROJECT_DIR$/views/untitled.ui" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,6 +25,7 @@
           <entry key="project.closed" value="2" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.12" value="1" />
+          <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.19" value="1" />
           <entry key="project.open.time.22" value="1" />
           <entry key="project.open.time.23" value="1" />
@@ -48,20 +38,20 @@
           <entry key="project.open.time.46" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.60" value="1" />
-          <entry key="project.opened" value="16" />
+          <entry key="project.opened" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="10727" />
+          <entry key="py" value="10729" />
           <entry key="qss" value="1130" />
-          <entry key="txt" value="56" />
+          <entry key="txt" value="62" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="1186" />
-          <entry key="Python" value="10727" />
+          <entry key="PLAIN_TEXT" value="1192" />
+          <entry key="Python" value="10729" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -90,8 +80,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/GRecognizer.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="204">
-                  <caret line="103" column="34" selection-start-line="103" selection-start-column="34" selection-end-line="103" selection-end-column="34" />
+                <state relative-caret-position="143">
+                  <caret line="194" column="52" lean-forward="true" selection-start-line="194" selection-start-column="52" selection-end-line="194" selection-end-column="52" />
                   <folding>
                     <element signature="e#196#206#0" expanded="true" />
                   </folding>
@@ -202,8 +192,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/controllers/leap_controller.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="109">
-                  <caret line="73" lean-forward="true" selection-start-line="73" selection-end-line="73" />
+                <state relative-caret-position="952">
+                  <caret line="73" selection-start-line="73" selection-end-line="73" />
                   <folding>
                     <element signature="e#191#202#0" expanded="true" />
                   </folding>
@@ -227,7 +217,7 @@
             <entry file="file://$PROJECT_DIR$/models/configuration.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="84">
-                  <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+                  <caret line="5" selection-start-line="5" selection-end-line="5" />
                 </state>
               </provider>
             </entry>
@@ -235,8 +225,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/views/canvas.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="74">
-                  <caret line="150" column="36" lean-forward="true" selection-start-line="150" selection-start-column="36" selection-end-line="150" selection-end-column="36" />
+                <state relative-caret-position="2278">
+                  <caret line="150" column="36" selection-start-line="150" selection-start-column="36" selection-end-line="150" selection-end-column="36" />
                   <folding>
                     <element signature="e#160#170#0" expanded="true" />
                   </folding>
@@ -247,8 +237,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/tests/NN/n_network.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="204">
-                  <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+                <state relative-caret-position="34">
+                  <caret line="12" selection-start-line="12" selection-end-line="12" />
                   <folding>
                     <element signature="e#13#31#0" expanded="true" />
                   </folding>
@@ -391,10 +381,10 @@
         <option value="$PROJECT_DIR$/views/settings.py" />
         <option value="$PROJECT_DIR$/views/gui.py" />
         <option value="$PROJECT_DIR$/models/template.py" />
-        <option value="$PROJECT_DIR$/GRecognizer.py" />
         <option value="$PROJECT_DIR$/controllers/leap_controller.py" />
         <option value="$PROJECT_DIR$/views/canvas.py" />
         <option value="$PROJECT_DIR$/tests/NN/n_network.py" />
+        <option value="$PROJECT_DIR$/GRecognizer.py" />
       </list>
     </option>
   </component>
@@ -423,7 +413,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -434,7 +423,29 @@
             <path>
               <item name="LEAP_proyect" type="b2602c69:ProjectViewProjectNode" />
               <item name="LEAP_proyect" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LEAP_proyect" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LEAP_proyect" type="462c0819:PsiDirectoryNode" />
               <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LEAP_proyect" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LEAP_proyect" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LEAP_proyect" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LEAP_proyect" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
+              <item name="fonts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LEAP_proyect" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LEAP_proyect" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
+              <item name="icons" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="LEAP_proyect" type="b2602c69:ProjectViewProjectNode" />
@@ -451,6 +462,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -728,7 +740,21 @@
       <option name="project" value="LOCAL" />
       <updated>1560716433281</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="...">
+      <created>1560945373678</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1560945373678</updated>
+    </task>
+    <task id="LOCAL-00015" summary="qss">
+      <created>1560948180615</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1560948180615</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TodoView">
@@ -745,7 +771,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" sideWeight="0.50147927" side_tool="true" weight="0.10906217" />
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4985207" weight="0.17776097" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.4985207" visible="true" weight="0.17708333" />
       <window_info id="Structure" order="2" sideWeight="0.50147927" side_tool="true" weight="0.108742006" />
       <window_info anchor="bottom" id="Terminal" order="0" sideWeight="0.49925596" weight="0.32419354" />
       <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.50074404" side_tool="true" weight="0.45645162" />
@@ -775,7 +801,9 @@
     <MESSAGE value="startup + refactoring" />
     <MESSAGE value="more work + debug + refactoring" />
     <MESSAGE value="settings + refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="settings + refactoring" />
+    <MESSAGE value="..." />
+    <MESSAGE value="qss" />
+    <option name="LAST_COMMIT_MESSAGE" value="qss" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/views/untitled.ui">
@@ -869,16 +897,6 @@
     <entry file="file://$PROJECT_DIR$/image_28x28.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/GRecognizer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="103" column="34" selection-start-line="103" selection-start-column="34" selection-end-line="103" selection-end-column="34" />
-          <folding>
-            <element signature="e#196#206#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/_print.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -959,10 +977,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/leap_controller.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="73" lean-forward="true" selection-start-line="73" selection-end-line="73" />
+        <state relative-caret-position="952">
+          <caret line="73" selection-start-line="73" selection-end-line="73" />
           <folding>
             <element signature="e#191#202#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/configuration_fromFile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+            <marker date="1560885204931" expanded="true" signature="75:80" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/canvas.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2278">
+          <caret line="150" column="36" selection-start-line="150" selection-start-column="36" selection-end-line="150" selection-end-column="36" />
+          <folding>
+            <element signature="e#160#170#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/NN/n_network.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="e#13#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1008,40 +1056,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/canvas.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="150" column="36" lean-forward="true" selection-start-line="150" selection-start-column="36" selection-end-line="150" selection-end-column="36" />
-          <folding>
-            <element signature="e#160#170#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/NN/n_network.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-          <folding>
-            <element signature="e#13#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/configuration_fromFile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-            <marker date="1560885204931" expanded="true" signature="75:80" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/configuration.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GRecognizer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="194" column="52" lean-forward="true" selection-start-line="194" selection-start-column="52" selection-end-line="194" selection-end-column="52" />
+          <folding>
+            <element signature="e#196#206#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
