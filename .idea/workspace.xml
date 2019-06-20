@@ -2,23 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9d7c6978-d1a6-4729-8db0-b363c85a081d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/LEAP_proyect.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/LEAP_proyect.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GRecognizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/GRecognizer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_print.py" beforeDir="false" afterPath="$PROJECT_DIR$/_print.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.txt" beforeDir="false" afterPath="$PROJECT_DIR$/config.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/leap_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/leap_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/mouse.py" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/mouse.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/win32_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/win32_functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gvariables.py" beforeDir="false" afterPath="$PROJECT_DIR$/gvariables.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/configuration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/configuration_fromFile.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/configuration_fromFile.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/MaterialDark.qss" beforeDir="false" afterPath="$PROJECT_DIR$/res/MaterialDark.qss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/gui.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/gui_qtdesigner.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/gui_qtdesigner.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/untitled.ui" beforeDir="false" afterPath="$PROJECT_DIR$/views/untitled.ui" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/GRecognizer.exe" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,7 +17,7 @@
     <splitter split-orientation="horizontal" split-proportion="0.4888393">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/GRecognizer.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="418">
@@ -63,7 +47,7 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/views/gui.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="769">
@@ -141,7 +125,7 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/models/configuration.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="821">
+                <state relative-caret-position="769">
                   <caret line="102" selection-start-line="102" selection-end-line="102" />
                 </state>
               </provider>
@@ -650,7 +634,14 @@
       <option name="project" value="LOCAL" />
       <updated>1560948180615</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="some addons">
+      <created>1561039392760</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1561039392761</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TodoView">
@@ -664,13 +655,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="55" y="-8" width="1873" height="1096" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" sideWeight="0.50147927" side_tool="true" weight="0.10906217" />
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4985207" weight="0.17765668" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.4985207" visible="true" weight="0.17765668" />
       <window_info id="Structure" order="2" sideWeight="0.50147927" side_tool="true" weight="0.108742006" />
       <window_info anchor="bottom" id="Terminal" order="0" sideWeight="0.49925596" weight="0.32365146" />
-      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.50074404" side_tool="true" weight="0.45645162" />
+      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.50074404" side_tool="true" weight="0.45643154" />
       <window_info anchor="bottom" id="Python Console" order="2" weight="0.32900432" />
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info anchor="bottom" id="Find" order="4" />
@@ -696,7 +686,8 @@
     <MESSAGE value="settings + refactoring" />
     <MESSAGE value="..." />
     <MESSAGE value="qss" />
-    <option name="LAST_COMMIT_MESSAGE" value="qss" />
+    <MESSAGE value="some addons" />
+    <option name="LAST_COMMIT_MESSAGE" value="some addons" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/views/untitled.ui">
@@ -866,33 +857,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/gui.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="769">
-          <caret line="768" column="18" selection-start-line="768" selection-start-column="18" selection-end-line="768" selection-end-column="18" />
-          <folding>
-            <element signature="e#204#214#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_print.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="23" selection-start-column="23" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/MaterialDark.qss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="183" column="19" selection-start-line="183" selection-start-column="19" selection-end-line="183" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/configuration.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="821">
+        <state relative-caret-position="769">
           <caret line="102" selection-start-line="102" selection-end-line="102" />
         </state>
       </provider>
@@ -903,6 +870,30 @@
           <caret line="35" column="15" lean-forward="true" selection-start-line="35" selection-start-column="15" selection-end-line="35" selection-end-column="15" />
           <folding>
             <element signature="e#196#206#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/MaterialDark.qss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="183" column="19" selection-start-line="183" selection-start-column="19" selection-end-line="183" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_print.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="23" selection-start-column="23" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/gui.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="769">
+          <caret line="768" column="18" selection-start-line="768" selection-start-column="18" selection-end-line="768" selection-end-column="18" />
+          <folding>
+            <element signature="e#204#214#0" expanded="true" />
           </folding>
         </state>
       </provider>
