@@ -764,6 +764,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         """ ends app execution and closes all windows"""
 
         _print("exiting...")
+
         self.close()
         self.opened = False
         sys.exit()
