@@ -28,17 +28,20 @@ from models.points import Point_cloud
 from views.gui_qtdesigner import *
 import views.gui as gui
 
-
 from controllers.leap_controller import *
 from controllers.aux_functions import *
 
 # TODO: features to implement:
-#       -> browser with tutorial
 #       -> add gifs
 #       -> help
-#       -> installer with InnoSetup (when exe ready)
 
-exit = False
+
+def init_thread():
+    """ inits gesture recognition thread"""
+
+    thread = threading.Thread(target=thread_handler)
+    thread.setDaemon(True)
+    thread.start()
 
 
 def thread_handler():
@@ -48,47 +51,43 @@ def thread_handler():
     """
 
     print("thread_handler_init")
-    global exit
-    while not exit:
-        if gv.listener.can_record and \
-                not gv.listener.capture_frame:
-            # here listener.frame_capture is False (we starting a new recording)
-            gv.listener.recording = True
-            time.sleep(.4)
-            print("recording")
-            while gv.listener.hand_vel < 250:
-                pass
+    while True:
+        try:
+            if gv.listener.can_record and not gv.listener.capture_frame:
+                gv.listener.recording = True
+                time.sleep(.4)
+                print("recording")
+                while gv.listener.hand_vel < 250:
+                    pass
 
-            gv.listener.capture_frame = True
+                gv.listener.capture_frame = True
 
-        elif not gv.listener.can_record and \
-                gv.listener.capture_frame:
+            elif not gv.listener.can_record and \
+                    gv.listener.capture_frame:
 
-            print("recording and recognizing captured")
-            gv.listener.capture_frame = False  # end of Leap capture
-            points = gv.listener.gesture[1]  # this allows "F" to work with mouse and hand stroke
-            print("_>"+str(len(points)))
-            if len(points) > 20:
-                try:
-                    pc = Point_cloud("f1", gv.listener.gesture[1])  # pc containing our new gesture
-                    pc.draw_on_canvas()  # drawing pc on canvas to see the shape
-                except:
-                    print("some point_cloud error...")
+                print("recording and recognizing captured")
+                gv.listener.capture_frame = False  # end of Leap capture
+                points = gv.listener.gesture[1]  # this allows "F" to work with mouse and hand stroke
+                if len(points) > 20:
+                    try:
+                        pc = Point_cloud("f1", gv.listener.gesture[1])  # pc containing our new gesture
+                        pc.draw_on_canvas()  # drawing pc on canvas to see the shape
+                    except:
+                        print("some point_cloud error...")
 
-                try:
-                    result = recognize_stroke(points)
-                    gesture_match(result.name)
-                    print("score: " + str(result.score))
-                # print_score(result)
-                except:
-                    print("u have to redo the gesture")
+                    try:
+                        result = recognize_stroke(points)
+                        gesture_match(result.name)
+                        print("score: " + str(result.score))
+                    # print_score(result)
+                    except:
+                        print("u have to redo the gesture")
 
-            stroke_id = 0  # reseting values
-            points = []
-            gv.listener.clear_variables()
-            gv.listener.recording = False
+                gv.listener.clear_variables()
+                gv.listener.recording = False
 
-    print("thread_handler_end")
+        except:
+            pass
 
 
 def console_args(args):
@@ -175,23 +174,7 @@ if __name__ == "__main__":
     # GUI setting up
     app = QtGui.QApplication([])
 
-    """ls = LoadScreen()
-    ls.show()"""
-
-    show_splash_screen()
-
-    """font = QtGui.QFont('Helvetica', 12, QtGui.QFont.Normal)
-    font.setPointSize(12)
-    app.setFont(font)"""
-
-    """for key in QtGui.QStyleFactory.keys():
-        st = QtGui.QStyleFactory.create(key)
-        print(key, st.metaObject().className(), type(app.style()))"""
-
-    # app.setStyle("Plastique")
-
     id = QtGui.QFontDatabase.addApplicationFont("res/fonts/OpenSans-Regular.ttf")
-
     stylesheet = open("res/MaterialDark.qss").read()
     stylesheet = stylesheet.replace("color_hover", "#04B97F")
     stylesheet = stylesheet.replace("color_main", "#252323")
@@ -226,7 +209,8 @@ if __name__ == "__main__":
 
     gv.main_window = main_window
 
-    console_args(sys.argv)
+    # console_args(sys.argv)
+    init_thread()
 
     _print("SYSTEM started")
     _print("sys platform: " + str(sys.platform))

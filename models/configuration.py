@@ -17,6 +17,7 @@ class Conf:
 
     __metaclass__ = ABCMeta
 
+    profile_name = ""
     file_name = ""
     file_date = ""
     file_path = ""
@@ -36,14 +37,20 @@ class Conf:
         :return: true if all is ok, false if not
         """
 
-        return (len(self.basic.__dict__.values()) == len(set(self.basic.__dict__.values())) and \
+        print(len(self.basic.__dict__.values())),
+        print(len(set(self.basic.__dict__.values()))),
+        print(len(self.extra.__dict__.values())),
+        print(len(set(self.extra.__dict__.values())))
+        return (len(self.basic.__dict__.values()) == len(set(self.basic.__dict__.values()))+2 and \
                 len(self.extra.__dict__.values()) == len(set(self.extra.__dict__.values())))
 
     # classes for both configuration types
     class Basic:
         def __init__(self):
             self.invert_mouse = False
+            self.mouse_vel = 1
             self.vscroll_angles = "-13/47"
+            self.vscroll_vel = "30/20"
 
             # default comboboxes values (GUI)
             self.mm = 1
@@ -78,19 +85,10 @@ class Conf:
         def __init__(self):
             self.show_desktop = "D"
             self.show_explorer = "X"
-            self.open_calc = "default"
-            self.open_texteditor = "default"
-            self.open_console = "default"
-            self.open_browser = "default"
 
             self.copy = "C"
             self.cut = "W"
-            self.paste = ""
-
-            self.open_custom_1 = "empty"
-            self.open_custom_2 = "empty"
-            self.open_custom_3 = "empty"
-            self.open_custom_4 = "empty"
+            self.paste = "L"
 
         def get_conf(self):
             """ prints configuration attributes"""
@@ -98,8 +96,6 @@ class Conf:
             aux = ("Extra Conf->\n"
                    + "show_desktop:" + str(self.show_desktop) + "\n"
                    + "show_explorer:" + str(self.show_explorer) + "\n"
-                   + "open_calc:" + str(self.open_calc) + "\n"
-                   + "open_texteditor:" + str(self.open_texteditor) + "\n"
                    + "copy:" + str(self.copy) + "\n"
                    + "cut:" + str(self.cut) + "\n"
                    + "paste:" + str(self.paste) + "\n\n"

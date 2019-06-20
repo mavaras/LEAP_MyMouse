@@ -23,74 +23,17 @@ from sklearn.externals import joblib
 
 # self package imports
 from gvariables import gv
-# import gv
 from _print import _print
 from controllers.aux_functions import *
 from models.points import Point, Point_cloud
+from models.configuration_fromFile import ConfFromFile
 from views.gui_qtdesigner import *
 from views.canvas import Canvas
 from views.settings import Settings
 from views.cv_frame import Cv_Frame
 
 
-class Form(QDialog):
-    """ Just a simple dialog with a couple of widgets
-    """
-
-    def __init__(self, parent=None):
-        QWidget.__init__(self, parent)
-        palette = QPalette(self.palette())
-        palette.setColor(palette.Background, Qt.transparent)
-        self.setPalette(palette)
-        self.exit = False
-
-    def paintEvent(self, event):
-        painter = QPainter()
-        painter.begin(self)
-        painter.setRenderHint(QPainter.Antialiasing)
-        #painter.fillRect(event.rect(), QBrush(QColor(255, 255, 255, 127)))
-        painter.setPen(QPen(Qt.NoPen))
-
-        for c in range(6):
-            if (self.counter/5) % 6 == c:
-                painter.setBrush(QBrush(QColor("#04B97F")))
-            else:
-                painter.setBrush(QBrush(QColor(127, 127, 127)))
-
-            painter.drawEllipse(
-                (self.width() - self.width() / 2) + 32*c - 90,
-                (self.height() - 42),
-                20, 20
-            )
-
-            """
-            painter.drawEllipse(
-                (self.width() - self.width()/5) + 30 * math.cos(2 * math.pi * i/6.0) - 10,
-                (self.height() - self.height()/1.2) + 30 * math.sin(2 * math.pi * i/6.0) - 10,
-                20, 20)
-            """
-        painter.end()
-
-    def showEvent(self, event):
-        self.timer = self.startTimer(50)
-        self.counter = 0
-
-    def timerEvent(self, event):
-        self.counter += 1
-        self.update()
-        if self.counter == 80:
-            self.killTimer(self.timer)
-            self.exit = True
-            '''self.hide()
-            self.parent().close()
-            self.close()'''
-
-
 class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
-    # last and new points for proper drawing (esto no se que mierda es)
-    lp = Point(0, 0, -1)
-    np = Point(0, 0, -1)
-    # n_of_fingers = 1
 
     """ this array stores all combo_boxes with its options with its associated gesture | gifs
     this in an array of dictionaries, each one containing each combo box index + gest. name
@@ -102,13 +45,12 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
     gv = None
 
-    # alternating between pd an NN recognition systems
+    # changing between pd an NN recognition systems
     canvas_algorithm = "pd"
 
     def __init__(self, *args, **kwargs):
         QtGui.QMainWindow.__init__(self, *args, **kwargs)
-        # self.setWindowFlags(Qt.FramelessWindowHint)
-        # self.setWindowOpacity(0)
+
         self.opened = True
         self.systray = QSystemTrayIcon(QIcon("res/icons/leapmymouse.PNG"), self)
         self.set_notification_area()
@@ -127,19 +69,20 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
         self.setWindowIcon(QtGui.QIcon("res/icons/leapmymouse.png"))
 
-        # TAB2 - CONFIGURATION TAB
         # launch on startup checkbox
         self.checkBox_startup.stateChanged.connect(lambda: self.launch_on_startup())
 
-        # __label_leap_status default value
+        # CONFIGURATION TAB
+
+        # label_leap_status default value
         self.change_leap_status(gv.listener.status.leap_connected)
         gv.listener.status.sgn_leap_connected.connect(self.change_leap_status)
 
-        # __cv_frame representation
+        # cv_frame representation
         gv.listener.status.sgn_cv_frame_XY.connect(self.cvF.set_frame_XY)
         gv.listener.status.sgn_cv_frame_XZ.connect(self.cvF.set_frame_XZ)
 
-        # __Action-gesture COMBOBOXES
+        # Action-gesture COMBOBOXES
         # TODO: set all gestures the same as ComboBoxes and handle into leap_controller
         self.combo_box_mm.currentIndexChanged["int"].connect(
             lambda: self.combo_box_actiongesture_changed("combo_box_mm"))
@@ -230,36 +173,28 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                                                       3: "C",
                                                       4: "V"}
 
-        # __help buttons
+        # help buttons
         self.set_gesture_gif("res/gifs/no_gesture.gif")
         self.label_gesture_gif.setLayout(QtGui.QHBoxLayout())
 
         help_img = "res/icons/eye.png"
         # we pass view_gesture() method help button associated combo box
         self.button_help_click.clicked.connect(lambda: self.view_gesture(self.combo_box_click))
-        # self.button_help_click.setIcon(QIcon(help_img))
-        # self.button_help_click.setIconSize(QSize(20, 20))
-        # self.button_help_click.setMask(QtGui.QRegion(self.button_help_click.rect(),
-        #                                              QtGui.QRegion.Ellipse))
         self.button_help_rclick.clicked.connect(lambda: self.view_gesture(self.combo_box_rclick))
-        # self.button_help_rclick.setIcon(QIcon(help_img))
-        # self.button_help_rclick.setIconSize(QSize(20, 20))
-        # self.button_help_rclick.setMask(QtGui.QRegion(self.button_help_rclick.rect(),
-        #                                               QtGui.QRegion.Ellipse))
         self.button_help_grabb.clicked.connect(lambda: self.view_gesture(self.combo_box_grabb))
-        # self.button_help_grabb.setIcon(QIcon(help_img))
-        # self.button_help_grabb.setIconSize(QSize(20, 20))
-        # self.button_help_grabb.setMask(QtGui.QRegion(self.button_help_grabb.rect(),
-        #                                              QtGui.QRegion.Rectangle))
         self.button_help_vscroll.clicked.connect(lambda: self.view_gesture(self.combo_box_vscroll))
-        # self.button_help_vscroll.setIcon(QIcon(help_img))
-        # self.button_help_vscroll.setIconSize(QSize(20, 20))
-        # self.button_help_vscroll.setMask(QtGui.QRegion(self.button_help_vscroll.rect(),
-        #                                               QtGui.QRegion.Ellipse))
+        self.button_setprofilename.clicked.connect(self.set_profile_name)
+        self.lineEdit_profilename.setText("")
+
+        self.button_stop.setChecked(True)
+        self.button_stop.clicked.connect(lambda: self.start_stop_control())
+        self.button_start.setChecked(False)
+        self.button_start.clicked.connect(lambda: self.start_stop_control())
 
         # MENUBAR
         self.menubar_file_loadconf.triggered.connect(self.load_conf_file)
         self.menubar_file_saveconf.triggered.connect(self.save_conf)
+        self.menubar_file_loaddefconf.triggered.connect(self.set_default_conf)
         self.menubar_help_debug.triggered.connect(self.debug_mode)
         self.menubar_help_settings.triggered.connect(self.show_settings)
 
@@ -267,12 +202,12 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         """ this function sets notification area menu"""
 
         self.systray.show()
-        self.systray.showMessage("PCRecognizer",
+        self.systray.showMessage("LEAP MyMouse",
                                  "App working",
-                                 QSystemTrayIcon.Warning)
+                                 QSystemTrayIcon.NoIcon)
         # right click options
         self.systray_menu = QMenu(self)
-        self.opt_startcontrol = self.systray_menu.addAction("Open/Close").triggered.connect(self.show_gui)  # open gui
+        self.opt_startcontrol = self.systray_menu.addAction("Show/Hide").triggered.connect(self.show_gui)  # open gui
         self.opt_startcontrol = self.systray_menu.addAction("Start Control").triggered.connect(self.start_stop_control)
         self.opt_stopcontrol = self.systray_menu.addAction("Stop Control").triggered.connect(self.start_stop_control)
         self.opt_exit = self.systray_menu.addAction("Exit").triggered.connect(self.exit_app)
@@ -299,6 +234,21 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         global points
         points = loaded_points  # allowing "F"
 
+    def set_profile_name(self):
+        """ changes the configuration profile name to the new one given by the user"""
+
+        self.label_conf_file.setText(self.lineEdit_profilename.text())
+        gv.configuration.profile_name = str(self.lineEdit_profilename.text())
+        self.update_file(str(gv.configuration.file_path)+"/"+str(gv.configuration.file_name),
+                         0,
+                         gv.configuration.profile_name)
+
+    def set_default_conf(self):
+        """ restores default configuration"""
+
+        gv.configuration = ConfFromFile()
+        self.load_conf()
+
     def save_conf(self):
         """ save Configuration object content to file"""
 
@@ -308,20 +258,47 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                                             "E:\\Documentos\\Estudio\\programming\\Python\\leap\\LEAP_proyect",
                                             "(*.txt)")
         if fname:
-            f = open(fname, "w+")
-
-            configuration = gv.configuration
-            configuration.file_name = str(QFileInfo(fname).fileName())
-            configuration.file_path = str(QFileInfo(fname).path())
-            configuration.file_date = time.ctime(os.path.getctime(fname))
-
-            f.write(configuration.file_name + "\n" + configuration.file_path + "\n" + configuration.file_date + "\n\n")
-            f.write(configuration.basic.get_conf())
-            f.write("\n")
-            f.write(configuration.extra.get_conf())
-            f.close()
+            self.save_conf_file(fname)
         else:
             print("error save_conf()")
+
+    def save_conf_file(self, fname):
+        """ writes and saves the given file with the configuration info
+
+        :param fname: file path and name to be saved to
+        """
+
+        f = open(fname, "w+")
+
+        configuration = gv.configuration
+        self.label_conf_file.setText(configuration.profile_name)
+        configuration.file_name = str(QFileInfo(fname).fileName())
+        configuration.file_path = str(QFileInfo(fname).path())
+        configuration.file_date = time.ctime(os.path.getctime(fname))
+
+        f.write(configuration.profile_name + "\n" +
+                configuration.file_name + "\n" +
+                configuration.file_path + "\n" +
+                configuration.file_date + "\n\n")
+        f.write(configuration.basic.get_conf())
+        f.write("\n")
+        f.write(configuration.extra.get_conf())
+        f.close()
+
+    def update_file(self, fname, line, replace):
+        """ updates a given file name in the given file with the given content
+
+        :param fname: file path and name to be saved to
+        :param line: which line to be updated
+        :param replace: new content
+        """
+
+        with open(fname, "r") as file:
+            file_content = file.readlines()
+
+        file_content[line] = replace+str("\n")
+        with open(fname, "w") as file:
+            file.writelines(file_content)
 
     def load_conf_file(self):
         """ loads configuration file into Configuration object"""
@@ -334,10 +311,10 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         if fname:
             f = open(fname, "r")
             gv.configuration.load_conf(f)
+            self.label_conf_file.setText(gv.configuration.profile_name)
 
             f.close()
 
-        self.label_conf_file.setText(str(fname))
         self.load_conf()
 
     def load_conf(self):
@@ -379,15 +356,16 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         )
 
     def debug_mode(self):
+        """ opens the canvas window"""
+
         _print("debug")
         self.canvas.show()
 
     def show_settings(self):
+        """ opens the settings window"""
+
         _print("settings")
         self.settings.show()
-
-    def set_default_conf(self):  # ??
-        pass
 
     # Leap status label
     @pyqtSlot(bool)
@@ -430,27 +408,10 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
         global points
         if event.key() == QtCore.Qt.Key_Q:
-            print(gv.stdout)
             self.exit_app()
 
-        elif event.key() == QtCore.Qt.Key_W:  # app interaction example/test
-            """handle = win32gui.FindWindow(None, r"Reproductor multimedia VLC")
-            # win32gui.PostMessage(handle, win32con.WM_CLOSE, 0, 0)
-            win32gui.CloseWindow(handle)"""
-
-            print("w")
-
         elif event.key() == QtCore.Qt.Key_S:
-            gv.listener.stop_control() if gv.listener.mouse.active \
-                else gv.listener.start_control()
-
-        elif event.key() == QtCore.Qt.Key_Y:
-            """print("Y pressed")
-            keyboard = Controller()
-            keyboard.press(Key.cmd)
-            keyboard.press("d")
-            keyboard.release("d")
-            keyboard.release(Key.cmd)"""
+            self.start_stop_control()
 
         elif event.key() == QtCore.Qt.Key_F:  # start stroke recognition
             if self.n_of_fingers == 1:
@@ -732,15 +693,25 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         area icon
         """
 
-        _print("notification area Start/Stop Control")
-
         if not gv.listener.status.leap_connected:
             self.show_popup("Problem Detected",
                             "Leap Motion error",
                             "Leap Motion device is not connected")
         else:
             if gv.configuration.check():
-                gv.listener.stop_control() if gv.listener.mouse.active else gv.listener.start_control()
+                _print("Start/Stop Control")
+
+                if not gv.listener.mouse.active:
+                    gv.listener.mouse.active = True
+                    self.button_stop.setChecked(False)
+                    self.button_stop.setEnabled(True)
+                    self.button_start.setChecked(True)
+
+                else:
+                    gv.listener.mouse.active = False
+                    self.button_start.setChecked(False)
+                    self.button_start.setEnabled(True)
+                    self.button_stop.setChecked(True)
 
             else:
                 self.show_popup("Problem Detected",

@@ -1,10 +1,10 @@
-config.txt
-E:/ESTUDIO/PROGRAMACION/Python/leap/LEAP_proyect
-Thu Apr 25 20:36:11 2019
+asfsdfsconfig.txt
+E:/Documentos/Estudio/programming/Python/leap/LEAP_proyect
+Thu Mar 28 17:13:27 2019
 
 Basic Conf->
-mm:3
-lclick:click_f1down
+mm:1
+lclick:click_planem
 rclick:rclick_f2down
 vscroll:5_fingers_UD
 hscroll:default
@@ -16,9 +16,7 @@ minimizew:V
 Extra Conf->
 show_desktop:D
 show_explorer:X
-open_calc:default
-open_texteditor:default
 copy:C
 cut:W
-paste:
+paste:L
 

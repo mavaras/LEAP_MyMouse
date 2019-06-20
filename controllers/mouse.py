@@ -21,6 +21,7 @@ class Mouse:
 
     switch_mode = False
     switching = False
+    swiping = False
 
     def __init__(self, x, y, dircx, dircy, acc, vel, active):
         self.x, self.y = x, y
@@ -36,7 +37,9 @@ class Mouse:
         self.grabbing = False
 
         self.switch_mode = False  # if into switch mode (just hand position)
-        self.switching = False  # if currently switching (switch mode + left or right swipe)
+        self.switching = False  # if currently switching (switch mode + left or right switch)
+        self.swipe = False  # if currently swiping (swipe mode + left or right swipe)
+        self.last_swipe_time = time.time()
 
     def lclick(self):
         """ performs a left click on the mouse"""

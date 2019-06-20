@@ -1,8 +1,10 @@
-"""
-Settings window
--> vscroll pitch angle
--> startup folder
-"""
+# -*- coding: utf-8 -*-
+
+# ===============SETTINGS===============
+# == vscroll pitch angle and speed
+# == mouse movement speed and invertion
+# == startup folder
+
 
 import os
 
@@ -50,6 +52,19 @@ class Settings(QDialog):
         hbox2.addWidget(self.label_3)
         hbox2.addWidget(self.combo_box1)
 
+        hbox5 = QHBoxLayout()
+        self.label_5 = QLabel()
+        self.label_5.setText("Vscroll speed")
+        self.combo_box3 = QComboBox()
+        self.combo_box3.addItem("slower")
+        self.combo_box3.addItem("slow")
+        self.combo_box3.addItem("normal (default)")
+        self.combo_box3.addItem("fast")
+        self.combo_box3.addItem("faster")
+        self.combo_box3.currentIndexChanged["int"].connect(self.combo_box3_changed)
+        hbox5.addWidget(self.label_5)
+        hbox5.addWidget(self.combo_box3)
+
         hbox3 = QHBoxLayout()
         self.label_4 = QLabel()
         self.label_4.setText("Invert mouse")
@@ -67,10 +82,23 @@ class Settings(QDialog):
         hbox3.addWidget(self.radiobutton_yes, 10)
         hbox3.addWidget(self.radiobutton_no, 10)
 
+        hbox4 = QHBoxLayout()
+        self.label_4 = QLabel()
+        self.label_4.setText("Mouse movement speed")
+        self.combo_box2 = QComboBox()
+        self.combo_box2.addItem("slow")
+        self.combo_box2.addItem("normal (default)")
+        self.combo_box2.addItem("fast")
+        self.combo_box2.currentIndexChanged["int"].connect(self.combo_box2_changed)
+        hbox4.addWidget(self.label_4)
+        hbox4.addWidget(self.combo_box2)
+
         layout.addLayout(hbox, 1, 0)
         layout.setRowStretch(10, 0)
         layout.addLayout(hbox2, 2, 0)
         layout.addLayout(hbox3, 4, 0)
+        layout.addLayout(hbox4, 5, 0)
+        layout.addLayout(hbox5, 6, 0)
 
         self.setLayout(layout)
 
@@ -80,6 +108,26 @@ class Settings(QDialog):
         _print("vscroll angles changed")
 
         gv.configuration.basic.vscroll_angles = self.combo_box1.currentText()
+
+    def combo_box2_changed(self):
+        """ cursor speed combobox changed"""
+
+        _print("cursor speed changed")
+        dic = {"slow": 0.8,
+               "normal (default)": 1,
+               "fast": 1.3}
+        gv.configuration.basic.mouse_vel = dic.get(str(self.combo_box2.currentText()))
+
+    def combo_box3_changed(self):
+        """ vscroll speed combobox changed"""
+
+        _print("vscroll speed changed")
+        dic = {"slower": "18/8",
+               "slow": "25/15",
+               "normal (default)": "30/20",
+               "fast": "40/30",
+               "faster": "50/40"}
+        gv.configuration.basic.vscroll_vel = dic.get(str(self.combo_box3.currentText()))
 
     def radiobutton_ch(self, what):
         """ enables/disables mouse invertion when controlling

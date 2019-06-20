@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # ===============WIN32 CONTROL FUNCTIONS===============
 # == actions
 # == keyboard actions

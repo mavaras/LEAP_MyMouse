@@ -129,9 +129,6 @@ class leap_listener(Leap.Listener):
         """ (Leap API) Leap device is connected"""
         print("connected")
 
-        controller.enable_gesture(Leap.Gesture.TYPE_SCREEN_TAP)
-        controller.enable_gesture(Leap.Gesture.TYPE_SWIPE)
-
         self.status.leap_connected = True
         self.status.emit_leap_connected(True)
 
@@ -216,7 +213,7 @@ class leap_listener(Leap.Listener):
             win32api.SetCursorPos((
                 # int(abs(self.fingers_pos[mm_finger][0])),   # x
                 # int(abs(self.fingers_pos[mm_finger][1]))    # y
-                sx, sy
+                sx*gv.configuration.basic.mouse_vel, sy*gv.configuration.basic.mouse_vel
             ))
 
             # updating mouse object position
@@ -232,10 +229,14 @@ class leap_listener(Leap.Listener):
 
         vel = finger_direction
         direction = sign(vel)
-        flag = False
+        print(vel),
+        print(int(abs(vel))),
         print(direction)
-        if abs(vel) > 250 and not flag:
-            flag = True
+        print(time.time() - self.mouse.last_swipe_time)
+        if int(abs(vel)) > 1000 and not self.mouse.swiping \
+                and (time.time() - self.mouse.last_swipe_time) > 0.5:
+            self.mouse.swiping = True
+            self.mouse.last_swipe_time = time.time()
             if direction == 1:
                 if args[0]:
                     press(args[0])
@@ -246,7 +247,7 @@ class leap_listener(Leap.Listener):
 
             time.sleep(.4)
         else:
-            flag = False
+            self.mouse.swiping = False
 
     def switch(self, hand, yaw, roll):
         """ makes the alt-tab + left/right key for switching between windows
@@ -256,9 +257,6 @@ class leap_listener(Leap.Listener):
         :param roll: angle between X and Y axis (Z axis rotations)
         """
 
-        # TODO:
-        #   -> utf-8 / latin-2
-        #   -> improve swipe
         # angle between X and Y (Z rotations)
         if roll > 50:
             # we are into switch mode
@@ -274,17 +272,12 @@ class leap_listener(Leap.Listener):
                 if abs(hand.palm_velocity.x) > 150 and not self.mouse.switching:
                     self.mouse.switching = True
                     if direction == 1:
-                        print("right SWIPE")
+                        print("right SWITCH")
                         press("right_arrow")
-                        """if curr_window_index == len(opened_windows_names) - 1:
-                        curr_window_index = 0
-                        name = opened_windows_names[curr_window_index+1]"""
+
                     else:
-                        print("left SWIPE")
+                        print("left SWITCH")
                         press("left_arrow")
-                        """if curr_window_index == 1:  # always Start it's the first one in list(0) (Windows only?)
-                        curr_window_index = len(opened_windows_names)-1
-                        name = opened_windows_names[curr_window_index-1]"""
 
                     time.sleep(.4)
                 else:
@@ -406,12 +399,6 @@ class leap_listener(Leap.Listener):
 
         :param hand: leap API hand object
         """
-        # TODO:
-        #   -> add
-        #       -> f2 down
-        #       -> f2 and f3 down
-        #       -> 45 degrees yaw
-        #   -> same as planem click?
 
         f1 = hand.fingers[1]
         f2 = hand.fingers[2]
@@ -443,25 +430,21 @@ class leap_listener(Leap.Listener):
         :param pitch: angle between Z and Y axis (X rotations)
         """
 
-        # TODO:
-        #   -> choose speed
-        #   -> speed increasing with angle
-
         if "UD" in gv.configuration.basic.vscroll:
             n_fingers = [int(c) for c in gv.configuration.basic.vscroll
                          if c.isdigit()][0]
             if len(self.frame.fingers.extended()) == n_fingers:
                 pitch = hand.direction.pitch * Leap.RAD_TO_DEG
-                if pitch < gv.configuration.basic.vscroll_angles.split("/")[0]:
+                if pitch < int(gv.configuration.basic.vscroll_angles.split("/")[0]):
                     print("vscroll down")
-                    vel = -int(45 - ((90 - abs(pitch))/3) + 17)
-                    print(vel)
+                    vel = -int(int(gv.configuration.basic.vscroll_vel.split("/")[0])
+                               - ((90 - abs(pitch))/3) + 17)
                     self.mouse.vscroll(vel)
 
-                elif pitch > gv.configuration.basic.vscroll_angles.split("/")[1]:
+                elif pitch > int(gv.configuration.basic.vscroll_angles.split("/")[1]):
                     print("vscroll up")
-                    vel = int(35 - ((90 - abs(pitch))/3) + 17)
-                    print(vel)
+                    vel = int(int(gv.configuration.basic.vscroll_vel.split("/")[1])
+                              - ((90 - abs(pitch))/3) + 17)
                     self.mouse.vscroll(vel)
 
         else:
@@ -469,11 +452,11 @@ class leap_listener(Leap.Listener):
                          if c.isdigit()][0]
             if len(self.frame.fingers.extended()) == n_fingers:
                 if yaw < -30:
-                    vel = -int(40 - ((90 - abs(pitch)) / 3) + 17)
+                    vel = -int(40 - ((90 - abs(pitch))/3) + 17)
                     self.mouse.vscroll(vel)
 
                 elif yaw > 9:
-                    vel = int(30 - ((90 - pitch) / 3) + 17)
+                    vel = int(30 - ((90 - pitch)/3) + 17)
                     self.mouse.vscroll(vel)
 
     def on_frame(self, controller):
@@ -528,8 +511,8 @@ class leap_listener(Leap.Listener):
                     yaw = hand.direction.yaw * Leap.RAD_TO_DEG
                     pitch = hand.direction.pitch * Leap.RAD_TO_DEG
 
-                    if "PowerPoint  -" in get_current_window_name():  # presentation mode
-                        self.swipe(hand.fingers[1].tip_velocity.x, ["right_arrow",
+                    if any(c in get_current_window_name() for c in ["PowerPoint  -", "PowerPoint -"]):  # presentation mode
+                        self.swipe(hand.fingers[2].tip_velocity.x, ["right_arrow",
                                                                     "left_arrow"])
                         self.swipe(hand.fingers[1].tip_velocity.y, ["esc"])
 
