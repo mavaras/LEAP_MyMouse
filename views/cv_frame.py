@@ -7,7 +7,6 @@
 
 import time
 import numpy as np
-from gvariables import *
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from views.gui_qtdesigner import *
@@ -15,25 +14,25 @@ import cv2
 
 
 class Cv_Frame:
+    """ this class handles the signal reception from controller
+    and draws the hand real time representation on the QLabels"""
+
     main_window = None
 
     def __init__(self, main_window):
-        # global cv_frame_XY, cv_frame_XZ, main_window
-
         self.main_window = main_window
         self.frame_XY = np.zeros((540, 640, 3), np.uint8)  # XZ frame
         self.frame_XZ = np.zeros((540, 640, 3), np.uint8)  # XZ frame
 
-        # show_frame each second
+        # show_frame() each second
         time.sleep(1)
         self.timer = QtCore.QTimer(main_window)
         self.timer.timeout.connect(self.show_frame)
         self.timer.start(1)
 
-    # load frame (image) into label
     def show_frame(self):
-        # self.frame_XY = gvariables.listener.cv_frame_XY
-        # self.frame_XZ = gvariables.listener.cv_frame_XZ
+        """ displays image into label"""
+
         aux_frame_XY = cv2.resize(np.array(self.frame_XY), None,
                                   fx=.7, fy=.7, interpolation=cv2.INTER_CUBIC)
         aux_frame_XZ = cv2.resize(np.array(self.frame_XZ), None,
@@ -55,8 +54,12 @@ class Cv_Frame:
 
     @pyqtSlot(np.ndarray)
     def set_frame_XY(self, frameXY):
+        """ receives the controller signal (XY frame)"""
+
         self.frame_XY = frameXY
 
     @pyqtSlot(np.ndarray)
     def set_frame_XZ(self, frameXZ):
+        """ receives the controller signal (XZ frame)"""
+
         self.frame_XZ = frameXZ

@@ -2387,9 +2387,6 @@
           <string>TextLabel</string>
          </property>
         </widget>
-        <zorder>label_frame_XY</zorder>
-        <zorder>button_start</zorder>
-        <zorder>button_stop</zorder>
        </widget>
        <widget class="QWidget" name="tab_frame_YZ">
         <attribute name="title">
@@ -4580,22 +4577,6 @@
         <string>Gestures Profile</string>
        </property>
       </widget>
-      <zorder>button_start</zorder>
-      <zorder>button_stop</zorder>
-      <zorder>label_leap_status</zorder>
-      <zorder>line_2</zorder>
-      <zorder>tab_widget_frames</zorder>
-      <zorder>label_8</zorder>
-      <zorder>label_conf_file</zorder>
-      <zorder>checkBox_startup</zorder>
-      <zorder>line</zorder>
-      <zorder>label_12</zorder>
-      <zorder>line_3</zorder>
-      <zorder>tab_widget_frames</zorder>
-      <zorder>label_header1</zorder>
-      <zorder>tab_widget_conf</zorder>
-      <zorder>tab_widget_conf</zorder>
-      <zorder>label_header2</zorder>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_logs">
@@ -4687,11 +4668,14 @@
    <widget class="Line" name="line_2">
     <property name="geometry">
      <rect>
-      <x>505</x>
+      <x>496</x>
       <y>518</y>
-      <width>3</width>
+      <width>1</width>
       <height>61</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(77,77,77);</string>
     </property>
     <property name="orientation">
      <enum>Qt::Vertical</enum>
@@ -4756,7 +4740,7 @@
      <rect>
       <x>775</x>
       <y>518</y>
-      <width>3</width>
+      <width>1</width>
       <height>61</height>
      </rect>
     </property>

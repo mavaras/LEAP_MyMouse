@@ -55,7 +55,7 @@ def neural_network(img):
 
     # display results
     print("prediction: " + str(predicted))
-    plt.imshow(img, cmap=plt.cm.gray_r, interpolation='nearest')
+    plt.imshow(img, cmap=plt.cm.gray_r, interpolation="nearest")
     plt.title("result: " + str(predicted))
     plt.show()
 

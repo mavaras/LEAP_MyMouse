@@ -44,6 +44,13 @@ controllers.win32\_functions module
     :undoc-members:
     :show-inheritance:
 
+controllers.configuration\_controller module
+-----------------------------------
+
+.. automodule:: controllers.configuration_controller
+    :members:
+    :undoc-members:
+    :show-inheritance:
 
 Module contents
 ---------------

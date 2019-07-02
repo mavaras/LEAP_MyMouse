@@ -20,7 +20,7 @@ sys.setrecursionlimit(1500)
 
 # -- Project information -----------------------------------------------------
 
-project = u'LeapPCController'
+project = u'LEAP MyMouse'
 copyright = u'2019, Mario Varas'
 author = u'Mario Varas'
 
@@ -104,7 +104,7 @@ html_static_path = ['.static']
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'LeapPCControllerdoc'
+htmlhelp_basename = 'LEAP MyMouse'
 
 # -- Options for LaTeX output ------------------------------------------------
 
@@ -130,7 +130,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'LeapPCController.tex', u'LeapPCController Documentation',
+    (master_doc, 'LeapPCController.tex', u'LEAP MyMouse Documentation',
      u'Mario Varas', 'manual'),
 ]
 
@@ -139,7 +139,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'leappccontroller', u'LeapPCController Documentation',
+    (master_doc, 'LEAP MyMouse', u'LEAP MyMouse Documentation',
      [author], 1)
 ]
 
@@ -149,8 +149,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'LeapPCController', u'LeapPCController Documentation',
-     author, 'LeapPCController', 'One line description of project.',
+    (master_doc, 'LEAP MyMouse', u'LeapPCController Documentation',
+     author, 'LEAP MyMouse', 'One line description of project.',
      'Miscellaneous'),
 ]
 

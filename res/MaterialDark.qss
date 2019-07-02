@@ -76,7 +76,9 @@ QToolButton:hover{
 }
 
 QPushButton#button_stop,
-QPushButton#button_start {
+QPushButton#button_start,
+
+QPushButton#button_startup_folder {
     image: none;
     color: black;
     padding-top: 0px;
@@ -107,8 +109,9 @@ QPushButton#button_stop {
 QPushButton#button_stop:hover,
 QPushButton#button_start:hover,
 QPushButton#button_stop:checked,
-QPushButton#button_start:checked {
+QPushButton#button_start:checked,
 
+QPushButton#button_startup_folder {
     color: color_main;
 
     background-color: color_hover;
@@ -122,7 +125,8 @@ QPushButton#button_start:checked {
 	border-color: color_hover;
 }
 
-QPushButton#button_setprofilename {
+QPushButton#button_setprofilename,
+QPushButton#button_startup_folder {
     image: none;
     color: black;
     padding-top: 0px;
@@ -296,6 +300,12 @@ QCheckBox {
 QCheckBox:disabled {
 	color: #808086;
 	padding: 2px;
+}
+
+QFrame[frameShape="5"],
+QFrame[frameShape="4"] {
+    background: rgb(77,77,77);
+    width: 12px;
 }
 
 QCheckBox:hover {

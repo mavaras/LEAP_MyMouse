@@ -17,7 +17,9 @@ class Conf:
 
     __metaclass__ = ABCMeta
 
-    profile_name = ""
+    startup_path = ""
+
+    profile_name = "none"
     file_name = ""
     file_date = ""
     file_path = ""
@@ -28,6 +30,10 @@ class Conf:
 
     @abstractmethod
     def load_conf(self, conf):
+        """ abstract method related to which method we have to load the configuration into system
+        .txt file, database, web etc.
+        """
+
         pass
 
     def check(self):
@@ -37,23 +43,23 @@ class Conf:
         :return: true if all is ok, false if not
         """
 
-        print(len(self.basic.__dict__.values())),
+        """print(len(self.basic.__dict__.values())),
         print(len(set(self.basic.__dict__.values()))),
         print(len(self.extra.__dict__.values())),
-        print(len(set(self.extra.__dict__.values())))
-        return (len(self.basic.__dict__.values()) == len(set(self.basic.__dict__.values()))+2 and \
+        print(len(set(self.extra.__dict__.values())))"""
+        return (len(self.basic.__dict__.values()) == len(set(self.basic.__dict__.values()))+1 and \
                 len(self.extra.__dict__.values()) == len(set(self.extra.__dict__.values())))
 
     # classes for both configuration types
     class Basic:
         def __init__(self):
-            self.invert_mouse = False
+            self.invert_mouse = "no"
             self.mouse_vel = 1
             self.vscroll_angles = "-13/47"
             self.vscroll_vel = "30/20"
 
             # default comboboxes values (GUI)
-            self.mm = 1
+            self.mm = "1"
             self.lclick = "click_planem"
             self.rclick = "rclick_f2down"
             self.hscroll = "default"

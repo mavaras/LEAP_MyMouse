@@ -9,7 +9,7 @@
 
 import math
 from win32_functions import *
-from gvariables import gv
+from models.gvariables import gv
 from key_handle import *
 
 
@@ -45,7 +45,7 @@ def distance(p1, p2):
 
     dx = p2.x - p1.x
     dy = p2.y - p1.y
-    return math.sqrt(dx * dx + dy * dy)
+    return math.sqrt(dx*dx + dy*dy)
 
 
 def get_dict_key(dic, value):
@@ -72,18 +72,18 @@ def recognize_stroke(points):
     return result
 
 
-def print_score(result):
+def print_score(result, view):
     """ this shows final score of current stroke (red label on canvas)
 
     :param result: Result object containing recognition result
     """
 
     score = "Result: matched with " + result.name + " about " + str(round(result.score, 2))
-    gv.main_window.canvas.label_score.setStyleSheet("color: white; font-size: 12pt;")
-    gv.main_window.canvas.label_score.setText(str(score))
+    view.canvas.label_score.setStyleSheet("color: white; font-size: 12pt;")
+    view.canvas.label_score.setText(str(score))
 
 
-def gesture_match(gesture_name, active=True):
+def gesture_match(gesture_name, configuration, active=True):
     """ matches gesture_name with its associated action
 
     :param gesture_name: letter
@@ -92,35 +92,35 @@ def gesture_match(gesture_name, active=True):
     print(str(gesture_name)+" gesture\n")
 
     if active:
-        if gesture_name == gv.configuration.basic.closew:
+        if gesture_name == configuration.basic.closew:
             hwnd = get_current_window_hwnd()
             close_window(hwnd)
 
-        elif gesture_name == gv.configuration.basic.minimizew:
+        elif gesture_name == configuration.basic.minimizew:
             hwnd = get_current_window_hwnd()
             minimize_window(hwnd)
 
-        elif gesture_name == gv.configuration.extra.show_desktop:
+        elif gesture_name == configuration.extra.show_desktop:
             hold("windows")
             press("d")
             release("windows")
 
-        elif gesture_name == gv.configuration.extra.show_explorer:
+        elif gesture_name == configuration.extra.show_explorer:
             hold("windows")
             press("e")
             release("windows")
 
-        elif gesture_name == gv.configuration.extra.copy:
+        elif gesture_name == configuration.extra.copy:
             hold("ctrl")
             press("c")
             release("ctrl")
 
-        elif gesture_name == gv.configuration.extra.paste:
+        elif gesture_name == configuration.extra.paste:
             hold("ctrl")
             press("v")
             release("ctrl")
 
-        elif gesture_name == gv.configuration.extra.cut:
+        elif gesture_name == configuration.extra.cut:
             hold("ctrl")
             press("x")
             release("ctrl")

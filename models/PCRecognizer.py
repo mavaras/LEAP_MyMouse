@@ -5,15 +5,15 @@
 # == classes
 
 
-# basic modules imports
 import time
 
 from template import init_templates
 from PCRecognizer_functions import *
-from gvariables import gv
+from models.gvariables import gv
 
 
 class Result:
+
     def __init__(self, name, score, ms):
         self.name = name
         self.score = score
@@ -26,7 +26,7 @@ num_points = 32  # points number to resample to
 class PCRecognizer:
 
     def __init__(self):
-        self.origin = ps.Point(gv.W / 4, gv.H / 4, -1)  # canvas point where to translate_to (canvas center)
+        self.origin = ps.Point(gv.W/4, gv.H/4, -1)  # canvas point where to translate_to (canvas center)
         self.templates = init_templates()  # array storing all Template objects
 
     def normalize(self, points):
@@ -76,7 +76,7 @@ class PCRecognizer:
                     if dist < score:
                         score = dist
                         template_n = c
-                        if max((dist - 2.0) / -2.0, 0.0) > 0.2:
+                        if max((dist - 2.0)/-2.0, 0.0) > 0.2:
                             found = True
                             break
             else:
@@ -89,5 +89,5 @@ class PCRecognizer:
 
         else:
             return Result(self.templates[template_n].name,  # template matched
-                          max((score - 2.0) / -2.0, 0.0),  # score achieved
+                          max((score - 2.0)/-2.0, 0.0),  # score achieved
                           t_fin - t_ini)  # time in ms

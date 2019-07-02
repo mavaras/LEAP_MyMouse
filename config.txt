@@ -1,4 +1,5 @@
-asfsdfsconfig.txt
+none
+config.txt
 E:/Documentos/Estudio/programming/Python/leap/LEAP_proyect
 Thu Mar 28 17:13:27 2019
 

@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name='LEAP_proyect',
+    name='LEAP_MyMouse',
     version='',
     packages=['', 'lib', 'views', 'models', 'controllers'],
     url='',

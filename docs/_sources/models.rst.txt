@@ -28,6 +28,14 @@ models.configuration module
     :undoc-members:
     :show-inheritance:
 
+models.configuration_fromFile module
+---------------------------
+
+.. automodule:: models.configuration_fromFile
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 models.points module
 --------------------
 

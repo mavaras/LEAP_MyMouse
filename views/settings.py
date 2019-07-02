@@ -6,19 +6,16 @@
 # == startup folder
 
 
-import os
-
 from PyQt4.QtGui import *
 from views.gui_qtdesigner import *
 
-from _print import _print
-from gvariables import gv
-
 
 class Settings(QDialog):
+    """ this class represents the general settings window"""
 
     def __init__(self, parent):
         super(Settings, self).__init__(parent)
+        self.parent = parent
 
         self.setWindowTitle("Settings")
         self.setWindowIcon(QtGui.QIcon("res/icons/leapmymouse.png"))
@@ -34,12 +31,24 @@ class Settings(QDialog):
         self.label_2 = QLabel()
         self.label_2.setText("Startup folder")
         self.startup_textarea = QLineEdit()
-        self.startup_textarea.setText(
-            str(os.path.expanduser("~"))+"\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
-        )
+        self.startup_textarea.setText(parent.configuration.startup_path)
         self.startup_textarea.setFocus(False)
+        self.button_startup_folder = QPushButton()
+        self.button_startup_folder.setText("Set")
+        self.button_startup_folder.setStyleSheet(
+            """
+            image: none;
+            color: black;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            padding-left: 7px;
+            padding-right: 7px;
+            """
+        )
+        self.button_startup_folder.clicked.connect(self.set_startup_folder)
         hbox.addWidget(self.label_2)
         hbox.addWidget(self.startup_textarea)
+        hbox.addWidget(self.button_startup_folder)
 
         hbox2 = QHBoxLayout()
         self.label_3 = QLabel()
@@ -102,32 +111,37 @@ class Settings(QDialog):
 
         self.setLayout(layout)
 
+    def set_startup_folder(self):
+        """ saves the path to the startup folder"""
+        print("!")
+        self.parent.configuration.startup_path = str(self.startup_textarea.text())
+
     def combo_box1_changed(self):
         """ vscroll angles combobox changed"""
 
-        _print("vscroll angles changed")
+        self.parent._print("vscroll angles changed")
 
-        gv.configuration.basic.vscroll_angles = self.combo_box1.currentText()
+        self.parent.configuration.basic.vscroll_angles = self.combo_box1.currentText()
 
     def combo_box2_changed(self):
         """ cursor speed combobox changed"""
 
-        _print("cursor speed changed")
+        self.parent._print("cursor speed changed")
         dic = {"slow": 0.8,
                "normal (default)": 1,
                "fast": 1.3}
-        gv.configuration.basic.mouse_vel = dic.get(str(self.combo_box2.currentText()))
+        self.parent.configuration.basic.mouse_vel = dic.get(str(self.combo_box2.currentText()))
 
     def combo_box3_changed(self):
         """ vscroll speed combobox changed"""
 
-        _print("vscroll speed changed")
+        self.parent._print("vscroll speed changed")
         dic = {"slower": "18/8",
                "slow": "25/15",
                "normal (default)": "30/20",
                "fast": "40/30",
                "faster": "50/40"}
-        gv.configuration.basic.vscroll_vel = dic.get(str(self.combo_box3.currentText()))
+        self.parent.configuration.basic.vscroll_vel = dic.get(str(self.combo_box3.currentText()))
 
     def radiobutton_ch(self, what):
         """ enables/disables mouse invertion when controlling
@@ -135,9 +149,9 @@ class Settings(QDialog):
         :param what: yes or no
         """
 
-        _print("mouse invert changed")
+        self.parent._print("mouse invert changed")
 
         if what == "yes":
-            gv.configuration.basic.invert_mouse = True
+            self.parent.configuration.basic.invert_mouse = "yes"
         else:
-            gv.configuration.basic.invert_mouse = False
+            self.parent.configuration.basic.invert_mouse = "no"

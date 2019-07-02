@@ -16,7 +16,6 @@ class Overlay(QWidget):
         painter = QPainter()
         painter.begin(self)
         painter.setRenderHint(QPainter.Antialiasing)
-        #painter.fillRect(event.rect(), QBrush(QColor(255, 255, 255, 127)))
         painter.setPen(QPen(Qt.NoPen))
 
         for c in range(6):
@@ -26,7 +25,7 @@ class Overlay(QWidget):
                 painter.setBrush(QBrush(QColor(127, 127, 127)))
 
             painter.drawEllipse(
-                (self.width() - self.width() / 2) + 32*c - 90,
+                (self.width() - self.width()/2) + 32*c - 90,
                 (self.height() - 42),
                 20, 20
             )
