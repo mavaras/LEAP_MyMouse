@@ -12,6 +12,14 @@ views.canvas module
     :undoc-members:
     :show-inheritance:
 
+views.settings module
+-------------------
+
+.. automodule:: views.settings
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 views.cv\_frame module
 ----------------------
 

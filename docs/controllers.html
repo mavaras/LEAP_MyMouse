@@ -1,1030 +1,852 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>controllers package &#8212; LeapPCController 2019 documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css"/>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css"/>
-    <script type="text/javascript" id="documentation_options" data-url_root="./"
-            src="_static/documentation_options.js"></script>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>controllers package &#8212; LEAP MyMouse 2019 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/language_data.js"></script>
-    <link rel="index" title="Index" href="genindex.html"/>
-    <link rel="search" title="Search" href="search.html"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-    <link rel="stylesheet" href="_static/custom.css" type="text/css"/>
+  </head><body>
+  
 
-
-    <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9"/>
-
-</head>
-<body>
-
-
-<div class="document">
-    <div class="documentwrapper">
+    <div class="document">
+      <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="controllers-package">
+<h1>controllers package<a class="headerlink" href="#controllers-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-controllers.aux_functions">
+<span id="controllers-aux-functions-module"></span><h2>controllers.aux_functions module<a class="headerlink" href="#module-controllers.aux_functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="controllers.aux_functions.distance">
+<code class="descclassname">controllers.aux_functions.</code><code class="descname">distance</code><span class="sig-paren">(</span><em>p1</em>, <em>p2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/aux_functions.html#distance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.aux_functions.distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculates 2d distance between p1 and p2
+:param p1: point 1
+:param p2: point 2
+:return: 2d distance between point1 and point2</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="controllers.aux_functions.distance_3d">
+<code class="descclassname">controllers.aux_functions.</code><code class="descname">distance_3d</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>z</em>, <em>x2</em>, <em>y2</em>, <em>z2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/aux_functions.html#distance_3d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.aux_functions.distance_3d" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculates the 3d distance between two given points
+:param x: point1 x
+:param y: point1 y
+:param z: point1 z
+:param x2: point2 x
+:param y2: point2 y
+:param z2: point2 z
+:return: 3d distance between point1 and point2</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="controllers.aux_functions.gesture_match">
+<code class="descclassname">controllers.aux_functions.</code><code class="descname">gesture_match</code><span class="sig-paren">(</span><em>gesture_name</em>, <em>configuration</em>, <em>active=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/aux_functions.html#gesture_match"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.aux_functions.gesture_match" title="Permalink to this definition">¶</a></dt>
+<dd><p>matches gesture_name with its associated action</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>gesture_name</strong> – letter</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="controllers.aux_functions.get_dict_key">
+<code class="descclassname">controllers.aux_functions.</code><code class="descname">get_dict_key</code><span class="sig-paren">(</span><em>dic</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/aux_functions.html#get_dict_key"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.aux_functions.get_dict_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns given dictionary key corresponding to given value</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dic</strong> – dictionary</li>
+<li><strong>value</strong> – value which key is returned</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">key which value into dic is value</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="controllers.aux_functions.print_score">
+<code class="descclassname">controllers.aux_functions.</code><code class="descname">print_score</code><span class="sig-paren">(</span><em>result</em>, <em>view</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/aux_functions.html#print_score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.aux_functions.print_score" title="Permalink to this definition">¶</a></dt>
+<dd><p>this shows final score of current stroke (red label on canvas)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>result</strong> – Result object containing recognition result</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="controllers.aux_functions.recognize_stroke">
+<code class="descclassname">controllers.aux_functions.</code><code class="descname">recognize_stroke</code><span class="sig-paren">(</span><em>points</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/aux_functions.html#recognize_stroke"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.aux_functions.recognize_stroke" title="Permalink to this definition">¶</a></dt>
+<dd><p>this function recognize one SINGLE stroke (if ALL fingers, one by one)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>points</strong> – points array containing a stroke</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="controllers.aux_functions.sign">
+<code class="descclassname">controllers.aux_functions.</code><code class="descname">sign</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/aux_functions.html#sign"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.aux_functions.sign" title="Permalink to this definition">¶</a></dt>
+<dd><p>return the sign of given number
+:param n: number
+:return: -1 or 1</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-controllers.key_handle">
+<span id="controllers-key-handle-module"></span><h2>controllers.key_handle module<a class="headerlink" href="#module-controllers.key_handle" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="controllers.key_handle.hold">
+<code class="descclassname">controllers.key_handle.</code><code class="descname">hold</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/key_handle.html#hold"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.key_handle.hold" title="Permalink to this definition">¶</a></dt>
+<dd><p>holds key/s (necessary to call release() after that) object</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>args</strong> – key/s</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="controllers.key_handle.press">
+<code class="descclassname">controllers.key_handle.</code><code class="descname">press</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/key_handle.html#press"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.key_handle.press" title="Permalink to this definition">¶</a></dt>
+<dd><p>one press, one release.
+accepts as many arguments as you want.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>args</strong> – key/s</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">press</span><span class="p">(</span><span class="s2">&quot;left_arrow&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="p">)</span><span class="o">.</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="controllers.key_handle.pressHoldRelease">
+<code class="descclassname">controllers.key_handle.</code><code class="descname">pressHoldRelease</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/key_handle.html#pressHoldRelease"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.key_handle.pressHoldRelease" title="Permalink to this definition">¶</a></dt>
+<dd><p>press and hold passed in strings. Once held, release
+accepts as many arguments as you want.
+this is useful for issuing shortcut command or shift commands.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>args</strong> – array of arguments</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pressHoldRelease</span><span class="p">(</span><span class="s1">&#39;ctrl&#39;</span><span class="p">,</span> <span class="s1">&#39;alt&#39;</span><span class="p">,</span> <span class="s1">&#39;del&#39;</span><span class="p">),</span> <span class="n">pressHoldRelease</span><span class="p">(</span><span class="s1">&#39;shift&#39;</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="controllers.key_handle.pressHoldRelease2">
+<code class="descclassname">controllers.key_handle.</code><code class="descname">pressHoldRelease2</code><span class="sig-paren">(</span><em>args</em>, <em>hold</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/key_handle.html#pressHoldRelease2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.key_handle.pressHoldRelease2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="controllers.key_handle.release">
+<code class="descclassname">controllers.key_handle.</code><code class="descname">release</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/key_handle.html#release"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.key_handle.release" title="Permalink to this definition">¶</a></dt>
+<dd><p>releases given key/s</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>args</strong> – key/s</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-controllers.leap_controller">
+<span id="controllers-leap-controller-module"></span><h2>controllers.leap_controller module<a class="headerlink" href="#module-controllers.leap_controller" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="controllers.leap_controller.Point">
+<em class="property">class </em><code class="descclassname">controllers.leap_controller.</code><code class="descname">Point</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/leap_controller.html#Point"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.leap_controller.Point" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="controllers.leap_controller.Point.convert_to">
+<code class="descname">convert_to</code><span class="sig-paren">(</span><em>where_W</em>, <em>where_H</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/leap_controller.html#Point.convert_to"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.leap_controller.Point.convert_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>method to translate parent point to given location</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>where_W</strong> – width</li>
+<li><strong>where_H</strong> – height</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="controllers.leap_controller.leap_listener">
+<em class="property">class </em><code class="descclassname">controllers.leap_controller.</code><code class="descname">leap_listener</code><a class="reference internal" href="_modules/controllers/leap_controller.html#leap_listener"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.leap_controller.leap_listener" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="lib.html#lib.Leap.Listener" title="lib.Leap.Listener"><code class="xref py py-class docutils literal notranslate"><span class="pre">lib.Leap.Listener</span></code></a></p>
+<dl class="class">
+<dt id="controllers.leap_controller.leap_listener.LeapStatus">
+<em class="property">class </em><code class="descname">LeapStatus</code><a class="reference internal" href="_modules/controllers/leap_controller.html#leap_listener.LeapStatus"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.leap_controller.leap_listener.LeapStatus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PyQt4.QtCore.QObject</span></code></p>
+<dl class="method">
+<dt id="controllers.leap_controller.leap_listener.LeapStatus.emit_cv_frame_XY">
+<code class="descname">emit_cv_frame_XY</code><span class="sig-paren">(</span><em>frame</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/leap_controller.html#leap_listener.LeapStatus.emit_cv_frame_XY"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.leap_controller.leap_listener.LeapStatus.emit_cv_frame_XY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="controllers.leap_controller.leap_listener.LeapStatus.emit_cv_frame_XZ">
+<code class="descname">emit_cv_frame_XZ</code><span class="sig-paren">(</span><em>frame</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/leap_controller.html#leap_listener.LeapStatus.emit_cv_frame_XZ"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.leap_controller.leap_listener.LeapStatus.emit_cv_frame_XZ" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="controllers.leap_controller.leap_listener.LeapStatus.emit_leap_connected">
+<code class="descname">emit_leap_connected</code><span class="sig-paren">(</span><em>val</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/leap_controller.html#leap_listener.LeapStatus.emit_leap_connected"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.leap_controller.leap_listener.LeapStatus.emit_leap_connected" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controllers.leap_controller.leap_listener.LeapStatus.leap_connected">
+<code class="descname">leap_connected</code><em class="property"> = False</em><a class="headerlink" href="#controllers.leap_controller.leap_listener.LeapStatus.leap_connected" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controllers.leap_controller.leap_listener.LeapStatus.sgn_cv_frame_XY">
+<code class="descname">sgn_cv_frame_XY</code><a class="headerlink" href="#controllers.leap_controller.leap_listener.LeapStatus.sgn_cv_frame_XY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controllers.leap_controller.leap_listener.LeapStatus.sgn_cv_frame_XZ">
+<code class="descname">sgn_cv_frame_XZ</code><a class="headerlink" href="#controllers.leap_controller.leap_listener.LeapStatus.sgn_cv_frame_XZ" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controllers.leap_controller.leap_listener.LeapStatus.sgn_leap_connected">
+<code class="descname">sgn_leap_connected</code><a class="headerlink" href="#controllers.leap_controller.leap_listener.LeapStatus.sgn_leap_connected" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="controllers.leap_controller.leap_listener.capture_frame">
+<code class="descname">capture_frame</code><em class="property"> = False</em><a class="headerlink" href="#controllers.leap_controller.leap_listener.capture_frame" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="controllers.leap_controller.leap_listener.clear_variables">
+<code class="descname">clear_variables</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/leap_controller.html#leap_listener.clear_variables"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.leap_controller.leap_listener.clear_variables" title="Permalink to this definition">¶</a></dt>
+<dd><p>resets to defaults all relevant leap_listener variables</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="controllers.leap_controller.leap_listener.configuration">
+<code class="descname">configuration</code><em class="property"> = None</em><a class="headerlink" href="#controllers.leap_controller.leap_listener.configuration" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="controllers.leap_controller.leap_listener.cursor_movement">
+<code class="descname">cursor_movement</code><span class="sig-paren">(</span><em>hand</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/leap_controller.html#leap_listener.cursor_movement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.leap_controller.leap_listener.cursor_movement" title="Permalink to this definition">¶</a></dt>
+<dd><p>moves the windows cursor to the corresponding coordinate</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>hand</strong> – hand API object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="controllers.leap_controller.leap_listener.frame">
+<code class="descname">frame</code><em class="property"> = 0</em><a class="headerlink" href="#controllers.leap_controller.leap_listener.frame" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="controllers.leap_controller.leap_listener.grabb">
+<code class="descname">grabb</code><span class="sig-paren">(</span><em>hand</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/leap_controller.html#leap_listener.grabb"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.leap_controller.leap_listener.grabb" title="Permalink to this definition">¶</a></dt>
+<dd><p>performs the grabb action</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>hand</strong> – leap API hand object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="controllers.leap_controller.leap_listener.lclick">
+<code class="descname">lclick</code><span class="sig-paren">(</span><em>hand</em>, <em>pitch</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/leap_controller.html#leap_listener.lclick"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.leap_controller.leap_listener.lclick" title="Permalink to this definition">¶</a></dt>
+<dd><p>performs left mouse click checking every configuration option</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>hand</strong> – hand API object</li>
+<li><strong>pitch</strong> – angle between Z and Y axis (X rotations)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="controllers.leap_controller.leap_listener.leap_status">
+<code class="descname">leap_status</code><a class="headerlink" href="#controllers.leap_controller.leap_listener.leap_status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="controllers.leap_controller.leap_listener.leap_to_screen">
+<code class="descname">leap_to_screen</code><span class="sig-paren">(</span><em>leap_x</em>, <em>leap_y</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/leap_controller.html#leap_listener.leap_to_screen"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.leap_controller.leap_listener.leap_to_screen" title="Permalink to this definition">¶</a></dt>
+<dd><p>translates given Leap coordinates to screen ones</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>leap_x</strong> – Leap Motion X coordinate</li>
+<li><strong>leap_y</strong> – Leap Motion Y coordinate</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="controllers.leap_controller.leap_listener.on_connect">
+<code class="descname">on_connect</code><span class="sig-paren">(</span><em>controller</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/leap_controller.html#leap_listener.on_connect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.leap_controller.leap_listener.on_connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Leap API) Leap device is connected</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="controllers.leap_controller.leap_listener.on_disconnect">
+<code class="descname">on_disconnect</code><span class="sig-paren">(</span><em>controller</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/leap_controller.html#leap_listener.on_disconnect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.leap_controller.leap_listener.on_disconnect" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Leap API) Leap device is disconnected</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="controllers.leap_controller.leap_listener.on_exit">
+<code class="descname">on_exit</code><span class="sig-paren">(</span><em>controller</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/leap_controller.html#leap_listener.on_exit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.leap_controller.leap_listener.on_exit" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Leap API) leap_listener is destroyed</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="controllers.leap_controller.leap_listener.on_focus_gained">
+<code class="descname">on_focus_gained</code><span class="sig-paren">(</span><em>controller</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/leap_controller.html#leap_listener.on_focus_gained"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.leap_controller.leap_listener.on_focus_gained" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Leap API) we recovered Leap Motion focus</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="controllers.leap_controller.leap_listener.on_focus_lost">
+<code class="descname">on_focus_lost</code><span class="sig-paren">(</span><em>controller</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/leap_controller.html#leap_listener.on_focus_lost"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.leap_controller.leap_listener.on_focus_lost" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Leap API) we are using Leap Motion from outside MainWindow</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="controllers.leap_controller.leap_listener.on_frame">
+<code class="descname">on_frame</code><span class="sig-paren">(</span><em>controller</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/leap_controller.html#leap_listener.on_frame"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.leap_controller.leap_listener.on_frame" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Leap API) main leap_listener method.
+loops through each frame captured by Leap Motion device</p>
+<p>-&gt; opencv representation handling
+-&gt; complex gestures
+-&gt; simple gestures + actions</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="controllers.leap_controller.leap_listener.on_init">
+<code class="descname">on_init</code><span class="sig-paren">(</span><em>controller</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/leap_controller.html#leap_listener.on_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.leap_controller.leap_listener.on_init" title="Permalink to this definition">¶</a></dt>
+<dd><p>(Leap API) like __init__() method</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="controllers.leap_controller.leap_listener.rclick">
+<code class="descname">rclick</code><span class="sig-paren">(</span><em>hand</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/leap_controller.html#leap_listener.rclick"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.leap_controller.leap_listener.rclick" title="Permalink to this definition">¶</a></dt>
+<dd><p>performs right mouse click checking every configuration option</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>hand</strong> – hand API object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="controllers.leap_controller.leap_listener.start_control">
+<code class="descname">start_control</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/leap_controller.html#leap_listener.start_control"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.leap_controller.leap_listener.start_control" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enables mouse control</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="controllers.leap_controller.leap_listener.stop_control">
+<code class="descname">stop_control</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/leap_controller.html#leap_listener.stop_control"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.leap_controller.leap_listener.stop_control" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stops mouse control</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="controllers.leap_controller.leap_listener.swipe">
+<code class="descname">swipe</code><span class="sig-paren">(</span><em>finger_direction</em>, <em>args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/leap_controller.html#leap_listener.swipe"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.leap_controller.leap_listener.swipe" title="Permalink to this definition">¶</a></dt>
+<dd><p>makes the hand swipe gesture to any direction with any finger</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>finger_direction</strong> – which finger and which axis</li>
+<li><strong>args</strong> – key/s to be pressed</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="controllers.leap_controller.leap_listener.switch">
+<code class="descname">switch</code><span class="sig-paren">(</span><em>hand</em>, <em>yaw</em>, <em>roll</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/leap_controller.html#leap_listener.switch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.leap_controller.leap_listener.switch" title="Permalink to this definition">¶</a></dt>
+<dd><p>makes the alt-tab + left/right key for switching between windows</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>hand</strong> – hand API object</li>
+<li><strong>yaw</strong> – angle between X and Z axis (Y axis rotations)</li>
+<li><strong>roll</strong> – angle between X and Y axis (Z axis rotations)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="controllers.leap_controller.leap_listener.vscroll">
+<code class="descname">vscroll</code><span class="sig-paren">(</span><em>hand</em>, <em>yaw</em>, <em>pitch</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/leap_controller.html#leap_listener.vscroll"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.leap_controller.leap_listener.vscroll" title="Permalink to this definition">¶</a></dt>
+<dd><p>performs the vertical scroll action</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>hand</strong> – leap API hand object</li>
+<li><strong>yaw</strong> – angle between X and Z axis (Y axis rotations)</li>
+<li><strong>pitch</strong> – angle between Z and Y axis (X rotations)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-controllers.mouse">
+<span id="controllers-mouse-module"></span><h2>controllers.mouse module<a class="headerlink" href="#module-controllers.mouse" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="controllers.mouse.Mouse">
+<em class="property">class </em><code class="descclassname">controllers.mouse.</code><code class="descname">Mouse</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>dircx</em>, <em>dircy</em>, <em>acc</em>, <em>vel</em>, <em>active</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/mouse.html#Mouse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.mouse.Mouse" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt id="controllers.mouse.Mouse.acc">
+<code class="descname">acc</code><em class="property"> = 1</em><a class="headerlink" href="#controllers.mouse.Mouse.acc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controllers.mouse.Mouse.active">
+<code class="descname">active</code><em class="property"> = False</em><a class="headerlink" href="#controllers.mouse.Mouse.active" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="controllers.mouse.Mouse.lclick">
+<code class="descname">lclick</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/mouse.html#Mouse.lclick"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.mouse.Mouse.lclick" title="Permalink to this definition">¶</a></dt>
+<dd><p>performs a left click on the mouse</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="controllers.mouse.Mouse.left_clicked">
+<code class="descname">left_clicked</code><em class="property"> = False</em><a class="headerlink" href="#controllers.mouse.Mouse.left_clicked" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="controllers.mouse.Mouse.rclick">
+<code class="descname">rclick</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/mouse.html#Mouse.rclick"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.mouse.Mouse.rclick" title="Permalink to this definition">¶</a></dt>
+<dd><p>performs a right click on the mouse</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="controllers.mouse.Mouse.swiping">
+<code class="descname">swiping</code><em class="property"> = False</em><a class="headerlink" href="#controllers.mouse.Mouse.swiping" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controllers.mouse.Mouse.switch_mode">
+<code class="descname">switch_mode</code><em class="property"> = False</em><a class="headerlink" href="#controllers.mouse.Mouse.switch_mode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controllers.mouse.Mouse.switching">
+<code class="descname">switching</code><em class="property"> = False</em><a class="headerlink" href="#controllers.mouse.Mouse.switching" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controllers.mouse.Mouse.vel">
+<code class="descname">vel</code><em class="property"> = 1</em><a class="headerlink" href="#controllers.mouse.Mouse.vel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="controllers.mouse.Mouse.vscroll">
+<code class="descname">vscroll</code><span class="sig-paren">(</span><em>vel</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/mouse.html#Mouse.vscroll"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.mouse.Mouse.vscroll" title="Permalink to this definition">¶</a></dt>
+<dd><p>performs a vertical scroll on the mouse</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>vel</strong> – &gt; 0 up, &lt; 0 down</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="controllers.mouse.Mouse.x">
+<code class="descname">x</code><em class="property"> = 0</em><a class="headerlink" href="#controllers.mouse.Mouse.x" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controllers.mouse.Mouse.xdir">
+<code class="descname">xdir</code><em class="property"> = 1</em><a class="headerlink" href="#controllers.mouse.Mouse.xdir" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controllers.mouse.Mouse.y">
+<code class="descname">y</code><em class="property"> = 0</em><a class="headerlink" href="#controllers.mouse.Mouse.y" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controllers.mouse.Mouse.ydir">
+<code class="descname">ydir</code><em class="property"> = 1</em><a class="headerlink" href="#controllers.mouse.Mouse.ydir" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-controllers.win32_functions">
+<span id="controllers-win32-functions-module"></span><h2>controllers.win32_functions module<a class="headerlink" href="#module-controllers.win32_functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="controllers.win32_functions.bring_window_to_top">
+<code class="descclassname">controllers.win32_functions.</code><code class="descname">bring_window_to_top</code><span class="sig-paren">(</span><em>hwnd</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/win32_functions.html#bring_window_to_top"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.win32_functions.bring_window_to_top" title="Permalink to this definition">¶</a></dt>
+<dd><p>bring to front hwnd window</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>hwnd</strong> – Window handle</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="controllers.win32_functions.close_window">
+<code class="descclassname">controllers.win32_functions.</code><code class="descname">close_window</code><span class="sig-paren">(</span><em>hwnd</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/win32_functions.html#close_window"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.win32_functions.close_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>closes hwnd window</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>hwnd</strong> – Window handle</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="controllers.win32_functions.create_shortcut">
+<code class="descclassname">controllers.win32_functions.</code><code class="descname">create_shortcut</code><span class="sig-paren">(</span><em>startup_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/win32_functions.html#create_shortcut"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.win32_functions.create_shortcut" title="Permalink to this definition">¶</a></dt>
+<dd><p>copies the .exe file to the startup folder</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="controllers.win32_functions.foreach_window">
+<code class="descclassname">controllers.win32_functions.</code><code class="descname">foreach_window</code><span class="sig-paren">(</span><em>hwnd</em>, <em>lParam</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/win32_functions.html#foreach_window"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.win32_functions.foreach_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>this is passed as argument when we call EnumWindows
+Fills titles array with current opened windows names</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>hwnd</strong> – Window handle</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="controllers.win32_functions.get_current_window_hwnd">
+<code class="descclassname">controllers.win32_functions.</code><code class="descname">get_current_window_hwnd</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/win32_functions.html#get_current_window_hwnd"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.win32_functions.get_current_window_hwnd" title="Permalink to this definition">¶</a></dt>
+<dd><p>return current window hwnd</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">window handle</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="controllers.win32_functions.get_current_window_name">
+<code class="descclassname">controllers.win32_functions.</code><code class="descname">get_current_window_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/win32_functions.html#get_current_window_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.win32_functions.get_current_window_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns currently on top window name</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">window name</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="controllers.win32_functions.get_opened_windows_list">
+<code class="descclassname">controllers.win32_functions.</code><code class="descname">get_opened_windows_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/win32_functions.html#get_opened_windows_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.win32_functions.get_opened_windows_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns an array with all opened windows titles</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="controllers.win32_functions.minimize_window">
+<code class="descclassname">controllers.win32_functions.</code><code class="descname">minimize_window</code><span class="sig-paren">(</span><em>hwnd</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/win32_functions.html#minimize_window"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.win32_functions.minimize_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>minimizes hwnd window</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>hwnd</strong> – Window handle</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="controllers.win32_functions.remove_shortcut">
+<code class="descclassname">controllers.win32_functions.</code><code class="descname">remove_shortcut</code><span class="sig-paren">(</span><em>startup_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/win32_functions.html#remove_shortcut"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.win32_functions.remove_shortcut" title="Permalink to this definition">¶</a></dt>
+<dd><p>removes the .exe file from the startup folder</p>
+</dd></dl>
+
+</div>
+<div class="section" id="controllers-configuration-controller-module">
+<h2>controllers.configuration_controller module<a class="headerlink" href="#controllers-configuration-controller-module" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-controllers.configuration_controller"></span><dl class="class">
+<dt id="controllers.configuration_controller.Controller">
+<em class="property">class </em><code class="descclassname">controllers.configuration_controller.</code><code class="descname">Controller</code><span class="sig-paren">(</span><em>view</em>, <em>listener</em>, <em>model</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/configuration_controller.html#Controller"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.configuration_controller.Controller" title="Permalink to this definition">¶</a></dt>
+<dd><p>this class handles all the view events and interacts with the model (Configuration)</p>
+<dl class="method">
+<dt id="controllers.configuration_controller.Controller.combo_box_actiongesture_changed">
+<code class="descname">combo_box_actiongesture_changed</code><span class="sig-paren">(</span><em>combo_box_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/configuration_controller.html#Controller.combo_box_actiongesture_changed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.configuration_controller.Controller.combo_box_actiongesture_changed" title="Permalink to this definition">¶</a></dt>
+<dd><p>collection of key events binded to GUI (configuration tab comboboxes)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>combo_box_name</strong> – changed combobox variable name</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="controllers.configuration_controller.Controller.load_conf">
+<code class="descname">load_conf</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/configuration_controller.html#Controller.load_conf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.configuration_controller.Controller.load_conf" title="Permalink to this definition">¶</a></dt>
+<dd><p>loads given configuration object into SYSTEM
+updates comboboxes and GUI elements
+using cb_action_gesture array</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="controllers.configuration_controller.Controller.load_conf_file">
+<code class="descname">load_conf_file</code><span class="sig-paren">(</span><em>fname</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/configuration_controller.html#Controller.load_conf_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.configuration_controller.Controller.load_conf_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>loads content of fname configuration file into Configuration object</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="controllers.configuration_controller.Controller.save_conf_file">
+<code class="descname">save_conf_file</code><span class="sig-paren">(</span><em>fname</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/configuration_controller.html#Controller.save_conf_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.configuration_controller.Controller.save_conf_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>writes and saves the given file with the configuration info</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>fname</strong> – file path and name to be saved to</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="controllers.configuration_controller.Controller.set_profile_name">
+<code class="descname">set_profile_name</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/configuration_controller.html#Controller.set_profile_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.configuration_controller.Controller.set_profile_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>changes the configuration profile name to the new one given by the user</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="controllers.configuration_controller.Controller.start_stop_control">
+<code class="descname">start_stop_control</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/configuration_controller.html#Controller.start_stop_control"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.configuration_controller.Controller.start_stop_control" title="Permalink to this definition">¶</a></dt>
+<dd><p>this handles the click event to “Start Control” or “Stop Control” into notification
+area icon</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="controllers.configuration_controller.Controller.update_file">
+<code class="descname">update_file</code><span class="sig-paren">(</span><em>fname</em>, <em>line</em>, <em>replace</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/configuration_controller.html#Controller.update_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controllers.configuration_controller.Controller.update_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>updates a given file name in the given file with the given content</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>fname</strong> – file path and name to be saved to</li>
+<li><strong>line</strong> – which line to be updated</li>
+<li><strong>replace</strong> – new content</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-controllers">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-controllers" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
 
 
-            <div class="body" role="main">
-
-                <div class="section" id="controllers-package">
-                    <h1>controllers package<a class="headerlink" href="#controllers-package"
-                                              title="Permalink to this headline">¶</a></h1>
-                    <div class="section" id="submodules">
-                        <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a>
-                        </h2>
-                    </div>
-                    <div class="section" id="module-controllers.aux_functions">
-                        <span id="controllers-aux-functions-module"></span>
-                        <h2>controllers.aux_functions module<a class="headerlink"
-                                                               href="#module-controllers.aux_functions"
-                                                               title="Permalink to this headline">¶</a></h2>
-                        <dl class="function">
-                            <dt id="controllers.aux_functions.distance">
-                                <code class="descclassname">controllers.aux_functions.</code><code class="descname">distance</code><span
-                                    class="sig-paren">(</span><em>p1</em>, <em>p2</em><span class="sig-paren">)</span><a
-                                    class="reference internal"
-                                    href="_modules/controllers/aux_functions.html#distance"><span class="viewcode-link">[source]</span></a><a
-                                    class="headerlink" href="#controllers.aux_functions.distance"
-                                    title="Permalink to this definition">¶</a></dt>
-                            <dd><p>calculates 2d distance between p1 and p2
-                                :param p1: point 1
-                                :param p2: point 2
-                                :return: 2d distance between point1 and point2</p>
-                            </dd>
-                        </dl>
-
-                        <dl class="function">
-                            <dt id="controllers.aux_functions.distance_3d">
-                                <code class="descclassname">controllers.aux_functions.</code><code class="descname">distance_3d</code><span
-                                    class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>z</em>, <em>x2</em>,
-                                <em>y2</em>, <em>z2</em><span class="sig-paren">)</span><a class="reference internal"
-                                                                                           href="_modules/controllers/aux_functions.html#distance_3d"><span
-                                    class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                href="#controllers.aux_functions.distance_3d"
-                                                                                title="Permalink to this definition">¶</a>
-                            </dt>
-                            <dd><p>calculates the 3d distance between two given points
-                                :param x: point1 x
-                                :param y: point1 y
-                                :param z: point1 z
-                                :param x2: point2 x
-                                :param y2: point2 y
-                                :param z2: point2 z
-                                :return: 3d distance between point1 and point2</p>
-                            </dd>
-                        </dl>
-
-                        <dl class="function">
-                            <dt id="controllers.aux_functions.gesture_match">
-                                <code class="descclassname">controllers.aux_functions.</code><code class="descname">gesture_match</code><span
-                                    class="sig-paren">(</span><em>gesture_name</em>, <em>active=True</em><span
-                                    class="sig-paren">)</span><a class="reference internal"
-                                                                 href="_modules/controllers/aux_functions.html#gesture_match"><span
-                                    class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                href="#controllers.aux_functions.gesture_match"
-                                                                                title="Permalink to this definition">¶</a>
-                            </dt>
-                            <dd><p>matches gesture_name with its associated action</p>
-                                <table class="docutils field-list" frame="void" rules="none">
-                                    <col class="field-name"/>
-                                    <col class="field-body"/>
-                                    <tbody valign="top">
-                                    <tr class="field-odd field">
-                                        <th class="field-name">Parameters:</th>
-                                        <td class="field-body"><strong>gesture_name</strong> – letter</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </dd>
-                        </dl>
-
-                        <dl class="function">
-                            <dt id="controllers.aux_functions.get_dict_key">
-                                <code class="descclassname">controllers.aux_functions.</code><code class="descname">get_dict_key</code><span
-                                    class="sig-paren">(</span><em>dic</em>, <em>value</em><span
-                                    class="sig-paren">)</span><a class="reference internal"
-                                                                 href="_modules/controllers/aux_functions.html#get_dict_key"><span
-                                    class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                href="#controllers.aux_functions.get_dict_key"
-                                                                                title="Permalink to this definition">¶</a>
-                            </dt>
-                            <dd><p>returns given dictionary key corresponding to given value</p>
-                                <table class="docutils field-list" frame="void" rules="none">
-                                    <col class="field-name"/>
-                                    <col class="field-body"/>
-                                    <tbody valign="top">
-                                    <tr class="field-odd field">
-                                        <th class="field-name">Parameters:</th>
-                                        <td class="field-body">
-                                            <ul class="first simple">
-                                                <li><strong>dic</strong> – dictionary</li>
-                                                <li><strong>value</strong> – value which key is returned</li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                    <tr class="field-even field">
-                                        <th class="field-name">Returns:</th>
-                                        <td class="field-body"><p class="first last">key which value into dic is
-                                            value</p>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </dd>
-                        </dl>
-
-                        <dl class="function">
-                            <dt id="controllers.aux_functions.print_score">
-                                <code class="descclassname">controllers.aux_functions.</code><code class="descname">print_score</code><span
-                                    class="sig-paren">(</span><em>result</em><span class="sig-paren">)</span><a
-                                    class="reference internal"
-                                    href="_modules/controllers/aux_functions.html#print_score"><span
-                                    class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                href="#controllers.aux_functions.print_score"
-                                                                                title="Permalink to this definition">¶</a>
-                            </dt>
-                            <dd><p>this shows final score of current stroke (red label on canvas)</p>
-                                <table class="docutils field-list" frame="void" rules="none">
-                                    <col class="field-name"/>
-                                    <col class="field-body"/>
-                                    <tbody valign="top">
-                                    <tr class="field-odd field">
-                                        <th class="field-name">Parameters:</th>
-                                        <td class="field-body"><strong>result</strong> – Result object containing
-                                            recognition result
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </dd>
-                        </dl>
-
-                        <dl class="function">
-                            <dt id="controllers.aux_functions.recognize_stroke">
-                                <code class="descclassname">controllers.aux_functions.</code><code class="descname">recognize_stroke</code><span
-                                    class="sig-paren">(</span><em>points</em><span class="sig-paren">)</span><a
-                                    class="reference internal"
-                                    href="_modules/controllers/aux_functions.html#recognize_stroke"><span
-                                    class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                href="#controllers.aux_functions.recognize_stroke"
-                                                                                title="Permalink to this definition">¶</a>
-                            </dt>
-                            <dd><p>this function recognize one SINGLE stroke (if ALL fingers, one by one)</p>
-                                <table class="docutils field-list" frame="void" rules="none">
-                                    <col class="field-name"/>
-                                    <col class="field-body"/>
-                                    <tbody valign="top">
-                                    <tr class="field-odd field">
-                                        <th class="field-name">Parameters:</th>
-                                        <td class="field-body"><strong>points</strong> – points array containing a
-                                            stroke
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </dd>
-                        </dl>
-
-                        <dl class="function">
-                            <dt id="controllers.aux_functions.sign">
-                                <code class="descclassname">controllers.aux_functions.</code><code
-                                    class="descname">sign</code><span class="sig-paren">(</span><em>n</em><span
-                                    class="sig-paren">)</span><a class="reference internal"
-                                                                 href="_modules/controllers/aux_functions.html#sign"><span
-                                    class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                href="#controllers.aux_functions.sign"
-                                                                                title="Permalink to this definition">¶</a>
-                            </dt>
-                            <dd><p>return the sign of given number
-                                :param n: number
-                                :return: -1 or 1</p>
-                            </dd>
-                        </dl>
-
-                    </div>
-                    <div class="section" id="module-controllers.key_handle">
-                        <span id="controllers-key-handle-module"></span>
-                        <h2>controllers.key_handle module<a class="headerlink" href="#module-controllers.key_handle"
-                                                            title="Permalink to this headline">¶</a></h2>
-                        <dl class="function">
-                            <dt id="controllers.key_handle.hold">
-                                <code class="descclassname">controllers.key_handle.</code><code
-                                    class="descname">hold</code><span class="sig-paren">(</span><em>*args</em><span
-                                    class="sig-paren">)</span><a class="reference internal"
-                                                                 href="_modules/controllers/key_handle.html#hold"><span
-                                    class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                href="#controllers.key_handle.hold"
-                                                                                title="Permalink to this definition">¶</a>
-                            </dt>
-                            <dd><p>holds key/s (necessary to call release() after that) object</p>
-                                <table class="docutils field-list" frame="void" rules="none">
-                                    <col class="field-name"/>
-                                    <col class="field-body"/>
-                                    <tbody valign="top">
-                                    <tr class="field-odd field">
-                                        <th class="field-name">Parameters:</th>
-                                        <td class="field-body"><strong>args</strong> – key/s</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </dd>
-                        </dl>
-
-                        <dl class="function">
-                            <dt id="controllers.key_handle.press">
-                                <code class="descclassname">controllers.key_handle.</code><code
-                                    class="descname">press</code><span class="sig-paren">(</span><em>*args</em><span
-                                    class="sig-paren">)</span><a class="reference internal"
-                                                                 href="_modules/controllers/key_handle.html#press"><span
-                                    class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                href="#controllers.key_handle.press"
-                                                                                title="Permalink to this definition">¶</a>
-                            </dt>
-                            <dd><p>one press, one release.
-                                accepts as many arguments as you want.</p>
-                                <table class="docutils field-list" frame="void" rules="none">
-                                    <col class="field-name"/>
-                                    <col class="field-body"/>
-                                    <tbody valign="top">
-                                    <tr class="field-odd field">
-                                        <th class="field-name">Parameters:</th>
-                                        <td class="field-body"><strong>args</strong> – key/s</td>
-                                    </tr>
-                                    <tr class="field-even field">
-                                        <th class="field-name">Example:</th>
-                                        <td class="field-body"></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                <div class="highlight-default notranslate">
-                                    <div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span
-                                            class="n">press</span><span class="p">(</span><span class="s2">&quot;left_arrow&quot;</span><span
-                                            class="p">,</span> <span class="s2">&quot;a&quot;</span><span
-                                            class="p">,</span><span class="s2">&quot;b&quot;</span><span
-                                            class="p">)</span><span class="o">.</span>
-</pre>
-                                    </div>
-                                </div>
-                            </dd>
-                        </dl>
-
-                        <dl class="function">
-                            <dt id="controllers.key_handle.pressHoldRelease">
-                                <code class="descclassname">controllers.key_handle.</code><code class="descname">pressHoldRelease</code><span
-                                    class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a
-                                    class="reference internal"
-                                    href="_modules/controllers/key_handle.html#pressHoldRelease"><span
-                                    class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                href="#controllers.key_handle.pressHoldRelease"
-                                                                                title="Permalink to this definition">¶</a>
-                            </dt>
-                            <dd><p>press and hold passed in strings. Once held, release
-                                accepts as many arguments as you want.
-                                this is useful for issuing shortcut command or shift commands.</p>
-                                <table class="docutils field-list" frame="void" rules="none">
-                                    <col class="field-name"/>
-                                    <col class="field-body"/>
-                                    <tbody valign="top">
-                                    <tr class="field-odd field">
-                                        <th class="field-name">Parameters:</th>
-                                        <td class="field-body"><strong>args</strong> – array of arguments</td>
-                                    </tr>
-                                    <tr class="field-even field">
-                                        <th class="field-name">Example:</th>
-                                        <td class="field-body"></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                <div class="highlight-default notranslate">
-                                    <div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span
-                                            class="n">pressHoldRelease</span><span class="p">(</span><span class="s1">&#39;ctrl&#39;</span><span
-                                            class="p">,</span> <span class="s1">&#39;alt&#39;</span><span
-                                            class="p">,</span> <span class="s1">&#39;del&#39;</span><span
-                                            class="p">),</span> <span class="n">pressHoldRelease</span><span
-                                            class="p">(</span><span class="s1">&#39;shift&#39;</span><span
-                                            class="p">,</span><span class="s1">&#39;a&#39;</span><span
-                                            class="p">)</span>
-</pre>
-                                    </div>
-                                </div>
-                            </dd>
-                        </dl>
-
-                        <dl class="function">
-                            <dt id="controllers.key_handle.pressHoldRelease2">
-                                <code class="descclassname">controllers.key_handle.</code><code class="descname">pressHoldRelease2</code><span
-                                    class="sig-paren">(</span><em>args</em>, <em>hold</em><span
-                                    class="sig-paren">)</span><a class="reference internal"
-                                                                 href="_modules/controllers/key_handle.html#pressHoldRelease2"><span
-                                    class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                href="#controllers.key_handle.pressHoldRelease2"
-                                                                                title="Permalink to this definition">¶</a>
-                            </dt>
-                            <dd></dd>
-                        </dl>
-
-                        <dl class="function">
-                            <dt id="controllers.key_handle.release">
-                                <code class="descclassname">controllers.key_handle.</code><code
-                                    class="descname">release</code><span class="sig-paren">(</span><em>*args</em><span
-                                    class="sig-paren">)</span><a class="reference internal"
-                                                                 href="_modules/controllers/key_handle.html#release"><span
-                                    class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                href="#controllers.key_handle.release"
-                                                                                title="Permalink to this definition">¶</a>
-                            </dt>
-                            <dd><p>releases given key/s</p>
-                                <table class="docutils field-list" frame="void" rules="none">
-                                    <col class="field-name"/>
-                                    <col class="field-body"/>
-                                    <tbody valign="top">
-                                    <tr class="field-odd field">
-                                        <th class="field-name">Parameters:</th>
-                                        <td class="field-body"><strong>args</strong> – key/s</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </dd>
-                        </dl>
-
-                    </div>
-                    <div class="section" id="module-controllers.leap_controller">
-                        <span id="controllers-leap-controller-module"></span>
-                        <h2>controllers.leap_controller module<a class="headerlink"
-                                                                 href="#module-controllers.leap_controller"
-                                                                 title="Permalink to this headline">¶</a></h2>
-                        <dl class="class">
-                            <dt id="controllers.leap_controller.Point">
-                                <em class="property">class </em><code
-                                    class="descclassname">controllers.leap_controller.</code><code class="descname">Point</code><span
-                                    class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>id</em><span
-                                    class="sig-paren">)</span><a class="reference internal"
-                                                                 href="_modules/controllers/leap_controller.html#Point"><span
-                                    class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                href="#controllers.leap_controller.Point"
-                                                                                title="Permalink to this definition">¶</a>
-                            </dt>
-                            <dd>
-                                <dl class="method">
-                                    <dt id="controllers.leap_controller.Point.convert_to">
-                                        <code class="descname">convert_to</code><span class="sig-paren">(</span><em>where_W</em>,
-                                        <em>where_H</em><span class="sig-paren">)</span><a class="reference internal"
-                                                                                           href="_modules/controllers/leap_controller.html#Point.convert_to"><span
-                                            class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                        href="#controllers.leap_controller.Point.convert_to"
-                                                                                        title="Permalink to this definition">¶</a>
-                                    </dt>
-                                    <dd><p>method to translate parent point to given location</p>
-                                        <table class="docutils field-list" frame="void" rules="none">
-                                            <col class="field-name"/>
-                                            <col class="field-body"/>
-                                            <tbody valign="top">
-                                            <tr class="field-odd field">
-                                                <th class="field-name">Parameters:</th>
-                                                <td class="field-body">
-                                                    <ul class="first last simple">
-                                                        <li><strong>where_W</strong> – width</li>
-                                                        <li><strong>where_H</strong> – height</li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </dd>
-                                </dl>
-
-                            </dd>
-                        </dl>
-
-                        <dl class="class">
-                            <dt id="controllers.leap_controller.leap_listener">
-                                <em class="property">class </em><code
-                                    class="descclassname">controllers.leap_controller.</code><code class="descname">leap_listener</code><a
-                                    class="reference internal"
-                                    href="_modules/controllers/leap_controller.html#leap_listener"><span
-                                    class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                href="#controllers.leap_controller.leap_listener"
-                                                                                title="Permalink to this definition">¶</a>
-                            </dt>
-                            <dd><p>Bases: <a class="reference internal" href="lib.html#lib.Leap.Listener"
-                                             title="lib.Leap.Listener"><code
-                                    class="xref py py-class docutils literal notranslate"><span class="pre">lib.Leap.Listener</span></code></a>
-                            </p>
-                                <dl class="class">
-                                    <dt id="controllers.leap_controller.leap_listener.LeapStatus">
-                                        <em class="property">class </em><code class="descname">LeapStatus</code><a
-                                            class="reference internal"
-                                            href="_modules/controllers/leap_controller.html#leap_listener.LeapStatus"><span
-                                            class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                        href="#controllers.leap_controller.leap_listener.LeapStatus"
-                                                                                        title="Permalink to this definition">¶</a>
-                                    </dt>
-                                    <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span
-                                            class="pre">PyQt4.QtCore.QObject</span></code></p>
-                                        <dl class="method">
-                                            <dt id="controllers.leap_controller.leap_listener.LeapStatus.emit_cv_frame_XY">
-                                                <code class="descname">emit_cv_frame_XY</code><span
-                                                    class="sig-paren">(</span><em>frame</em><span
-                                                    class="sig-paren">)</span><a class="reference internal"
-                                                                                 href="_modules/controllers/leap_controller.html#leap_listener.LeapStatus.emit_cv_frame_XY"><span
-                                                    class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                                href="#controllers.leap_controller.leap_listener.LeapStatus.emit_cv_frame_XY"
-                                                                                                title="Permalink to this definition">¶</a>
-                                            </dt>
-                                            <dd></dd>
-                                        </dl>
-
-                                        <dl class="method">
-                                            <dt id="controllers.leap_controller.leap_listener.LeapStatus.emit_cv_frame_XZ">
-                                                <code class="descname">emit_cv_frame_XZ</code><span
-                                                    class="sig-paren">(</span><em>frame</em><span
-                                                    class="sig-paren">)</span><a class="reference internal"
-                                                                                 href="_modules/controllers/leap_controller.html#leap_listener.LeapStatus.emit_cv_frame_XZ"><span
-                                                    class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                                href="#controllers.leap_controller.leap_listener.LeapStatus.emit_cv_frame_XZ"
-                                                                                                title="Permalink to this definition">¶</a>
-                                            </dt>
-                                            <dd></dd>
-                                        </dl>
-
-                                        <dl class="method">
-                                            <dt id="controllers.leap_controller.leap_listener.LeapStatus.emit_leap_connected">
-                                                <code class="descname">emit_leap_connected</code><span
-                                                    class="sig-paren">(</span><em>val</em><span
-                                                    class="sig-paren">)</span><a class="reference internal"
-                                                                                 href="_modules/controllers/leap_controller.html#leap_listener.LeapStatus.emit_leap_connected"><span
-                                                    class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                                href="#controllers.leap_controller.leap_listener.LeapStatus.emit_leap_connected"
-                                                                                                title="Permalink to this definition">¶</a>
-                                            </dt>
-                                            <dd></dd>
-                                        </dl>
-
-                                        <dl class="attribute">
-                                            <dt id="controllers.leap_controller.leap_listener.LeapStatus.leap_connected">
-                                                <code class="descname">leap_connected</code><em class="property"> =
-                                                False</em><a class="headerlink"
-                                                             href="#controllers.leap_controller.leap_listener.LeapStatus.leap_connected"
-                                                             title="Permalink to this definition">¶</a></dt>
-                                            <dd></dd>
-                                        </dl>
-
-                                        <dl class="attribute">
-                                            <dt id="controllers.leap_controller.leap_listener.LeapStatus.sgn_cv_frame_XY">
-                                                <code class="descname">sgn_cv_frame_XY</code><a class="headerlink"
-                                                                                                href="#controllers.leap_controller.leap_listener.LeapStatus.sgn_cv_frame_XY"
-                                                                                                title="Permalink to this definition">¶</a>
-                                            </dt>
-                                            <dd></dd>
-                                        </dl>
-
-                                        <dl class="attribute">
-                                            <dt id="controllers.leap_controller.leap_listener.LeapStatus.sgn_cv_frame_XZ">
-                                                <code class="descname">sgn_cv_frame_XZ</code><a class="headerlink"
-                                                                                                href="#controllers.leap_controller.leap_listener.LeapStatus.sgn_cv_frame_XZ"
-                                                                                                title="Permalink to this definition">¶</a>
-                                            </dt>
-                                            <dd></dd>
-                                        </dl>
-
-                                        <dl class="attribute">
-                                            <dt id="controllers.leap_controller.leap_listener.LeapStatus.sgn_leap_connected">
-                                                <code class="descname">sgn_leap_connected</code><a class="headerlink"
-                                                                                                   href="#controllers.leap_controller.leap_listener.LeapStatus.sgn_leap_connected"
-                                                                                                   title="Permalink to this definition">¶</a>
-                                            </dt>
-                                            <dd></dd>
-                                        </dl>
-
-                                    </dd>
-                                </dl>
-
-                                <dl class="attribute">
-                                    <dt id="controllers.leap_controller.leap_listener.capture_frame">
-                                        <code class="descname">capture_frame</code><em class="property"> = False</em><a
-                                            class="headerlink"
-                                            href="#controllers.leap_controller.leap_listener.capture_frame"
-                                            title="Permalink to this definition">¶</a></dt>
-                                    <dd></dd>
-                                </dl>
-
-                                <dl class="method">
-                                    <dt id="controllers.leap_controller.leap_listener.clear_variables">
-                                        <code class="descname">clear_variables</code><span
-                                            class="sig-paren">(</span><span class="sig-paren">)</span><a
-                                            class="reference internal"
-                                            href="_modules/controllers/leap_controller.html#leap_listener.clear_variables"><span
-                                            class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                        href="#controllers.leap_controller.leap_listener.clear_variables"
-                                                                                        title="Permalink to this definition">¶</a>
-                                    </dt>
-                                    <dd><p>resets to defaults all relevant leap_listener variables</p>
-                                    </dd>
-                                </dl>
-
-                                <dl class="attribute">
-                                    <dt id="controllers.leap_controller.leap_listener.frame">
-                                        <code class="descname">frame</code><em class="property"> = 0</em><a
-                                            class="headerlink" href="#controllers.leap_controller.leap_listener.frame"
-                                            title="Permalink to this definition">¶</a></dt>
-                                    <dd></dd>
-                                </dl>
-
-                                <dl class="attribute">
-                                    <dt id="controllers.leap_controller.leap_listener.leap_status">
-                                        <code class="descname">leap_status</code><a class="headerlink"
-                                                                                    href="#controllers.leap_controller.leap_listener.leap_status"
-                                                                                    title="Permalink to this definition">¶</a>
-                                    </dt>
-                                    <dd></dd>
-                                </dl>
-
-                                <dl class="method">
-                                    <dt id="controllers.leap_controller.leap_listener.leap_to_screen">
-                                        <code class="descname">leap_to_screen</code><span class="sig-paren">(</span><em>leap_x</em>,
-                                        <em>leap_y</em><span class="sig-paren">)</span><a class="reference internal"
-                                                                                          href="_modules/controllers/leap_controller.html#leap_listener.leap_to_screen"><span
-                                            class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                        href="#controllers.leap_controller.leap_listener.leap_to_screen"
-                                                                                        title="Permalink to this definition">¶</a>
-                                    </dt>
-                                    <dd><p>translates given Leap coordinates to screen ones</p>
-                                        <table class="docutils field-list" frame="void" rules="none">
-                                            <col class="field-name"/>
-                                            <col class="field-body"/>
-                                            <tbody valign="top">
-                                            <tr class="field-odd field">
-                                                <th class="field-name">Parameters:</th>
-                                                <td class="field-body">
-                                                    <ul class="first last simple">
-                                                        <li><strong>leap_x</strong> – Leap Motion X coordinate</li>
-                                                        <li><strong>leap_y</strong> – Leap Motion Y coordinate</li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </dd>
-                                </dl>
-
-                                <dl class="method">
-                                    <dt id="controllers.leap_controller.leap_listener.on_connect">
-                                        <code class="descname">on_connect</code><span class="sig-paren">(</span><em>controller</em><span
-                                            class="sig-paren">)</span><a class="reference internal"
-                                                                         href="_modules/controllers/leap_controller.html#leap_listener.on_connect"><span
-                                            class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                        href="#controllers.leap_controller.leap_listener.on_connect"
-                                                                                        title="Permalink to this definition">¶</a>
-                                    </dt>
-                                    <dd><p>(Leap API) Leap device is connected</p>
-                                    </dd>
-                                </dl>
-
-                                <dl class="method">
-                                    <dt id="controllers.leap_controller.leap_listener.on_disconnect">
-                                        <code class="descname">on_disconnect</code><span class="sig-paren">(</span><em>controller</em><span
-                                            class="sig-paren">)</span><a class="reference internal"
-                                                                         href="_modules/controllers/leap_controller.html#leap_listener.on_disconnect"><span
-                                            class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                        href="#controllers.leap_controller.leap_listener.on_disconnect"
-                                                                                        title="Permalink to this definition">¶</a>
-                                    </dt>
-                                    <dd><p>(Leap API) Leap device is disconnected</p>
-                                    </dd>
-                                </dl>
-
-                                <dl class="method">
-                                    <dt id="controllers.leap_controller.leap_listener.on_exit">
-                                        <code class="descname">on_exit</code><span class="sig-paren">(</span><em>controller</em><span
-                                            class="sig-paren">)</span><a class="reference internal"
-                                                                         href="_modules/controllers/leap_controller.html#leap_listener.on_exit"><span
-                                            class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                        href="#controllers.leap_controller.leap_listener.on_exit"
-                                                                                        title="Permalink to this definition">¶</a>
-                                    </dt>
-                                    <dd><p>(Leap API) leap_listener is destroyed</p>
-                                    </dd>
-                                </dl>
-
-                                <dl class="method">
-                                    <dt id="controllers.leap_controller.leap_listener.on_focus_lost">
-                                        <code class="descname">on_focus_lost</code><span class="sig-paren">(</span><em>controller</em><span
-                                            class="sig-paren">)</span><a class="reference internal"
-                                                                         href="_modules/controllers/leap_controller.html#leap_listener.on_focus_lost"><span
-                                            class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                        href="#controllers.leap_controller.leap_listener.on_focus_lost"
-                                                                                        title="Permalink to this definition">¶</a>
-                                    </dt>
-                                    <dd><p>(Leap API) we are using Leap Motion from outside MainWindow</p>
-                                    </dd>
-                                </dl>
-
-                                <dl class="method">
-                                    <dt id="controllers.leap_controller.leap_listener.on_frame">
-                                        <code class="descname">on_frame</code><span class="sig-paren">(</span><em>controller</em><span
-                                            class="sig-paren">)</span><a class="reference internal"
-                                                                         href="_modules/controllers/leap_controller.html#leap_listener.on_frame"><span
-                                            class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                        href="#controllers.leap_controller.leap_listener.on_frame"
-                                                                                        title="Permalink to this definition">¶</a>
-                                    </dt>
-                                    <dd><p>(Leap API) main leap_listener method.
-                                        loops through each frame captured by Leap Motion device
-                                        -&gt; opencv representation handling
-                                        -&gt; complex gestures
-                                        -&gt; simple gestures + actions</p>
-                                    </dd>
-                                </dl>
-
-                                <dl class="method">
-                                    <dt id="controllers.leap_controller.leap_listener.on_init">
-                                        <code class="descname">on_init</code><span class="sig-paren">(</span><em>controller</em><span
-                                            class="sig-paren">)</span><a class="reference internal"
-                                                                         href="_modules/controllers/leap_controller.html#leap_listener.on_init"><span
-                                            class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                        href="#controllers.leap_controller.leap_listener.on_init"
-                                                                                        title="Permalink to this definition">¶</a>
-                                    </dt>
-                                    <dd><p>(Leap API) like __init__ method</p>
-                                    </dd>
-                                </dl>
-
-                            </dd>
-                        </dl>
-
-                    </div>
-                    <div class="section" id="module-controllers.mouse">
-                        <span id="controllers-mouse-module"></span>
-                        <h2>controllers.mouse module<a class="headerlink" href="#module-controllers.mouse"
-                                                       title="Permalink to this headline">¶</a></h2>
-                        <dl class="class">
-                            <dt id="controllers.mouse.Mouse">
-                                <em class="property">class </em><code
-                                    class="descclassname">controllers.mouse.</code><code
-                                    class="descname">Mouse</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>,
-                                <em>dircx</em>, <em>dircy</em>, <em>acc</em>, <em>vel</em>, <em>active</em><span
-                                    class="sig-paren">)</span><a class="reference internal"
-                                                                 href="_modules/controllers/mouse.html#Mouse"><span
-                                    class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                href="#controllers.mouse.Mouse"
-                                                                                title="Permalink to this definition">¶</a>
-                            </dt>
-                            <dd>
-                                <dl class="attribute">
-                                    <dt id="controllers.mouse.Mouse.acc">
-                                        <code class="descname">acc</code><em class="property"> = 1</em><a
-                                            class="headerlink" href="#controllers.mouse.Mouse.acc"
-                                            title="Permalink to this definition">¶</a></dt>
-                                    <dd></dd>
-                                </dl>
-
-                                <dl class="attribute">
-                                    <dt id="controllers.mouse.Mouse.active">
-                                        <code class="descname">active</code><em class="property"> = False</em><a
-                                            class="headerlink" href="#controllers.mouse.Mouse.active"
-                                            title="Permalink to this definition">¶</a></dt>
-                                    <dd></dd>
-                                </dl>
-
-                                <dl class="method">
-                                    <dt id="controllers.mouse.Mouse.lclick">
-                                        <code class="descname">lclick</code><span class="sig-paren">(</span><span
-                                            class="sig-paren">)</span><a class="reference internal"
-                                                                         href="_modules/controllers/mouse.html#Mouse.lclick"><span
-                                            class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                        href="#controllers.mouse.Mouse.lclick"
-                                                                                        title="Permalink to this definition">¶</a>
-                                    </dt>
-                                    <dd><p>performs a left click on the mouse</p>
-                                    </dd>
-                                </dl>
-
-                                <dl class="attribute">
-                                    <dt id="controllers.mouse.Mouse.left_clicked">
-                                        <code class="descname">left_clicked</code><em class="property"> = False</em><a
-                                            class="headerlink" href="#controllers.mouse.Mouse.left_clicked"
-                                            title="Permalink to this definition">¶</a></dt>
-                                    <dd></dd>
-                                </dl>
-
-                                <dl class="method">
-                                    <dt id="controllers.mouse.Mouse.rclick">
-                                        <code class="descname">rclick</code><span class="sig-paren">(</span><span
-                                            class="sig-paren">)</span><a class="reference internal"
-                                                                         href="_modules/controllers/mouse.html#Mouse.rclick"><span
-                                            class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                        href="#controllers.mouse.Mouse.rclick"
-                                                                                        title="Permalink to this definition">¶</a>
-                                    </dt>
-                                    <dd><p>performs a right click on the mouse</p>
-                                    </dd>
-                                </dl>
-
-                                <dl class="attribute">
-                                    <dt id="controllers.mouse.Mouse.switch_mode">
-                                        <code class="descname">switch_mode</code><em class="property"> = False</em><a
-                                            class="headerlink" href="#controllers.mouse.Mouse.switch_mode"
-                                            title="Permalink to this definition">¶</a></dt>
-                                    <dd></dd>
-                                </dl>
-
-                                <dl class="attribute">
-                                    <dt id="controllers.mouse.Mouse.switching">
-                                        <code class="descname">switching</code><em class="property"> = False</em><a
-                                            class="headerlink" href="#controllers.mouse.Mouse.switching"
-                                            title="Permalink to this definition">¶</a></dt>
-                                    <dd></dd>
-                                </dl>
-
-                                <dl class="attribute">
-                                    <dt id="controllers.mouse.Mouse.vel">
-                                        <code class="descname">vel</code><em class="property"> = 1</em><a
-                                            class="headerlink" href="#controllers.mouse.Mouse.vel"
-                                            title="Permalink to this definition">¶</a></dt>
-                                    <dd></dd>
-                                </dl>
-
-                                <dl class="method">
-                                    <dt id="controllers.mouse.Mouse.vscroll">
-                                        <code class="descname">vscroll</code><span
-                                            class="sig-paren">(</span><em>vel</em><span class="sig-paren">)</span><a
-                                            class="reference internal"
-                                            href="_modules/controllers/mouse.html#Mouse.vscroll"><span
-                                            class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                        href="#controllers.mouse.Mouse.vscroll"
-                                                                                        title="Permalink to this definition">¶</a>
-                                    </dt>
-                                    <dd><p>performs a vertical scroll on the mouse
-                                        :param vel: &gt; 0 up, &lt; 0 down</p>
-                                    </dd>
-                                </dl>
-
-                                <dl class="attribute">
-                                    <dt id="controllers.mouse.Mouse.x">
-                                        <code class="descname">x</code><em class="property"> = 0</em><a
-                                            class="headerlink" href="#controllers.mouse.Mouse.x"
-                                            title="Permalink to this definition">¶</a></dt>
-                                    <dd></dd>
-                                </dl>
-
-                                <dl class="attribute">
-                                    <dt id="controllers.mouse.Mouse.xdir">
-                                        <code class="descname">xdir</code><em class="property"> = 1</em><a
-                                            class="headerlink" href="#controllers.mouse.Mouse.xdir"
-                                            title="Permalink to this definition">¶</a></dt>
-                                    <dd></dd>
-                                </dl>
-
-                                <dl class="attribute">
-                                    <dt id="controllers.mouse.Mouse.y">
-                                        <code class="descname">y</code><em class="property"> = 0</em><a
-                                            class="headerlink" href="#controllers.mouse.Mouse.y"
-                                            title="Permalink to this definition">¶</a></dt>
-                                    <dd></dd>
-                                </dl>
-
-                                <dl class="attribute">
-                                    <dt id="controllers.mouse.Mouse.ydir">
-                                        <code class="descname">ydir</code><em class="property"> = 1</em><a
-                                            class="headerlink" href="#controllers.mouse.Mouse.ydir"
-                                            title="Permalink to this definition">¶</a></dt>
-                                    <dd></dd>
-                                </dl>
-
-                            </dd>
-                        </dl>
-
-                    </div>
-                    <div class="section" id="module-controllers.win32_functions">
-                        <span id="controllers-win32-functions-module"></span>
-                        <h2>controllers.win32_functions module<a class="headerlink"
-                                                                 href="#module-controllers.win32_functions"
-                                                                 title="Permalink to this headline">¶</a></h2>
-                        <dl class="function">
-                            <dt id="controllers.win32_functions.bring_window_to_top">
-                                <code class="descclassname">controllers.win32_functions.</code><code class="descname">bring_window_to_top</code><span
-                                    class="sig-paren">(</span><em>hwnd</em><span class="sig-paren">)</span><a
-                                    class="reference internal"
-                                    href="_modules/controllers/win32_functions.html#bring_window_to_top"><span
-                                    class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                href="#controllers.win32_functions.bring_window_to_top"
-                                                                                title="Permalink to this definition">¶</a>
-                            </dt>
-                            <dd><p>bring to front hwnd window</p>
-                                <table class="docutils field-list" frame="void" rules="none">
-                                    <col class="field-name"/>
-                                    <col class="field-body"/>
-                                    <tbody valign="top">
-                                    <tr class="field-odd field">
-                                        <th class="field-name">Parameters:</th>
-                                        <td class="field-body"><strong>hwnd</strong> – Window handle</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </dd>
-                        </dl>
-
-                        <dl class="function">
-                            <dt id="controllers.win32_functions.close_window">
-                                <code class="descclassname">controllers.win32_functions.</code><code class="descname">close_window</code><span
-                                    class="sig-paren">(</span><em>hwnd</em><span class="sig-paren">)</span><a
-                                    class="reference internal"
-                                    href="_modules/controllers/win32_functions.html#close_window"><span
-                                    class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                href="#controllers.win32_functions.close_window"
-                                                                                title="Permalink to this definition">¶</a>
-                            </dt>
-                            <dd><p>closes hwnd window</p>
-                                <table class="docutils field-list" frame="void" rules="none">
-                                    <col class="field-name"/>
-                                    <col class="field-body"/>
-                                    <tbody valign="top">
-                                    <tr class="field-odd field">
-                                        <th class="field-name">Parameters:</th>
-                                        <td class="field-body"><strong>hwnd</strong> – Window handle</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </dd>
-                        </dl>
-
-                        <dl class="function">
-                            <dt id="controllers.win32_functions.foreach_window">
-                                <code class="descclassname">controllers.win32_functions.</code><code class="descname">foreach_window</code><span
-                                    class="sig-paren">(</span><em>hwnd</em>, <em>lParam</em><span
-                                    class="sig-paren">)</span><a class="reference internal"
-                                                                 href="_modules/controllers/win32_functions.html#foreach_window"><span
-                                    class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                href="#controllers.win32_functions.foreach_window"
-                                                                                title="Permalink to this definition">¶</a>
-                            </dt>
-                            <dd><p>this is passed as argument when we call EnumWindows
-                                Fills titles array with current opened windows names</p>
-                                <table class="docutils field-list" frame="void" rules="none">
-                                    <col class="field-name"/>
-                                    <col class="field-body"/>
-                                    <tbody valign="top">
-                                    <tr class="field-odd field">
-                                        <th class="field-name">Parameters:</th>
-                                        <td class="field-body"><strong>hwnd</strong> – Window handle</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </dd>
-                        </dl>
-
-                        <dl class="function">
-                            <dt id="controllers.win32_functions.get_current_window_hwnd">
-                                <code class="descclassname">controllers.win32_functions.</code><code class="descname">get_current_window_hwnd</code><span
-                                    class="sig-paren">(</span><span class="sig-paren">)</span><a
-                                    class="reference internal"
-                                    href="_modules/controllers/win32_functions.html#get_current_window_hwnd"><span
-                                    class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                href="#controllers.win32_functions.get_current_window_hwnd"
-                                                                                title="Permalink to this definition">¶</a>
-                            </dt>
-                            <dd><p>return current window hwnd</p>
-                                <table class="docutils field-list" frame="void" rules="none">
-                                    <col class="field-name"/>
-                                    <col class="field-body"/>
-                                    <tbody valign="top">
-                                    <tr class="field-odd field">
-                                        <th class="field-name">Returns:</th>
-                                        <td class="field-body">window handle</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </dd>
-                        </dl>
-
-                        <dl class="function">
-                            <dt id="controllers.win32_functions.get_current_window_name">
-                                <code class="descclassname">controllers.win32_functions.</code><code class="descname">get_current_window_name</code><span
-                                    class="sig-paren">(</span><span class="sig-paren">)</span><a
-                                    class="reference internal"
-                                    href="_modules/controllers/win32_functions.html#get_current_window_name"><span
-                                    class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                href="#controllers.win32_functions.get_current_window_name"
-                                                                                title="Permalink to this definition">¶</a>
-                            </dt>
-                            <dd><p>returns currently on top window name</p>
-                                <table class="docutils field-list" frame="void" rules="none">
-                                    <col class="field-name"/>
-                                    <col class="field-body"/>
-                                    <tbody valign="top">
-                                    <tr class="field-odd field">
-                                        <th class="field-name">Returns:</th>
-                                        <td class="field-body">window name</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </dd>
-                        </dl>
-
-                        <dl class="function">
-                            <dt id="controllers.win32_functions.get_opened_windows_list">
-                                <code class="descclassname">controllers.win32_functions.</code><code class="descname">get_opened_windows_list</code><span
-                                    class="sig-paren">(</span><span class="sig-paren">)</span><a
-                                    class="reference internal"
-                                    href="_modules/controllers/win32_functions.html#get_opened_windows_list"><span
-                                    class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                href="#controllers.win32_functions.get_opened_windows_list"
-                                                                                title="Permalink to this definition">¶</a>
-                            </dt>
-                            <dd><p>returns an array with all opened windows titles</p>
-                            </dd>
-                        </dl>
-
-                        <dl class="function">
-                            <dt id="controllers.win32_functions.minimize_window">
-                                <code class="descclassname">controllers.win32_functions.</code><code class="descname">minimize_window</code><span
-                                    class="sig-paren">(</span><em>hwnd</em><span class="sig-paren">)</span><a
-                                    class="reference internal"
-                                    href="_modules/controllers/win32_functions.html#minimize_window"><span
-                                    class="viewcode-link">[source]</span></a><a class="headerlink"
-                                                                                href="#controllers.win32_functions.minimize_window"
-                                                                                title="Permalink to this definition">¶</a>
-                            </dt>
-                            <dd><p>minimizes hwnd window</p>
-                                <table class="docutils field-list" frame="void" rules="none">
-                                    <col class="field-name"/>
-                                    <col class="field-body"/>
-                                    <tbody valign="top">
-                                    <tr class="field-odd field">
-                                        <th class="field-name">Parameters:</th>
-                                        <td class="field-body"><strong>hwnd</strong> – Window handle</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </dd>
-                        </dl>
-
-                    </div>
-                    <div class="section" id="module-controllers">
-                        <span id="module-contents"></span>
-                        <h2>Module contents<a class="headerlink" href="#module-controllers"
-                                              title="Permalink to this headline">¶</a></h2>
-                    </div>
-                </div>
-
-
-            </div>
-
+          </div>
+          
         </div>
-    </div>
-    <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-            <h1 class="logo"><a href="index.html">LeapPCController</a></h1>
+<h1 class="logo"><a href="index.html">LEAP MyMouse</a></h1>
 
 
-            <h3>Navigation</h3>
 
-            <div class="relations">
-                <h3>Related Topics</h3>
-                <ul>
-                    <li><a href="index.html">Documentation overview</a>
-                        <ul>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <div id="searchbox" style="display: none" role="search">
-                <h3>Quick search</h3>
-                <div class="searchformwrapper">
-                    <form class="search" action="search.html" method="get">
-                        <input type="text" name="q"/>
-                        <input type="submit" value="Go"/>
-                        <input type="hidden" name="check_keywords" value="yes"/>
-                        <input type="hidden" name="area" value="default"/>
-                    </form>
-                </div>
-            </div>
-            <script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
 
 
         </div>
+      </div>
+      <div class="clearer"></div>
     </div>
-    <div class="clearer"></div>
-</div>
-<div class="footer">
-    &copy;2019, Mario Varas.
+    <div class="footer">
+      &copy;2019, Mario Varas.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/controllers.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
 
-    |
-    Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
-    &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+    
 
-    |
-    <a href="_sources/controllers.rst.txt"
-       rel="nofollow">Page source</a>
-</div>
-
-
-</body>
+    
+  </body>
 </html>

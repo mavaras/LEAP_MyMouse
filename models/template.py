@@ -29,8 +29,7 @@ def init_templates():
 
     # single stroke templates (all fingers doing the same if various fingers) (1 finger)
     templates.append(Template("T", [
-        # Template point clouds
-        # different ways of drawing Template.name (T) for better recognition
+        # different PC for having different ways of drawing Template.name (T) for better recognition
         ps.Point_cloud("T1", [ps.Point(30, 7, 1), ps.Point(103, 7, 1),
                               ps.Point(66, 7, 2), ps.Point(66, 87, 2)])
         ,
@@ -73,9 +72,8 @@ def init_templates():
                               ps.Point(65, 37, 4), ps.Point(60, 21, 4),
                               ps.Point(60, 21, 5), ps.Point(30, 7, 5)])
         ,
-    ], None)
-                     )
-
+        ], None)
+    )
     templates.append(Template("X", [
         ps.Point_cloud("X1", [ps.Point(30, 7, 1), ps.Point(60, 47, 1),
                               ps.Point(60, 7, 2), ps.Point(30, 47, 2)])
@@ -94,9 +92,8 @@ def init_templates():
         ps.Point_cloud("X4", [ps.Point(30, 7, 1), ps.Point(60, 47, 1),
                               ps.Point(60, 7, 2), ps.Point(30, 47, 2),
                               ps.Point(30, 7, 3), ps.Point(30, 47, 3)])
-    ], None)
-                     )
-
+        ], None)
+    )
     templates.append(Template("W", [
         ps.Point_cloud("W1", [ps.Point(30, 7, 1), ps.Point(40, 37, 1),
                               ps.Point(40, 37, 2), ps.Point(50, 20, 2),
@@ -107,8 +104,8 @@ def init_templates():
                               ps.Point(50, 37, 2), ps.Point(70, 7, 2),
                               ps.Point(70, 7, 3), ps.Point(90, 37, 3),
                               ps.Point(90, 37, 4), ps.Point(110, 7, 4)])
-    ], None)
-                     )
+        ], None)
+    )
 
     templates.append(Template("L", [
         ps.Point_cloud("L1", [ps.Point(30, 27, 1), ps.Point(30, 37, 1),
@@ -118,7 +115,6 @@ def init_templates():
                               ps.Point(30, 37, 2), ps.Point(40, 37, 2)])
         ], None)
     )
-
     templates.append(Template("Z", [
         ps.Point_cloud("Z1", [ps.Point(30, 7, 1), ps.Point(60, 7, 1),
                               ps.Point(60, 7, 2), ps.Point(30, 27, 2),

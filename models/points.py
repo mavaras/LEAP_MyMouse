@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from gvariables import gv
 from PCRecognizer_functions import *
-from PyQt4 import QtCore
 
 
 class Point:
@@ -27,8 +25,8 @@ class Point:
         """
 
         self.y = where_H - abs(self.y)  # Y inversion
-        self.x = (gv.W * self.x) / where_W
-        self.y = (gv.H * self.y) / where_H
+        self.x = (gv.W * self.x)/where_W
+        self.y = (gv.H * self.y)/where_H
 
     """def draw_on_canvasTK(self, radius):
         canvas.create_oval(self.x - radius, self.y - radius,
@@ -71,7 +69,7 @@ class Point_cloud:
         # aux_points = []  to not overwriting original self.points array
         aux_points = amplify(self.points, 200)  # kind of scale reversion
         aux_points = translate_to(aux_points,
-                                  Point(self.origin.x, self.origin.y / 2, -1))  # translating amplilfied pc to center
+                                  Point(self.origin.x, self.origin.y/2, -1))  # translating amplilfied pc to center
         dic = {"f0": "path_points_0", "f1": "path_points_1",
                "f2": "path_points_2", "f3": "path_points_3", "f4": "path_points_4"}
 

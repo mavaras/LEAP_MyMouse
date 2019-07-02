@@ -2,7 +2,7 @@
 
 import math
 import points as ps
-from gvariables import gv
+from models.gvariables import gv
 from controllers.aux_functions import distance
 
 num_points = 32

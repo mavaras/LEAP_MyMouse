@@ -8,13 +8,11 @@
 
 
 # basic modules imports
-import time
 import numpy as np
 
 # aux modules imports
 import cv2
 from collections import deque
-from pynput.keyboard import Key, Controller
 from PyQt4.QtCore import QObject, pyqtSignal
 
 # Leap Motion API
@@ -25,13 +23,12 @@ from aux_functions import *
 from win32_functions import *
 from key_handle import *
 from mouse import Mouse
-from gvariables import gv
+from models.gvariables import gv
 
 cv_frame_XY = np.zeros((540, 640, 3), np.uint8)
 cv_frame_XZ = np.zeros((540, 640, 3), np.uint8)
 
 
-# CLASS defining a single Point
 class Point:
     def __init__(self, x, y, id):
         self.x = x
@@ -51,13 +48,15 @@ class Point:
         self.y = (gv.H * self.y) / where_H
 
 
-# CLASS LEAP API
 class leap_listener(Leap.Listener):
     frame = 0
     capture_frame = False
+    
+    configuration = None
 
-    # QObject class with those things to send to gui.py through signals
     class LeapStatus(QObject):
+        # QObject class with those things to send to gui.py through signals
+
         leap_connected = False
         sgn_leap_connected = pyqtSignal(bool)
         sgn_cv_frame_XY = pyqtSignal(np.ndarray)
@@ -79,15 +78,14 @@ class leap_listener(Leap.Listener):
         """ resets to defaults all relevant leap_listener variables"""
 
         self.gesture = [[] * 5 for c in range(self.lim_points)]
-        self.c = 0
         self.tail_points = []
         for c in range(0, 5):
             aux = deque([], 18)
             self.tail_points.append(aux)
 
     def on_init(self, controller):
-        """ (Leap API) like __init__ method"""
-        
+        """ (Leap API) like __init__() method"""
+
         self.LEAP_W = 320
         self.LEAP_H = 200
 
@@ -106,9 +104,8 @@ class leap_listener(Leap.Listener):
 
         lim_points = 600
         self.gesture = [[] * 5 for c in range(lim_points)]
-        self.c = 0  # contador gesture points
         self.d01 = 0
-        self.on_frame_c = 0  # contador pitch average (not used)
+        self.on_frame_c = 0  # debug purposes
         self.lim_points = 400
 
         self.hand_vel = 0
@@ -121,6 +118,7 @@ class leap_listener(Leap.Listener):
 
         print("initialized")
 
+
     @property
     def leap_status(self):
         return self.status.leap_connected
@@ -132,20 +130,10 @@ class leap_listener(Leap.Listener):
         self.status.leap_connected = True
         self.status.emit_leap_connected(True)
 
+        self.status.leap_connected = True
+        # self.view.change_leap_status(True)
+
         time.sleep(.5)
-
-    # gv.main_window.change_leap_status(True)  # label
-
-    def on_focus_lost(self, controller):
-        """ (Leap API) we are using Leap Motion from outside MainWindow"""
-
-        print("Unfocused")
-        controller.add_listener(gv.listener)
-
-    def on_focus_gained(self, controller):
-        """ (Leap API) we recovered Leap Motion focus"""
-
-        print("Focused")
 
     def on_disconnect(self, controller):
         """ (Leap API) Leap device is disconnected"""
@@ -153,6 +141,20 @@ class leap_listener(Leap.Listener):
         print("disconnected")
         self.status.leap_connected = False
         self.status.emit_leap_connected(False)
+
+        self.status.leap_connected = False
+        # self.view.change_leap_status(False)
+
+    def on_focus_lost(self, controller):
+        """ (Leap API) we are using Leap Motion from outside MainWindow"""
+
+        print("Unfocused")
+        controller.add_listener(self)
+
+    def on_focus_gained(self, controller):
+        """ (Leap API) we recovered Leap Motion focus"""
+
+        print("Focused")
 
     def on_exit(self, controller):
         """ (Leap API) leap_listener is destroyed"""
@@ -194,26 +196,21 @@ class leap_listener(Leap.Listener):
         :param hand: hand API object
         """
 
-        # TODO:
-        #   -> perform coords translation
-        #   -> add movement velocity ?
-
         if not self.mouse.switch_mode:
-            mm_finger = gv.configuration.basic.mm
+            mm_finger = int(self.configuration.basic.mm)
             fx, fy = hand.fingers[mm_finger].tip_position.x, \
                      hand.fingers[mm_finger].tip_position.y
             sx, sy = self.leap_to_screen(fx, fy)
 
-            if gv.configuration.basic.invert_mouse:
+            if self.configuration.basic.invert_mouse == "yes":
                 sy = gv.W/2 - sy
 
             self.mouse.xdir = 1 if sx > gv.W/2 else -1
             self.mouse.ydir = 1 if abs(sy) < gv.H/2 else -1
 
             win32api.SetCursorPos((
-                # int(abs(self.fingers_pos[mm_finger][0])),   # x
-                # int(abs(self.fingers_pos[mm_finger][1]))    # y
-                sx*gv.configuration.basic.mouse_vel, sy*gv.configuration.basic.mouse_vel
+                sx*self.configuration.basic.mouse_vel,
+                sy*self.configuration.basic.mouse_vel
             ))
 
             # updating mouse object position
@@ -229,10 +226,6 @@ class leap_listener(Leap.Listener):
 
         vel = finger_direction
         direction = sign(vel)
-        print(vel),
-        print(int(abs(vel))),
-        print(direction)
-        print(time.time() - self.mouse.last_swipe_time)
         if int(abs(vel)) > 1000 and not self.mouse.swiping \
                 and (time.time() - self.mouse.last_swipe_time) > 0.5:
             self.mouse.swiping = True
@@ -257,12 +250,8 @@ class leap_listener(Leap.Listener):
         :param roll: angle between X and Y axis (Z axis rotations)
         """
 
-        # angle between X and Y (Z rotations)
         if roll > 50:
-            # we are into switch mode
-
             if len(self.frame.fingers.extended()) == 5:
-                print("into SwitchMode")
                 if not self.mouse.switch_mode:
                     hold("alt")
                     press("tab")
@@ -287,7 +276,6 @@ class leap_listener(Leap.Listener):
 
         else:
             if self.mouse.switch_mode:
-                print("out of SwitchMode")
                 release("alt")
 
                 self.mouse.switch_mode = False
@@ -302,9 +290,6 @@ class leap_listener(Leap.Listener):
         :param pitch: angle between Z and Y axis (X rotations)
         """
 
-        # TODO:
-        #   -> add
-
         f0 = hand.fingers[0]
         f1 = hand.fingers[1]
         f2 = hand.fingers[2]
@@ -312,7 +297,7 @@ class leap_listener(Leap.Listener):
                             Point(f0.tip_position.x, f0.tip_position.z, -1))  # ZX plane
 
         # for keep performance when hand pitch (X rotations) >>
-        if gv.configuration.basic.lclick == "click_planem":
+        if self.configuration.basic.lclick == "click_planem":
             lim = 80 - 15 * abs(pitch) // 35
             lim -= 2 if self.mouse.ydir == -1 else 0
             if dist_0_1 < lim:
@@ -326,7 +311,7 @@ class leap_listener(Leap.Listener):
                 if self.mouse.left_clicked:
                     self.mouse.left_clicked = False
 
-        elif gv.configuration.basic.lclick == "click_deepm":
+        elif self.configuration.basic.lclick == "click_deepm":
             if abs(f1.tip_velocity.y) > 300 and \
                     f1.tip_velocity.y < 0 and \
                     abs(f1.tip_velocity.y) < 60:
@@ -338,7 +323,7 @@ class leap_listener(Leap.Listener):
                 if self.mouse.left_clicked:
                     self.mouse.left_clicked = False
 
-        elif gv.configuration.basic.lclick == "click_f2down":
+        elif self.configuration.basic.lclick == "click_f2down":
             if f2.tip_velocity.y < -90 and \
                     abs(f0.tip_velocity.y) < 30:
                 if not self.mouse.left_clicked:
@@ -349,7 +334,7 @@ class leap_listener(Leap.Listener):
                 if self.mouse.left_clicked:
                     self.mouse.left_clicked = False
 
-        elif gv.configuration.basic.lclick == "click_f1down":
+        elif self.configuration.basic.lclick == "click_f1down":
             if abs(f1.tip_velocity.y) > 300 and \
                     f1.tip_velocity.y < 0 and \
                     abs(f0.tip_velocity.y) < 60:
@@ -370,7 +355,7 @@ class leap_listener(Leap.Listener):
         f1 = hand.fingers[1]
         f2 = hand.fingers[2]
 
-        if gv.configuration.basic.rclick == "rclick_f2down":
+        if self.configuration.basic.rclick == "rclick_f2down":
             if f2.tip_velocity.y < -90 and \
                     abs(f1.tip_velocity.y) < 30 and \
                     not self.mouse.right_clicked and \
@@ -382,7 +367,7 @@ class leap_listener(Leap.Listener):
                 if self.mouse.right_clicked:
                     self.mouse.right_clicked = False
 
-        elif gv.configuration.basic.rclick == "rclick_f1down":
+        elif self.configuration.basic.rclick == "rclick_f1down":
             if f1.tip_velocity.y < -90 and \
                     abs(f2.tip_velocity.y) < 30 and \
                     not self.mouse.right_clicked and \
@@ -430,25 +415,25 @@ class leap_listener(Leap.Listener):
         :param pitch: angle between Z and Y axis (X rotations)
         """
 
-        if "UD" in gv.configuration.basic.vscroll:
-            n_fingers = [int(c) for c in gv.configuration.basic.vscroll
+        if "UD" in self.configuration.basic.vscroll:
+            n_fingers = [int(c) for c in self.configuration.basic.vscroll
                          if c.isdigit()][0]
             if len(self.frame.fingers.extended()) == n_fingers:
                 pitch = hand.direction.pitch * Leap.RAD_TO_DEG
-                if pitch < int(gv.configuration.basic.vscroll_angles.split("/")[0]):
+                if pitch < int(self.configuration.basic.vscroll_angles.split("/")[0]):
                     print("vscroll down")
-                    vel = -int(int(gv.configuration.basic.vscroll_vel.split("/")[0])
+                    vel = -int(int(self.configuration.basic.vscroll_vel.split("/")[0])
                                - ((90 - abs(pitch))/3) + 17)
                     self.mouse.vscroll(vel)
 
-                elif pitch > int(gv.configuration.basic.vscroll_angles.split("/")[1]):
+                elif pitch > int(self.configuration.basic.vscroll_angles.split("/")[1]):
                     print("vscroll up")
-                    vel = int(int(gv.configuration.basic.vscroll_vel.split("/")[1])
+                    vel = int(int(self.configuration.basic.vscroll_vel.split("/")[1])
                               - ((90 - abs(pitch))/3) + 17)
                     self.mouse.vscroll(vel)
 
         else:
-            n_fingers = [int(c) for c in gv.configuration.basic.vscroll
+            n_fingers = [int(c) for c in self.configuration.basic.vscroll
                          if c.isdigit()][0]
             if len(self.frame.fingers.extended()) == n_fingers:
                 if yaw < -30:
@@ -517,7 +502,7 @@ class leap_listener(Leap.Listener):
                         self.swipe(hand.fingers[1].tip_velocity.y, ["esc"])
 
                     else:
-                        """ CURSOR MOVEMENT SECTION"""
+                        # CURSOR MOVEMENT SECTION
                         self.cursor_movement(hand)
 
                         if self.plane_mode:
@@ -529,28 +514,8 @@ class leap_listener(Leap.Listener):
                             dist_1_2 = distance_3d(f1.tip_position.x, f1.tip_position.y, f1.tip_position.z,
                                                    f2.tip_position.x, f2.tip_position.y, f2.tip_position.z)
 
-
-                            """ SWITCH WINDOWS SECTION"""
+                            # SWITCH WINDOWS SECTION
                             if not self.switch(hand, yaw, roll):
-                                # powrpointt
-
-                                '''f_frontmost = frame.fingers.extended().frontmost.type
-                                if len(frame.fingers.extended()) == 5 and "PowerPoint" in get_current_window_name():
-                                    direction = int(pitch / abs(pitch))
-                                    if f1.tip_velocity.y > 200 and not self.mouse.switching:
-                                        self.mouse.switching = True
-                                        if direction == 1:
-                                            print("RIGHT swipe")
-                                            press("right_arrow")
-                                        else:
-                                            print("LEFT swipe")
-                                            press("left_arrow")
-    
-                                    else:
-                                        if f1.tip_velocity.x < 30:
-                                            self.mouse.switching = False
-                                '''
-
                                 if self.vscrolling:
                                     self.vscroll(hand, yaw, pitch)
 
@@ -570,9 +535,7 @@ class leap_listener(Leap.Listener):
                                                          self.fingers_pos[finger.type][1], -1)) > 3:
                         self.fingers_pos[finger.type] = (sx, sy, fz)
 
-                    """ OPENCV DRAWING SECTION"""
-                    # TODO:
-                    #   -> different appearances
+                    # OPENCV DRAWING SECTION
                     cv2.circle(cv_frame_loc_XY, (int(fx) + 250, int(gv.H/2 - abs(fy))), 11, [255, 255, 255], 1)
                     if finger.type != 0:
                         cv2.line(cv_frame_loc_XY,
@@ -598,13 +561,12 @@ class leap_listener(Leap.Listener):
                     if len(self.tail_points) == 10:
                         self.tail_points[finger.type].popleft()
 
-                    """ GESTURE RECORDING SECTION"""
+                    # GESTURE RECORDING SECTION
                     if self.capture_frame:
-                        if finger.type == 1: print(str(fx) + " " + str(fy))
                         self.gesture[finger.type].append(Point(fx, fy, -1))
                         self.gesture[finger.type][len(self.gesture[finger.type])-1].convert_to(gv.W/2, gv.H/2)
 
-                    if len(frame.hands) == 1 and finger.type == gv.configuration.basic.mm and self.mouse.active and not self.mouse.switch_mode:
+                    if len(frame.hands) == 1 and finger.type == int(self.configuration.basic.mm) and self.mouse.active and not self.mouse.switch_mode:
                         pass
 
                     self.on_frame_c += 1

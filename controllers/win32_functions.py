@@ -98,12 +98,12 @@ def get_current_window_name():
     return buff.value
 
 
-def create_shortcut():
+def create_shortcut(startup_path):
     """ copies the .exe file to the startup folder"""
 
-    startup = str(os.path.expanduser("~"))+"\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
+    startup = startup_path
     path = os.path.join(startup, "shortcut.lnk")
-    target = os.path.dirname(os.path.dirname(__file__))+str("\Wireshark.exe")
+    target = os.path.dirname(os.path.dirname(__file__))+str("\LEAP_MyMouse_.exe")
     icon = os.path.dirname(os.path.dirname(__file__))+str("\\res\icons\leapmymouse.png")
 
     shell = win32com.client.Dispatch("WScript.Shell")
@@ -114,7 +114,7 @@ def create_shortcut():
     shortcut.save()
 
 
-def remove_shortcut():
+def remove_shortcut(startup_path):
     """ removes the .exe file from the startup folder"""
 
-    os.remove(str(os.path.expanduser("~"))+"\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\shortcut.lnk")
+    os.remove(startup_path)

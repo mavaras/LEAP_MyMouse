@@ -1,40 +1,38 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>controllers.aux_functions &#8212; LeapPCController 2019 documentation</title>
-    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css"/>
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css"/>
-    <script type="text/javascript" id="documentation_options" data-url_root="../../"
-            src="../../_static/documentation_options.js"></script>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>controllers.aux_functions &#8212; LEAP MyMouse 2019 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <link rel="index" title="Index" href="../../genindex.html"/>
-    <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-    <link rel="stylesheet" href="../../_static/custom.css" type="text/css"/>
+  </head><body>
+  
 
-
-    <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9"/>
-
-</head>
-<body>
-
-
-<div class="document">
-    <div class="documentwrapper">
+    <div class="document">
+      <div class="documentwrapper">
         <div class="bodywrapper">
+          
 
-
-            <div class="body" role="main">
-
-                <h1>Source code for controllers.aux_functions</h1>
-                <div class="highlight"><pre>
+          <div class="body" role="main">
+            
+  <h1>Source code for controllers.aux_functions</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 
 <span class="c1"># ===============auxiliary functions===============</span>
@@ -45,31 +43,21 @@
 
 
 <span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">from</span> <span class="nn">win32_functions</span> <span class="k">import</span> <span
-                        class="o">*</span>
-<span class="kn">import</span> <span class="nn">gvariables</span>
+<span class="kn">from</span> <span class="nn">win32_functions</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">models.gvariables</span> <span class="k">import</span> <span class="n">gv</span>
 <span class="kn">from</span> <span class="nn">key_handle</span> <span class="k">import</span> <span class="o">*</span>
 
 
-<span class="c1"># sign = lambda a: (a &gt; 0) - (a &lt; 0)</span>
-<div class="viewcode-block" id="sign"><a class="viewcode-back"
-                                         href="../../controllers.html#controllers.aux_functions.sign">[docs]</a><span
-        class="k">def</span> <span class="nf">sign</span><span class="p">(</span><span class="n">n</span><span
-        class="p">):</span>
+<div class="viewcode-block" id="sign"><a class="viewcode-back" href="../../controllers.html#controllers.aux_functions.sign">[docs]</a><span class="k">def</span> <span class="nf">sign</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; return the sign of given number</span>
 <span class="sd">    :param n: number</span>
 <span class="sd">    :return: -1 or 1</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">n</span><span class="o">//</span><span class="nb">abs</span><span
-            class="p">(</span><span class="n">n</span><span class="p">)</span></div>
+
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="o">//</span><span class="nb">abs</span><span class="p">(</span><span class="n">n</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="distance_3d"><a class="viewcode-back"
-                                                href="../../controllers.html#controllers.aux_functions.distance_3d">[docs]</a><span
-        class="k">def</span> <span class="nf">distance_3d</span><span class="p">(</span><span class="n">x</span><span
-        class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span
-        class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span
-        class="p">,</span> <span class="n">z2</span><span class="p">):</span>
+<div class="viewcode-block" id="distance_3d"><a class="viewcode-back" href="../../controllers.html#controllers.aux_functions.distance_3d">[docs]</a><span class="k">def</span> <span class="nf">distance_3d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">z2</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; calculates the 3d distance between two given points</span>
 <span class="sd">    :param x: point1 x</span>
 <span class="sd">    :param y: point1 y</span>
@@ -79,240 +67,161 @@
 <span class="sd">    :param z2: point2 z</span>
 <span class="sd">    :return: 3d distance between point1 and point2</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span
-            class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">x</span> <span
-            class="o">-</span> <span class="n">x2</span><span class="p">)</span> <span class="o">+</span> <span
-            class="nb">abs</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span
-            class="n">y2</span><span class="p">)</span> <span class="o">+</span> <span class="nb">abs</span><span
-            class="p">(</span><span class="n">z</span> <span class="o">-</span> <span class="n">z2</span><span
-            class="p">))</span></div>
+
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x2</span><span class="p">)</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">y2</span><span class="p">)</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">z</span> <span class="o">-</span> <span class="n">z2</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="distance"><a class="viewcode-back"
-                                             href="../../controllers.html#controllers.aux_functions.distance">[docs]</a><span
-        class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="n">p1</span><span
-        class="p">,</span> <span class="n">p2</span><span class="p">):</span>
+<div class="viewcode-block" id="distance"><a class="viewcode-back" href="../../controllers.html#controllers.aux_functions.distance">[docs]</a><span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; calculates 2d distance between p1 and p2</span>
 <span class="sd">    :param p1: point 1</span>
 <span class="sd">    :param p2: point 2</span>
 <span class="sd">    :return: 2d distance between point1 and point2</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">dx</span> <span class="o">=</span> <span class="n">p2</span><span class="o">.</span><span class="n">x</span> <span
-            class="o">-</span> <span class="n">p1</span><span class="o">.</span><span class="n">x</span>
-    <span class="n">dy</span> <span class="o">=</span> <span class="n">p2</span><span class="o">.</span><span class="n">y</span> <span
-            class="o">-</span> <span class="n">p1</span><span class="o">.</span><span class="n">y</span>
-    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span
-            class="p">(</span><span class="n">dx</span> <span class="o">*</span> <span class="n">dx</span> <span
-            class="o">+</span> <span class="n">dy</span> <span class="o">*</span> <span class="n">dy</span><span
-            class="p">)</span></div>
+
+    <span class="n">dx</span> <span class="o">=</span> <span class="n">p2</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">p1</span><span class="o">.</span><span class="n">x</span>
+    <span class="n">dy</span> <span class="o">=</span> <span class="n">p2</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">p1</span><span class="o">.</span><span class="n">y</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dx</span><span class="o">*</span><span class="n">dx</span> <span class="o">+</span> <span class="n">dy</span><span class="o">*</span><span class="n">dy</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="get_dict_key"><a class="viewcode-back"
-                                                 href="../../controllers.html#controllers.aux_functions.get_dict_key">[docs]</a><span
-        class="k">def</span> <span class="nf">get_dict_key</span><span class="p">(</span><span class="n">dic</span><span
-        class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<div class="viewcode-block" id="get_dict_key"><a class="viewcode-back" href="../../controllers.html#controllers.aux_functions.get_dict_key">[docs]</a><span class="k">def</span> <span class="nf">get_dict_key</span><span class="p">(</span><span class="n">dic</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; returns given dictionary key corresponding to given value</span>
 
 <span class="sd">    :param dic: dictionary</span>
 <span class="sd">    :param value: value which key is returned</span>
 <span class="sd">    :return: key which value into dic is value</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># print(value),</span>
-    <span class="c1"># print(dic)</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">key</span> <span class="k">for</span> <span
-            class="n">key</span> <span class="ow">in</span> <span class="n">dic</span><span class="o">.</span><span
-            class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="n">dic</span><span
-            class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">==</span> <span
-            class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)][</span><span
-            class="mi">0</span><span class="p">]</span></div>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">dic</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="n">dic</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)][</span><span class="mi">0</span><span class="p">]</span></div>
 
 
-<div class="viewcode-block" id="recognize_stroke"><a class="viewcode-back"
-                                                     href="../../controllers.html#controllers.aux_functions.recognize_stroke">[docs]</a><span
-        class="k">def</span> <span class="nf">recognize_stroke</span><span class="p">(</span><span
-        class="n">points</span><span class="p">):</span>
+<div class="viewcode-block" id="recognize_stroke"><a class="viewcode-back" href="../../controllers.html#controllers.aux_functions.recognize_stroke">[docs]</a><span class="k">def</span> <span class="nf">recognize_stroke</span><span class="p">(</span><span class="n">points</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; this function recognize one SINGLE stroke (if ALL fingers, one by one)</span>
 
 <span class="sd">    :param points: points array containing a stroke</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;recognizing stroke&quot;</span><span
-            class="p">)</span>
-    <span class="n">aux</span> <span class="o">=</span> <span class="p">[</span><span class="n">points</span><span
-            class="p">]</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">gvariables</span><span
-            class="o">.</span><span class="n">pcr</span><span class="o">.</span><span class="n">recognize</span><span
-            class="p">(</span><span class="n">aux</span><span class="p">,</span> <span class="kc">True</span><span
-            class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;recognizing stroke&quot;</span><span class="p">)</span>
+    <span class="n">aux</span> <span class="o">=</span> <span class="p">[</span><span class="n">points</span><span class="p">]</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">gv</span><span class="o">.</span><span class="n">pcr</span><span class="o">.</span><span class="n">recognize</span><span class="p">(</span><span class="n">aux</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">result</span></div>
 
 
-<div class="viewcode-block" id="print_score"><a class="viewcode-back"
-                                                href="../../controllers.html#controllers.aux_functions.print_score">[docs]</a><span
-        class="k">def</span> <span class="nf">print_score</span><span class="p">(</span><span
-        class="n">result</span><span class="p">):</span>
+<div class="viewcode-block" id="print_score"><a class="viewcode-back" href="../../controllers.html#controllers.aux_functions.print_score">[docs]</a><span class="k">def</span> <span class="nf">print_score</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">view</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; this shows final score of current stroke (red label on canvas)</span>
 
 <span class="sd">    :param result: Result object containing recognition result</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">score</span> <span class="o">=</span> <span class="s2">&quot;Result: matched with &quot;</span><span
-            class="o">+</span><span class="n">result</span><span class="o">.</span><span class="n">name</span><span
-            class="o">+</span><span class="s2">&quot; about &quot;</span><span class="o">+</span><span
-            class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span
-            class="n">result</span><span class="o">.</span><span class="n">score</span><span class="p">,</span> <span
-            class="mi">2</span><span class="p">))</span>
-    <span class="n">gvariables</span><span class="o">.</span><span class="n">main_window</span><span
-            class="o">.</span><span class="n">label_score</span><span class="o">.</span><span
-            class="n">setStyleSheet</span><span class="p">(</span><span class="s2">&quot;color: red&quot;</span><span
-            class="p">)</span>
-    <span class="n">gvariables</span><span class="o">.</span><span class="n">main_window</span><span
-            class="o">.</span><span class="n">label_score</span><span class="o">.</span><span
-            class="n">setText</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span
-            class="n">score</span><span class="p">))</span>
-    <span class="n">gvariables</span><span class="o">.</span><span class="n">main_window</span><span
-            class="o">.</span><span class="n">text_edit_2</span><span class="o">.</span><span
-            class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span
-            class="s2">&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span
-            class="n">score</span><span class="p">))</span></div>
+    <span class="n">score</span> <span class="o">=</span> <span class="s2">&quot;Result: matched with &quot;</span> <span class="o">+</span> <span class="n">result</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot; about &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">score</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">view</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">label_score</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s2">&quot;color: white; font-size: 12pt;&quot;</span><span class="p">)</span>
+    <span class="n">view</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">label_score</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">score</span><span class="p">))</span></div>
 
 
-<span class="c1"># not updated (not here -&gt; GRecognizer.py)</span>
-<div class="viewcode-block" id="gesture_match"><a class="viewcode-back"
-                                                  href="../../controllers.html#controllers.aux_functions.gesture_match">[docs]</a><span
-        class="k">def</span> <span class="nf">gesture_match</span><span class="p">(</span><span
-        class="n">gesture_name</span><span class="p">,</span> <span class="n">active</span><span class="o">=</span><span
-        class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="gesture_match"><a class="viewcode-back" href="../../controllers.html#controllers.aux_functions.gesture_match">[docs]</a><span class="k">def</span> <span class="nf">gesture_match</span><span class="p">(</span><span class="n">gesture_name</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">active</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; matches gesture_name with its associated action</span>
 
 <span class="sd">    :param gesture_name: letter</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span
-            class="n">gesture_name</span><span class="p">)</span><span class="o">+</span><span
-            class="s2">&quot; gesture</span><span class="se">\n</span><span class="s2">&quot;</span><span
-            class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">gesture_name</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot; gesture</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">active</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">gesture_name</span> <span class="o">==</span> <span class="n">gvariables</span><span
-            class="o">.</span><span class="n">configuration</span><span class="o">.</span><span
-            class="n">basic</span><span class="o">.</span><span class="n">closew</span><span class="p">:</span>
-            <span class="n">hwnd</span> <span class="o">=</span> <span class="n">get_current_window_hwnd</span><span
-            class="p">()</span>
-            <span class="n">close_window</span><span class="p">(</span><span class="n">hwnd</span><span
-            class="p">)</span>
+        <span class="k">if</span> <span class="n">gesture_name</span> <span class="o">==</span> <span class="n">configuration</span><span class="o">.</span><span class="n">basic</span><span class="o">.</span><span class="n">closew</span><span class="p">:</span>
+            <span class="n">hwnd</span> <span class="o">=</span> <span class="n">get_current_window_hwnd</span><span class="p">()</span>
+            <span class="n">close_window</span><span class="p">(</span><span class="n">hwnd</span><span class="p">)</span>
 
-        <span class="k">elif</span> <span class="n">gesture_name</span> <span class="o">==</span> <span class="n">gvariables</span><span
-            class="o">.</span><span class="n">configuration</span><span class="o">.</span><span
-            class="n">basic</span><span class="o">.</span><span class="n">minimizew</span><span class="p">:</span>
-            <span class="n">hwnd</span> <span class="o">=</span> <span class="n">get_current_window_hwnd</span><span
-            class="p">()</span>
-            <span class="n">minimize_window</span><span class="p">(</span><span class="n">hwnd</span><span
-            class="p">)</span>
+        <span class="k">elif</span> <span class="n">gesture_name</span> <span class="o">==</span> <span class="n">configuration</span><span class="o">.</span><span class="n">basic</span><span class="o">.</span><span class="n">minimizew</span><span class="p">:</span>
+            <span class="n">hwnd</span> <span class="o">=</span> <span class="n">get_current_window_hwnd</span><span class="p">()</span>
+            <span class="n">minimize_window</span><span class="p">(</span><span class="n">hwnd</span><span class="p">)</span>
 
-        <span class="k">elif</span> <span class="n">gesture_name</span> <span class="o">==</span> <span class="n">gvariables</span><span
-            class="o">.</span><span class="n">configuration</span><span class="o">.</span><span
-            class="n">extra</span><span class="o">.</span><span class="n">show_desktop</span><span class="p">:</span>
-            <span class="n">hold</span><span class="p">(</span><span class="s2">&quot;windows&quot;</span><span
-            class="p">)</span>
-            <span class="n">press</span><span class="p">(</span><span class="s2">&quot;d&quot;</span><span
-            class="p">)</span>
-            <span class="n">release</span><span class="p">(</span><span class="s2">&quot;windows&quot;</span><span
-            class="p">)</span>
+        <span class="k">elif</span> <span class="n">gesture_name</span> <span class="o">==</span> <span class="n">configuration</span><span class="o">.</span><span class="n">extra</span><span class="o">.</span><span class="n">show_desktop</span><span class="p">:</span>
+            <span class="n">hold</span><span class="p">(</span><span class="s2">&quot;windows&quot;</span><span class="p">)</span>
+            <span class="n">press</span><span class="p">(</span><span class="s2">&quot;d&quot;</span><span class="p">)</span>
+            <span class="n">release</span><span class="p">(</span><span class="s2">&quot;windows&quot;</span><span class="p">)</span>
 
-        <span class="k">elif</span> <span class="n">gesture_name</span> <span class="o">==</span> <span class="n">gvariables</span><span
-            class="o">.</span><span class="n">configuration</span><span class="o">.</span><span
-            class="n">extra</span><span class="o">.</span><span class="n">show_explorer</span><span class="p">:</span>
-            <span class="n">hold</span><span class="p">(</span><span class="s2">&quot;windows&quot;</span><span
-            class="p">)</span>
-            <span class="n">press</span><span class="p">(</span><span class="s2">&quot;e&quot;</span><span
-            class="p">)</span>
-            <span class="n">release</span><span class="p">(</span><span class="s2">&quot;windows&quot;</span><span
-            class="p">)</span>
+        <span class="k">elif</span> <span class="n">gesture_name</span> <span class="o">==</span> <span class="n">configuration</span><span class="o">.</span><span class="n">extra</span><span class="o">.</span><span class="n">show_explorer</span><span class="p">:</span>
+            <span class="n">hold</span><span class="p">(</span><span class="s2">&quot;windows&quot;</span><span class="p">)</span>
+            <span class="n">press</span><span class="p">(</span><span class="s2">&quot;e&quot;</span><span class="p">)</span>
+            <span class="n">release</span><span class="p">(</span><span class="s2">&quot;windows&quot;</span><span class="p">)</span>
 
-        <span class="k">elif</span> <span class="n">gesture_name</span> <span class="o">==</span> <span class="n">gvariables</span><span
-            class="o">.</span><span class="n">configuration</span><span class="o">.</span><span
-            class="n">extra</span><span class="o">.</span><span class="n">copy</span><span class="p">:</span>
-            <span class="n">hold</span><span class="p">(</span><span class="s2">&quot;ctrl&quot;</span><span
-            class="p">)</span>
-            <span class="n">press</span><span class="p">(</span><span class="s2">&quot;c&quot;</span><span
-            class="p">)</span>
-            <span class="n">release</span><span class="p">(</span><span class="s2">&quot;ctrl&quot;</span><span
-            class="p">)</span>
+        <span class="k">elif</span> <span class="n">gesture_name</span> <span class="o">==</span> <span class="n">configuration</span><span class="o">.</span><span class="n">extra</span><span class="o">.</span><span class="n">copy</span><span class="p">:</span>
+            <span class="n">hold</span><span class="p">(</span><span class="s2">&quot;ctrl&quot;</span><span class="p">)</span>
+            <span class="n">press</span><span class="p">(</span><span class="s2">&quot;c&quot;</span><span class="p">)</span>
+            <span class="n">release</span><span class="p">(</span><span class="s2">&quot;ctrl&quot;</span><span class="p">)</span>
 
-        <span class="k">elif</span> <span class="n">gesture_name</span> <span class="o">==</span> <span class="n">gvariables</span><span
-            class="o">.</span><span class="n">configuration</span><span class="o">.</span><span
-            class="n">extra</span><span class="o">.</span><span class="n">paste</span><span class="p">:</span>
-            <span class="n">hold</span><span class="p">(</span><span class="s2">&quot;ctrl&quot;</span><span
-            class="p">)</span>
-            <span class="n">press</span><span class="p">(</span><span class="s2">&quot;v&quot;</span><span
-            class="p">)</span>
-            <span class="n">release</span><span class="p">(</span><span class="s2">&quot;ctrl&quot;</span><span
-            class="p">)</span>
+        <span class="k">elif</span> <span class="n">gesture_name</span> <span class="o">==</span> <span class="n">configuration</span><span class="o">.</span><span class="n">extra</span><span class="o">.</span><span class="n">paste</span><span class="p">:</span>
+            <span class="n">hold</span><span class="p">(</span><span class="s2">&quot;ctrl&quot;</span><span class="p">)</span>
+            <span class="n">press</span><span class="p">(</span><span class="s2">&quot;v&quot;</span><span class="p">)</span>
+            <span class="n">release</span><span class="p">(</span><span class="s2">&quot;ctrl&quot;</span><span class="p">)</span>
 
-        <span class="k">elif</span> <span class="n">gesture_name</span> <span class="o">==</span> <span class="n">gvariables</span><span
-            class="o">.</span><span class="n">configuration</span><span class="o">.</span><span
-            class="n">extra</span><span class="o">.</span><span class="n">cut</span><span class="p">:</span>
-            <span class="n">hold</span><span class="p">(</span><span class="s2">&quot;ctrl&quot;</span><span
-            class="p">)</span>
-            <span class="n">press</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span
-            class="p">)</span>
-            <span class="n">release</span><span class="p">(</span><span class="s2">&quot;ctrl&quot;</span><span
-            class="p">)</span></div>
-</pre>
-                </div>
+        <span class="k">elif</span> <span class="n">gesture_name</span> <span class="o">==</span> <span class="n">configuration</span><span class="o">.</span><span class="n">extra</span><span class="o">.</span><span class="n">cut</span><span class="p">:</span>
+            <span class="n">hold</span><span class="p">(</span><span class="s2">&quot;ctrl&quot;</span><span class="p">)</span>
+            <span class="n">press</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+            <span class="n">release</span><span class="p">(</span><span class="s2">&quot;ctrl&quot;</span><span class="p">)</span></div>
+</pre></div>
 
-            </div>
-
+          </div>
+          
         </div>
-    </div>
-    <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-            <h1 class="logo"><a href="../../index.html">LeapPCController</a></h1>
+<h1 class="logo"><a href="../../index.html">LEAP MyMouse</a></h1>
 
 
-            <h3>Navigation</h3>
 
-            <div class="relations">
-                <h3>Related Topics</h3>
-                <ul>
-                    <li><a href="../../index.html">Documentation overview</a>
-                        <ul>
-                            <li><a href="../index.html">Module code</a>
-                                <ul>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <div id="searchbox" style="display: none" role="search">
-                <h3>Quick search</h3>
-                <div class="searchformwrapper">
-                    <form class="search" action="../../search.html" method="get">
-                        <input type="text" name="q"/>
-                        <input type="submit" value="Go"/>
-                        <input type="hidden" name="check_keywords" value="yes"/>
-                        <input type="hidden" name="area" value="default"/>
-                    </form>
-                </div>
-            </div>
-            <script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
 
 
         </div>
+      </div>
+      <div class="clearer"></div>
     </div>
-    <div class="clearer"></div>
-</div>
-<div class="footer">
-    &copy;2019, Mario Varas.
+    <div class="footer">
+      &copy;2019, Mario Varas.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
 
-    |
-    Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
-    &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+    
 
-</div>
-
-
-</body>
+    
+  </body>
 </html>
