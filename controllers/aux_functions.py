@@ -116,6 +116,7 @@ def gesture_match(gesture_name, configuration, active=True):
             release("ctrl")
 
         elif gesture_name == configuration.extra.paste:
+            print("paste")
             hold("ctrl")
             press("v")
             release("ctrl")

@@ -110,14 +110,17 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                                                             1: "T",
                                                             2: "W",
                                                             3: "D",
-                                                            4: "M"}
+                                                            4: "Z"}
         self.combo_box_rclick.currentIndexChanged["int"].connect(
             lambda: self.controller.combo_box_actiongesture_changed("combo_box_rclick"))
 
         self.combo_box_closew.currentIndexChanged["int"].connect(
             lambda: self.controller.combo_box_actiongesture_changed("combo_box_closew"))
         self.cb_action_gesture[self.combo_box_closew] = {0: "T",
-                                                         1: "V"}
+                                                         1: "V",
+                                                         2: "W",
+                                                         3: "Z",
+                                                         4: "D"}
 
         self.combo_box_changew.currentIndexChanged["int"].connect(
             lambda: self.controller.combo_box_actiongesture_changed("combo_box_changew"))
@@ -156,7 +159,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
         self.combo_box_copy.currentIndexChanged["int"].connect(
             lambda: self.controller.combo_box_actiongesture_changed("combo_box_copy"))
-        self.cb_action_gesture[self.combo_box_copy] = {0: "C",
+        self.cb_action_gesture[self.combo_box_copy] = {0: "Z",
                                                        1: "D",
                                                        2: "T",
                                                        3: "V",
@@ -164,9 +167,9 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
         self.combo_box_paste.currentIndexChanged["int"].connect(
             lambda: self.controller.combo_box_actiongesture_changed("combo_box_paste"))
-        self.cb_action_gesture[self.combo_box_paste] = {0: "V",
+        self.cb_action_gesture[self.combo_box_paste] = {0: "L",
                                                         1: "T",
-                                                        2: "C",
+                                                        2: "Z",
                                                         3: "D",
                                                         4: "W"}
 
@@ -175,7 +178,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.cb_action_gesture[self.combo_box_cut] = {0: "W",
                                                       1: "X",
                                                       2: "D",
-                                                      3: "C",
+                                                      3: "Z",
                                                       4: "V"}
 
         # help buttons
@@ -335,131 +338,6 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         elif event.key() == QtCore.Qt.Key_S:
             self.controller.start_stop_control()
 
-        """elif event.key() == QtCore.Qt.Key_F:  # start stroke recognition
-            if self.n_of_fingers == 1:
-                pc = Point_cloud("f1", self.widget_canvas.points, Point(gv.W/4, gv.H/4 + 50, -1))
-                # pc.draw_on_canvas()    normalized pc
-
-                result = recognize_stroke(self.widget_canvas.points)
-                gesture_match(result.name, "-thread" in sys.argv)
-
-                str_accum = "Last/Current gesture points array\n\n"
-                for c in range(0, len(points)):
-                    str_accum += "(" + str(points[c].x) + "," + str(points[c].y) + ")"
-                    if c != len(points) - 1:
-                        str_accum += "\n"
-
-                print_score(result)
-                self.text_edit.setText(str_accum)
-
-            elif self.n_of_fingers == -1:
-                results = []
-                for c in range(0, 5):
-                    results.append(recognize_stroke(self.listener.gesture[c]))
-                    gesture_match(results[len(results) - 1].name, "-thread" in sys.argv)
-
-                results_names = [res.name for res in results]
-                print(results_names)
-                if len(set(results_names)) <= 1:
-                    print_score(results[1])
-                else:
-                    print("inconsistent matches of each finger")
-
-            # resetting values, clearing arrays
-            gv.stroke_id = 0
-            points = []
-            self.listener.clear_variables()
-
-        elif event.key() == QtCore.Qt.Key_G and sys.argv[1] != "-thread":
-            # global points
-            if self.n_of_fingers == 1:  # recording only 1 finger (index)
-                print("1 finger recording mode")
-                if self.listener.capture_frame:  # 2nd "G" press
-                    print("record captured")
-                    self.listener.capture_frame = False
-
-                    if self.canvas_algorithm == "NN":
-                        # Neural Network recognition selected
-                        img_dim = 28
-                        matrix = np.zeros((img_dim, img_dim, 3), dtype=np.uint8)
-                        white = [255, 255, 255]
-
-                        leap_gesture_points = self.listener.gesture[1]
-                        # undoing convert_to from leap_controller to get min and max
-                        for c in range(len(leap_gesture_points)):
-                            leap_gesture_points[c].x *= (gv.W / 2)
-                            leap_gesture_points[c].x /= gv.W
-                            leap_gesture_points[c].y = gv.H - abs(leap_gesture_points[c].y)
-                            leap_gesture_points[c].y *= (gv.H / 2)
-                            leap_gesture_points[c].y /= gv.H
-
-                        max_leap_y = max(g.y for g in leap_gesture_points)
-                        max_leap_x = max((g.x + 200) for g in leap_gesture_points)
-                        for c in range(len(leap_gesture_points)):
-                            print(leap_gesture_points[c].y),
-                            print(leap_gesture_points[c].x)
-                            leap_x = leap_gesture_points[c].x + 140
-                            leap_y = max_leap_y + 40 - leap_gesture_points[c].y
-                            print(str(leap_x) + ", " + str(leap_y))
-                            print(str(leap_x * img_dim / max_leap_x) + "; " + str(leap_y * img_dim / max_leap_y))
-                            print("")
-                            matrix_x = int(leap_x * img_dim / max_leap_x)
-                            matrix_x = 27 if matrix_x == 28 else matrix_x
-                            matrix_y = int(leap_y * img_dim / max_leap_y)
-                            matrix_y = 27 if matrix_y == 28 else matrix_y
-                            matrix[matrix_y][matrix_x] = white
-
-                        print("max X: " + str(max_leap_x))
-                        print("max Y: " + str(max_leap_y))
-                        img = self.matrix_to_img(matrix)
-                        self.neural_network(img)
-
-                    else:
-                        # p dollar algorithm (default)
-                        leap_gesture_points = self.listener.gesture[1]
-                        pc = Point_cloud("f1", leap_gesture_points).draw_on_canvas()
-                        # img = self.matrix_to_img(self.listener.gesture[1])
-
-                        result = recognize_stroke(leap_gesture_points)
-                        gesture_match(result.name, "-thread" in sys.argv)
-
-                        str_accum = "Last/Current gesture points array\n\n"
-                        for c in range(0, len(points)):
-                            str_accum += "(" + str(points[c].x) + "," + str(points[c].y) + ")"
-                            if c != len(points) - 1:
-                                str_accum += "\n"
-
-                        print_score(result)
-                        self.text_edit.setText(str_accum)
-
-                        # getting finger_1 points
-                        points = self.listener.gesture[1]  # this allows "F" to work with mouse and hand stroke
-
-                else:  # 1st "G" press
-                    self._print("recording")
-                    self.label_count.setText("4")  # countdown after getting gesture
-                    # this is like a thread with no wait
-                    QtCore.QTimer.singleShot(1000, lambda: self.updateLabel(self.label_count))
-
-            elif self.n_of_fingers == -1:  # recording ALL fingers
-                self._print("all fingers recording mode")
-                aux = -100
-                if self.listener.capture_frame:
-                    self._print("record captured")
-                    self.listener.capture_frame = False
-                    for c in range(0, 5):
-                        pc = Point_cloud("f" + str(c), self.listener.gesture[c], Point(W / 4 + aux, H / 4, -1))
-                        pc.draw_on_canvas()
-                        aux += 50
-
-                    points = self.listener.gesture[1]  # just for testing
-
-                else:  # 1st "G" press
-                    self._print("recording")
-                    self.label_count.setText("4")  # countdown after getting gesture
-                    # this is like a thread with no wait
-                    QtCore.QTimer.singleShot(1000, lambda: self.updateLabel(self.label_count))
-        """
     def show_gui(self):
         """ this handles notification area option 'Open/Close'
         hide or shows MainWindow

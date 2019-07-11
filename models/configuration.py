@@ -43,10 +43,10 @@ class Conf:
         :return: true if all is ok, false if not
         """
 
-        """print(len(self.basic.__dict__.values())),
+        print(len(self.basic.__dict__.values())),
         print(len(set(self.basic.__dict__.values()))),
         print(len(self.extra.__dict__.values())),
-        print(len(set(self.extra.__dict__.values())))"""
+        print(len(set(self.extra.__dict__.values())))
         return (len(self.basic.__dict__.values()) == len(set(self.basic.__dict__.values()))+1 and \
                 len(self.extra.__dict__.values()) == len(set(self.extra.__dict__.values())))
 

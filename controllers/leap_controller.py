@@ -461,9 +461,8 @@ class leap_listener(Leap.Listener):
         cv_frame_loc_XZ = np.zeros((540, 640, 3), np.uint8)  # XZ frame
 
         if len(frame.hands) == 2 or \
-                (len(frame.hands) == 1 and (len(frame.fingers.extended()) == 0 or \
-                                            len(frame.fingers.extended()) == 1 and frame.fingers.extended()[
-                                                0].type == 0)):
+            (len(frame.hands) == 1 and (len(frame.fingers.extended()) == 0 or \
+            len(frame.fingers.extended()) == 1 and frame.fingers.extended()[0].type == 0)) and self.mouse.active:
             # two hands if frame
             self.can_record = True
             cv2.putText(cv_frame_loc_XY, "Two hands in frame",

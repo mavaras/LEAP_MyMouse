@@ -2876,7 +2876,7 @@
         <enum>QTabWidget::Rounded</enum>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <property name="iconSize">
         <size>
@@ -3663,12 +3663,27 @@
              </property>
              <item>
               <property name="text">
-               <string>V gesture (default)</string>
+               <string>V (default)</string>
               </property>
              </item>
              <item>
               <property name="text">
-               <string>T gesture</string>
+               <string>T</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>W</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>D</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Z</string>
               </property>
              </item>
             </widget>
@@ -3677,12 +3692,27 @@
             <widget class="QComboBox" name="combo_box_closew">
              <item>
               <property name="text">
-               <string>T gesture (default)</string>
+               <string>T (default)</string>
               </property>
              </item>
              <item>
               <property name="text">
-               <string>V gesture</string>
+               <string>V</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>W</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Z</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>D</string>
               </property>
              </item>
             </widget>
@@ -4376,7 +4406,7 @@
             <widget class="QComboBox" name="combo_box_copy">
              <item>
               <property name="text">
-               <string>C</string>
+               <string>Z</string>
               </property>
              </item>
              <item>
@@ -4410,17 +4440,17 @@
              </item>
              <item>
               <property name="text">
-               <string>V</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
                <string>T</string>
               </property>
              </item>
              <item>
               <property name="text">
-               <string>C</string>
+               <string>Z</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>D</string>
               </property>
              </item>
              <item>
@@ -4449,7 +4479,7 @@
              </item>
              <item>
               <property name="text">
-               <string>C</string>
+               <string>Z</string>
               </property>
              </item>
              <item>
