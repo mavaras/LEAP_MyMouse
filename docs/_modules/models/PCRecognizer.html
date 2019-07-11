@@ -61,7 +61,11 @@
 <div class="viewcode-block" id="PCRecognizer"><a class="viewcode-back" href="../../models.html#models.PCRecognizer.PCRecognizer">[docs]</a><span class="k">class</span> <span class="nc">PCRecognizer</span><span class="p">:</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<<<<<<< HEAD
         <span class="bp">self</span><span class="o">.</span><span class="n">origin</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="n">gv</span><span class="o">.</span><span class="n">W</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="n">gv</span><span class="o">.</span><span class="n">H</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># canvas point where to translate_to (canvas center)</span>
+=======
+        <span class="bp">self</span><span class="o">.</span><span class="n">origin</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="n">gv</span><span class="o">.</span><span class="n">W</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="n">gv</span><span class="o">.</span><span class="n">H</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># canvas point where to translate_to (canvas center)</span>
+>>>>>>> origin/master
         <span class="bp">self</span><span class="o">.</span><span class="n">templates</span> <span class="o">=</span> <span class="n">init_templates</span><span class="p">()</span>  <span class="c1"># array storing all Template objects</span>
 
 <div class="viewcode-block" id="PCRecognizer.normalize"><a class="viewcode-back" href="../../models.html#models.PCRecognizer.PCRecognizer.normalize">[docs]</a>    <span class="k">def</span> <span class="nf">normalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
@@ -111,7 +115,11 @@
                     <span class="k">if</span> <span class="n">dist</span> <span class="o">&lt;</span> <span class="n">score</span><span class="p">:</span>
                         <span class="n">score</span> <span class="o">=</span> <span class="n">dist</span>
                         <span class="n">template_n</span> <span class="o">=</span> <span class="n">c</span>
+<<<<<<< HEAD
                         <span class="k">if</span> <span class="nb">max</span><span class="p">((</span><span class="n">dist</span> <span class="o">-</span> <span class="mf">2.0</span><span class="p">)</span><span class="o">/-</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.2</span><span class="p">:</span>
+=======
+                        <span class="k">if</span> <span class="nb">max</span><span class="p">((</span><span class="n">dist</span> <span class="o">-</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">/</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.2</span><span class="p">:</span>
+>>>>>>> origin/master
                             <span class="n">found</span> <span class="o">=</span> <span class="kc">True</span>
                             <span class="k">break</span>
             <span class="k">else</span><span class="p">:</span>
@@ -124,7 +132,11 @@
 
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">Result</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">templates</span><span class="p">[</span><span class="n">template_n</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>  <span class="c1"># template matched</span>
+<<<<<<< HEAD
                           <span class="nb">max</span><span class="p">((</span><span class="n">score</span> <span class="o">-</span> <span class="mf">2.0</span><span class="p">)</span><span class="o">/-</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>  <span class="c1"># score achieved</span>
+=======
+                          <span class="nb">max</span><span class="p">((</span><span class="n">score</span> <span class="o">-</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">/</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>  <span class="c1"># score achieved</span>
+>>>>>>> origin/master
                           <span class="n">t_fin</span> <span class="o">-</span> <span class="n">t_ini</span><span class="p">)</span>  <span class="c1"># time in ms</span></div></div>
 </pre></div>
 

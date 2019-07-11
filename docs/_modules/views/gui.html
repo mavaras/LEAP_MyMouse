@@ -60,6 +60,10 @@
 <span class="c1"># self package imports</span>
 <span class="kn">from</span> <span class="nn">models.gvariables</span> <span class="k">import</span> <span class="n">gv</span>
 <span class="kn">from</span> <span class="nn">controllers.aux_functions</span> <span class="k">import</span> <span class="o">*</span>
+<<<<<<< HEAD
+=======
+<span class="c1"># import controllers.self.controller as self.controller</span>
+>>>>>>> origin/master
 <span class="kn">from</span> <span class="nn">controllers.configuration_controller</span> <span class="k">import</span> <span class="n">Controller</span>
 <span class="kn">from</span> <span class="nn">models.points</span> <span class="k">import</span> <span class="n">Point</span><span class="p">,</span> <span class="n">Point_cloud</span>
 <span class="kn">from</span> <span class="nn">models.configuration_fromFile</span> <span class="k">import</span> <span class="n">ConfFromFile</span>
@@ -86,6 +90,7 @@
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">QtGui</span><span class="o">.</span><span class="n">QMainWindow</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<<<<<<< HEAD
 
         <span class="bp">self</span><span class="o">.</span><span class="n">controller</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="kc">None</span>
@@ -96,6 +101,18 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
+=======
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&gt;&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">kwargs</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">controller</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">listener</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">opened</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">systray</span> <span class="o">=</span> <span class="n">QSystemTrayIcon</span><span class="p">(</span><span class="n">QIcon</span><span class="p">(</span><span class="s2">&quot;res/icons/leapmymouse.PNG&quot;</span><span class="p">),</span> <span class="bp">self</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+>>>>>>> origin/master
 <div class="viewcode-block" id="MainWindow.initUI"><a class="viewcode-back" href="../../views.html#views.gui.MainWindow.initUI">[docs]</a>    <span class="k">def</span> <span class="nf">initUI</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; widget initialization, positioning, linking etc.</span>
 <span class="sd">        fills cb_action_gesture array</span>
@@ -124,6 +141,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">listener</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">sgn_cv_frame_XZ</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cvF</span><span class="o">.</span><span class="n">set_frame_XZ</span><span class="p">)</span>
 
         <span class="c1"># Action-gesture COMBOBOXES</span>
+<<<<<<< HEAD
+=======
+        <span class="c1"># TODO: set all gestures the same as ComboBoxes and handle into leap_controller</span>
+>>>>>>> origin/master
         <span class="bp">self</span><span class="o">.</span><span class="n">combo_box_mm</span><span class="o">.</span><span class="n">currentIndexChanged</span><span class="p">[</span><span class="s2">&quot;int&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
             <span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">controller</span><span class="o">.</span><span class="n">combo_box_actiongesture_changed</span><span class="p">(</span><span class="s2">&quot;combo_box_mm&quot;</span><span class="p">))</span>
 
@@ -275,6 +296,16 @@
         <span class="k">global</span> <span class="n">points</span>
         <span class="n">points</span> <span class="o">=</span> <span class="n">loaded_points</span>  <span class="c1"># allowing &quot;F&quot;</span></div>
 
+<<<<<<< HEAD
+=======
+    <span class="sd">&quot;&quot;&quot;def set_profile_name(self):</span>
+<span class="sd">        self.label_conf_file.setText(self.lineEdit_profilename.text())</span>
+<span class="sd">        self.configuration.profile_name = str(self.lineEdit_profilename.text())</span>
+<span class="sd">        self.update_file(str(self.configuration.file_path)+&quot;/&quot;+str(self.configuration.file_name),</span>
+<span class="sd">                         0,</span>
+<span class="sd">                         self.configuration.profile_name)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+>>>>>>> origin/master
 <div class="viewcode-block" id="MainWindow.set_default_conf"><a class="viewcode-back" href="../../views.html#views.gui.MainWindow.set_default_conf">[docs]</a>    <span class="k">def</span> <span class="nf">set_default_conf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; restores default configuration&quot;&quot;&quot;</span>
 
@@ -307,7 +338,64 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">label_conf_file</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">profile_name</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">controller</span><span class="o">.</span><span class="n">load_conf</span><span class="p">()</span></div>
+<<<<<<< HEAD
 
+=======
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    def update_file(self, fname, line, replace):</span>
+<span class="sd">        with open(fname, &quot;r&quot;) as file:</span>
+<span class="sd">            file_content = file.readlines()</span>
+
+<span class="sd">        file_content[line] = replace+str(&quot;\n&quot;)</span>
+<span class="sd">        with open(fname, &quot;w&quot;) as file:</span>
+<span class="sd">            file.writelines(file_content)</span>
+<span class="sd">    </span>
+<span class="sd">    def load_conf_file(self):</span>
+<span class="sd">        self._print(&quot;load_conf_file()&quot;)</span>
+<span class="sd">        fname = QFileDialog.getOpenFileName(self,</span>
+<span class="sd">                                            &quot;Save Configuration&quot;,</span>
+<span class="sd">                                            &quot;E:\\Documentos\\Estudio\\programming\\Python\\leap\\LEAP_proyect&quot;,</span>
+<span class="sd">                                            &quot;(*.txt)&quot;)</span>
+<span class="sd">        if fname:</span>
+<span class="sd">            self.label_conf_file.setText(self.configuration.profile_name)</span>
+<span class="sd">            self.controller.load_conf_file(fname)</span>
+
+<span class="sd">        self.controller.load_conf()</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;def load_conf(self):</span>
+<span class="sd">        self._print(&quot;load_conf()&quot;)</span>
+
+<span class="sd">        self.combo_box_mm.setCurrentIndex(int(self.configuration.basic.mm))</span>
+
+<span class="sd">        self.combo_box_click.setCurrentIndex(</span>
+<span class="sd">            get_dict_key(self.cb_action_gesture[self.combo_box_click], self.configuration.basic.lclick)</span>
+<span class="sd">        )</span>
+
+<span class="sd">        self.combo_box_rclick.setCurrentIndex(</span>
+<span class="sd">            get_dict_key(self.cb_action_gesture[self.combo_box_rclick], self.configuration.basic.rclick)</span>
+<span class="sd">        )</span>
+
+<span class="sd">        self.combo_box_minimizew.setCurrentIndex(</span>
+<span class="sd">            get_dict_key(self.cb_action_gesture[self.combo_box_minimizew], self.configuration.basic.minimizew)</span>
+<span class="sd">        )</span>
+
+<span class="sd">        self.combo_box_closew.setCurrentIndex(</span>
+<span class="sd">            get_dict_key(self.cb_action_gesture[self.combo_box_closew], self.configuration.basic.closew)</span>
+<span class="sd">        )</span>
+
+<span class="sd">        self.combo_box_changew.setCurrentIndex(</span>
+<span class="sd">            get_dict_key(self.cb_action_gesture[self.combo_box_changew], self.configuration.basic.changew)</span>
+<span class="sd">        )</span>
+
+<span class="sd">        self.combo_box_vscroll.setCurrentIndex(</span>
+<span class="sd">            get_dict_key(self.cb_action_gesture[self.combo_box_vscroll], self.configuration.basic.vscroll)</span>
+<span class="sd">        )</span>
+
+<span class="sd">        self.combo_box_hscroll.setCurrentIndex(</span>
+<span class="sd">            get_dict_key(self.cb_action_gesture[self.combo_box_hscroll], self.configuration.basic.hscroll)</span>
+<span class="sd">        )</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+>>>>>>> origin/master
 <div class="viewcode-block" id="MainWindow.debug_mode"><a class="viewcode-back" href="../../views.html#views.gui.MainWindow.debug_mode">[docs]</a>    <span class="k">def</span> <span class="nf">debug_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; opens the canvas window&quot;&quot;&quot;</span>
 
@@ -335,6 +423,7 @@
         <span class="k">if</span> <span class="n">conn</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">label_leap_status</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;CONNECTED&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">label_leap_status</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s2">&quot;QLabel {color: #7FFF00;}&quot;</span><span class="p">)</span>
+<<<<<<< HEAD
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">label_leap_status</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;DISCONNECTED&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">label_leap_status</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s2">&quot;QLabel {color: #ff3333;}&quot;</span><span class="p">)</span></div>
@@ -355,6 +444,28 @@
             <span class="n">remove_shortcut</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">startup_path</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">show_popup</span><span class="p">(</span><span class="s2">&quot;Launch on startup&quot;</span><span class="p">,</span>
                             <span class="s2">&quot;LEAP MyMouse successfully removed from startup&quot;</span><span class="p">,</span>
+=======
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">label_leap_status</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;DISCONNECTED&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">label_leap_status</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s2">&quot;QLabel {color: #ff3333;}&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MainWindow.launch_on_startup"><a class="viewcode-back" href="../../views.html#views.gui.MainWindow.launch_on_startup">[docs]</a>    <span class="k">def</span> <span class="nf">launch_on_startup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; creates shortcut in Startup folder into User&#39;s home or removes it</span>
+<span class="sd">        depending if checkBox is checked or not</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">checkBox_startup</span><span class="o">.</span><span class="n">isChecked</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_print</span><span class="p">(</span><span class="s2">&quot;added to startup&quot;</span><span class="p">)</span>
+            <span class="n">create_shortcut</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">startup_path</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">show_popup</span><span class="p">(</span><span class="s2">&quot;Launch on startup&quot;</span><span class="p">,</span>
+                            <span class="s2">&quot;LEAP MyMouse succesfully added to startup&quot;</span><span class="p">,</span>
+                            <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_print</span><span class="p">(</span><span class="s2">&quot;added to startup&quot;</span><span class="p">)</span>
+            <span class="n">remove_shortcut</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">startup_path</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">show_popup</span><span class="p">(</span><span class="s2">&quot;Launch on startup&quot;</span><span class="p">,</span>
+                            <span class="s2">&quot;LEAP MyMouse succesfully removed from startup&quot;</span><span class="p">,</span>
+>>>>>>> origin/master
                             <span class="s2">&quot;&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="MainWindow.keyPressEvent"><a class="viewcode-back" href="../../views.html#views.gui.MainWindow.keyPressEvent">[docs]</a>    <span class="k">def</span> <span class="nf">keyPressEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
@@ -507,6 +618,44 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
 
+<<<<<<< HEAD
+=======
+<div class="viewcode-block" id="MainWindow.matrix_to_img"><a class="viewcode-back" href="../../views.html#views.gui.MainWindow.matrix_to_img">[docs]</a>    <span class="k">def</span> <span class="nf">matrix_to_img</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">matrix</span><span class="p">):</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="s2">&quot;RGB&quot;</span><span class="p">)</span>
+        <span class="n">img</span><span class="o">.</span><span class="n">thumbnail</span><span class="p">((</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span> <span class="n">Image</span><span class="o">.</span><span class="n">ANTIALIAS</span><span class="p">)</span>  <span class="c1"># resizing to 28x28</span>
+        <span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;image_28x28.png&quot;</span><span class="p">)</span>
+
+        <span class="c1"># dilate image</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">dilate</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;image_28x28.png&quot;</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">IMREAD_GRAYSCALE</span><span class="p">),</span>
+                         <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">),</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">img</span></div>
+
+<div class="viewcode-block" id="MainWindow.neural_network"><a class="viewcode-back" href="../../views.html#views.gui.MainWindow.neural_network">[docs]</a>    <span class="k">def</span> <span class="nf">neural_network</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img</span><span class="p">):</span>
+        <span class="c1"># setting + normalizing image</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">)))</span>
+        <span class="c1"># img = cv2.resize(img, (8, 8))</span>
+        <span class="n">minValueInImage</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+        <span class="n">maxValueInImage</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">((</span><span class="n">img</span> <span class="o">-</span> <span class="n">minValueInImage</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">),</span>
+                                 <span class="p">(</span><span class="n">maxValueInImage</span> <span class="o">-</span> <span class="n">minValueInImage</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">))</span> <span class="o">*</span> <span class="mi">16</span><span class="p">)</span>
+
+        <span class="c1"># loading digit database</span>
+        <span class="n">digits</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_digits</span><span class="p">()</span>
+        <span class="n">n_samples</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">digits</span><span class="o">.</span><span class="n">images</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">images</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">n_samples</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+
+        <span class="c1"># predict EMNIST</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_print</span><span class="p">(</span><span class="s2">&quot;Loading MLP model from file&quot;</span><span class="p">)</span>
+        <span class="n">clf</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;res/mlp_model.pkl&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">best_estimator_</span>
+        <span class="n">predicted</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])))</span>
+
+        <span class="c1"># display results</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_print</span><span class="p">(</span><span class="s2">&quot;prediction: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">predicted</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray_r</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;nearest&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;result: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">predicted</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+
+>>>>>>> origin/master
 <div class="viewcode-block" id="MainWindow.recognition_algorithm_ch"><a class="viewcode-back" href="../../views.html#views.gui.MainWindow.recognition_algorithm_ch">[docs]</a>    <span class="k">def</span> <span class="nf">recognition_algorithm_ch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">which</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; handles check box selecting recognition algorithm</span>
 
@@ -519,6 +668,13 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">canvas_algorithm</span> <span class="o">=</span> <span class="s2">&quot;pd&quot;</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">canvas_algorithm</span> <span class="o">=</span> <span class="s2">&quot;NN&quot;</span></div>
+<<<<<<< HEAD
+=======
+
+    <span class="sd">&quot;&quot;&quot;def combo_box_actiongesture_changed(self, combo_box_name):</span>
+<span class="sd">        self.controller.combo_box_actiongesture_changed(combo_box_name)</span>
+<span class="sd">        self.setFocus()&quot;&quot;&quot;</span>
+>>>>>>> origin/master
 
 <div class="viewcode-block" id="MainWindow.view_gesture"><a class="viewcode-back" href="../../views.html#views.gui.MainWindow.view_gesture">[docs]</a>    <span class="k">def</span> <span class="nf">view_gesture</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">combo_box</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; loads gesture associated gif</span>
@@ -527,6 +683,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_print</span><span class="p">(</span><span class="s2">&quot;view gesture: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">combo_box</span><span class="o">.</span><span class="n">currentIndex</span><span class="p">()))</span>
+<<<<<<< HEAD
 
         <span class="bp">self</span><span class="o">.</span><span class="n">tab_widget_frames</span><span class="o">.</span><span class="n">setCurrentIndex</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cb_action_gesture</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">combo_box</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">combo_box</span><span class="o">.</span><span class="n">currentIndex</span><span class="p">()))</span>
@@ -536,6 +693,44 @@
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">label_gesture_gif</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QHBoxLayout</span><span class="p">())</span></div>
 
+=======
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">tab_widget_frames</span><span class="o">.</span><span class="n">setCurrentIndex</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cb_action_gesture</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">combo_box</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">combo_box</span><span class="o">.</span><span class="n">currentIndex</span><span class="p">()))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_gesture_gif</span><span class="p">(</span>
+            <span class="s2">&quot;res/gifs/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cb_action_gesture</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">combo_box</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">combo_box</span><span class="o">.</span><span class="n">currentIndex</span><span class="p">()))</span> <span class="o">+</span> <span class="s2">&quot;.gif&quot;</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_gesture_gif</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QHBoxLayout</span><span class="p">())</span></div>
+
+    <span class="sd">&quot;&quot;&quot;def start_stop_control(self):</span>
+<span class="sd">        if not self.listener.status.leap_connected:</span>
+<span class="sd">            self.show_popup(&quot;Problem Detected&quot;,</span>
+<span class="sd">                            &quot;Leap Motion error&quot;,</span>
+<span class="sd">                            &quot;Leap Motion device is not connected&quot;)</span>
+<span class="sd">        else:</span>
+<span class="sd">            if self.configuration.check():</span>
+<span class="sd">                self._print(&quot;Start/Stop Control&quot;)</span>
+
+<span class="sd">                if not self.listener.mouse.active:</span>
+<span class="sd">                    self.listener.mouse.active = True</span>
+<span class="sd">                    self.button_stop.setChecked(False)</span>
+<span class="sd">                    self.button_stop.setEnabled(True)</span>
+<span class="sd">                    self.button_start.setChecked(True)</span>
+
+<span class="sd">                else:</span>
+<span class="sd">                    self.listener.mouse.active = False</span>
+<span class="sd">                    self.button_start.setChecked(False)</span>
+<span class="sd">                    self.button_start.setEnabled(True)</span>
+<span class="sd">                    self.button_stop.setChecked(True)</span>
+
+<span class="sd">            else:</span>
+<span class="sd">                self.show_popup(&quot;Problem Detected&quot;,</span>
+<span class="sd">                                &quot;Configuration error&quot;,</span>
+<span class="sd">                                &quot;You have same gesture assigned to multiple actions in your configuration&quot;)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+>>>>>>> origin/master
 <div class="viewcode-block" id="MainWindow.set_gesture_gif"><a class="viewcode-back" href="../../views.html#views.gui.MainWindow.set_gesture_gif">[docs]</a>    <span class="k">def</span> <span class="nf">set_gesture_gif</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gif</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; loads given gif into gif label</span>
 

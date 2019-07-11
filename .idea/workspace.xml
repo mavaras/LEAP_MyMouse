@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="9d7c6978-d1a6-4729-8db0-b363c85a081d" name="Default Changelist" comment="exe">
       <change afterPath="$PROJECT_DIR$/.idea/statistic.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/controllers/configuration_controller.py" afterDir="false" />
@@ -8,11 +9,21 @@
       <change afterPath="$PROJECT_DIR$/main/LEAP_proyect/controllers/configuration_controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+=======
+    <list default="true" id="9d7c6978-d1a6-4729-8db0-b363c85a081d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/statistic.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/configuration_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+>>>>>>> origin/master
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GRecognizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_print.py" beforeDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/config.txt" beforeDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/config.txt" beforeDir="false" afterPath="$PROJECT_DIR$/config.txt" afterDir="false" />
+>>>>>>> origin/master
       <change beforePath="$PROJECT_DIR$/controllers/aux_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/aux_functions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/key_handle.py" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/key_handle.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/leap_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/leap_controller.py" afterDir="false" />
@@ -60,6 +71,7 @@
       <change beforePath="$PROJECT_DIR$/gui - Copy.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/gvariables.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/gvariables.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/image_28x28.png" beforeDir="false" afterPath="$PROJECT_DIR$/image_28x28.png" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/main/LEAP_proyect/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/main/LEAP_proyect/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/LEAP_proyect/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/main/LEAP_proyect/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/LEAP_proyect/GRecognizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/LEAP_proyect/main.py" afterDir="false" />
@@ -135,6 +147,8 @@
       <change beforePath="$PROJECT_DIR$/main/LEAP_proyect/views/loading_screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/LEAP_proyect/views/loading_screen.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/LEAP_proyect/views/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/LEAP_proyect/views/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/LEAP_proyect/views/untitled.ui" beforeDir="false" afterPath="$PROJECT_DIR$/main/LEAP_proyect/views/untitled.ui" afterDir="false" />
+=======
+>>>>>>> origin/master
       <change beforePath="$PROJECT_DIR$/models/PCRecognizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/PCRecognizer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/PCRecognizer_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/PCRecognizer_functions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/configuration.py" afterDir="false" />
@@ -174,8 +188,16 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/views/gui.py">
               <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
                 <state relative-caret-position="361">
                   <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+=======
+                <state relative-caret-position="672">
+                  <caret line="167" column="61" selection-start-line="167" selection-start-column="61" selection-end-line="167" selection-end-column="61" />
+                  <folding>
+                    <element signature="e#204#214#0" expanded="true" />
+                  </folding>
+>>>>>>> origin/master
                 </state>
               </provider>
             </entry>
@@ -195,8 +217,13 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/controllers/win32_functions.py">
               <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
                 <state relative-caret-position="517">
                   <caret line="105" column="81" selection-start-line="105" selection-start-column="81" selection-end-line="105" selection-end-column="81" />
+=======
+                <state relative-caret-position="688">
+                  <caret line="114" selection-start-line="114" selection-end-line="114" />
+>>>>>>> origin/master
                   <folding>
                     <element signature="e#118#131#0" expanded="true" />
                   </folding>
@@ -260,6 +287,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/source/views.rst">
               <provider selected="true" editor-type-id="restructured-text-editor" />
+<<<<<<< HEAD
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
@@ -284,19 +312,68 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="627">
                   <caret line="45" column="52" selection-start-line="45" selection-start-column="52" selection-end-line="45" selection-end-column="52" />
+=======
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/source/controllers.rst">
+              <provider selected="true" editor-type-id="restructured-text-editor" />
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/views/settings.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2166">
+                  <caret line="114" column="27" selection-start-line="114" selection-start-column="27" selection-end-line="114" selection-end-column="27" />
+                  <folding>
+                    <element signature="e#163#188#0" expanded="true" />
+                  </folding>
+>>>>>>> origin/master
                 </state>
               </provider>
             </entry>
           </file>
+<<<<<<< HEAD
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/views/canvas.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="323">
                   <caret line="17" column="26" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
+=======
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/models/configuration.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="627">
+                  <caret line="45" column="52" selection-start-line="45" selection-start-column="52" selection-end-line="45" selection-end-column="52" />
+>>>>>>> origin/master
                 </state>
               </provider>
             </entry>
           </file>
+<<<<<<< HEAD
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/controllers/leap_controller.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="676">
+                  <caret line="151" column="37" selection-start-line="151" selection-start-column="37" selection-end-line="151" selection-end-column="37" />
+                  <folding>
+                    <element signature="e#191#209#0" expanded="true" />
+=======
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/views/canvas.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="3287">
+                  <caret line="173" column="62" selection-start-line="173" selection-start-column="62" selection-end-line="173" selection-end-column="62" />
+                  <folding>
+                    <element signature="e#160#178#0" expanded="true" />
+>>>>>>> origin/master
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+<<<<<<< HEAD
+=======
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/controllers/leap_controller.py">
               <provider selected="true" editor-type-id="text-editor">
@@ -309,6 +386,7 @@
               </provider>
             </entry>
           </file>
+>>>>>>> origin/master
         </leaf>
       </split-second>
     </splitter>
@@ -323,6 +401,10 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
+<<<<<<< HEAD
+=======
+      <find>save_conf</find>
+>>>>>>> origin/master
       <find>set_default_conf</find>
       <find>cb_action</find>
       <find>cb_action_gesture</find>
@@ -352,7 +434,10 @@
       <find>controller</find>
       <find>digits</find>
       <find>n_samples</find>
+<<<<<<< HEAD
       <find>startup</find>
+=======
+>>>>>>> origin/master
     </findStrings>
     <replaceStrings>
       <replace />
@@ -388,6 +473,10 @@
         <option value="$PROJECT_DIR$/res/stylesheet2.qss" />
         <option value="$PROJECT_DIR$/models/PCRecognizer_functions.py" />
         <option value="$PROJECT_DIR$/models/template.py" />
+<<<<<<< HEAD
+=======
+        <option value="$PROJECT_DIR$/controllers/win32_functions.py" />
+>>>>>>> origin/master
         <option value="$PROJECT_DIR$/views/cv_frame.py" />
         <option value="$PROJECT_DIR$/GRecognizer.py" />
         <option value="$PROJECT_DIR$/models/points.py" />
@@ -415,15 +504,22 @@
         <option value="$PROJECT_DIR$/setup.py" />
         <option value="$PROJECT_DIR$/models/PCRecognizer.py" />
         <option value="$PROJECT_DIR$/views/loading_screen.py" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/controllers/leap_controller.py" />
         <option value="$PROJECT_DIR$/controllers/win32_functions.py" />
         <option value="$PROJECT_DIR$/views/canvas.py" />
         <option value="$PROJECT_DIR$/views/gui.py" />
+=======
+        <option value="$PROJECT_DIR$/views/gui.py" />
+        <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/controllers/leap_controller.py" />
+        <option value="$PROJECT_DIR$/views/canvas.py" />
+>>>>>>> origin/master
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="784" />
@@ -792,7 +888,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
     <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
+=======
+    <frame x="54" y="-8" width="1874" height="1096" extended-state="7" />
+>>>>>>> origin/master
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" sideWeight="0.50147927" side_tool="true" weight="0.10906217" />
@@ -812,7 +912,11 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+<<<<<<< HEAD
       <window_info active="true" anchor="right" auto_hide="true" x="304" y="176" width="1448" height="600" id="Run" order="3" type="WINDOWED" visible="true" weight="0.26492536" />
+=======
+      <window_info anchor="right" auto_hide="true" x="349" y="186" width="1448" height="600" id="Run" order="3" type="WINDOWED" weight="0.26492536" />
+>>>>>>> origin/master
     </layout>
   </component>
   <component name="VcsManagerConfiguration">
@@ -1103,28 +1207,47 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/controllers/leap_controller.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="676">
           <caret line="151" column="37" selection-start-line="151" selection-start-column="37" selection-end-line="151" selection-end-column="37" />
           <folding>
             <element signature="e#191#209#0" expanded="true" />
+=======
+    <entry file="file://$PROJECT_DIR$/controllers/win32_functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="688">
+          <caret line="114" selection-start-line="114" selection-end-line="114" />
+          <folding>
+            <element signature="e#118#131#0" expanded="true" />
+>>>>>>> origin/master
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/controllers/win32_functions.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="517">
           <caret line="105" column="81" selection-start-line="105" selection-start-column="81" selection-end-line="105" selection-end-column="81" />
           <folding>
             <element signature="e#118#131#0" expanded="true" />
+=======
+    <entry file="file://$PROJECT_DIR$/controllers/leap_controller.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="676">
+          <caret line="151" column="37" selection-start-line="151" selection-start-column="37" selection-end-line="151" selection-end-column="37" />
+          <folding>
+            <element signature="e#191#209#0" expanded="true" />
+>>>>>>> origin/master
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/gui.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="361">
           <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
         </state>
@@ -1134,6 +1257,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="17" column="26" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
+=======
+        <state relative-caret-position="672">
+          <caret line="167" column="61" selection-start-line="167" selection-start-column="61" selection-end-line="167" selection-end-column="61" />
+          <folding>
+            <element signature="e#204#214#0" expanded="true" />
+          </folding>
+>>>>>>> origin/master
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/canvas.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3287">
+          <caret line="173" column="62" selection-start-line="173" selection-start-column="62" selection-end-line="173" selection-end-column="62" />
+          <folding>
+            <element signature="e#160#178#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -1,0 +1,301 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>controllers.configuration_controller &#8212; LEAP MyMouse 2019 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for controllers.configuration_controller</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="kn">from</span> <span class="nn">aux_functions</span> <span class="k">import</span> <span class="o">*</span>
+
+
+<div class="viewcode-block" id="Controller"><a class="viewcode-back" href="../../controllers.html#controllers.configuration_controller.Controller">[docs]</a><span class="k">class</span> <span class="nc">Controller</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; this class handles all the view events and interacts with the model (Configuration)&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">view</span><span class="p">,</span> <span class="n">listener</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+        <span class="n">view</span><span class="o">.</span><span class="n">setFixedSize</span><span class="p">(</span><span class="n">view</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
+        <span class="n">view</span><span class="o">.</span><span class="n">statusBar</span><span class="p">()</span><span class="o">.</span><span class="n">setVisible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">view</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="n">view</span><span class="o">.</span><span class="n">controller</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="n">view</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">model</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">cb_action_gesture</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">view</span> <span class="o">=</span> <span class="n">view</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">listener</span> <span class="o">=</span> <span class="n">listener</span>
+
+<div class="viewcode-block" id="Controller.start_stop_control"><a class="viewcode-back" href="../../controllers.html#controllers.configuration_controller.Controller.start_stop_control">[docs]</a>    <span class="k">def</span> <span class="nf">start_stop_control</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; this handles the click event to &quot;Start Control&quot; or &quot;Stop Control&quot; into notification</span>
+<span class="sd">        area icon</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">listener</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">leap_connected</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">show_popup</span><span class="p">(</span><span class="s2">&quot;Problem Detected&quot;</span><span class="p">,</span>
+                                 <span class="s2">&quot;Leap Motion error&quot;</span><span class="p">,</span>
+                                 <span class="s2">&quot;Leap Motion device is not connected&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">check</span><span class="p">():</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">listener</span><span class="o">.</span><span class="n">mouse</span><span class="o">.</span><span class="n">active</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">listener</span><span class="o">.</span><span class="n">mouse</span><span class="o">.</span><span class="n">active</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">button_stop</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">button_stop</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">button_start</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">listener</span><span class="o">.</span><span class="n">mouse</span><span class="o">.</span><span class="n">active</span> <span class="o">=</span> <span class="kc">False</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">button_start</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">button_start</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">button_stop</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">show_popup</span><span class="p">(</span><span class="s2">&quot;Problem Detected&quot;</span><span class="p">,</span>
+                                     <span class="s2">&quot;Configuration error&quot;</span><span class="p">,</span>
+                                     <span class="s2">&quot;You have same gesture assigned to multiple actions in your configuration&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Controller.save_conf_file"><a class="viewcode-back" href="../../controllers.html#controllers.configuration_controller.Controller.save_conf_file">[docs]</a>    <span class="k">def</span> <span class="nf">save_conf_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fname</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; writes and saves the given file with the configuration info</span>
+
+<span class="sd">        :param fname: file path and name to be saved to</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s2">&quot;w+&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">file_name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">fname</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">file_path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">file_date</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">ctime</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getctime</span><span class="p">(</span><span class="n">fname</span><span class="p">))</span>
+
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">profile_name</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">file_name</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">file_path</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">file_date</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">basic</span><span class="o">.</span><span class="n">get_conf</span><span class="p">())</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">extra</span><span class="o">.</span><span class="n">get_conf</span><span class="p">())</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Controller.load_conf_file"><a class="viewcode-back" href="../../controllers.html#controllers.configuration_controller.Controller.load_conf_file">[docs]</a>    <span class="k">def</span> <span class="nf">load_conf_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fname</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; loads content of fname configuration file into Configuration object&quot;&quot;&quot;</span>
+
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">load_conf</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Controller.load_conf"><a class="viewcode-back" href="../../controllers.html#controllers.configuration_controller.Controller.load_conf">[docs]</a>    <span class="k">def</span> <span class="nf">load_conf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; loads given configuration object into SYSTEM</span>
+<span class="sd">        updates comboboxes and GUI elements</span>
+<span class="sd">        using cb_action_gesture array</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_mm</span><span class="o">.</span><span class="n">setCurrentIndex</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">basic</span><span class="o">.</span><span class="n">mm</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_click</span><span class="o">.</span><span class="n">setCurrentIndex</span><span class="p">(</span>
+            <span class="n">get_dict_key</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">cb_action_gesture</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_click</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">basic</span><span class="o">.</span><span class="n">lclick</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_rclick</span><span class="o">.</span><span class="n">setCurrentIndex</span><span class="p">(</span>
+            <span class="n">get_dict_key</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">cb_action_gesture</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_rclick</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">basic</span><span class="o">.</span><span class="n">rclick</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_minimizew</span><span class="o">.</span><span class="n">setCurrentIndex</span><span class="p">(</span>
+            <span class="n">get_dict_key</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">cb_action_gesture</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_minimizew</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">basic</span><span class="o">.</span><span class="n">minimizew</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_closew</span><span class="o">.</span><span class="n">setCurrentIndex</span><span class="p">(</span>
+            <span class="n">get_dict_key</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">cb_action_gesture</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_closew</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">basic</span><span class="o">.</span><span class="n">closew</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_changew</span><span class="o">.</span><span class="n">setCurrentIndex</span><span class="p">(</span>
+            <span class="n">get_dict_key</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">cb_action_gesture</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_changew</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">basic</span><span class="o">.</span><span class="n">changew</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_vscroll</span><span class="o">.</span><span class="n">setCurrentIndex</span><span class="p">(</span>
+            <span class="n">get_dict_key</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">cb_action_gesture</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_vscroll</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">basic</span><span class="o">.</span><span class="n">vscroll</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_hscroll</span><span class="o">.</span><span class="n">setCurrentIndex</span><span class="p">(</span>
+            <span class="n">get_dict_key</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">cb_action_gesture</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_hscroll</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">basic</span><span class="o">.</span><span class="n">hscroll</span><span class="p">)</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Controller.set_profile_name"><a class="viewcode-back" href="../../controllers.html#controllers.configuration_controller.Controller.set_profile_name">[docs]</a>    <span class="k">def</span> <span class="nf">set_profile_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; changes the configuration profile name to the new one given by the user&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">label_conf_file</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">profile_name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_file</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">file_path</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;/&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">file_name</span><span class="p">),</span>
+                         <span class="mi">0</span><span class="p">,</span>
+                         <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">profile_name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Controller.update_file"><a class="viewcode-back" href="../../controllers.html#controllers.configuration_controller.Controller.update_file">[docs]</a>    <span class="k">def</span> <span class="nf">update_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">line</span><span class="p">,</span> <span class="n">replace</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; updates a given file name in the given file with the given content</span>
+
+<span class="sd">        :param fname: file path and name to be saved to</span>
+<span class="sd">        :param line: which line to be updated</span>
+<span class="sd">        :param replace: new content</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+            <span class="n">file_content</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+
+        <span class="n">file_content</span><span class="p">[</span><span class="n">line</span><span class="p">]</span> <span class="o">=</span> <span class="n">replace</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+            <span class="n">file</span><span class="o">.</span><span class="n">writelines</span><span class="p">(</span><span class="n">file_content</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Controller.combo_box_actiongesture_changed"><a class="viewcode-back" href="../../controllers.html#controllers.configuration_controller.Controller.combo_box_actiongesture_changed">[docs]</a>    <span class="k">def</span> <span class="nf">combo_box_actiongesture_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">combo_box_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; collection of key events binded to GUI (configuration tab comboboxes)</span>
+
+<span class="sd">        :param combo_box_name: changed combobox variable name</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">combo_box_name</span> <span class="o">==</span> <span class="s2">&quot;combo_box_click&quot;</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;lclick changed&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_click</span><span class="o">.</span><span class="n">currentIndex</span><span class="p">()))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">basic</span><span class="o">.</span><span class="n">lclick</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">cb_action_gesture</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_click</span><span class="p">]</span> \
+                <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_click</span><span class="o">.</span><span class="n">currentIndex</span><span class="p">())</span>
+
+        <span class="k">elif</span> <span class="n">combo_box_name</span> <span class="o">==</span> <span class="s2">&quot;combo_box_rclick&quot;</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;rclick changed&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">basic</span><span class="o">.</span><span class="n">rclick</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">cb_action_gesture</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_rclick</span><span class="p">]</span> \
+                <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_rclick</span><span class="o">.</span><span class="n">currentIndex</span><span class="p">())</span>
+
+        <span class="k">elif</span> <span class="n">combo_box_name</span> <span class="o">==</span> <span class="s2">&quot;combo_box_mm&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">basic</span><span class="o">.</span><span class="n">mm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_mm</span><span class="o">.</span><span class="n">currentIndex</span><span class="p">()</span>
+
+        <span class="k">elif</span> <span class="n">combo_box_name</span> <span class="o">==</span> <span class="s2">&quot;combo_box_minimizew&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">basic</span><span class="o">.</span><span class="n">minimizew</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">cb_action_gesture</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_minimizew</span><span class="p">]</span> \
+                <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_minimizew</span><span class="o">.</span><span class="n">currentIndex</span><span class="p">())</span>
+
+        <span class="k">elif</span> <span class="n">combo_box_name</span> <span class="o">==</span> <span class="s2">&quot;combo_box_closew&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">basic</span><span class="o">.</span><span class="n">closew</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">cb_action_gesture</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_closew</span><span class="p">]</span> \
+                <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_closew</span><span class="o">.</span><span class="n">currentIndex</span><span class="p">())</span>
+
+        <span class="k">elif</span> <span class="n">combo_box_name</span> <span class="o">==</span> <span class="s2">&quot;combo_box_changew&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">basic</span><span class="o">.</span><span class="n">changew</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">cb_action_gesture</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_changew</span><span class="p">]</span> \
+                <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_changew</span><span class="o">.</span><span class="n">currentIndex</span><span class="p">())</span>
+
+        <span class="k">elif</span> <span class="n">combo_box_name</span> <span class="o">==</span> <span class="s2">&quot;combo_box_vscroll&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">basic</span><span class="o">.</span><span class="n">vscroll</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">cb_action_gesture</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_vscroll</span><span class="p">]</span> \
+                <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_vscroll</span><span class="o">.</span><span class="n">currentIndex</span><span class="p">())</span>
+
+        <span class="k">elif</span> <span class="n">combo_box_name</span> <span class="o">==</span> <span class="s2">&quot;combo_box_hscroll&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">basic</span><span class="o">.</span><span class="n">hscroll</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">cb_action_gesture</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_hscroll</span><span class="p">]</span> \
+                <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_hscroll</span><span class="o">.</span><span class="n">currentIndex</span><span class="p">())</span>
+
+        <span class="k">elif</span> <span class="n">combo_box_name</span> <span class="o">==</span> <span class="s2">&quot;combo_box_grabb&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">basic</span><span class="o">.</span><span class="n">grabb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">cb_action_gesture</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_grabb</span><span class="p">]</span> \
+                <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_grabb</span><span class="o">.</span><span class="n">currentIndex</span><span class="p">())</span>
+
+        <span class="k">elif</span> <span class="n">combo_box_name</span> <span class="o">==</span> <span class="s2">&quot;combo_box_showdesktop&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">extra</span><span class="o">.</span><span class="n">show_desktop</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">cb_action_gesture</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_showdesktop</span><span class="p">]</span> \
+                <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_showdesktop</span><span class="o">.</span><span class="n">currentIndex</span><span class="p">())</span>
+
+        <span class="k">elif</span> <span class="n">combo_box_name</span> <span class="o">==</span> <span class="s2">&quot;combo_box_openfexplorer&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">extra</span><span class="o">.</span><span class="n">show_explorer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">cb_action_gesture</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_openfexplorer</span><span class="p">]</span> \
+                <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_openfexplorer</span><span class="o">.</span><span class="n">currentIndex</span><span class="p">())</span>
+
+        <span class="k">elif</span> <span class="n">combo_box_name</span> <span class="o">==</span> <span class="s2">&quot;combo_box_copy&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">extra</span><span class="o">.</span><span class="n">copy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">cb_action_gesture</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_copy</span><span class="p">]</span> \
+                <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_copy</span><span class="o">.</span><span class="n">currentIndex</span><span class="p">())</span>
+
+        <span class="k">elif</span> <span class="n">combo_box_name</span> <span class="o">==</span> <span class="s2">&quot;combo_box_paste&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">extra</span><span class="o">.</span><span class="n">paste</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">cb_action_gesture</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_paste</span><span class="p">]</span> \
+                <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_paste</span><span class="o">.</span><span class="n">currentIndex</span><span class="p">())</span>
+
+        <span class="k">elif</span> <span class="n">combo_box_name</span> <span class="o">==</span> <span class="s2">&quot;combo_box_cut&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">extra</span><span class="o">.</span><span class="n">cut</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">cb_action_gesture</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_cut</span><span class="p">]</span> \
+                <span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">combo_box_cut</span><span class="o">.</span><span class="n">currentIndex</span><span class="p">())</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">setFocus</span><span class="p">()</span></div></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">LEAP MyMouse</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Mario Varas.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
