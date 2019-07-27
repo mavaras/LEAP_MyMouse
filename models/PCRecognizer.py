@@ -70,7 +70,8 @@ class PCRecognizer:
 
                     if print_all_matches:
                         coinc = "    similar to \"" + str(
-                            self.templates[c].point_cloud[j].name + "\" about " + str(max((dist - 2.0) / -2.0, 0.0)))
+                            self.templates[c].point_cloud[j].name + "\" about " + str(max((dist - 2.0) / -2.0, 0.0))
+                        )
                         print(coinc)
 
                     if dist < score:
