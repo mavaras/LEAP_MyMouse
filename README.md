@@ -42,6 +42,7 @@ In the menubar, you can save and load customized configuration files, between ot
 <p align="center">
   <img width="607" height="350" src="https://raw.githubusercontent.com/mavaras/LEAP_MyMouse/master/readme_files/simple_gesture2.gif">
 </p>
+
 ******
 
 - **Complex gestures**
