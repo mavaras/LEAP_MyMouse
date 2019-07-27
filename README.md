@@ -1,4 +1,6 @@
-![](readme_files/logo.png)
+<p align="center">
+  <img width="607" height="350" src="https://raw.githubusercontent.com/mavaras/LEAP_MyMouse/master/readme_files/logo.PNG">
+</p>
 
 # LEAP MyMouse
 The purpose of this proyect is mainly to explore the field of gesture recognition, specifically hand gestures, and apply that to control a computer and interact with it. It uses the Leap Motion device and includes simple and complex hand gesture recognition.
@@ -19,20 +21,42 @@ python main.py
 
 ## Usage
 
-![LEAP MyMouse](https://raw.githubusercontent.com/mavaras/LEAP_MyMouse/origin/readme_files/gui.png)
+<p align="center">This is the <strong>LEAP_MyMouse</strong> main interface
+  <img width="607" height="350" title="asldfkj" src="https://raw.githubusercontent.com/mavaras/LEAP_MyMouse/master/readme_files/gui.png">
+</p>
 
+We have to main sections, the left one is related to visualize data of our hands, in both planes, XY and XZ, and the right section is about configuration settings. There you can customize all the action-gesture assignments.
+
+In the menubar, you can save and load customized configuration files, between other options.
 ******
+
 ### We have to different kinds of gestures: simple ones and complex ones.
 - **Simple gestures**
-![simple gesture example (grabbing action)](https://raw.githubusercontent.com/mavaras/LEAP_MyMouse/origin/readme_files/simple_gesture.gif)
+<p align="center">
+  <img width="607" height="350" src="https://raw.githubusercontent.com/mavaras/LEAP_MyMouse/master/readme_files/simple_gesture.gif">
+</p>
+<p align="center">
+  <img width="607" height="350" src="https://raw.githubusercontent.com/mavaras/LEAP_MyMouse/master/readme_files/simple_gesture2.gif">
+</p>
 ******
 - **Complex gestures**
-Here we have the $DollarRecognizer algorithm, working with some predefined letter templates, such as T, V, N, D, L, W or Z. The main future improvement is to include the implemented NN with the MNIST dataset into this control, so that the user can draw in the air the 1 to 9 numbers instead of this letters, offering this way the user two ways to perform complex gestures.
+<p align="justify">
+Here we have the $DollarRecognizer algorithm, working with some predefined letter templates, such as T, V, N, D, L, W or Z. The main future improvement is to include the implemented NN with the MNIST dataset into this control, so that the user can draw in the air the 1 to 9 numbers instead of this letters, offering this way the user two ways to perform complex gestures.<br><br>
+This way, when you draw a letter in the air, the assigned action is performed, for example close or minimize a window, show the desktop etc.
+</p>
+<p align="center">
+  <img width="607" height="350" src="https://raw.githubusercontent.com/mavaras/LEAP_MyMouse/master/readme_files/complex_gesture.gif">
+</p>
 
-![complex gesture example (T gesture)](https://raw.githubusercontent.com/mavaras/LEAP_MyMouse/origin/readme_files/complex_gesture.gif)
+</p>
+<p align="center">
+  <img width="607" height="350" src="https://raw.githubusercontent.com/mavaras/LEAP_MyMouse/master/readme_files/complex_gesture2.gif">
+</p>
 ******
-- Extra: some PowerPoint interactions.
-![complex gesture example (T gesture)](https://raw.githubusercontent.com/mavaras/LEAP_MyMouse/origin/readme_files/powerpoint_interaction.gif)
+                               Extra: some PowerPoint interactions.
+<p align="center">
+  <img width="607" height="350" src="https://raw.githubusercontent.com/mavaras/LEAP_MyMouse/master/readme_files/powerpoint_interaction.gif">
+</p>
 
 ## TODO
 Some features to perform are:
@@ -40,9 +64,11 @@ Some features to perform are:
 - Add more templates
 - Add gifs
 - Pretty hand visualization :)
-
-###  How the NN should be integrated into the interaction
-![NN into Leap Motion control (spanish :3)](https://raw.githubusercontent.com/mavaras/LEAP_MyMouse/origin/readme_files/NNdiagram.png)
+****
+####  How the NN should be integrated into the interaction
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mavaras/LEAP_MyMouse/master/readme_files/NNdiagram.PNG">
+</p>
 
 
 ## Contact
