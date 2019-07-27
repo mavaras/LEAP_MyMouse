@@ -1,4 +1,4 @@
-
+![](https://github.com/mavaras/LEAP_MyMouse/readme_files/logo.png)
 
 # LEAP MyMouse
 The purpose of this proyect is mainly to explore the field of gesture recognition, specifically hand gestures, and apply that to control a computer and interact with it. It uses the Leap Motion device and includes simple and complex hand gesture recognition.
@@ -19,17 +19,20 @@ python main.py
 
 ## Usage
 
-![LEAP MyMouse](https://raw.githubusercontent.com/mavaras/LEAP_proyect/origin/readme_files/gui.png)
+![LEAP MyMouse](https://raw.githubusercontent.com/mavaras/LEAP_MyMouse/origin/readme_files/gui.png)
 
 ******
 ### We have to different kinds of gestures: simple ones and complex ones.
 - **Simple gestures**
-![simple gesture example (grabbing action)](https://raw.githubusercontent.com/mavaras/LEAP_proyect/origin/readme_files/simple_gesture.gif)
+![simple gesture example (grabbing action)](https://raw.githubusercontent.com/mavaras/LEAP_MyMouse/origin/readme_files/simple_gesture.gif)
 ******
 - **Complex gestures**
 Here we have the $DollarRecognizer algorithm, working with some predefined letter templates, such as T, V, N, D, L, W or Z. The main future improvement is to include the implemented NN with the MNIST dataset into this control, so that the user can draw in the air the 1 to 9 numbers instead of this letters, offering this way the user two ways to perform complex gestures.
 
-![complex gesture example (T gesture)](https://raw.githubusercontent.com/mavaras/LEAP_proyect/origin/readme_files/simple_gesture.gif)
+![complex gesture example (T gesture)](https://raw.githubusercontent.com/mavaras/LEAP_MyMouse/origin/readme_files/complex_gesture.gif)
+******
+- Extra: some PowerPoint interactions.
+![complex gesture example (T gesture)](https://raw.githubusercontent.com/mavaras/LEAP_MyMouse/origin/readme_files/powerpoint_interaction.gif)
 
 ## TODO
 Some features to perform are:
@@ -39,7 +42,7 @@ Some features to perform are:
 - Pretty hand visualization :)
 
 ###  How the NN should be integrated into the interaction
-![NN into Leap Motion control (spanish :3)](https://raw.githubusercontent.com/mavaras/LEAP_proyect/origin/readme_files/NNdiagram.png)
+![NN into Leap Motion control (spanish :3)](https://raw.githubusercontent.com/mavaras/LEAP_MyMouse/origin/readme_files/NNdiagram.png)
 
 
 ## Contact
