@@ -57,6 +57,7 @@ This way, when you draw a letter in the air, the assigned action is performed, f
 <p align="center">
   <img width="607" height="350" src="https://raw.githubusercontent.com/mavaras/LEAP_MyMouse/master/readme_files/complex_gesture2.gif">
 </p>
+
 ******
 
                                Extra: some PowerPoint interactions.
