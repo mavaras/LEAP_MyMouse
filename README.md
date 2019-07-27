@@ -27,7 +27,7 @@ python main.py
   <img width="607" height="350" title="asldfkj" src="https://raw.githubusercontent.com/mavaras/LEAP_MyMouse/master/readme_files/gui.png">
 </p>
 <p align="justify">
-We have to main sections, the left one is related to visualize data of our hands, in both planes, XY and XZ, and the right section is about configuration settings. There you can customize all the action-gesture assignments.
+We have two main sections, the left one is related to visualize data of our hands, in both planes, XY and XZ, and the right section is about configuration settings. There you can customize all the action-gesture assignments.
 
 In the menubar, you can save and load customized configuration files, between other options.
 </p>
