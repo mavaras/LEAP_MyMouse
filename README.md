@@ -1,4 +1,4 @@
-![](https://github.com/mavaras/LEAP_MyMouse/readme_files/logo.png)
+![](readme_files/logo.png)
 
 # LEAP MyMouse
 The purpose of this proyect is mainly to explore the field of gesture recognition, specifically hand gestures, and apply that to control a computer and interact with it. It uses the Leap Motion device and includes simple and complex hand gesture recognition.
