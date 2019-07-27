@@ -31,6 +31,7 @@ We have to main sections, the left one is related to visualize data of our hands
 
 In the menubar, you can save and load customized configuration files, between other options.
 </p>
+
 ******
 
 ### We have to different kinds of gestures: simple ones and complex ones.
@@ -42,6 +43,7 @@ In the menubar, you can save and load customized configuration files, between ot
   <img width="607" height="350" src="https://raw.githubusercontent.com/mavaras/LEAP_MyMouse/master/readme_files/simple_gesture2.gif">
 </p>
 ******
+
 - **Complex gestures**
 <p align="justify">
 Here we have the $DollarRecognizer algorithm, working with some predefined letter templates, such as T, V, N, D, L, W or Z. The main future improvement is to include the implemented NN with the MNIST dataset into this control, so that the user can draw in the air the 1 to 9 numbers instead of this letters, offering this way the user two ways to perform complex gestures.<br><br>
