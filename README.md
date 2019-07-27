@@ -3,7 +3,9 @@
 </p>
 
 # LEAP MyMouse
+<p align="justify">
 The purpose of this proyect is mainly to explore the field of gesture recognition, specifically hand gestures, and apply that to control a computer and interact with it. It uses the Leap Motion device and includes simple and complex hand gesture recognition.
+</p>
 
 ## Getting started
 ### You need to have
@@ -21,13 +23,14 @@ python main.py
 
 ## Usage
 
-<p align="center">This is the <strong>LEAP_MyMouse</strong> main interface
+<p align="center">
   <img width="607" height="350" title="asldfkj" src="https://raw.githubusercontent.com/mavaras/LEAP_MyMouse/master/readme_files/gui.png">
 </p>
-
+<p align="justify">
 We have to main sections, the left one is related to visualize data of our hands, in both planes, XY and XZ, and the right section is about configuration settings. There you can customize all the action-gesture assignments.
 
 In the menubar, you can save and load customized configuration files, between other options.
+</p>
 ******
 
 ### We have to different kinds of gestures: simple ones and complex ones.
@@ -53,6 +56,7 @@ This way, when you draw a letter in the air, the assigned action is performed, f
   <img width="607" height="350" src="https://raw.githubusercontent.com/mavaras/LEAP_MyMouse/master/readme_files/complex_gesture2.gif">
 </p>
 ******
+
                                Extra: some PowerPoint interactions.
 <p align="center">
   <img width="607" height="350" src="https://raw.githubusercontent.com/mavaras/LEAP_MyMouse/master/readme_files/powerpoint_interaction.gif">
