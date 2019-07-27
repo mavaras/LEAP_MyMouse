@@ -73,7 +73,7 @@ Some features to perform are:
 - Add gifs
 - Pretty hand visualization :)
 ****
-####  How the NN should be integrated into the interaction
+####  How the NN should be integrated into the interaction, spanish ;)
 <p align="center">
   <img src="https://raw.githubusercontent.com/mavaras/LEAP_MyMouse/master/readme_files/NNdiagram.PNG">
 </p>
