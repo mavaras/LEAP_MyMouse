@@ -74,7 +74,7 @@ pathlib2==2.3.3
 pathtools==0.1.2
 pefile==2018.8.8
 pickleshare==0.7.5
-Pillow==5.4.1
+Pillow==6.2.0
 proglog==0.1.9
 prompt-toolkit==1.0.15
 protobuf==3.6.1
