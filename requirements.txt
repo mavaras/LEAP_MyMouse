@@ -121,7 +121,7 @@ Unidecode==1.0.23
 virtualenv==16.5.0
 watchdog==0.9.0
 wcwidth==0.1.7
-Werkzeug==0.14.1
+Werkzeug==0.15.3
 whichcraft==0.5.2
 win-unicode-console==0.5
 WTForms==2.2.1
