@@ -292,8 +292,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.settings.show()
 
     def show_help(self):
-        """ opens a browser tab with the technical documentation of the proyect"""
-        webbrowser.open("mavaras.github.io/leapmymouse_docs", new=2)
+        """ opens a browser tab with the technical documentation of the project"""
+        webbrowser.open("https://mavaras.github.io/leapmymouse_docs/", new=2)
 
     @pyqtSlot(bool)
     def change_leap_status(self, conn):
