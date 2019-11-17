@@ -7,8 +7,8 @@
 
 import time
 import numpy as np
-from PyQt4.QtGui import *
-from PyQt4.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
 from views.gui_qtdesigner import *
 import cv2
 

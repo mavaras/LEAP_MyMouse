@@ -1,14 +1,19 @@
 # -*- coding: utf-8 -*-
 
-from win32api import GetSystemMetrics
+#from win32api import GetSystemMetrics
+import os
 
 
 class GVariables(object):
 
     def __init__(self):
         # screen dimensions
-        self.W = GetSystemMetrics(0)
-        self.H = GetSystemMetrics(1)
+        screen_res = os.popen("xrandr  | grep \* | cut -d' ' -f4").read().split("x")
+
+        '''self.W = GetSystemMetrics(0)
+        self.H = GetSystemMetrics(1)'''
+        self.W = int(screen_res[0])
+        self.H = int(screen_res[1])
 
         self.INF = 999999
 

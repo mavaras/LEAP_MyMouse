@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from aux_functions import *
+from controllers.aux_functions import *
 
 
 class Controller:

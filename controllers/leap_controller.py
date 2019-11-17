@@ -8,22 +8,26 @@
 
 
 # basic modules imports
+import time
 import numpy as np
 
 # aux modules imports
 import cv2
 from collections import deque
-from PyQt4.QtCore import QObject, pyqtSignal
+from PyQt5.QtCore import QObject, pyqtSignal
 
 # Leap Motion API
-import lib.Leap as Leap
+from lib.leap_python3 import Leap as Leap
 
 # own package imports
-from aux_functions import *
-from win32_functions import *
-from key_handle import *
-from mouse import Mouse
+from controllers.aux_functions import *
 from models.gvariables import gv
+if sys.platform == "win32":
+    from controllers.mouse import Mouse
+    from controllers.win32_functions import *
+    from controllers.key_handle import *
+elif sys.platform == "linux":
+    pass
 
 cv_frame_XY = np.zeros((540, 640, 3), np.uint8)
 cv_frame_XZ = np.zeros((540, 640, 3), np.uint8)
@@ -102,11 +106,10 @@ class leap_listener(Leap.Listener):
         self.hscrolling = False
         self.plane_mode = True
 
-        lim_points = 600
-        self.gesture = [[] * 5 for c in range(lim_points)]
+        self.lim_points = 400
+        self.gesture = [[] * 5 for c in range(self.lim_points)]
         self.d01 = 0
         self.on_frame_c = 0  # debug purposes
-        self.lim_points = 400
 
         self.hand_vel = 0
         self.fingers_pos = [[0, 0, 0] for c in range(5)]
@@ -131,7 +134,6 @@ class leap_listener(Leap.Listener):
         self.status.emit_leap_connected(True)
 
         self.status.leap_connected = True
-        # self.view.change_leap_status(True)
 
         time.sleep(.5)
 
@@ -143,7 +145,6 @@ class leap_listener(Leap.Listener):
         self.status.emit_leap_connected(False)
 
         self.status.leap_connected = False
-        # self.view.change_leap_status(False)
 
     def on_focus_lost(self, controller):
         """ (Leap API) we are using Leap Motion from outside MainWindow"""
@@ -495,7 +496,7 @@ class leap_listener(Leap.Listener):
                     yaw = hand.direction.yaw * Leap.RAD_TO_DEG
                     pitch = hand.direction.pitch * Leap.RAD_TO_DEG
 
-                    if any(c in get_current_window_name() for c in ["PowerPoint  -", "PowerPoint -"]):  # presentation mode
+                    if any(c in get_current_window_name() for c in ["PowerPoint  -", "PowerPoint -"]):
                         self.swipe(hand.fingers[2].tip_velocity.x, ["right_arrow",
                                                                     "left_arrow"])
                         self.swipe(hand.fingers[1].tip_velocity.y, ["esc"])

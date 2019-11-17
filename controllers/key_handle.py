@@ -1,5 +1,7 @@
 import time
-import win32api, win32con
+import sys
+if sys.platform == "win32":
+    import win32api, win32con
 
 
 VK_CODE = {'backspace': 0x08,

@@ -8,9 +8,14 @@
 
 
 import math
-from win32_functions import *
+import sys
 from models.gvariables import gv
-from key_handle import *
+
+if sys.platform == "win32":
+    from controllers.win32_functions import *
+    from controllers.key_handle import *  # ?
+elif sys.platform == "linux":
+    pass
 
 
 def sign(n):

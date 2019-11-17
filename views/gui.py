@@ -12,8 +12,11 @@ import sys
 import numpy as np
 
 # aux modules imports
-from PyQt4.QtGui import *
-from PyQt4.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5.QtWidgets import (
+    QMainWindow, QSystemTrayIcon, QFileDialog, QMenu, QMessageBox, QHBoxLayout
+)
 import webbrowser
 import cv2
 from PIL import Image
@@ -26,7 +29,8 @@ from sklearn.externals import joblib
 from models.gvariables import gv
 from controllers.aux_functions import *
 from controllers.configuration_controller import Controller
-from models.points import Point, Point_cloud
+from models.Point import Point
+from models.Point_cloud import Point_cloud
 from models.configuration_fromFile import ConfFromFile
 from views.gui_qtdesigner import *
 from views.canvas import Canvas
@@ -34,8 +38,7 @@ from views.settings import Settings
 from views.cv_frame import Cv_Frame
 
 
-class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
-
+class MainWindow(QMainWindow, Ui_MainWindow):
     """ this array stores all combo_boxes with its options with its associated gesture | gifs
     this in an array of dictionaries, each one containing each combo box index + gest. name
     dict key -> combobox index ; dict value -> conf. file string"""
@@ -50,7 +53,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     canvas_algorithm = "pd"
 
     def __init__(self, *args, **kwargs):
-        QtGui.QMainWindow.__init__(self, *args, **kwargs)
+        QMainWindow.__init__(self, *args, **kwargs)
 
         self.controller = None
         self.configuration = None
@@ -85,8 +88,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.listener.status.sgn_leap_connected.connect(self.change_leap_status)
 
         # cv_frame representation
-        self.listener.status.sgn_cv_frame_XY.connect(self.cvF.set_frame_XY)
-        self.listener.status.sgn_cv_frame_XZ.connect(self.cvF.set_frame_XZ)
+        '''self.listener.status.sgn_cv_frame_XY.connect(self.cvF.set_frame_XY)
+        self.listener.status.sgn_cv_frame_XZ.connect(self.cvF.set_frame_XZ)'''
 
         # Action-gesture COMBOBOXES
         self.combo_box_mm.currentIndexChanged["int"].connect(
@@ -183,7 +186,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
         # help buttons
         self.set_gesture_gif("res/gifs/no_gesture.gif")
-        self.label_gesture_gif.setLayout(QtGui.QHBoxLayout())
+        self.label_gesture_gif.setLayout(QHBoxLayout())
 
         help_img = "res/icons/eye.png"
         # we pass view_gesture() method help button associated combo box
@@ -262,7 +265,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.label_conf_file.setText(self.configuration.profile_name)
 
         else:
-            print("error save_conf()")
+            self._print("error save_conf()")
 
     def load_conf(self):
         self._print("load_conf()")
@@ -290,7 +293,6 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
     def show_help(self):
         """ opens a browser tab with the technical documentation of the proyect"""
-
         webbrowser.open("mavaras.github.io/leapmymouse_docs", new=2)
 
     @pyqtSlot(bool)
@@ -372,12 +374,11 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self._print("view gesture: " + str(combo_box.currentIndex()))
 
         self.tab_widget_frames.setCurrentIndex(2)
-        print(self.cb_action_gesture.get(combo_box).get(combo_box.currentIndex()))
 
         self.set_gesture_gif(
             "res/gifs/" + str(self.cb_action_gesture.get(combo_box).get(combo_box.currentIndex())) + ".gif"
         )
-        self.label_gesture_gif.setLayout(QtGui.QHBoxLayout())
+        self.label_gesture_gif.setLayout(QHBoxLayout())
 
     def set_gesture_gif(self, gif):
         """ loads given gif into gif label

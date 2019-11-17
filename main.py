@@ -12,17 +12,20 @@
 # basic modules imports
 import sys
 import threading
+import time
+import os
 
 # aux modules imports
-from PyQt4.QtGui import *
-from PyQt4.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5.QtWidgets import QApplication, QSplashScreen, QProgressBar
 
-from win32api import GetSystemMetrics
+#from win32api import GetSystemMetrics
 
 # own package imports
 from models.configuration_fromFile import ConfFromFile
 from models.PCRecognizer import PCRecognizer
-from models.points import Point_cloud
+from models.Point_cloud import Point_cloud
 
 from views.gui_qtdesigner import *
 import views.gui as gui
@@ -74,8 +77,6 @@ def thread_handler():
                     try:
                         result = recognize_stroke(points)
                         gesture_match(result.name, conf)
-                        print("score: " + str(result.score))
-                    # print_score(result)
                     except:
                         print("u have to redo the gesture")
 
@@ -132,7 +133,7 @@ def show_splash_screen():
 
     splash.show()
 
-    timer = QtCore.QElapsedTimer()
+    timer = QElapsedTimer()
     timer.start()
 
     time.sleep(1)
@@ -155,7 +156,9 @@ if __name__ == "__main__":
     conf.check()
 
     # GUI setting up
-    app = QtGui.QApplication([])
+    app = QApplication([])
+    screen_resolution = app.desktop().screenGeometry()
+
 
     # GUI style
     stylesheet = open("res/MaterialDark.qss").read()
@@ -186,6 +189,5 @@ if __name__ == "__main__":
 
     main_window._print("SYSTEM started")
     main_window._print("sys platform: " + str(sys.platform))
-    main_window._print("Screen width and height: "+str(GetSystemMetrics(0)) + ", " + str(GetSystemMetrics(1)))
 
     app.exec_()

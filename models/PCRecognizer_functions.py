@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import math
-import points as ps
-from models.gvariables import gv
 from controllers.aux_functions import distance
+from models.gvariables import gv
+from models.Point import Point
 
 num_points = 32
 
@@ -83,7 +83,7 @@ def resample(points, resample_len):
                 if d + dist >= interval:
                     px = points[c - 1].x + ((interval - d) / dist) * (points[c].x - points[c - 1].x)
                     py = points[c - 1].y + ((interval - d) / dist) * (points[c].y - points[c - 1].y)
-                    p = ps.Point(px, py, points[c].id)
+                    p = Point(px, py, points[c].id)
                     new_points.append(p)
                     points.insert(c, p)  # insert p in c position, reassigning all elements
                     d = 0.0
@@ -96,7 +96,7 @@ def resample(points, resample_len):
             break
 
     if len(new_points) == resample_len - 1:
-        new_points.append(ps.Point(points[len(points) - 1].x,
+        new_points.append(Point(points[len(points) - 1].x,
                                    points[len(points) - 1].y,
                                    points[len(points) - 1].id))
 
@@ -126,7 +126,7 @@ def scale(points):
     for c in range(len(points)):
         px = (points[c].x - min_x) / scale
         py = (points[c].y - min_y) / scale
-        new_points.append(ps.Point(px, py, points[c].id))
+        new_points.append(Point(px, py, points[c].id))
 
     return new_points
 
@@ -145,7 +145,7 @@ def translate_to(points, where):
     for c in range(0, len(points)):
         px = points[c].x + where.x - centroid.x
         py = points[c].y + where.y - centroid.y
-        new_points.append(ps.Point(px, py, points[c].id))
+        new_points.append(Point(px, py, points[c].id))
 
     return new_points
 
@@ -162,11 +162,11 @@ def amplify(points, mult):
     new_points = []
     x = points[0].x
     y = points[0].y
-    new_points.append(ps.Point(x, y, points[0].id))
+    new_points.append(Point(x, y, points[0].id))
     for c in range(1, len(points)):
         x += mult * (points[c].x - points[c - 1].x)
         y += mult * (points[c].y - points[c - 1].y)
-        new_points.append(ps.Point(x, y, points[c].id))
+        new_points.append(Point(x, y, points[c].id))
 
     return new_points
 
@@ -187,7 +187,7 @@ def get_centroid(points):
     x /= len(points)
     y /= len(points)
 
-    return ps.Point(x, y, 0)
+    return Point(x, y, 0)
 
 
 def path_length(points):

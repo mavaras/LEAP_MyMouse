@@ -6,7 +6,10 @@
 # == startup folder
 
 
-from PyQt4.QtGui import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import (
+    QComboBox, QDialog, QButtonGroup, QPushButton, QGridLayout, QHBoxLayout, QLabel, QLineEdit, QRadioButton
+)
 from views.gui_qtdesigner import *
 
 
@@ -77,7 +80,7 @@ class Settings(QDialog):
         hbox3 = QHBoxLayout()
         self.label_4 = QLabel()
         self.label_4.setText("Invert mouse")
-        rb_group = QtGui.QButtonGroup(self)
+        rb_group = QButtonGroup(self)
         self.radiobutton_yes = QRadioButton()
         self.radiobutton_no = QRadioButton()
         self.radiobutton_yes.setText("Yes")

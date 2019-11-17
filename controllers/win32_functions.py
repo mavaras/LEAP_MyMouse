@@ -6,9 +6,10 @@
 
 
 import ctypes
+import sys
+import os
 import win32con, win32gui
 import win32com.client
-import os
 
 
 # some needed variables

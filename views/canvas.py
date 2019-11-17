@@ -8,8 +8,11 @@
 
 import numpy as np
 
-from PyQt4.QtGui import *
-from PyQt4.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5.QtWidgets import (
+    QDialog, QVBoxLayout, QHBoxLayout
+)
 from views.gui_qtdesigner import *
 
 import cv2
@@ -18,8 +21,7 @@ import matplotlib.pyplot as plt  # conflict with sphinx
 from sklearn import datasets
 from sklearn.externals import joblib
 
-# from models.PCRecognizer import *
-from models.points import Point
+from models.Point import Point
 from controllers.aux_functions import *
 
 stroke_id = -1
@@ -115,6 +117,7 @@ class Canvas(QDialog):
         """ recognizes canvas's stroke"""
 
         if self.canvas_algorithm == "pd":
+            print("!!")
             # we are using p$ recognizer
             points = self.widget_canvas.points
             result = recognize_stroke(self.widget_canvas.points)
@@ -144,6 +147,7 @@ class Canvas(QDialog):
                 matrix[int(leap_gesture_points[c].y)][int(leap_gesture_points[c].x)] = white
 
             img = self.matrix_to_img(matrix)
+            print("!")
             self.neural_network(img)
 
         self.parent.listener.clear_variables()
@@ -160,20 +164,16 @@ class Canvas(QDialog):
         return img
 
     def neural_network(self, img):
+        print("!")
         # setting + normalizing image
         img = cv2.resize(img, (28, 28))
         ret, img = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
-
-        # loading digit database
-        """digits = datasets.load_digits()
-        n_samples = len(digits.images)
-        data = digits.images.reshape((n_samples, -1))"""
 
         # predict EMNIST
         self.parent._print("Loading MLP model from file res/mlp_model.pkl")
         clf = joblib.load("res/mlp_model.pkl").best_estimator_
         predicted = clf.predict(img.reshape((1, img.shape[0] * img.shape[1])))
-
+        print("!")
         # display results
         self.parent._print("prediction: " + str(predicted))
         plt.imshow(img, cmap=plt.cm.gray_r, interpolation="nearest")

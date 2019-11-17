@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from configuration import Conf
+from .configuration import Conf
 import linecache
 
 
