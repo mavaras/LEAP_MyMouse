@@ -2,5 +2,8 @@ __pycache__/
 dist/
 /dist
 build/
+venv/
+venvLnx/
+libL/
 *.pyc
 *.py~
