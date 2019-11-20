@@ -116,7 +116,6 @@ class Settings(QDialog):
 
     def set_startup_folder(self):
         """ saves the path to the startup folder"""
-        print("!")
         self.parent.configuration.startup_path = str(self.startup_textarea.text())
 
     def combo_box1_changed(self):
@@ -153,8 +152,4 @@ class Settings(QDialog):
         """
 
         self.parent._print("mouse invert changed")
-
-        if what == "yes":
-            self.parent.configuration.basic.invert_mouse = "yes"
-        else:
-            self.parent.configuration.basic.invert_mouse = "no"
+        self.parent.configuration.basic.invert_mouse = "yes" if what == "yes" else "no"

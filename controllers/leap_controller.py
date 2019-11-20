@@ -20,7 +20,7 @@ from PyQt5.QtCore import QObject, pyqtSignal
 from lib.leap_python3 import Leap as Leap
 
 # own package imports
-from controllers.aux_functions import *
+from controllers.utils import *
 from models.gvariables import gv
 if sys.platform == "win32":
     from controllers.mouse import Mouse

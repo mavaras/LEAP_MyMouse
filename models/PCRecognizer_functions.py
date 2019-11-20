@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import math
-from controllers.aux_functions import distance
+from controllers.utils import distance
 from models.gvariables import gv
 from models.Point import Point
 

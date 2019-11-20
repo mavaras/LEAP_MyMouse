@@ -27,7 +27,7 @@ from sklearn.externals import joblib
 
 # self package imports
 from models.gvariables import gv
-from controllers.aux_functions import *
+from controllers.utils import *
 from controllers.configuration_controller import Controller
 from models.Point import Point
 from models.Point_cloud import Point_cloud
@@ -46,8 +46,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     # flag
     opened = False
-
-    gv = None
 
     # changing between pd an NN recognition systems
     canvas_algorithm = "pd"

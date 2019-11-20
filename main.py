@@ -20,7 +20,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import QApplication, QSplashScreen, QProgressBar
 
-#from win32api import GetSystemMetrics
+# from win32api import GetSystemMetrics
 
 # own package imports
 from models.configuration_fromFile import ConfFromFile
@@ -31,7 +31,7 @@ from views.gui_qtdesigner import *
 import views.gui as gui
 
 from controllers.leap_controller import *
-from controllers.aux_functions import *
+from controllers.utils import *
 from controllers.configuration_controller import Controller
 
 

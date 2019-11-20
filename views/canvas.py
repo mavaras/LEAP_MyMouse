@@ -22,7 +22,7 @@ from sklearn import datasets
 from sklearn.externals import joblib
 
 from models.Point import Point
-from controllers.aux_functions import *
+from controllers.utils import *
 
 stroke_id = -1
 
@@ -93,7 +93,7 @@ class Canvas(QDialog):
     def recognition_algorithm_ch(self):
         """ handles combobox recognition algorithm changes"""
 
-        print("canvas algorithm changed")
+        self.parent._print("canvas algorithm changed")
         if self.cb_algorithm.currentIndex() == 0:
             self.canvas_algorithm = "pd"
             self.label_opts.setText("V D T X W Z L")
@@ -108,7 +108,6 @@ class Canvas(QDialog):
     def clear(self):
         """ removes all strokes from canvas"""
 
-        print("clear")
         self.widget_canvas.clear()
         self.label_score.setText("")
         self.recognition_algorithm_ch()
@@ -117,7 +116,6 @@ class Canvas(QDialog):
         """ recognizes canvas's stroke"""
 
         if self.canvas_algorithm == "pd":
-            print("!!")
             # we are using p$ recognizer
             points = self.widget_canvas.points
             result = recognize_stroke(self.widget_canvas.points)
@@ -147,7 +145,6 @@ class Canvas(QDialog):
                 matrix[int(leap_gesture_points[c].y)][int(leap_gesture_points[c].x)] = white
 
             img = self.matrix_to_img(matrix)
-            print("!")
             self.neural_network(img)
 
         self.parent.listener.clear_variables()
@@ -164,7 +161,6 @@ class Canvas(QDialog):
         return img
 
     def neural_network(self, img):
-        print("!")
         # setting + normalizing image
         img = cv2.resize(img, (28, 28))
         ret, img = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
@@ -173,7 +169,7 @@ class Canvas(QDialog):
         self.parent._print("Loading MLP model from file res/mlp_model.pkl")
         clf = joblib.load("res/mlp_model.pkl").best_estimator_
         predicted = clf.predict(img.reshape((1, img.shape[0] * img.shape[1])))
-        print("!")
+
         # display results
         self.parent._print("prediction: " + str(predicted))
         plt.imshow(img, cmap=plt.cm.gray_r, interpolation="nearest")
@@ -273,10 +269,10 @@ class Widget_canvas(QWidget):
 
         x = event.x()
         y = event.y()
-        print("start point: (" + str(x) + "," + str(y) + ")")
+        self.parent._print("start point: (" + str(x) + "," + str(y) + ")")
 
         self.path_points_1.addEllipse(QtCore.QRectF(x, y, 16, 16))
-        global stroke_id  # , points
+        global stroke_id
         stroke_id += 1
         self.points.append(Point(x, y, stroke_id))
         self.lp.x, self.lp.y = x, y
@@ -297,4 +293,4 @@ class Widget_canvas(QWidget):
     def mouseReleaseEvent(self, event):
         """ captures a mouse click release on the canvas"""
 
-        print("end point: (" + str(event.x()) + "," + str(event.y()) + ")")
+        self.parent._print("end point: (" + str(event.x()) + "," + str(event.y()) + ")")
