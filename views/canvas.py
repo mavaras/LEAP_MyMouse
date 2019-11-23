@@ -8,10 +8,10 @@
 
 import numpy as np
 
-from PyQt5.QtGui import *
+from PyQt5.QtGui import QIcon, QPainter, QPainterPath, QCursor
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import (
-    QDialog, QVBoxLayout, QHBoxLayout
+    QDialog, QVBoxLayout, QHBoxLayout, QWidget, QLabel, QComboBox, QPushButton
 )
 from views.gui_qtdesigner import *
 
@@ -36,7 +36,7 @@ class Canvas(QDialog):
         self.parent = parent
 
         self.setWindowTitle("Canvas")
-        self.setWindowIcon(QtGui.QIcon("res/icons/leapmymouse.png"))
+        self.setWindowIcon(QIcon("res/icons/leapmymouse.png"))
 
         self.resize(400, 600)
         self.setFixedSize(self.size())
@@ -183,7 +183,7 @@ class Widget_canvas(QWidget):
     def __init__(self, parent, w, h):
         super(Widget_canvas, self).__init__(parent)
 
-        self.setCursor(QtGui.QCursor(QtCore.Qt.CrossCursor))
+        self.setCursor(QCursor(QtCore.Qt.CrossCursor))
 
         self.points = []
         self.lp = Point(0, 0, -1)
@@ -225,7 +225,7 @@ class Widget_canvas(QWidget):
     def paintEvent(self, event):
         """ QWidget main paint event. Everything is drawn here"""
 
-        canvas = QtGui.QPainter(self)
+        canvas = QPainter(self)
         pen = QPen()
 
         # drawing grid

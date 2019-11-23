@@ -58,7 +58,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.listener = None
 
         self.opened = True
-        self.systray = QSystemTrayIcon(QIcon("res/icons/leapmymouse.PNG"), self)
+        self.systray = QSystemTrayIcon(QtGui.QIcon("res/icons/leapmymouse.PNG"), self)
 
         self.setupUi(self)
 
@@ -73,8 +73,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.settings = Settings(self)
 
         self.set_notification_area()
-
-        self.setWindowIcon(QtGui.QIcon("res/icons/leapmymouse.png"))
+        import os
+        print(os.getcwd()+"/res/icons/leapmymouse.PNG")
+        self.setWindowIcon(QtGui.QIcon("res/icons/leapmymouse.PNG"))
 
         # launch on startup checkbox
         self.checkBox_startup.stateChanged.connect(lambda: self.launch_on_startup())

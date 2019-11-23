@@ -444,7 +444,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>C:/Users/Mario/.designer/res/icons/leapmymouse.PNG</normaloff>C:/Users/Mario/.designer/res/icons/leapmymouse.PNG</iconset>
+    <normaloff>../res/icons/leapmymouse.PNG</normaloff>../res/icons/leapmymouse.PNG</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -1908,7 +1908,7 @@
         <rect>
          <x>236</x>
          <y>425</y>
-         <width>91</width>
+         <width>111</width>
          <height>25</height>
         </rect>
        </property>
@@ -1925,9 +1925,9 @@
       <widget class="QPushButton" name="button_stop">
        <property name="geometry">
         <rect>
-         <x>150</x>
+         <x>130</x>
          <y>425</y>
-         <width>91</width>
+         <width>111</width>
          <height>25</height>
         </rect>
        </property>
@@ -3332,8 +3332,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>813</width>
-            <height>413</height>
+            <width>836</width>
+            <height>455</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout">
@@ -4503,7 +4503,7 @@
            <x>30</x>
            <y>10</y>
            <width>461</width>
-           <height>119</height>
+           <height>135</height>
           </rect>
          </property>
          <layout class="QGridLayout" name="gridLayout_2" columnstretch="0,0,0" columnminimumwidth="0,0,0">
@@ -4793,7 +4793,7 @@
      <x>0</x>
      <y>0</y>
      <width>1043</width>
-     <height>21</height>
+     <height>28</height>
     </rect>
    </property>
    <widget class="QMenu" name="menubar_file">
