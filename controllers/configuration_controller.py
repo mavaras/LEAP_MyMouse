@@ -24,6 +24,8 @@ class Controller:
         """
 
         if not self.listener.status.leap_connected:
+            self.view.button_stop.setChecked(True)
+            self.view.button_start.setChecked(False)
             self.view.show_popup("Problem Detected",
                                  "Leap Motion error",
                                  "Leap Motion device is not connected")
