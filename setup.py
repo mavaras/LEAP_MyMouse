@@ -2,11 +2,11 @@ from setuptools import setup
 
 setup(
     name='LEAP_MyMouse',
-    version='',
+    version='2',
     packages=['', 'lib', 'views', 'models', 'controllers'],
     url='',
     license='',
-    author='Mario',
-    author_email='',
-    description=''
+    author='mavaras',
+    author_email='elasgard@hotmail.es',
+    description='gesture recognition system applied to control a computer'
 )
