@@ -22,12 +22,12 @@ from lib.leap_python3 import Leap as Leap
 # own package imports
 from controllers.utils import *
 from models.gvariables import gv
+from controllers.mouse import Mouse
 if sys.platform == "win32":
-    from controllers.mouse import Mouse
-    from controllers.win32_functions import *
+    from controllers.Win32Handle import Win32Handle as OSHandler
     from controllers.key_handle import *
 elif sys.platform == "linux":
-    pass
+    from controllers.LinuxHandle import LinuxHandle as OSHandler
 
 cv_frame_XY = np.zeros((540, 640, 3), np.uint8)
 cv_frame_XZ = np.zeros((540, 640, 3), np.uint8)
@@ -118,6 +118,8 @@ class leap_listener(Leap.Listener):
         for c in range(5):
             aux = deque([], 18)
             self.tail_points.append(aux)
+
+        self.win32 = OSHandler
 
         print("initialized")
 
@@ -496,7 +498,7 @@ class leap_listener(Leap.Listener):
                     yaw = hand.direction.yaw * Leap.RAD_TO_DEG
                     pitch = hand.direction.pitch * Leap.RAD_TO_DEG
 
-                    if any(c in get_current_window_name() for c in ["PowerPoint  -", "PowerPoint -"]):
+                    if any(c in self.Win32Handle.get_current_window_name() for c in ["PowerPoint  -", "PowerPoint -"]):
                         self.swipe(hand.fingers[2].tip_velocity.x, ["right_arrow",
                                                                     "left_arrow"])
                         self.swipe(hand.fingers[1].tip_velocity.y, ["esc"])

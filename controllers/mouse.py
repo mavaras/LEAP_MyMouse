@@ -7,7 +7,11 @@
 
 
 import time
-import win32api, win32con
+import sys
+if sys.platform == "win32":
+    from controllers.Win32Handle import Win32Handle as OSHandler
+elif sys.platform == "linux":
+    from controllers.LinuxHandle import LinuxHandle as OSHandler
 
 
 class Mouse:
@@ -41,24 +45,19 @@ class Mouse:
         self.swipe = False  # if currently swiping (swipe mode + left or right swipe)
         self.last_swipe_time = time.time()
 
+        self._OSHandler = OSHandler
+
     def lclick(self):
         """ performs a left click on the mouse"""
-
-        win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, self.x, self.y, 0, 0)
-        time.sleep(.2)
-        win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, self.x, self.y, 0, 0)
+        self._OSHandler.lclick
 
     def rclick(self):
         """ performs a right click on the mouse"""
-
-        win32api.mouse_event(win32con.MOUSEEVENTF_RIGHTDOWN, self.x, self.y, 0, 0)
-        time.sleep(.2)
-        win32api.mouse_event(win32con.MOUSEEVENTF_RIGHTUP, self.x, self.y, 0, 0)
+        self._OSHandler.rclick
 
     def vscroll(self, vel):
         """ performs a vertical scroll on the mouse
 
         :param vel: > 0 up, < 0 down
         """
-
-        win32api.mouse_event(win32con.MOUSEEVENTF_WHEEL, self.x, self.y, vel, 0)
+        self._OSHandler.vscroll

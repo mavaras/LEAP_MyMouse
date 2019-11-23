@@ -12,10 +12,10 @@ import sys
 from models.gvariables import gv
 
 if sys.platform == "win32":
-    from controllers.win32_functions import *
+    from controllers.Win32Handle import Win32Handle as SOHandler
     from controllers.key_handle import *  # ?
 elif sys.platform == "linux":
-    pass
+    from controllers.LinuxHandle import LinuxHandle as SOHandler
 
 
 def sign(n):
@@ -98,12 +98,12 @@ def gesture_match(gesture_name, configuration, active=True):
 
     if active:
         if gesture_name == configuration.basic.closew:
-            hwnd = get_current_window_hwnd()
-            close_window(hwnd)
+            hwnd = SOHandler.get_current_window_hwnd()
+            SOHandler.close_window(hwnd)
 
         elif gesture_name == configuration.basic.minimizew:
-            hwnd = get_current_window_hwnd()
-            minimize_window(hwnd)
+            hwnd = SOHandler.get_current_window_hwnd()
+            SOHandler.minimize_window(hwnd)
 
         elif gesture_name == configuration.extra.show_desktop:
             hold("windows")
