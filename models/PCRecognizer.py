@@ -7,8 +7,8 @@
 
 import time
 
-from .template import init_templates
-from .PCRecognizer_functions import *
+from models.Template import init_templates
+from models.PCRecognizer_functions import *
 from models.gvariables import gv
 import models.Point as ps
 

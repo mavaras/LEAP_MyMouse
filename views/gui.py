@@ -26,12 +26,12 @@ from sklearn import datasets
 from sklearn.externals import joblib
 
 # self package imports
-from models.gvariables import gv
 from controllers.utils import *
 from controllers.configuration_controller import Controller
+from models.gvariables import gv
 from models.Point import Point
-from models.Point_cloud import Point_cloud
-from models.configuration_fromFile import ConfFromFile
+from models.PointCloud import PointCloud
+from models.ConfigurationFromFile import ConfFromFile
 from views.gui_qtdesigner import *
 from views.canvas import Canvas
 from views.settings import Settings
@@ -73,8 +73,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.settings = Settings(self)
 
         self.set_notification_area()
-        import os
-        print(os.getcwd()+"/res/icons/leapmymouse.PNG")
         self.setWindowIcon(QtGui.QIcon("res/icons/leapmymouse.PNG"))
 
         # launch on startup checkbox

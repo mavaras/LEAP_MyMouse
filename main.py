@@ -23,9 +23,9 @@ from PyQt5.QtWidgets import QApplication, QSplashScreen, QProgressBar
 # from win32api import GetSystemMetrics
 
 # own package imports
-from models.configuration_fromFile import ConfFromFile
+from models.ConfigurationFromFile import ConfFromFile
 from models.PCRecognizer import PCRecognizer
-from models.Point_cloud import Point_cloud
+from models.PointCloud import PointCloud
 
 from views.gui_qtdesigner import *
 import views.gui as gui
