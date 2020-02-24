@@ -78,6 +78,7 @@ Some features to perform are:
   <img src="https://raw.githubusercontent.com/mavaras/LEAP_MyMouse/master/readme_files/NNdiagram.PNG">
 </p>
 
+- You can download the full PDF document of the project (spanish) here: https://mega.nz/#!P0QgQIqa!cOsuy9KXdbuxyVKCUtuxyoTVq2GHXsHhX0H1f_9Bp2o
 
 ## Contact
 - Mario Varas: elasgard@hotmail.es
