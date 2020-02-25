@@ -136,7 +136,7 @@ PySciter==0.4.28
 python-apt==1.1.0b1+ubuntu0.16.4.2
 python-dateutil==2.7.5
 python-debian==0.1.27
-python-gnupg==0.4.4
+python-gnupg==0.4.5
 python-systemd==231
 python-vlc==3.0.4106
 python-xlib==0.25
