@@ -34,7 +34,7 @@ In the menubar, you can save and load customized configuration files, between ot
 
 ******
 
-### We have to different kinds of gestures: simple ones and complex ones.
+### We have two different kinds of gestures: simple ones and complex ones.
 - **Simple gestures**
 <p align="center">
   <img width="607" height="350" src="https://raw.githubusercontent.com/mavaras/LEAP_MyMouse/master/readme_files/simple_gesture.gif">
