@@ -82,4 +82,4 @@ Some features to perform are:
 
 ## Contact
 - Mario Varas: elasgard@hotmail.es
-- [Linkedin](https://www.linkedin.com/in/mario-varas-gonz%C3%A1lez-270604174/)
+- [Linkedin](https://www.linkedin.com/in/mario-varas/)
