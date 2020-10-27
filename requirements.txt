@@ -31,7 +31,7 @@ cloudpickle==0.7.0
 colorama==0.4.1
 command-not-found==0.3
 comtypes==1.1.7
-cryptography==1.2.3
+cryptography==3.2
 cycler==0.10.0
 Cython==0.29.1
 dask==1.1.0
