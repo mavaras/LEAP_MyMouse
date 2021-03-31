@@ -80,7 +80,7 @@ language-selector==0.1
 LibAppArmor==2.10.95
 linecache2==1.0.0
 louis==2.6.4
-lxml==3.5.0
+lxml==4.6.3
 macholib==1.11
 Mako==1.0.3
 Markdown==3.1.1
