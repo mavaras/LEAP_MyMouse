@@ -105,7 +105,7 @@ pathtools==0.1.2
 pefile==2018.8.8
 pexpect==4.0.1
 pickleshare==0.7.5
-Pillow==6.2.1
+Pillow==8.2.0
 piston-mini-client==0.7.5
 plainbox==0.25
 proglog==0.1.9
